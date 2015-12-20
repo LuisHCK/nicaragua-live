@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @post.body %>
+</p>
+
+<p>
+  <strong>Likes:</strong>
+  <%= @post.likes %>
+</p>
+
+<p>
+  <strong>Visit count:</strong>
+  <%= @post.visit_count %>
+</p>
+<% unless @post.pictures.empty? %>
+
+<% @post.pictures.each do |pic| %>
+  <a href="<%= pic.image.url %>"><img src="<%= pic.image.url(:tumb)%>"></a>
+<% end %>
+<% end %>
+<%= link_to 'Edit', edit_post_path(@post) %> |

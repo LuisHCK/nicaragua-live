@@ -1,0 +1,33 @@
+
+<div class="card">
+	<div class="card-content">
+		
+	</div>
+</div>
+  <div class="collection grey-text text-darken-4">
+	<a href="#!" class="collection-item">Estelí</a>
+	<a href="/categories/" class="collection-item">Visitar Lugares</a>
+	<a href="#!" class="collection-item">¿Como llegar?</a>
+<% if user_signed_in? %>
+	<div style="padding-left:5%;">
+		<b>Cuenta</b>	
+	</div>
+	<li>
+		<%= link_to "Editar Perfil", edit_user_registration_path %>
+	</li>
+
+	<li>
+		<%= link_to "Crear post nuevo", new_post_path %>
+	</li>
+
+	<li>
+		<%= link_to "Cerrar Sesión", destroy_user_session_path, :confirm => "¿Estás seguro de que quieres cerrar las sesión?", method: :delete%>
+	</li>
+<% else %>
+	<a href="<%= new_user_session_path %>" class="collection-item" >Iniciar Sesión</a>
+<% end %>
+	      <% if master_admin_signed_in? %>
+            <li><a href="/panels/">Panel</a></li>
+          <% end %>
+  </div>
+  

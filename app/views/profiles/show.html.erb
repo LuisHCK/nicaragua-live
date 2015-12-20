@@ -1,0 +1,28 @@
+
+<div class="container">
+  <% @profile.posts.each do |post| %>
+    <ul class="collection z-depth-2">
+      <li class="collection-item"> 
+        <b><%= post.title %> </li></b>
+
+      <li class="collection-item"> 
+
+
+            <% post.pictures.each do |pic| %>
+            <li>
+              <img class="materialboxed" src="<%= pic.image.url(:tumb)%>">
+            </li>
+            <% end %>
+
+        <%= post.body %> 
+      </li>
+
+      <li class="collection-item row s12">
+        <a class="col s4 waves-effect waves-teal btn-flat center"> <i class="material-icons">thumb_up</i></a>
+        <a class="col s4 waves-effect waves-teal btn-flat center"> <i class="material-icons">comment</i></a>
+        <a class="col s4 waves-effect waves-teal btn-flat center"> <i class="material-icons">star</i></a>
+        </li>
+
+     </ul>
+<% end %>
+</div>

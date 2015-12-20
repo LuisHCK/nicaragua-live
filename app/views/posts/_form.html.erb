@@ -1,0 +1,28 @@
+  <%= form_for @post, :html => { :class => 'form-horizontal', multipart: true } do |f| %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </div>
+
+      <div class="file-field input-field">
+      <div class="btn">
+        <span>Imagenes</span>
+        <input type="file" multiple>
+             <%= file_field_tag "images[]", type: :file, multiple: true, input_html: { hidden: true }%>
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="Seleccione uno o mas archivos">
+      </div>
+    </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
+
