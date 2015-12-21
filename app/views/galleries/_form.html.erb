@@ -1,0 +1,22 @@
+<div class="container">
+  <%= form_for @gallery, :html => { :class => 'form-horizontal', multipart: true } do |f| %>
+
+
+    <div class="file-field input-field">
+      <div class="btn">
+        <span>Imagenes</span>
+        <input type="file" multiple>
+             <%= file_field_tag "images[]", type: :file, multiple: true, input_html: { hidden: true }%>
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" placeholder="Seleccione uno o mas archivos">
+      </div>
+    </div>
+
+  <div style="margin-top:2%">
+    <%= f.submit "Crear Galeria", :class => 'btn ' %>
+    <%= link_to t('Cancelar', :default => t("Cancelar")),
+                galleries_path, :class => 'btn' %>
+  </div>
+<% end %>
+</div>
