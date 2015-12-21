@@ -1,20 +1,14 @@
 class ProfilesController < ApplicationController
-<<<<<<< HEAD
   before_action :set_profile, only: [:show, :update, :destroy]
-=======
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
->>>>>>> 3eacbaa7c5c9ecfea571c85c59a319af1cd84887
   before_action :authenticate_user!, except: [:show,:index]
   # GET /profiles
   # GET /profiles.json
   def index
     @profiles = Profile.all
     @posts = Post.all
-<<<<<<< HEAD
-=======
     #@pictures = @post.pictures
 
->>>>>>> 3eacbaa7c5c9ecfea571c85c59a319af1cd84887
   end
 
   # GET /profiles/1
@@ -29,10 +23,7 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
-<<<<<<< HEAD
     redirect_to(edit_user_registration_path)
-=======
->>>>>>> 3eacbaa7c5c9ecfea571c85c59a319af1cd84887
   end
 
   # POST /profiles
