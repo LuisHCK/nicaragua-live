@@ -1,20 +1,18 @@
-
 <div class="container">
+  <h5><%= @profile.name %></h5>
   <% @profile.posts.each do |post| %>
     <ul class="collection z-depth-2">
-      <li class="collection-item"> 
-        <b><%= post.title %> </li></b>
+      <li class="collection-item">
+        <b><%= post.title %></b>
+      </li>
 
-      <li class="collection-item"> 
-
+      <li class="collection-item">
 
             <% post.pictures.each do |pic| %>
-            <li>
-              <img class="materialboxed" src="<%= pic.image.url(:tumb)%>">
-            </li>
+              <img class="materialboxed" src="<%= pic.image.url(:thumb)%>">
             <% end %>
 
-        <%= post.body %> 
+        <%= post.body %>
       </li>
 
       <li class="collection-item row s12">
