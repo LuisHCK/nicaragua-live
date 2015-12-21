@@ -1,7 +1,14 @@
 <div class="container">
   <h4>Iniciar Seción</h4>
+<<<<<<< HEAD
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+=======
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+    <%= devise_error_messages! %>
+
+>>>>>>> 3eacbaa7c5c9ecfea571c85c59a319af1cd84887
     <div class="field">
       <%= f.label "Correo" %><br />
       <%= f.email_field :email, autofocus: true %>
@@ -29,4 +36,8 @@
   <% end %>
 
   <%= render "devise/shared/links" %>
+<<<<<<< HEAD
 </div>
+=======
+</div>
+>>>>>>> 3eacbaa7c5c9ecfea571c85c59a319af1cd84887
