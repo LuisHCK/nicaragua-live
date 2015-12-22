@@ -14,25 +14,24 @@
             <% end %>
 
         <%= post.body %>
-=======
 
 <div class="container">
   <% @profile.posts.each do |post| %>
     <ul class="collection z-depth-2">
-      <li class="collection-item"> 
-        <b><%= post.title %> </li></b>
+      <li class="collection-item">
+        <b><%= post.title %></b>
+      </li>
 
-      <li class="collection-item"> 
+      <li class="collection-item">
 
-
+        <div class="fotorama"
+             data-nav="thumbs">
             <% post.pictures.each do |pic| %>
-            <li>
-              <img class="materialboxed" src="<%= pic.image.url(:tumb)%>">
-            </li>
+              <a href="<%= pic.image.url(:original) %>"><img src="<%= pic.image.url(:tumb)%>"></a>
             <% end %>
+        </div>
 
-        <%= post.body %> 
->>>>>>> 3eacbaa7c5c9ecfea571c85c59a319af1cd84887
+
       </li>
 
       <li class="collection-item row s12">
@@ -43,8 +42,9 @@
 
      </ul>
 <% end %>
-<<<<<<< HEAD
 </div>
-=======
 </div>
->>>>>>> 3eacbaa7c5c9ecfea571c85c59a319af1cd84887
+
+<!-- fotorama.css & fotorama.js. -->
+<link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->

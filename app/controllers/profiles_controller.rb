@@ -1,5 +1,4 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :update, :destroy]
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show,:index]
   # GET /profiles
