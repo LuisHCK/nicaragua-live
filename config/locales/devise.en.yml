@@ -34,11 +34,8 @@ en:
       updated_not_active: "Tu contraseña se ha cambiado correctamente."
     registrations:
       destroyed: "¡Adiós! Tu cuenta ha sido cancelada. Esperamos volver a verte pronto."
-<<<<<<< HEAD
       signed_up: "¡Bienvenido! Has sido identificado."
-=======
       signed_up: "¡Bienvenido a Live App! Por favor ingresa los datos de tu marca para completar el registro"
->>>>>>> 3eacbaa7c5c9ecfea571c85c59a319af1cd84887
       signed_up_but_inactive: "Te has registrado correctamente, pero no has podido iniciar sesión porque tu cuenta no ha sido activada."
       signed_up_but_locked: "Te has registrado correctamente, pero no has podido iniciar sesión porque tu cuenta está bloqueada."
       signed_up_but_unconfirmed: "Se te ha enviado un mensaje con un enlace de confirmación. Por favor visita el enlace para activar tu cuenta."
@@ -61,8 +58,5 @@ en:
       not_locked: "no estaba bloqueado."
       not_saved:
         one: "1 error impidió que este %{resource} fuera guardado:"
-<<<<<<< HEAD
         other: "%{count} errores impidieron que este %{resource} fuera guardado:"
-=======
         other: "%{count} errores impidieron que este %{resource} fuera guardado:"
->>>>>>> 3eacbaa7c5c9ecfea571c85c59a319af1cd84887
