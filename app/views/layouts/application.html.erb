@@ -10,10 +10,17 @@
 
 <header>
 
-  <nav class=" blue darken-4">
-    <div class="nav-wrapper">
-      <a href="/" class="brand-logo">Esteli Live</a>
+  <nav class="blue darken-4">
+    <div class="nav-wrapper row">
+      <!---a href="/" class="brand-logo">Esteli Live</a--->
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
+      <a href="<% link_to root_path %>" class="button-nav col s2"><i class="material-icons">home</i></a>
+      <a href="<% link_to root_path %>" class="button-nav col s2"><i class="material-icons">notifications</i></a>
+      <a href="<% link_to root_path %>" class="button-nav col s2"><i class="material-icons">explore</i></a>
+      <a href="<% link_to root_path %>" class="button-nav col s2"><i class="material-icons">favorite</i></a>
+      <a href="<% link_to root_path %>" class="button-nav col s2"><i class="material-icons">search</i></a>
+
       <ul class="right hide-on-med-and-down">
           <%= render "/layouts/lateral_bar" %>
 
@@ -34,5 +41,8 @@
   <%= yield%>
 
 </body>
-
+  <script type="text/javascript">
+  // Initialize collapse button
+  $(".button-collapse").sideNav();
+  </script>
 </html>
