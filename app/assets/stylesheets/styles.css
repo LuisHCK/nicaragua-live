@@ -1,6 +1,20 @@
-
-button-nav{
+.icon-navbar {
   font-size: 2.7rem;
   height: 56px;
   line-height: 56px;
 }
+
+.badge1 {
+    position: relative;
+    top:-15px;
+    right: 18px;
+    padding: 3px 7px;
+    border-radius:100px;
+    background: -webkit-linear-gradient(top, #FF6969 0%,#ff0000 100%);
+    box-shadow: 0 1px 2px rgba(0,0,0,.5), 0 1px 4px rgba(0,0,0,.4), 0 0 1px rgba(0,0,0,.7) inset, 0 10px 0px rgba(255,255,255,.11) inset;
+    -webkit-background-clip: padding-box;
+    font:bold 13px/16px "Helvetica Neue", sans-serif;
+    color: white;
+    text-decoration: none;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.6);
+}​
