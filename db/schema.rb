@@ -77,23 +77,27 @@ ActiveRecord::Schema.define(version: 201512190301110) do
   add_index "posts", ["profile_id"], name: "index_posts_on_profile_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
-    t.string   "name",               limit: 255
-    t.string   "cover_file_name",    limit: 255
-    t.string   "cover_content_type", limit: 255
-    t.integer  "cover_file_size",    limit: 4
+    t.string   "name",                limit: 255
+    t.string   "cover_file_name",     limit: 255
+    t.string   "cover_content_type",  limit: 255
+    t.integer  "cover_file_size",     limit: 4
     t.datetime "cover_updated_at"
-    t.text     "body",               limit: 65535
-    t.string   "direccion",          limit: 255
+    t.text     "body",                limit: 65535
+    t.string   "direccion",           limit: 255
     t.datetime "horario"
-    t.string   "facebook",           limit: 255
-    t.string   "twiter",             limit: 255
-    t.string   "instagram",          limit: 255
-    t.string   "youtube",            limit: 255
-    t.string   "other",              limit: 255
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.integer  "user_id",            limit: 4
-    t.integer  "category_id",        limit: 4
+    t.string   "facebook",            limit: 255
+    t.string   "twiter",              limit: 255
+    t.string   "instagram",           limit: 255
+    t.string   "youtube",             limit: 255
+    t.string   "other",               limit: 255
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "user_id",             limit: 4
+    t.integer  "category_id",         limit: 4
+    t.string   "avatar_file_name",    limit: 255
+    t.string   "avatar_content_type", limit: 255
+    t.integer  "avatar_file_size",    limit: 4
+    t.datetime "avatar_updated_at"
   end
 
   add_index "profiles", ["category_id"], name: "index_profiles_on_category_id", using: :btree
