@@ -24,8 +24,7 @@
  </li>
 
  <li>
-    <div class="collapsible-header"> <i class="material-icons">text_fields
-</i> Titulo </div>
+    <div class="collapsible-header"> <i class="material-icons">text_fields</i> Titulo </div>
     <div class="collapsible-body">
             <p class="field">
               <%= f.label "Nombre del negocio o servicio" %><br>
@@ -54,6 +53,26 @@
     </div>
  </li>
 
+ <li>
+  <div class="collapsible-header"> <i class="material-icons">face</i> Imagen de Perfil </div>
+  <div class="collapsible-body">
+
+      <p style="margin-bottom: 3%">
+        <b>Imagen de Perfil</b>
+            <div class="file-field input-field">
+              <div class="btn red">
+                <span>Abrir</span>
+                <input type="file">
+                <%= f.file_field :avatar, input_html: { hidden: true }%>
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+              </div>
+            </div>
+
+      </p>
+  </div>
+</li>
 
    <li>
     <div class="collapsible-header"> <i class="material-icons">add_a_photo</i> Imagen de portada </div>
@@ -79,7 +98,7 @@
 
   <div class="actions">
     <p>
-      
+
     <%= f.submit "Actualizar Perfil", class:"btn"%>
       </p>
 </div>

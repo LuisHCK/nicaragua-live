@@ -1,28 +1,49 @@
+<div style="max-height: 270px;">
 
-<div class="card">
-	<div class="card-content">
+<!-- if user is signed in-->
+	<% if user_signed_in? %>
+			<%= image_tag current_user.profile.cover(:card), class:"cover-img responsive-img" %>
+			<span class="profile-img">
+				<%= image_tag current_user.profile.avatar(:mini), class:"circle", size:"74" %>
+			</span>
 
-	</div>
+<!-- if master admin is signed in -->
+		<% elsif master_admin_signed_in? %>
+			<%= image_tag current_user.profile.cover %>
+			<span class="profile-img">
+				<%= image_tag "unknown_user.png", class:"circle", size:"96" %>
+			</span>
+
+<!-- else show a default item -->
+		<% else %>
+				<%= image_tag "no_cover.jpg", class:"responsive-img" %>
+				<span class="profile-img">
+					<%= image_tag "unknown_user.png", class:"circle", size:"64" %>
+				</span>
+
+	<% end %>
 </div>
+
   <div class="collection grey-text text-darken-4">
 	<a href="#!" class="collection-item">Estelí</a>
 	<a href="/categories/" class="collection-item">Visitar Lugares</a>
 	<a href="#!" class="collection-item">¿Como llegar?</a>
 <% if user_signed_in? %>
-	<div style="padding-left:5%;">
-		<b>Cuenta</b>
-	</div>
-	<li>
-		<%= link_to "Editar Perfil", edit_user_registration_path %>
-	</li>
 
+<ul class="collapsible" data-collapsible="accordion">
 	<li>
-		<%= link_to "Crear post nuevo", new_post_path %>
-	</li>
+		<div class="collapsible-header"><b>Cuenta</b></div>
+		<div class="collapsible-body">
+				<%= link_to "Editar Perfil", edit_user_registration_path, class:"waves-effect waves-light"%>
 
-	<li>
-		<%= link_to "Cerrar Sesión", destroy_user_session_path, :confirm => "¿Estás seguro de que quieres cerrar las sesión?", method: :delete%>
+				<%= link_to "Crear post nuevo", new_post_path %>
+
+				<%= link_to "Cerrar Sesión", destroy_user_session_path, :confirm => "¿Estás seguro de que quieres cerrar las sesión?", method: :delete%>
+		</div>
 	</li>
+</ul>
+
+
 <% else %>
 	<a href="<%= new_user_session_path %>" class="collection-item" >Iniciar Sesión</a>
 <% end %>

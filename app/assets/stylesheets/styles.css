@@ -1,3 +1,8 @@
+.section-navbar{
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
 .icon-navbar {
   font-size: 2.7rem;
   height: 56px;
@@ -18,3 +23,13 @@
     text-decoration: none;
     text-shadow: 0 -1px 0 rgba(0,0,0,.6);
 }​
+
+.cover-img {
+  position:absolute;
+}
+
+.profile-img {
+  position:relative;
+  top: -65px;
+  left: 32%;
+}
