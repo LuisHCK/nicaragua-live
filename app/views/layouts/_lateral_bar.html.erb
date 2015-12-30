@@ -9,9 +9,9 @@
 
 <!-- if master admin is signed in -->
 		<% elsif master_admin_signed_in? %>
-			<%= image_tag current_user.profile.cover %>
+			<%= image_tag "no_cover.jpg", class:"responsive-img" %>
 			<span class="profile-img">
-				<%= image_tag "unknown_user.png", class:"circle", size:"96" %>
+				<%= image_tag "unknown_user.png", class:"circle", size:"64" %>
 			</span>
 
 <!-- else show a default item -->
