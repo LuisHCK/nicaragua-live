@@ -1,3 +1,2 @@
-class PanelsController < ApplicationController
-
+class PanelsController < ApplicationController::CategoriesController
 end
