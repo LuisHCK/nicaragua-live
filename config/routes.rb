@@ -1,17 +1,15 @@
 Rails.application.routes.draw do
 
 
+  resources :panels
   resources :galleries
   resources :pictures
-  resources :profiles 
-   
-   resources :posts
-  
-  devise_for :master_admins
-  
-  resources :categories
+  resources :profiles
+  resources :posts
 
-  resources :elements
+  devise_for :master_admins
+
+  resources :categories
 
   devise_for :users, :controllers => {:registrations => "user/registrations"}
   # The priority is based upon order of creation: first created -> highest priority.
