@@ -24,30 +24,57 @@
 	<% end %>
 </div>
 
-  <div class="collection grey-text text-darken-4">
-	<a href="#!" class="collection-item">Estelí</a>
-	<a href="/categories/" class="collection-item">Visitar Lugares</a>
-	<a href="#!" class="collection-item">¿Como llegar?</a>
+  <ul class="collection ">
+
+		<a href="/" class="collection-item avatar grey-text text-darken-4">
+			<i class="material-icons circle green">location_city</i>
+			<span class="title">Esteli</span>
+			<p>Historia y cultura<br>
+				de la ciudad
+			</p>
+		</a>
+
+		<a href="/categories" class="collection-item avatar grey-text text-darken-4">
+			<i class="material-icons circle blue">navigation</i>
+			<span class="title">Explorar</span>
+			<p>Lugares, productos<br>
+				y servicios
+			</p>
+		</a>
+
+		<a href="/categories" class="collection-item avatar grey-text text-darken-4">
+			<i class="material-icons circle orange">collections</i>
+			<span class="title">Noticias</span>
+			<p>Información actual
+			</p>
+		</a>
+
+		<a href="/categories" class="collection-item avatar grey-text text-darken-4">
+			<i class="material-icons circle teal">collections</i>
+			<span class="title">Galerías</span>
+			<p>Fotos<br>
+				Videos
+			</p>
+		</a>
+
 <% if user_signed_in? %>
-
-<ul class="collapsible" data-collapsible="accordion">
-	<li>
-		<div class="collapsible-header"><b>Cuenta</b></div>
-		<div class="collapsible-body">
-				<%= link_to "Editar Perfil", edit_user_registration_path, class:"waves-effect waves-light"%>
-
-				<%= link_to "Crear post nuevo", new_post_path %>
-
-				<%= link_to "Cerrar Sesión", destroy_user_session_path, :confirm => "¿Estás seguro de que quieres cerrar las sesión?", method: :delete%>
-		</div>
-	</li>
-</ul>
-
+	<a href="<%= edit_user_registration_path %>" class="collection-item avatar grey-text text-darken-4">
+		<i class="material-icons circle cyan">face</i>
+		<span class="title"> <%= current_user.profile.name %> </span>
+		<p>Administrar<br>
+			Perfil
+		</p>
+	</a>
 
 <% else %>
-	<a href="<%= new_user_session_path %>" class="collection-item" >Iniciar Sesión</a>
+				<a href= "" class="collection-item avatar grey-text text-darken-4">
+					<i class="material-icons circle red">verified_user</i>
+					<span class="title">Iniciar Seción</span>
+
+				</a>
+
 <% end %>
 	      <% if master_admin_signed_in? %>
-            <li><a href="/panels/">Panel</a></li>
+          <a href="/panels/">Panel</a>
           <% end %>
-  </div>
+  </ul>
