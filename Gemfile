@@ -45,7 +45,9 @@ group :development do
   gem 'spring'
 end
 
-#Custom gems 
+#Custom gems
 gem 'devise'
 gem 'paperclip'
 gem 'jquery-turbolinks'
+gem 'tinymce-rails'
+gem 'tinymce-rails-langs'
