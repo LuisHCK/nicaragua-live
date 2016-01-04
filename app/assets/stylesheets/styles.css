@@ -38,3 +38,17 @@
 .lateral{
   font-size: 150%;
 }
+
+.overflow {
+  display: block;
+  /* Fallback for non-webkit */
+  display: -webkit-box;
+  max-width: 100%;
+  /* Fallback for non-webkit */
+  margin: 0 auto;
+  line-height: 1.4;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
