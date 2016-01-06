@@ -1,5 +1,3 @@
-<%= tinymce  %>
-
       <%= form_for(@wiki) do |f| %>
         <% if @wiki.errors.any? %>
           <div id="error_explanation">
@@ -16,12 +14,12 @@
 
       <%= f.text_field :title, :placeholder => "Titulo" %>
 
-      <%= f.text_area :body, :class=>"tinymce", :rows => 40, :cols => 120 %>
+      <%= f.text_area :body, style:"height:200px; max-height:300px; width:100%; max-width:100%" %>
 
       <div style="margin-top:5%;">
         <b>Portada</b>
         <div class="file-field">
-          <div class="btn red">
+          <div class="btn light-blue darken-4">
             <span>Abrir</span>
             <input type="file">
             <%= f.file_field :cover, input_html: { hidden: true }%>
@@ -32,8 +30,9 @@
         </div>
       </div>
 
-        <div style="margin-top:5%;" class="actions">
-          <%= f.submit "Guardar", class:"btn-large teal" %>
+        <div style="margin-top:5%;" class="row">
+          <%= f.submit "Guardar", class:"btn-large green" %>
+          <%= link_to "Volver", wikis_path, class:"btn-large red lighten-1" %>
         </div>
 
       <% end %>
