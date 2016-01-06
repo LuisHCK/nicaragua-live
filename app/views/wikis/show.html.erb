@@ -1,4 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_wiki_path(@wiki) %> |
-<%= link_to 'Back', wikis_path %>
+<div class="container">
+  <strong class="center"><h5><%= @wiki.title %></h5></strong>
+  <%= image_tag @wiki.cover.url(), class:"responsive-img materialboxed"%>
+  <div class="responsive-text">
+    <%= markdown(@wiki.body) %>
+  </div>
+
+  <% if master_admin_signed_in? %>
+        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+            <a href="<%= edit_wiki_path %>" class="btn-floating btn-large red">
+              <i class="large material-icons">mode_edit</i>
+            </a>
+        </div>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+    $('.materialboxed').materialbox();
+    });
+</script>

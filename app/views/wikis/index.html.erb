@@ -3,17 +3,36 @@
     <ul class="collection">
 
       <li class="collection-item">
-        <b><%= wiki.title %></b>
+        <h4><b><%= wiki.title %></b></h4>
       </li>
 
       <li class="collection-item">
-        <%= image_tag wiki.cover.url(), class:"responsive-img"%>
+        <%= image_tag wiki.cover.url(), class:"responsive-img materialboxed"%>
 
-        <p class="overflow"><%= wiki.body %></p>
+        <div class="overflow"><%= markdown(wiki.body) %></div>
         <%= link_to "Ver más", wiki %>
-        </div>
+      </li>
+
+      <li class="collection-item left">
+          <a href="#" style="margin-left:5%; margin-right:5%;"><i class="material-icons icon-navbar">favorite</i></a>
+          <a href="#" style="margin-left:5%; margin-right:5%;"><i class="material-icons icon-navbar">comment</i></a>
+          <a href="#" style="margin-left:5%; margin-right:5%;"><i class="material-icons icon-navbar">share</i></a>
       </li>
 
     </ul>
   <% end %>
+
+  <% if master_admin_signed_in? %>
+        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+            <a href="<%= new_wiki_path %>" class="btn-floating btn-large red">
+              <i class="large material-icons">add</i>
+            </a>
+        </div>
+  <% end %>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+    $('.materialboxed').materialbox();
+    });
+</script>
