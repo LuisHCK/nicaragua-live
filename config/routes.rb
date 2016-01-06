@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  devise_for :clients
   resources :wikis
   resources :panels
   resources :galleries
