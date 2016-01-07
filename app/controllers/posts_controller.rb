@@ -29,7 +29,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        
+
         if params[:images]
           # The magic is here ;)
           params[:images].each { |image|
@@ -89,4 +89,3 @@ class PostsController < ApplicationController
       params.require(:post).permit(:title, :body, :likes, :visit_count, :pictures)
     end
 end
-
