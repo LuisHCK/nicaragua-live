@@ -2,8 +2,11 @@ class WelcomeController < ApplicationController
   before_action :authenticate_master_admin!, except: [:show,:index]
   def index
        @categories = Category.all
-       @profiles = Profile .all
+       @profiles = Profile.all
+       @posts = Post.all
+       @post = Post.new
   end
+
 
   def show
     @category = Category.find(params[:id])
