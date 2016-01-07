@@ -1,13 +1,13 @@
-  <%= form_for @post, :html => { :class => 'form-horizontal', multipart: true } do |f| %>
+<div style="margin-left:5%; margin-right:5%;">
+  <%= form_for @post, :html => { :class => 'form-horizontal', multipart: true }, :authenticity_token => true do |f| %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :body %><br>
-    <%= f.text_area :body %>
-  </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.text_area :body,class:"materialize-textarea", length:"180", input_html: { hidden: true } %>
+          <label for="textarea1">Escribir publicación</label>
+        </div>
+      </div>
 
       <div class="file-field input-field">
       <div class="btn">
@@ -21,8 +21,8 @@
     </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Publicar", class:"btn blue" %>
   </div>
 
 <% end %>
-
+</div>
