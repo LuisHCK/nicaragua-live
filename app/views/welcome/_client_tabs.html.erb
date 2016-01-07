@@ -1,0 +1,41 @@
+<ul class="tabs">
+	<li class="tab col s6"> <a href="#tab1">Inicio</a> </li>
+	<li class="tab col s6"> <a href="#tab2">Marcados</a> </li>
+	<li class="tab col s6"> <a href="#tab3"></a> </li>
+</ul>
+
+<div class="container">
+    <p id="notice"><%= notice %></p>
+
+
+<div id="tab1" class="col s12">
+	<!--Tarjetas-->
+  <div class="z-depth-1">
+    <%= render "/posts/form" %>
+  </div>
+	<!--Tarjetas-->
+</div>
+
+<div id="tab2" class="col s12">
+	<!--Tarjetas-->
+	<div class="card">
+		<div class="car-content">
+			Esta es una tarjeta vacia
+			que muestra contenido favorito
+		</div>
+	</div>
+	<!--Tarjetas-->
+</div>
+
+<div id="tab3" class="col s12">
+	<!--Tarjetas-->
+	<% @posts.order("created_at desc").limit(4).each do |post| %>
+	<div class="card">
+		<div class="car-content">
+			<%= post.title %>
+		</div>
+	</div>
+	<% end %>
+	<!--Tarjetas-->
+</div>
+</div>
