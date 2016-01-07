@@ -1,35 +1,27 @@
 <div class="container">
-  <h5><%= @profile.name %></h5>
+<div>
+  <%= render "profile_info" %>
+</div>
   <% @profile.posts.each do |post| %>
     <ul class="collection z-depth-2">
-      <li class="collection-item">
-        <b><%= post.title %></b>
+      <li class="collection-item row">
+        <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= @profile.avatar.url %>" alt="" class="circle responsive-img">
+        <b><%= @profile.name %></b>
       </li>
 
       <li class="collection-item">
-
-            <% post.pictures.each do |pic| %>
-              <img class="materialboxed" src="<%= pic.image.url(:thumb)%>">
-            <% end %>
-
-        <%= post.body %>
-      </li>
-<div class="container">
-  <% @profile.posts.each do |post| %>
-    <ul class="collection z-depth-2">
-      <li class="collection-item">
-        <b><%= post.title %></b>
-      </li>
-
-      <li class="collection-item">
-
-        <div class="fotorama"
-             data-nav="thumbs">
-            <% post.pictures.each do |pic| %>
-              <a href="<%= pic.image.url(:original) %>"><img src="<%= pic.image.url(:tumb)%>"></a>
-            <% end %>
-        </div>
-
+        <p>
+          <%= post.body %>
+        </p>
+        <% if post.pictures.count > 1 %>
+          <div class="fotorama" data-nav="thumbs" data-allowfullscreen="true">
+              <% post.pictures.each do |pic| %>
+                <a href="<%= pic.image.url(:original) %>"><img src="<%= pic.image.url(:tumb)%>"></a>
+              <% end %>
+          </div>
+          <% else %>
+            <%= image_tag(pic.image, class:"responsive-img")%>
+        <% end %>
 
       </li>
 
@@ -40,10 +32,8 @@
         </li>
 
      </ul>
-     <% end %>
 <% end %>
 
-</div>
 </div>
 
 <!-- fotorama.css & fotorama.js. -->
