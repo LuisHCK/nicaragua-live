@@ -49,6 +49,18 @@ ActiveRecord::Schema.define(version: 201512190301110) do
 
   add_index "galleries", ["post_id"], name: "index_galleries_on_post_id", using: :btree
 
+  create_table "hearts", force: :cascade do |t|
+    t.integer  "post_id",    limit: 4
+    t.integer  "user_id",    limit: 4
+    t.integer  "client_id",  limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "hearts", ["client_id"], name: "index_hearts_on_client_id", using: :btree
+  add_index "hearts", ["post_id"], name: "index_hearts_on_post_id", using: :btree
+  add_index "hearts", ["user_id"], name: "index_hearts_on_user_id", using: :btree
+
   create_table "master_admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
