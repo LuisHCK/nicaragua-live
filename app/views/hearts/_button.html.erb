@@ -1,9 +1,12 @@
-<% if current_user.heart?(post) %>
-<%= button_to unheart_path(post_id: post.id), remote: true, method: :delete, class:"col s4 waves-effect waves-teal btn-flat center" do%>
-<i class="material-icons">favorite</i>
+<% if user_signed_in? %>
+    <% if current_user.heart?(post) %>
+    <%= button_to unheart_path(post_id: post.id), remote: true, method: :delete, class:"col s4 waves-effect waves-teal btn-flat center" do%>
+    <i class="material-icons">favorite</i>
+    <% end %>
+    <% else %>
+      <%= button_to heart_path(post_id: post.id), remote: true, class:"col s4 waves-effect waves-teal btn-flat center" do%>
+          <i class="material-icons">favorite_border</i>
+      <% end %>
+    <% end %>
 <% end %>
-<% else %>
-  <%= button_to heart_path(post_id: post.id), remote: true, class:"col s4 waves-effect waves-teal btn-flat center" do%>
-      <i class="material-icons">favorite_border</i>
-  <% end %>
-<% end %>
+<%= @post.hearts.count %>
