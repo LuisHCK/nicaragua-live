@@ -1,0 +1,32 @@
+<% @profile.posts.each do |post| %>
+  <ul class="collection z-depth-2">
+    <li class="collection-item row">
+      <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= @profile.avatar.url %>" alt="" class="circle responsive-img">
+      <b><%= @profile.name %></b>
+    </li>
+
+    <li class="collection-item">
+      <p>
+        <%= post.body %>
+      </p>
+      <% if post.pictures.count > 1 %>
+        <div class="fotorama" data-nav="thumbs" data-allowfullscreen="true">
+            <% post.pictures.each do |pic| %>
+              <a href="<%= pic.image.url(:original) %>"><img src="<%= pic.image.url(:thumb)%>"></a>
+            <% end %>
+        </div>
+        <% else %>
+        <% post.pictures.each do |pic| %>
+        <div class="center">
+          <%= image_tag(pic.image, class:"responsive-img")%>
+        </div>
+          <% end %>
+      <% end %>
+
+    </li>
+    <%= div_for(post, class: "collection-item row s12") do %>
+     <%= render partial: "hearts/button", locals: { post: post } %>
+   <% end %>
+
+   </ul>
+<% end %>
