@@ -37,10 +37,10 @@ class PostsController < ApplicationController
           }
         end
 
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Se ha publicado correctamente.' }
         format.json { render :show, status: :created, location: @post }
       else
-        format.html { render :new }
+        format.html { redirect_to root_path, notice: 'No puedes dejar el texto en blanco.' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -86,6 +86,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body, :likes, :visit_count, :pictures)
+      params.require(:post).permit(:title, :body, :visit_count, :pictures)
     end
 end
