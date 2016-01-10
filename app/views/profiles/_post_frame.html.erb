@@ -1,7 +1,7 @@
 <% @profile.posts.each do |post| %>
   <ul class="collection z-depth-2">
     <li class="collection-item row">
-      <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= @profile.avatar.url %>" alt="" class="circle responsive-img">
+      <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= @profile.avatar.url(:mini) %>" alt="" class="circle responsive-img">
       <b><%= @profile.name %></b>
     </li>
 
@@ -12,7 +12,7 @@
       <% if post.pictures.count > 1 %>
         <div class="fotorama" data-nav="thumbs" data-allowfullscreen="true">
             <% post.pictures.each do |pic| %>
-              <a href="<%= pic.image.url(:original) %>"><img src="<%= pic.image.url(:thumb)%>"></a>
+              <a href="<%= pic.image.url() %>"><img src="<%= pic.image.url(:thumb)%>"></a>
             <% end %>
         </div>
         <% else %>
@@ -25,7 +25,7 @@
 
     </li>
     <%= div_for(post, class: "collection-item row s12") do %>
-    <%= if user_signed_in? %>
+    <% if user_signed_in? %>
      <%= render partial: "hearts/button", locals: { post: post } %>
     <% end %>
    <% end %>

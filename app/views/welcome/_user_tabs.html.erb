@@ -1,20 +1,19 @@
 <ul class="tabs">
-	<li class="tab col s6"> <a href="#tab1">Inicio</a> </li>
-	<li class="tab col s6"> <a href="#tab2">Favoritos</a> </li>
-	<li class="tab col s6"> <a href="#tab3">Reciente</a> </li>
+	<% if user_signed_in? %>
+	<li class="tab col s7"> <a href="#tab1">Mis Publicaciones</a> </li>
+	<li class="tab col s7"> <a href="#tab2">Favoritos</a> </li>
+	<li class="tab col s7"> <a href="#tab3">Reciente</a> </li>
+
+	<% else %>
+		<li class="tab col s7"> <a href="#tab1">Inicio</a> </li>
+		<li class="tab col s7"> <a href="#tab2">Favoritos</a> </li>
+		<li class="tab col s7"> <a href="#tab3">Recomendados</a> </li>
+	<% end %>
 </ul>
 
 <div class="container">
-    <p id="notice"><%= notice %></p>
-
 
 <div id="tab1" class="col s12">
-	<!--Tarjetas-->
-  <div class="z-depth-1">
-    <%= render "/posts/form" %>
-  </div>
-	<!--Tarjetas-->
-
 	<div>
 		<%= render "posts" %>
 	</div>

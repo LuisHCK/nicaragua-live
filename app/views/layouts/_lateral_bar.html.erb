@@ -28,7 +28,7 @@
 
 		<a href= "<%= wikis_path %>" class="collection-item avatar grey-text text-darken-4">
 			<i class="material-icons circle green">location_city</i>
-			<span class="title">Esteli</span>
+			<span class="title"><b>Esteli</b></span>
 			<p>Historia y cultura<br>
 				de la ciudad
 			</p>
@@ -36,7 +36,7 @@
 
 		<a href="/categories" class="collection-item avatar grey-text text-darken-4">
 			<i class="material-icons circle blue">navigation</i>
-			<span class="title">Explorar</span>
+			<span class="title"><b>Explorar</b></span>
 			<p>Lugares, productos<br>
 				y servicios
 			</p>
@@ -44,14 +44,14 @@
 
 		<a href="/categories" class="collection-item avatar grey-text text-darken-4">
 			<i class="material-icons circle orange">collections</i>
-			<span class="title">Noticias</span>
+			<span class="title"><b>Noticias</b></span>
 			<p>Información actual
 			</p>
 		</a>
 
 		<a href="/categories" class="collection-item avatar grey-text text-darken-4">
 			<i class="material-icons circle teal">collections</i>
-			<span class="title">Galerías</span>
+			<span class="title"><b>Galerías</b></span>
 			<p>Fotos<br>
 				Videos
 			</p>
@@ -60,7 +60,7 @@
 <% if user_signed_in? %>
 	<a href="<%= edit_user_registration_path %>" class="collection-item avatar grey-text text-darken-4">
 		<i class="material-icons circle cyan">face</i>
-		<span class="title"> <%= current_user.profile.name %> </span>
+		<span class="title"> <b>Configuración</b> </span>
 		<p>Administrar<br>
 			Perfil
 		</p>
@@ -69,7 +69,7 @@
 <% else %>
 				<a href= "<%= user_session_path %>" class="collection-item avatar grey-text text-darken-4">
 					<i class="material-icons circle red">verified_user</i>
-					<span class="title">Iniciar Seción</span>
+					<span class="title"><b>Iniciar Seción</b></span>
 
 				</a>
 

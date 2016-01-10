@@ -34,6 +34,12 @@
   </nav>
 </header>
 
+<% if notice %>
+  <script type="text/javascript">
+  var $toastContent = $('<span> <i class="material-icons">warning</i> <%= notice %></span>');
+  Materialize.toast($toastContent, 8000);
+  </script>
+<% end %>
   <%= yield%>
 
 </body>
