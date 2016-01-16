@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  devise_for :clients
+  #devise_for :clients
   resources :wikis
   resources :panels
   resources :galleries
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :categories
 
   devise_for :users, :controllers => {:registrations => "user/registrations"}
+  devise_for :clients, :controllers => {:registrations => "clients/registrations"}
 
   match 'heart', to: 'hearts#heart', via: :post
   match 'unheart', to: 'hearts#unheart', via: :delete
