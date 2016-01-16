@@ -25,9 +25,7 @@
 
     </li>
     <%= div_for(post, class: "collection-item row s12") do %>
-    <% if user_signed_in? %>
      <%= render partial: "hearts/button", locals: { post: post } %>
-    <% end %>
    <% end %>
 
    </ul>
