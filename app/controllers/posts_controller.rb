@@ -20,6 +20,10 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    #If the current user's ID doesn't mathc with the creator's ID redirect to root with a notification
+    if current_user.id != @post.profile.user_id
+      redirect_to root_path, notice: 'No estas autorizado para esta acción'
+    end
   end
 
   # POST /posts
@@ -37,11 +41,13 @@ class PostsController < ApplicationController
           }
         end
 
-        format.html { redirect_to root_path, notice: 'Se ha publicado correctamente.' }
+        format.html { redirect_to , notice: 'Se ha publicado correctamente.' }
         format.json { render :show, status: :created, location: @post }
+        respond_to :js
       else
         format.html { redirect_to root_path, notice: 'No puedes dejar el texto en blanco.' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
+        respond_to :js
       end
     end
   end
@@ -49,32 +55,42 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    respond_to do |format|
-      if @post.update(post_params)
+    #Users aren't allowed to delete the posts of other users
+    if current_user.id == @post.profile.user_id
+          respond_to do |format|
+            if @post.update(post_params)
 
-        if params[:images]
-          # The magic is here ;)
-          params[:images].each { |image|
-            @post.pictures.create(image: image)
-        }
+              if params[:images]
+                # The magic is here ;)
+                params[:images].each { |image|
+                  @post.pictures.create(image: image)
+              }
+              end
+
+              format.html { redirect_to @post, notice: 'La publicación fué actualizada correctamente' }
+              format.json { render :show, status: :ok, location: @post }
+            else
+              format.html { render :edit }
+              format.json { render json: @post.errors, status: :unprocessable_entity }
+            end
+          end
+        else
+          redirect_to root_path, notice: 'No estas autorizado para esta acción'
         end
-
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post }
-      else
-        format.html { render :edit }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
+    #Users aren't allowed to delete the posts of other users
+    if current_user.id == @post.profile.user_id
+        @post.destroy
+        respond_to do |format|
+          format.html { redirect_to posts_url, notice: 'La publicación fue borrada' }
+          format.json { head :no_content }
+        end
+      else
+        redirect_to root_path, notice: 'No estas autorizado para esta acción'
     end
   end
 
