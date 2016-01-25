@@ -3,6 +3,7 @@ class WelcomeController < ApplicationController
   def index
        @categories = Category.all
        @profiles = Profile.all
+       @clientprofiles = Clientprofile.all
        @posts = Post.all
        @post = Post.new
   end
