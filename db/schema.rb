@@ -20,6 +20,23 @@ ActiveRecord::Schema.define(version: 201512190301110) do
     t.string   "icon",       limit: 255
   end
 
+  create_table "clientprofiles", force: :cascade do |t|
+    t.string   "name",                limit: 255
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "client_id",           limit: 4
+    t.string   "avatar_file_name",    limit: 255
+    t.string   "avatar_content_type", limit: 255
+    t.integer  "avatar_file_size",    limit: 4
+    t.datetime "avatar_updated_at"
+    t.string   "cover_file_name",     limit: 255
+    t.string   "cover_content_type",  limit: 255
+    t.integer  "cover_file_size",     limit: 4
+    t.datetime "cover_updated_at"
+  end
+
+  add_index "clientprofiles", ["client_id"], name: "index_clientprofiles_on_client_id", using: :btree
+
   create_table "clients", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
@@ -34,6 +51,7 @@ ActiveRecord::Schema.define(version: 201512190301110) do
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.integer  "avatar_id",              limit: 4
+    t.string   "name",                   limit: 255
   end
 
   add_index "clients", ["avatar_id"], name: "index_clients_on_avatar_id", using: :btree
@@ -171,6 +189,7 @@ ActiveRecord::Schema.define(version: 201512190301110) do
     t.datetime "cover_updated_at"
   end
 
+  add_foreign_key "clientprofiles", "clients"
   add_foreign_key "pictures", "posts"
   add_foreign_key "posts", "profiles"
   add_foreign_key "profiles", "categories"

@@ -1,0 +1,89 @@
+<% if current_client.clientprofile.name == nil %>
+  <h4>TE DAMOS LA CORIDAL BIENVENIDA A NUESTRA COMUNIDAD</h4>
+  <p>
+    Estamos complacidos de tenerte con nosotros.
+    Antes de empezar a explorar, considera llenar los datos que se requieren acontinuacion:
+  </p>
+<% end %>
+
+<div class="container">
+
+  <%= form_for(current_client.clientprofile) do |f| %>
+    <% if current_client.clientprofile.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@clientprofile.errors.count, "error") %> prohibited this clientprofile from being saved:</h2>
+
+        <ul>
+        <% @clientprofile.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <div id="input_body" class="input-field col s12">
+        <%= f.text_field :name, id:"text_area_name", class:"materialize-textarea", length:"50", input_html: { hidden: true } %>
+        <label for="text_area_name">Tu Nombre (Requerido)</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <b>Foto de perfil</b>
+        <div class="row">
+          <img src="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/contact-icon.png" id="image" style="max-height:140px;" />
+        </div>
+
+        <div class="file-field input-field">
+          <div class="btn red">
+            <span>Abrir</span>
+            <input type="file">
+            <%= f.file_field :avatar, id:"files", input_html: { hidden: true }%>
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+
+
+    </div>
+
+    <div class="actions">
+
+      <%= button_tag(type: 'submit', id:"btn-post", class: "btn blue") do %>
+       <i class="material-icons">check_circle</i>
+      <% end %>
+
+    </div>
+  <% end %>
+
+</div>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#btn-post').attr('disabled',true);
+
+    $('#text_area_name').keyup(function(){
+        if($(this).val().length !=0){
+            $('#btn-post').attr('disabled', false);
+        }
+        else
+        {
+            $('#btn-post').attr('disabled', true);
+        }
+    })
+  });
+
+  document.getElementById("files").onchange = function () {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+        // get loaded data and render thumbnail.
+        document.getElementById("image").src = e.target.result;
+    };
+
+    // read the image file as a data URL.
+    reader.readAsDataURL(this.files[0]);
+};
+</script>
