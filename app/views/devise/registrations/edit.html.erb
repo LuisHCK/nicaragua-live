@@ -8,8 +8,10 @@
 <div class="container">
 
 <p id="notice"><%= notice %></p>
-
-  <div id="profile" class="col s6"> <%= render "/profiles/form" %> </div>
-  <div id="user" class="col s6"> <%= render "/devise/registrations/form" %> </div>
-
+  <% if user_signed_in? %>
+    <div id="profile" class="col s6"> <%= render "/profiles/form" %> </div>
+    <div id="user" class="col s6"> <%= render "/devise/registrations/form" %> </div>
+  <% elsif client_signed_in? %>
+    <div id="profile" class="col s6"> <%= render "/clientprofiles/form" %> </div>
+  <% end %>
 </div>

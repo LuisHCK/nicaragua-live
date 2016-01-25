@@ -1,5 +1,5 @@
 <div class="container">
-  <h4>Iniciar Seción</h4>
+  <h4>Iniciar Sesión</h4>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
@@ -15,12 +15,12 @@
       <%= f.password_field :password, autocomplete: "off" %>
     </div>
 
-    <% if devise_mapping.rememberable? -%>
-      <div class="field">
-        <%= f.check_box :remember_me %>
-        <%= f.label "Recordar Contraseña" %>
-      </div>
-    <% end -%>
+    <% if devise_mapping.rememberable? %>
+      <p>
+        <%= f.check_box :remember_me, id:"check_box1"%>
+        <%= f.label "Recordar Contraseña", for:"check_box1" %>
+      </p>
+    <% end %>
 
 
     <div style="margin-top:5%" class="actions">
