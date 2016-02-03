@@ -31,7 +31,7 @@ class ClientprofilesController < ApplicationController
 
     respond_to do |format|
       if @clientprofile.save
-        format.html { redirect_to @clientprofile, notice: 'Clients profile was successfully created.' }
+        format.html { redirect_to @clientprofile, notice: 'Tu perfil se creó correctamente.' }
         format.json { render :show, status: :created, location: @clientprofile }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class ClientprofilesController < ApplicationController
   def update
     respond_to do |format|
       if @clientprofile.update(clientprofile_params)
-        format.html { redirect_to @clientprofile, notice: 'Clients profile was successfully updated.' }
+        format.html { redirect_to @clientprofile, notice: 'Se actualizó la informacion de tu perfil.' }
         format.json { render :show, status: :ok, location: @clientprofile }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class ClientprofilesController < ApplicationController
   def destroy
     @clientprofile.destroy
     respond_to do |format|
-      format.html { redirect_to clientprofiles_url, notice: 'Clients profile was successfully destroyed.' }
+      format.html { redirect_to clientprofiles_url, notice: 'Se ha borrado tu perfl.' }
       format.json { head :no_content }
     end
   end
