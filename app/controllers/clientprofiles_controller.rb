@@ -64,6 +64,12 @@ class ClientprofilesController < ApplicationController
     end
   end
 
+  def follow_user
+    if @clientprofile.follow!(@profile)
+      format.html { redirect_to @profile, notice: 'Has seguido a' }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_clientprofile

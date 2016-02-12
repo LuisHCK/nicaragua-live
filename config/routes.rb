@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :follows
   resources :clientprofiles
   resources :clientprofiles
   #devise_for :clients
