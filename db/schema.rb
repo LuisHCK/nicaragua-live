@@ -61,14 +61,14 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_index "clients", ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true, using: :btree
 
   create_table "follows", force: :cascade do |t|
-    t.integer  "profiles_id",       limit: 4
-    t.integer  "clientprofiles_id", limit: 4
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.integer  "profile_id",       limit: 4
+    t.integer  "clientprofile_id", limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
-  add_index "follows", ["clientprofiles_id"], name: "index_follows_on_clientprofiles_id", using: :btree
-  add_index "follows", ["profiles_id"], name: "index_follows_on_profiles_id", using: :btree
+  add_index "follows", ["clientprofile_id"], name: "index_follows_on_clientprofile_id", using: :btree
+  add_index "follows", ["profile_id"], name: "index_follows_on_profile_id", using: :btree
 
   create_table "galleries", force: :cascade do |t|
     t.string   "title",      limit: 255
