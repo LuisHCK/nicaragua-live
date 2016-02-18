@@ -3,21 +3,14 @@
   <div class="col s4 m2">
     <img style="margin-left:1%; max-width:100px;"
     src="<%= @profile.avatar.url(:mini) %>" alt="" class="circle responsive-img">
-    <!-- Dropdown Trigger -->
-    <a  class='dropdown-button btn green' href='#' data-activates='dropdown1'>Seguir</a>
-
-    <!-- Dropdown Structure -->
-    <ul id='dropdown1' class='dropdown-content'>
-      <li><a href="#!">Seguir</a></li>
-      <li><a href="#!">¡Quiero ir!</a></li>
-    </ul>
-
+    <!--Follow Button-->
+    <div id="follow_profile">
+      <%= render partial: "follows/followbtn", locals: { profile: @profile } %>
+    </div>
   </div>
 
   <div style="padding-left:5%;" class="col s8 m6">
     <b><%= @profile.name %></b>
-    <br>
-    <%= @profile.body %>
     <br>
     <table class="striped centered">
       <thead>
@@ -31,16 +24,18 @@
           <td>
             <%=  @profile.posts.count %>
           </td>
-        </tr>
-
-        <tr>
           <td>
-            <%= @profile.followers %>
+            <%= @profile.follows.count %>
           </td>
         </tr>
       </tbody>
     </table>
+    <div>
+      <%= @profile.body %>
+    </div>
+
   </div>
+
 </div>
 
 <div class="row center">

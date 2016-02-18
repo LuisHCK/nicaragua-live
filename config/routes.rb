@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
 
-  resources :follows
-  resources :clientprofiles
   resources :clientprofiles
   #devise_for :clients
   resources :wikis
@@ -20,15 +18,15 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {:registrations => "user/registrations"}
   devise_for :clients, :controllers => {:registrations => "clients/registrations"}
 
-  match 'heart', to: 'hearts#heart', via: :post
-  match 'unheart', to: 'hearts#unheart', via: :delete
+  match 'heart',    to: 'hearts#heart', via: :post
+  match 'unheart',  to: 'hearts#unheart', via: :delete
+  match 'follow',   to: 'follows#follow', via: :post
+  match 'unfollow', to: 'follows#unfollow', via: :delete
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
-  match 'make_post', to: 'posts#make_post', via: :post
-
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
