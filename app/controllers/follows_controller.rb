@@ -12,7 +12,7 @@ class FollowsController < ApplicationController
   end
 
   def unfollow
-    if client_signed_in¡
+    if client_signed_in?
     @clientprofile = current_client.clientprofile
     @follow = @clientprofile.follows.find_by_profile_id(params[:profile_id])
     @profile = Profile.find(params[:profile_id])
