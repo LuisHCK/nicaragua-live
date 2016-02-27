@@ -1,11 +1,11 @@
 <% if client_signed_in? %>
   <% if current_client.clientprofile.follow?(@profile) %>
     <%= button_to unfollow_path(profile_id: profile.id), remote: true,id:"follow", class:"btn small green",style:"max-width:100px; padding:0px;", method: :delete do%>
-      Siguiendo<i class="material-icons right">star</i>
+      Siguiendo
     <% end %>
   <% else %>
     <%= button_to follow_path(profile_id: profile.id), class:"btn small grey", remote: true, id:"follow" do %>
-      Seguir<i class="material-icons right">star</i>
+      Seguir
     <% end %>
   <% end %>
 
