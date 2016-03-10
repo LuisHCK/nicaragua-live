@@ -2,23 +2,23 @@
 <% if user_signed_in? %>
 
   <% if current_user.heart?(post)%>
-          <%= button_to unheart_path(post_id: post.id), remote: true, method: :delete, class:"col s4 btn-flat center" do%>
+          <%= button_to unheart_path(post_id: post.id), remote: true, method: :delete, style:"width:27%;", class:"col s4 btn-flat center" do%>
 
             <i style="vertical-align: middle; font-size:2.5em;" class="material-icons red-text">favorite</i>
 
                 <% if post.hearts.count > 0 %>
-                  <span class="blue-text"><b><%= post.hearts.count%></b></span>
+                  <span class="blue-text like-text"><b><%= post.hearts.count%></b></span>
                 <% end %>
 
             <% end %>
 
           <% else %>
 
-            <%= button_to heart_path(post_id: post.id), remote: true, class:"col s4 btn-flat center" do%>
+        <%= button_to heart_path(post_id: post.id), remote: true, style:"width:27%;", class:"col s4 btn-flat center" do%>
                 <i style="vertical-align: middle; font-size:2.5em;" class="material-icons">favorite_border</i>
 
                 <% if post.hearts.count > 0 %>
-                  <span class="blue-text"><b><%= post.hearts.count%></b></span>
+                  <span class="blue-text like-text"><b><%= post.hearts.count%></b></span>
                 <% end %>
 
             <% end %>
@@ -29,7 +29,33 @@
         <i style="vertical-align: middle; font-size:2.5em;" class="material-icons red-text">favorite</i>
 
         <% if post.hearts.count > 0 %>
-          <span class="blue-text"><b><%= post.hearts.count%></b></span>
+          <span class="blue-text like-text"><b><%= post.hearts.count%></b></span>
         <% end %>
 
+<% end %>
+
+<% if client_signed_in? %>
+
+  <% if current_client.heart?(post)%>
+          <%= button_to unheart_path(post_id: post.id), remote: true, method: :delete,style:"width:27%;", class:"col s2 btn-flat center" do%>
+
+            <i style="vertical-align: middle; font-size:2.5em;" class="material-icons red-text">favorite</i>
+
+                <% if post.hearts.count > 0 %>
+                  <span class="blue-text like-text"><b><%= post.hearts.count%></b></span>
+                <% end %>
+
+            <% end %>
+
+          <% else %>
+
+            <%= button_to heart_path(post_id: post.id), remote: true,style:"width:27%;", class:"col s2 btn-flat center" do%>
+                <i style="vertical-align: middle; font-size:2.5em;" class="material-icons">favorite_border</i>
+
+                <% if post.hearts.count > 0 %>
+                  <span class="blue-text like-text"><b><%= post.hearts.count%></b></span>
+                <% end %>
+
+            <% end %>
+    <% end %>
 <% end %>
