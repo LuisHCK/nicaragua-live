@@ -8,6 +8,8 @@ class Clientprofile < ActiveRecord::Base
   has_many :follows, dependent: :destroy
   has_many :profiles, through: :follows
 
+  has_many :clients, through: :follows
+
   ##Adding Followin methods
     def follow_user
       if @clientprofile.follow!(@profile)
