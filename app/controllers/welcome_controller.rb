@@ -4,13 +4,19 @@ class WelcomeController < ApplicationController
        @categories = Category.all
        @profiles = Profile.all
        @clientprofiles = Clientprofile.all
-       @posts = Post.all
+       @posts = Post.order(created_at: :desc).all
        @post = Post.new
+       @follows = Follow.all
   end
 
 
   def show
     @category = Category.find(params[:id])
+  end
+
+  def order_posts
+
+    @posts = follow.profile.order(created_at: :desc)
   end
 
  private
