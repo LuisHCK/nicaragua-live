@@ -25,11 +25,8 @@
 
     </li>
     <%= div_for(post, class: "collection-item row center") do %>
-      <% if client_signed_in? %>
-        <%= render partial: "hearts/button_client", locals: {post: post} %>
-      <% else %>
+
         <%= render partial: "hearts/button", locals: { post: post } %>
-      <% end %>
    <% end %>
 
    </ul>

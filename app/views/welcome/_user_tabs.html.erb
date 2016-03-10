@@ -10,35 +10,3 @@
 		<li class="tab col s7"> <a href="#tab3">Recomendados</a> </li>
 	<% end %>
 </ul>
-
-<div class="container">
-
-<div id="tab1" class="col s12">
-	<div id="posts_index">
-		<%= render partial: "posts" %>
-	</div>
-</div>
-
-<div id="tab2" class="col s12">
-	<!--Tarjetas-->
-	<div class="card">
-		<div class="car-content">
-			Esta es una tarjeta vacia
-			que muestra contenido favorito
-		</div>
-	</div>
-	<!--Tarjetas-->
-</div>
-
-<div id="tab3" class="col s12">
-	<!--Tarjetas-->
-	<% @posts.order("created_at desc").limit(4).each do |post| %>
-	<div class="card">
-		<div class="car-content">
-			<%= post.title %>
-		</div>
-	</div>
-	<% end %>
-	<!--Tarjetas-->
-</div>
-</div>

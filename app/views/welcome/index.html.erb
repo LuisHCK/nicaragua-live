@@ -1,4 +1,15 @@
-  <%= render "user_tabs" %>
+
+<!--Tarjetas-->
+<% @posts.order("created_at desc").limit(4).each do |post| %>
+<div class="card">
+  <div class="car-content">
+    <%= post.title %>
+  </div>
+</div>
+<% end %>
+<!--Tarjetas-->
+
+<%= render partial: "posts" %>
 
     </div>
     <% if user_signed_in? %>

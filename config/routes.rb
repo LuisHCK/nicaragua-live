@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   match 'unheart',  to: 'hearts#unheart', via: :delete
   match 'follow',   to: 'follows#follow', via: :post
   match 'unfollow', to: 'follows#unfollow', via: :delete
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
