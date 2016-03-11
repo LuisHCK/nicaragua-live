@@ -25,13 +25,18 @@
 }​
 
 .cover-img {
-  position:absolute;
+position: relative;
 }
 
 .profile-img {
-  position:relative;
-  top: -65px;
-  left: 32%;
+  position: absolute;
+      display: block;
+      top:0px;
+      left:auto;
+      /* right:0px; */
+      margin-top: 262px;
+      margin-right: -10px;
+  "
 }
 
 /*Tex size of lateral bar*/
