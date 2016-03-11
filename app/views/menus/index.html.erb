@@ -1,31 +1,97 @@
 <div class="container">
 
-<div id="tab1" class="col s12">
-	<div id="posts_index">
-		<%= render partial: "posts" %>
-	</div>
-</div>
+<!-- if user is signed in-->
+	<% if user_signed_in? %>
+			<%= image_tag current_user.profile.cover(:strech), class:"cover-img responsive-img", style:"position:relative;"%>
+			<span class="profile-img">
+				<%= image_tag current_user.profile.avatar(:mini), class:"circle", size:"100" %>
+			</span>
 
-<div id="tab2" class="col s12">
-	<!--Tarjetas-->
-	<div class="card">
-		<div class="car-content">
-			Esta es una tarjeta vacia
-			que muestra contenido favorito
-		</div>
-	</div>
-	<!--Tarjetas-->
-</div>
+<!-- if master admin is signed in -->
+		<% elsif master_admin_signed_in? %>
+			<%= image_tag "no_cover.jpg", class:"responsive-img" %>
+			<span class="profile-img">
+				<%= image_tag "unknown_user.png", class:"circle", size:"64" %>
+			</span>
 
-<div id="tab3" class="col s12">
-	<!--Tarjetas-->
-	<% @posts.order("created_at desc").limit(4).each do |post| %>
-	<div class="card">
-		<div class="car-content">
-			<%= post.title %>
-		</div>
-	</div>
+<!--if client is signed in-->
+		<% elsif client_signed_in? %>
+			<%= image_tag "no_cover.jpg", class:"responsive-img" %>
+
+			<span class="profile-img">
+				<%= link_to image_tag(current_client.clientprofile.avatar, class:"circle", size:"74"), (clientprofile_path(current_client.clientprofile)) %>
+			</span>
+
+<!-- else show a default item -->
+		<% else %>
+				<%= image_tag "no_cover.jpg", class:"responsive-img" %>
+				<span class="profile-img">
+					<%= image_tag "unknown_user.png", class:"circle", size:"64" %>
+				</span>
+
 	<% end %>
-	<!--Tarjetas-->
 </div>
-</div>
+
+  <ul class="collection ">
+
+		<a href= "<%= wikis_path %>" class="collection-item avatar grey-text text-darken-4">
+			<i class="material-icons circle green">location_city</i>
+			<span class="title"><b>Esteli</b></span>
+			<p>Historia y cultura<br>
+				de la ciudad
+			</p>
+		</a>
+
+		<a href="/categories" class="collection-item avatar grey-text text-darken-4">
+			<i class="material-icons circle blue">navigation</i>
+			<span class="title"><b>Explorar</b></span>
+			<p>Lugares, productos<br>
+				y servicios
+			</p>
+		</a>
+
+		<a href="/categories" class="collection-item avatar grey-text text-darken-4">
+			<i class="material-icons circle orange">collections</i>
+			<span class="title"><b>Noticias</b></span>
+			<p>Información actual
+			</p>
+		</a>
+
+		<a href="/categories" class="collection-item avatar grey-text text-darken-4">
+			<i class="material-icons circle teal">collections</i>
+			<span class="title"><b>Galerías</b></span>
+			<p>Fotos<br>
+				Videos
+			</p>
+		</a>
+
+<% if user_signed_in? %>
+	<a href="<%= edit_user_registration_path %>" class="collection-item avatar grey-text text-darken-4">
+		<i class="material-icons circle cyan">face</i>
+		<span class="title"> <b>Configuración</b> </span>
+		<p>Administrar<br>
+			Perfil
+		</p>
+	</a>
+
+<% elsif client_signed_in? %>
+		<a href="<%= edit_clientprofile_path(current_client.clientprofile) %>" class="collection-item avatar grey-text text-darken-4">
+			<i class="material-icons circle cyan">face</i>
+			<span class="title"> <b>Configuración</b> </span>
+			<p>Administrar<br>
+				Perfil
+			</p>
+		</a>
+
+<% else %>
+				<a href= "<%= client_session_path %>" class="collection-item avatar grey-text text-darken-4">
+					<i class="material-icons circle red">verified_user</i>
+					<span class="title"><b>Iniciar Seción</b></span>
+
+				</a>
+
+<% end %>
+	      <% if master_admin_signed_in? %>
+          <a href="/panels/">Panel</a>
+          <% end %>
+  </ul>

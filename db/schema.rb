@@ -109,6 +109,11 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_index "master_admins", ["email"], name: "index_master_admins_on_email", unique: true, using: :btree
   add_index "master_admins", ["reset_password_token"], name: "index_master_admins_on_reset_password_token", unique: true, using: :btree
 
+  create_table "menus", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "panels", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
