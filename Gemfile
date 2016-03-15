@@ -53,3 +53,6 @@ gem 'tinymce-rails'
 gem 'tinymce-rails-langs'
 gem 'redcarpet'
 gem 'socialization'
+
+gem 'tzinfo-data'
+gem 'tzinfo'
