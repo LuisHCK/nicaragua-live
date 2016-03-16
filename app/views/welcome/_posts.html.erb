@@ -1,5 +1,8 @@
+<% if @posts<=> nil%>
+  <span>Sorry, post is empty </span>
+<% else %>
+<% @posts.each do |post| %>
 
-<% @posts.order(created_at: :desc).each do |post| %>
   <ul class="collection z-depth-2">
     <li class="collection-item row">
       <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= post.profile.avatar.url(:mini) %>" alt="" class="circle responsive-img">
@@ -39,14 +42,11 @@
 
     </li>
     <%= div_for(post, class: "collection-item row center") do %>
-      <% if client_signed_in? %>
-        <%= render partial: "hearts/button_client", locals: {post: post} %>
-      <% else %>
-        <%= render partial: "hearts/button", locals: { post: post } %>
-      <% end %>
+        <%= render partial: "hearts/button", locals: {post: post} %>
    <% end %>
 
    </ul>
+<% end %>
 <% end %>
 <!-- fotorama.css & fotorama.js. -->
 <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
