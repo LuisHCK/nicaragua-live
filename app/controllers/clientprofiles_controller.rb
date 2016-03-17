@@ -6,13 +6,13 @@ class ClientprofilesController < ApplicationController
   # GET /clientprofiles.json
   def index
     @clientprofiles = Clientprofile.all
-    @posts = Post.all
   end
 
   # GET /clientprofiles/1
   # GET /clientprofiles/1.json
   def show
-    @posts = Post.all
+    @posts = Post.limit(2).where(:id => @clientprofile.client.hearts.order(created_at: :desc).collect(&:post_id) )
+    @profiles = Profile.limit(2).where(:id => @clientprofile.follows.collect(&:profile_id) )
   end
 
   # GET /clientprofiles/new
