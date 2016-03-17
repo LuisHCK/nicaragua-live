@@ -51,20 +51,47 @@
   <p><b>Bigrafía: </b><%= @clientprofile.biography %>
   </p>
 </div>
+<% if client_signed_in? %>
+    <%= link_to "Editar tu Perfil", edit_clientprofile_path, class:"btn green"%>
+<% end %>
   </div>
 
-    <% if client_signed_in? %>
-        <%= link_to "Editar tu Perfil", edit_clientprofile_path, class:"btn grey"%>
-    <% end %>
+    <div class="row">
+    <b class="white-text">Le gustó recientemente</b>
+      <%= render 'welcome/posts'%>
+    </div>
 
-    <h4>Actividad</h4>
+    <div class="row">
+    <b class="white-text">Se suscribió recientemente</b>
+      <% @profiles.order(created_at: :desc).each do |profile| %>
+        <ul class="collection">
+          <li class="collection-item">
+            <div class="row" style="margin-top:2%;">
+              <div class="col s4">
+                <%= image_tag profile.avatar, style:"max-width:100%;" %>
+              </div>
+              <div class="col s8">
+                <%= link_to profile.name, profile %>
+                <br>
+                <%= profile.body %>
+              </div>
+              <div class="top right" id="follow_profile_client">
+                <%= render partial: "follows/followbtn_client", locals: { profile: profile } %>
+              </div>
+            </div>
 
+            <div>
+            </div>
+          </li>
+        </ul>
+      <% end %>
+    </div>
 </div>
 
 
 
 
-
+<!-- Load modal for change profile pic -->
 
 <% if client_signed_in? %>
 <!-- Modal upload pic -->
