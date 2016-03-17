@@ -12,3 +12,5 @@
 !/log/.keep
 /tmp
 /public/system
+/app/assets/stylesheets/material-icons.css
+/app/assets/stylesheets/materialize.css
