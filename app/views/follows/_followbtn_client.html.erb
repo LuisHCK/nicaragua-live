@@ -1,0 +1,14 @@
+<% if client_signed_in? %>
+  <% if current_client.clientprofile.follow?(profile) %>
+    <%= button_to unfollow_path(profile_id: profile.id), remote: true,id:"follow", class:"btn small green", method: :delete do%>
+      <i class="material-icons">check</i>
+    <% end %>
+  <% else %>
+    <%= button_to follow_path(profile_id: profile.id), class:"btn small grey",  remote: true, id:"follow" do %>
+      <i class="material-icons">add_circle_outline</i>
+    <% end %>
+  <% end %>
+
+<% else %>
+  <%= link_to "Seguir", new_client_session_path, notice:'Debes iniciar seción', class:"btn small green" %>
+<% end %>
