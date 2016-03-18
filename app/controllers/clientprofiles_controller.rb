@@ -11,7 +11,7 @@ class ClientprofilesController < ApplicationController
   # GET /clientprofiles/1
   # GET /clientprofiles/1.json
   def show
-    @posts = Post.limit(2).where(:id => @clientprofile.client.hearts.order(created_at: :desc).collect(&:post_id) )
+    @posts = Post.limit(2).where(:id => @clientprofile.client.hearts.order(created_at: :desc).collect(&:post_id) ).order(created_at: :asc)
     @profiles = Profile.limit(2).where(:id => @clientprofile.follows.collect(&:profile_id) )
   end
 

@@ -63,7 +63,7 @@
 
     <div class="row">
     <b class="white-text">Se suscribió recientemente</b>
-      <% @profiles.order(created_at: :desc).each do |profile| %>
+      <% @profiles.order(created_at: :asc).each do |profile| %>
         <ul class="collection">
           <li class="collection-item">
             <div class="row" style="margin-top:2%;">
@@ -75,9 +75,9 @@
                 <br>
                 <%= profile.body %>
               </div>
-              <div class="top right" id="follow_profile_client">
+              <%= div_for profile, class:"right" do %>
                 <%= render partial: "follows/followbtn_client", locals: { profile: profile } %>
-              </div>
+              <% end %>
             </div>
 
             <div>
