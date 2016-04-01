@@ -8,7 +8,7 @@ class PicturesController < ApplicationController
 
     @post = post.find(params[:post_id])
 
-    @pictures = @post.pictures
+    @pictures = @post.pictures.order('created_at desc')
 
     respond_to do |format|
       format.html # index.html.erb
