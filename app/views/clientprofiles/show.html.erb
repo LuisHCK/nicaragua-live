@@ -57,6 +57,7 @@
   </div>
 
     <div class="row">
+      <%= @clientprofile.client.hearts.limit(2).order(created_at: :asc).map(&:post_id) %>
     <b class="white-text">Le gustó recientemente</b>
       <%= render 'welcome/posts'%>
     </div>
