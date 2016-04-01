@@ -1,9 +1,46 @@
 <div class="container">
-<div>
   <%= render "profile_info" %>
 </div>
-<%= render "post_frame" %>
-</div>
+
+  <div class="col s12">
+    <ul class="tabs blue-text">
+      <li class="tab col s3"><a href="#tab1">Publicaciones</a></li>
+      <li class="tab col s3"><a class="active" href="#tab2">Ofertas</a></li>
+      <li class="tab col s3"><a href="#tab3">Galería</a></li>
+    </ul>
+  </div>
+
+  <div id="tab1" class="col s12">
+    <%= render "post_frame" %>
+  </div>
+
+  <div id="tab2" class="col s12">
+    <%= render "offers/offerts" %>
+  </div>
+  <div id="tab3" class="col s12">
+      <div class="row">
+    <% @profile.posts.order("created_at DESC").each do |post| %>
+
+    <% unless post.pictures.empty? %>
+
+    <% post.pictures.each do |pic| %>
+
+
+        <div class="col s6">
+          <img src="<%= pic.image.url %>" class="responsive-img"/>
+        </div>
+
+
+    <% end %>
+    <% end %>
+    <% end %>
+
+    </div>
+
+  </div>
+
+
+
 
 <!-- fotorama.css & fotorama.js. -->
 <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
