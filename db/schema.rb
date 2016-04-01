@@ -114,6 +114,22 @@ ActiveRecord::Schema.define(version: 201602121639210) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "offers", force: :cascade do |t|
+    t.string   "titulo",             limit: 255
+    t.string   "descripcion",        limit: 255
+    t.string   "image_file_name",    limit: 255
+    t.string   "image_content_type", limit: 255
+    t.integer  "image_file_size",    limit: 4
+    t.datetime "image_updated_at"
+    t.decimal  "precio",                         precision: 10
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.boolean  "cordoba"
+    t.integer  "profile_id",         limit: 4
+  end
+
+  add_index "offers", ["profile_id"], name: "index_offers_on_profile_id", using: :btree
+
   create_table "panels", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -208,6 +224,7 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   end
 
   add_foreign_key "clientprofiles", "clients"
+  add_foreign_key "offers", "profiles"
   add_foreign_key "pictures", "posts"
   add_foreign_key "posts", "profiles"
   add_foreign_key "profiles", "categories"
