@@ -1,0 +1,64 @@
+<%= form_for(@offer) do |f| %>
+  <% if @offer.errors.any? %>
+    <div id="error_explanation" class="red-text">
+      <b><%= pluralize(@offer.errors.count, "error") %>- No se puede guardar:</b>
+
+      <ul>
+      <% @offer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div id="input_title" class="input-field col s12">
+      <%= f.text_field :titulo, id:"title", length:"96", input_html: { hidden: true } %>
+      <label for="textarea1">Título</label>
+    </div>
+  </div>
+
+        <div class="row">
+          <div id="input_body" class="input-field col s12">
+            <%= f.text_area :descripcion, id:"text_area_body", class:"materialize-textarea", length:"180", input_html: { hidden: true } %>
+            <label for="textarea1">Detalles de tu oferta</label>
+          </div>
+        </div>
+
+<div class="row">
+  <div class="col s6">
+    <%= f.label "Precio" %>
+    <%= f.number_field :precio,id:"number_input", step:'any', style:"max-width:120px;" %>
+  </div>
+
+  <div class="col s6">
+    <%= f.radio_button :cordoba, true, class:"with-gap", checked: true %>
+    <%= f.label :cordoba_true, "Cordobas (C$)"%>
+
+    <%= f.radio_button :cordoba, false, class:"with-gap" %>
+    <%= f.label :cordoba_false, "Dólares ($)"%>
+  </div>
+</div>
+
+<b>Imagen</b>
+    <div class="file-field input-field">
+      <div class="btn red">
+        <i class="material-icons">photo</i>
+        <input type="file">
+        <%= f.file_field :image, input_html: { hidden: true }%>
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+
+    <div class="row right">
+      <%= button_tag(type: 'submit', id:"btn-post", remote: true, class: "btn blue") do %>
+       <i class="material-icons">check_circle</i>
+      <% end %>
+
+      <a href="#!" class=" modal-action modal-close btn red"><i class="material-icons">cancel</i></a>
+
+    </div>
+
+<% end %>

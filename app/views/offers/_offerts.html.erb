@@ -1,0 +1,36 @@
+<div class="row">
+  <% if user_signed_in? %>
+    <%= link_to "Publicar Oferta", new_offer_path, class:"btn blue right" %>
+  <% end %>
+  <p id="notice"><%= notice %></p>
+
+<div class="container white-text">
+    <h5>Ofertas</h5>
+</div>
+
+  <% @offers.each do |offer| %>
+
+<div class="col s6">
+  <ul class="collection">
+    <li class="collection-item">
+      <%= offer.titulo %>
+      <img src="<%= offer.image.url %>" alt="" class="responsive-img" />
+    </li>
+    <li class="collection-item">
+      <%= offer.descripcion %>
+    </li>
+
+    <li class="collection-item blue-text">
+      <% if offer.cordoba == true %>
+        C$:
+        <% else %>
+          $:
+          <% end %>
+      <%= offer.precio %>
+    </li>
+  </ul>
+</div>
+
+  <% end %>
+
+</div>

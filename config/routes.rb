@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :offers
   resources :menus
   resources :clientprofiles
   #devise_for :clients
