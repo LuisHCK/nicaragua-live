@@ -6,6 +6,7 @@ class ProfilesController < ApplicationController
   def index
     @profiles = Profile.all
     @posts = Post.all
+
     #@pictures = @post.pictures
 
   end
@@ -13,6 +14,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    @offers = Offer.where(profile_id: @profile.id)
   end
 
   # GET /profiles/new
