@@ -1,6 +1,8 @@
   <div class="container white-text">
-    <h4 class="center">Iniciar Sesión</h4>
-
+    <h5 class="center">Iniciar Sesión</h5>
+<% if session_path(resource) == "/users/sign_in" %>
+    <h5 class="center yellow-text">Administrador</h5>
+  <% end %>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
       <%= devise_error_messages! %>
