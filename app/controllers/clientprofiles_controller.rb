@@ -74,6 +74,6 @@ class ClientprofilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def clientprofile_params
-      params.require(:clientprofile).permit(:name, :avatar, :cover)
+      params.require(:clientprofile).permit(:name, :avatar, :cover, :biography)
     end
 end
