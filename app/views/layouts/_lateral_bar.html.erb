@@ -2,10 +2,10 @@
 
 <!-- if user is signed in-->
 	<% if user_signed_in? %>
-			<%= image_tag current_user.profile.cover(:card), class:"cover-img responsive-img" %>
-			<span class="profile-img">
-				<%= image_tag current_user.profile.avatar(:mini), class:"circle", size:"74" %>
-			</span>
+	<span class="profile-img">
+		<%= link_to image_tag(current_user.profile.avatar, class:"circle", size:"74"), (profile_path(current_user.profile)) %>
+	</span>
+
 
 <!-- if master admin is signed in -->
 		<% elsif master_admin_signed_in? %>
@@ -16,10 +16,8 @@
 
 <!--if client is signed in-->
 		<% elsif client_signed_in? %>
-			<%= image_tag "no_cover.jpg", class:"responsive-img" %>
-
 			<span class="profile-img">
-				<%= link_to image_tag(current_client.clientprofile.avatar, class:"circle", size:"74"), (clientprofile_path(current_client.clientprofile)) %>
+				<%= link_to image_tag(current_client.clientprofile.avatar, class:"circle", style:"max-width: 80%;"), (clientprofile_path(current_client.clientprofile)) %>
 			</span>
 
 <!-- else show a default item -->

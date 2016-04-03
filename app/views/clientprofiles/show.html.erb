@@ -57,7 +57,6 @@
   </div>
 
     <div class="row">
-      <%= @clientprofile.client.hearts.limit(2).order(created_at: :asc).map(&:post_id) %>
     <b class="white-text">Le gustó recientemente</b>
       <%= render 'welcome/posts'%>
     </div>
@@ -114,17 +113,31 @@
       </div>
   </div>
   <div class="modal-footer">
-    <%= button_tag("Listo",type: 'submit', id:"btn-post", class: "modal-action modal-close waves-effect waves-green btn-flat") %>
+    <%= button_tag("Listo",type: 'submit',remote: true, id:"btn-post", class: "modal-action modal-close waves-effect waves-green btn-flat") %>
     <% end %>
     <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a></div>
   </div>
 <% end %>
 
 <script type="text/javascript">
-  $(document).ready(function(){
-  // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-  $('.modal-trigger').leanModal();
-  });
+$('.modal-trigger').leanModal({
+    dismissible: true,
+    opacity: 0.5,
+    in_duration: 300,
+    out_duration: 200,
+    ready: function() {
+        if($(".lean-overlay").length > 1) {
+            $(".lean-overlay:not(:first)").each(function() {
+                $(this).remove();
+            });
+        }
+    },
+    complete: function() {
+        $(".lean-overlay").each(function() {
+            $(this).remove();
+        });
+    }
+});
 
   document.getElementById("files").onchange = function () {
     var reader = new FileReader();
