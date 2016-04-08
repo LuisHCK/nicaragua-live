@@ -9,4 +9,13 @@ class Profile < ActiveRecord::Base
 
 	has_many :follows, dependent: :destroy
 	has_many :clientprofiles, through: :follows
+
+	def self.search(search)
+  if search
+    find(:all, :conditions => ['name', "%#{search}%"])
+  else
+    find(:all)
+  end
+end
+
 end

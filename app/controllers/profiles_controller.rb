@@ -8,7 +8,10 @@ class ProfilesController < ApplicationController
     @posts = Post.all
 
     #@pictures = @post.pictures
+  end
 
+  def search
+    @profiles = Profile.search(parms[:search])
   end
 
   # GET /profiles/1
