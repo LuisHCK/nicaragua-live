@@ -1,0 +1,8 @@
+<div class="container">
+
+<% simple_form_for :offer, :method => 'get', :url => offers_path, :html => {:class => 'form'} do |f| %>
+  <%= f.input :precio, :as => :hidden, :input_html => {:name => 'precio', :value => params[:precio] } %>
+  <%= f.button :submit, t('search') %>
+<%end %>
+
+</div>
