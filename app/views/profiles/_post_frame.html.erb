@@ -4,6 +4,18 @@
     <li class="collection-item row">
       <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= @profile.avatar.url(:mini) %>" alt="" class="circle responsive-img">
       <b><%= @profile.name %></b>
+
+      <% if user_signed_in? %>
+          <% if current_user.id == post.profile.user_id %>
+            <%= link_to post, method: :delete, data: { confirm: '¿Borrar tu publicación?' }, class:"right" do%>
+              <i class="material-icons">delete</i>
+            <% end %>
+
+            <%= link_to edit_post_path(post), class:"right" do%>
+              <i class="material-icons">mode_edit</i>
+            <% end %>
+          <% end %>
+      <% end %>
     </li>
 
     <li class="collection-item">
