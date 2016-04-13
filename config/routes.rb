@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :offers
   resources :menus
   resources :clientprofiles
-  #devise_for :clients
   resources :wikis
   resources :panels
   resources :galleries
@@ -24,6 +23,8 @@ Rails.application.routes.draw do
   match 'unheart',  to: 'hearts#unheart', via: :delete
   match 'follow',   to: 'follows#follow', via: :post
   match 'unfollow', to: 'follows#unfollow', via: :delete
+
+  match 'clients/:id' => 'clients#destroy', :via => :delete, :as => :admin_destroy_client
 
   get 'search', to: 'menus#search'
   # The priority is based upon order of creation: first created -> highest priority.
