@@ -10,15 +10,16 @@
         <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
           <a href="#modal1" class="modal-trigger btn-floating btn-large red">
             <i class="large material-icons">mode_edit</i>
+
         </a>
   	  </div>
-
-      <%= render "posts/form" %>
   	<% end %>
 
+    <%= render "posts/form" %>
+
 <script type="text/javascript">
-  $(document).ready(function(){
+$(document).ready(function(){
   // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
   $('.modal-trigger').leanModal();
-  });
+});
 </script>
