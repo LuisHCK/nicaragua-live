@@ -1,5 +1,5 @@
 class MenusController < ApplicationController
-  def index
-    @offers = Offer.filter(params.slice(:precio))
+  def search
+    @offers = Offer.where(params[:search]).order("created_at DESC")
   end
 end

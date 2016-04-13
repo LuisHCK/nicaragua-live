@@ -5,11 +5,12 @@ class OffersController < ApplicationController
   # GET /offers.json
   def index
     @offers = Offer.all
-
-    @offers = Offer.where(nil)
-      filtering_params(params).each do |key, value|
-        @offers = @offers.public_send(key, value) if value.present?
+      if params[:search]
+        @offers = Offer.search(params[:search]).order("created_at DESC")
+      else
+        @offers = Offer.all.order('created_at DESC')
       end
+
   end
 
   # GET /offers/1
@@ -81,7 +82,4 @@ class OffersController < ApplicationController
       params.require(:offer,).permit(:titulo, :descripcion, :precio, :image, :cordoba)
     end
 
-    def filtering_params(params)
-      params.slice(:precio)
-    end
 end

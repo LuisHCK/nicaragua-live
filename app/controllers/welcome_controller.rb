@@ -7,8 +7,14 @@ class WelcomeController < ApplicationController
 
        @post = Post.new
        @follows = Follow.all
+
+    if client_signed_in?
        @posts = Post.where(:profile_id => current_client.clientprofile.follows.collect(&:profile_id) ).order(created_at: :desc).all
        #this line collect the ids from followed users, then compare with the id of the post's owner and show in to welcome page. (an entire night for make this lol)
+     else
+       @posts = Post.order(created_at: :desc).all
+     end
+
   end
 
 

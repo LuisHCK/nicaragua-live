@@ -5,11 +5,11 @@ class Client < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :clientprofile,  dependent: :destroy
-  
+
   after_create :create_clientprofile
 
   has_many :hearts, dependent: :destroy
-  has_many :posts, through: :hearts
+  has_many :posts, through: :hearts, dependent: :destroy
 
   # creates a new heart row with post_id and user_id
   def heart!(post)
