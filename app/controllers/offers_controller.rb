@@ -5,6 +5,11 @@ class OffersController < ApplicationController
   # GET /offers.json
   def index
     @offers = Offer.all
+
+    @offers = Offer.where(nil)
+      filtering_params(params).each do |key, value|
+        @offers = @offers.public_send(key, value) if value.present?
+      end
   end
 
   # GET /offers/1
@@ -74,5 +79,9 @@ class OffersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def offer_params
       params.require(:offer,).permit(:titulo, :descripcion, :precio, :image, :cordoba)
+    end
+
+    def filtering_params(params)
+      params.slice(:precio)
     end
 end

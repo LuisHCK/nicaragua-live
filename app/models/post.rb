@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
 	validates :body, presence: true
 
-	has_many :pictures, :dependent => :destroy
+	has_many :pictures, dependent: :destroy
 
 	belongs_to :profile
 

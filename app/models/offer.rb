@@ -7,7 +7,10 @@ class Offer < ActiveRecord::Base
                     styles: { thumb: ["64x64#", :jpg],
                               original: ['600x600#', :jpg] },
                     convert_options: { thumb: "-quality 75 -strip",
-                                       original: "-quality 85 -strip" }
+                                       original: "-quality 85 -strip" }, dependent: :destroy
 
 validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/ , presence: true
+
+#Scopes
+scope :precio, -> (precio) { where precio: precio }
 end

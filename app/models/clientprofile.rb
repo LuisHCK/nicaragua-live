@@ -1,14 +1,14 @@
 class Clientprofile < ActiveRecord::Base
   belongs_to :client
-  has_attached_file :cover, styles: {card: "600x600#"}
-  has_attached_file :avatar, styles: {mini: "400x400#"}
+  has_attached_file :cover, styles: {card: "600x600#"}, dependent: :destroy
+  has_attached_file :avatar, styles: {mini: "400x400#"}, dependent: :destroy
   validates_attachment_content_type :cover, content_type: /\Aimage\/.*\z/ , presence: true
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/ , presence: true
 
   has_many :follows, dependent: :destroy
-  has_many :profiles, through: :follows
+  has_many :profiles, through: :follows, dependent: :destroy
 
-  has_many :clients, through: :follows
+  has_many :clients, through: :follows, dependent: :destroy
 
   ##Adding Followin methods
     def follow_user
