@@ -63,9 +63,10 @@
 
   <div class="">
       <%= link_to "Cerrar Seción", destroy_client_session_path, method: :delete, class:"btn red" %>
+      <%= link_to "Destroy", admin_destroy_client_path(current_client), method: :delete, data: { confirm: "You sure?" } %>
   </div>
 
-</div>
+</div>user
 
 
 <script type="text/javascript">
