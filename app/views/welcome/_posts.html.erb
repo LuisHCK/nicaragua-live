@@ -1,5 +1,10 @@
-<% if @posts<=> nil%>
-  <span>Sorry, post is empty </span>
+<% if @posts.count < 1%>
+  <div class="center">
+    <img src="https://cdn3.iconfinder.com/data/icons/map/500/around_me-512.png" alt="" class="responsive-img" />
+    <p>
+      <b class="white-text">Esto está un poco vacío. Toca la brújula y encuenta sitios de tu interés.</b>
+    </p>
+  </div>
 <% else %>
 <% @posts.each do |post| %>
 
