@@ -4,6 +4,7 @@ class OffersController < ApplicationController
   # GET /offers
   # GET /offers.json
   def index
+    @category = Category.all
     @offers = Offer.all
       if params[:search]
         @offers = Offer.search(params[:search]).order("created_at DESC")
