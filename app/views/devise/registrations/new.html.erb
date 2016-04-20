@@ -1,5 +1,8 @@
 <div class="container white-text">
-<h4>Registrarse</h4>
+<h5>Registrarse</h5>
+<% if session_path(resource) == "/users/sign_in" %>
+    <h5 class="yellow-text">Administrador</h5>
+  <% end %>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -30,7 +33,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Completar Registro", class:"btn"%>
+    <%= f.submit "Completar Registro", class:"btn-large teal darken-2"%>
   </div>
 <% end %>
 

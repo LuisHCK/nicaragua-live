@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container">
-	<h5><%= @category.name %></h5>
+	<h5 class="white-text"><%= @category.name %></h5>
 	<% @category.profiles.each do |profile| %>
 
       <div class="row">
           <div class="card">
             <div class="card-image">
-              <img src="<%= profile.cover.url%>" alt="" />
+							<%= link_to image_tag(profile.cover.url),profile_path(profile) %>
               <span style="text-shadow: 0px 0px 6px rgba(0, 0, 0, 1);" class="card-title text_transp"><%= profile.name %></span>
             </div>
             <div class="card-content">

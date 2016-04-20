@@ -1,4 +1,4 @@
-<div id="modal1" class="modal">
+<div id="modal1" class="modal" style="background-color: #446F6F;">
   <div class="modal-content">
   <%= form_for @post, :html => { :class => 'form-horizontal', multipart: true }, :authenticity_token => true do |f| %>
 
@@ -11,10 +11,10 @@
       </div>
 
       <div class="file-field input-field">
-      <div class="btn-large">
+      <div class="btn-large red">
         <i class="material-icons">attach_file</i>
         <input type="file" multiple>
-             <%= file_field_tag "images[]", type: :file, multiple: true, input_html: { hidden: true }%>
+             <%= file_field_tag "images[]", type: :image, multiple: true, input_html: { hidden: true }%>
       </div>
       <div class="file-path-wrapper">
         <input class="file-path validate" type="text" placeholder="Seleccione uno o mas archivos">

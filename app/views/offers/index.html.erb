@@ -1,9 +1,11 @@
 <div class="container">
+
   <%= form_tag(offers_path, :method => "get", id: "search-form") do %>
     <h5 class="white-text">Buscar</h5>
-    <br>
+    <p class="white-text">
+      Busca productos o servicios segun tu presupuesto.
+    </p>
     <%= number_field_tag :search, params[:search], placeholder: "Buscar por precio",class:"white-text", style:"max-width: 130px;" %>
-
     <%= submit_tag "Buscar", class:"btn red" %>
   <% end %>
 </div>

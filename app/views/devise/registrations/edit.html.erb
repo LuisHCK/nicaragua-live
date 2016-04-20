@@ -15,3 +15,24 @@
     <div id="profile" class="col s6"> <%= render "/clientprofiles/form" %> </div>
   <% end %>
 </div>
+
+<script type="text/javascript">
+$('.modal-trigger').leanModal({
+  dismissible: true,
+  opacity: 0.5,
+  in_duration: 300,
+  out_duration: 200,
+  ready: function() {
+      if($(".lean-overlay").length > 1) {
+          $(".lean-overlay:not(:first)").each(function() {
+              $(this).remove();
+          });
+      }
+  },
+  complete: function() {
+      $(".lean-overlay").each(function() {
+          $(this).remove();
+      });
+  }
+});
+</script>

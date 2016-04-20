@@ -2,8 +2,20 @@
 
 <!-- if user is signed in-->
 	<% if user_signed_in? %>
-
-				<%= image_tag current_user.profile.avatar(:mini), class:"responsive-img"%>
+	<ul class="collection">
+		<li class="collection-item">
+			<div class="row" style="margin-bottom:0px;">
+				<div class="col s4">
+					<%= link_to image_tag(current_user.profile.avatar(:mini), class:"circle responsive-img"), profile_path(current_user.profile)%>
+				</div>
+			<div class="col s6 gray-text">
+					<p >
+						<b><%= current_user.profile.name %></b>
+					</p>
+				</div>
+			</div>
+		</li>
+	</ul>
 
 <!-- if master admin is signed in -->
 		<% elsif master_admin_signed_in? %>
@@ -32,11 +44,20 @@
 
 <!-- else show a default item -->
 		<% else %>
-				<%= image_tag "no_cover.jpg", class:"responsive-img" %>
-				<span class="profile-img" style="    display: table-cell;
-    vertical-align: middle ">
-					<%= image_tag "unknown_user.png", class:"circle", size:"64" %>
-				</span>
+				<ul class="collection">
+					<li class="collection-item">
+						<div class="row" style="margin-bottom:0px;">
+							<div class="col s4">
+								<%= link_to image_tag("unknown_user", class:"circle", style:"max-width:100%;"), (new_client_session_path) %>
+							</div>
+						<div class="col s6 gray-text">
+								<p >
+									<b>¡Invitado! Inicia seción para disfrutar de todo el contenido de Estelí Live</b>
+								</p>
+							</div>
+						</div>
+					</li>
+				</ul>
 
 	<% end %>
 </div>
