@@ -35,7 +35,7 @@ class ProfilesController < ApplicationController
   def create
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to @profile, notice: 'El perfil se creó correctamante' }
+        format.html { redirect_to edit_profile_path, notice: 'El perfil se creó correctamante' }
         format.json { render :show, status: :created, location: @profile }
       else
         format.html { render :new }

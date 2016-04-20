@@ -41,7 +41,7 @@ class PostsController < ApplicationController
           }
         end
 
-        format.html { redirect_to current_user.profile, notice: 'Se ha publicado correctamente.' }
+        format.html { redirect_to root_path, notice: 'Se ha publicado correctamente.' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { redirect_to root_path, notice: 'No puedes dejar el texto en blanco.' }
@@ -84,7 +84,7 @@ class PostsController < ApplicationController
     if current_user.id == @post.profile.user_id
         @post.destroy
         respond_to do |format|
-          format.html { redirect_to current_user.profile, notice: 'La publicación fue borrada' }
+          format.html { redirect_to root_path, notice: 'La publicación fue borrada' }
           format.json { head :no_content }
         end
       else
