@@ -18,8 +18,22 @@
     <%= render "posts/form" %>
 
 <script type="text/javascript">
-$(document).ready(function(){
-  // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-  $('.modal-trigger').leanModal();
+$('.modal-trigger').leanModal({
+    dismissible: true,
+    opacity: 0.5,
+    in_duration: 300,
+    out_duration: 200,
+    ready: function() {
+        if($(".lean-overlay").length > 1) {
+            $(".lean-overlay:not(:first)").each(function() {
+                $(this).remove();
+            });
+        }
+    },
+    complete: function() {
+        $(".lean-overlay").each(function() {
+            $(this).remove();
+        });
+    }
 });
 </script>
