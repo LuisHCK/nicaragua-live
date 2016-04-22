@@ -57,12 +57,12 @@
   </div>
 
     <div class="row">
-    <b class="white-text">Le gustó recientemente</b>
+    <b class="grey-text darken-4">Le gustó recientemente</b>
       <%= render 'welcome/posts'%>
     </div>
 
     <div class="row">
-    <b class="white-text">Se suscribió recientemente</b>
+    <b class="grey-text darken-4">Se suscribió recientemente</b>
       <% @profiles.order(created_at: :asc).each do |profile| %>
         <ul class="collection">
           <li class="collection-item">

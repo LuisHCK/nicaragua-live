@@ -1,6 +1,6 @@
 <% if client_signed_in? %>
   <% if current_client.clientprofile.follow?(@profile) %>
-    <%= button_to unfollow_path(profile_id: profile.id), remote: true,id:"follow", class:"btn small green",style:"max-width:100px; padding:0px;", method: :delete do%>
+    <%= button_to unfollow_path(profile_id: profile.id), remote: true,id:"follow", class:"btn small green",style:"max-width:106px;", method: :delete do%>
       Siguiendo
     <% end %>
   <% else %>
