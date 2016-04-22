@@ -66,13 +66,14 @@ position: relative;
 /*Counter likes*/
 .like-text{
   position: relative;
-  padding-left: 1.5%;
+  /*padding-left: 1.5rem;*/
+  vertical-align: -webkit-baseline-middle;
 }
 
-html, body {
+/*html, body {
   background:#2196f3;
     /*background:url("/assets/login.jpg");
-    background-repeat:repeat-y;*/
+    background-repeat:repeat-y;
 
     background-position:top center;
 
@@ -80,4 +81,4 @@ html, body {
 
     background-size:cover;
 
-}
+}*/
