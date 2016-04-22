@@ -7,4 +7,6 @@ class Post < ActiveRecord::Base
 
 	has_many :hearts, dependent: :destroy
   has_many :users, through: :hearts
+
+	has_many :comments
 end

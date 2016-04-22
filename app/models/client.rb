@@ -11,6 +11,8 @@ class Client < ActiveRecord::Base
   has_many :hearts, dependent: :destroy
   has_many :posts, through: :hearts, dependent: :destroy
 
+  has_many :comments
+
   # creates a new heart row with post_id and user_id
   def heart!(post)
     self.hearts.create!(post_id: post.id)
