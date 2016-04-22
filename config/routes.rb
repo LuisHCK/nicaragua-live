@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :galleries
   resources :pictures
   resources :profiles
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
   #ajax for post
 
   devise_for :master_admins

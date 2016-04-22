@@ -60,6 +60,19 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_index "clients", ["email"], name: "index_clients_on_email", unique: true, using: :btree
   add_index "clients", ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true, using: :btree
 
+  create_table "comments", force: :cascade do |t|
+    t.text     "body",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "post_id",    limit: 4
+    t.integer  "client_id",  limit: 4
+    t.integer  "user_id",    limit: 4
+  end
+
+  add_index "comments", ["client_id"], name: "index_comments_on_client_id", using: :btree
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
   create_table "follows", force: :cascade do |t|
     t.integer  "profile_id",       limit: 4
     t.integer  "clientprofile_id", limit: 4
@@ -224,6 +237,9 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   end
 
   add_foreign_key "clientprofiles", "clients"
+  add_foreign_key "comments", "clients"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
   add_foreign_key "offers", "profiles"
   add_foreign_key "pictures", "posts"
   add_foreign_key "posts", "profiles"
