@@ -2,7 +2,7 @@
 
 <!-- if user is signed in-->
 	<% if user_signed_in? %>
-	<ul class="collection">
+	<ul class="collection z-depth-1">
 		<li class="collection-item">
 			<div class="row" style="margin-bottom:0px;">
 				<div class="col s4">
@@ -27,11 +27,11 @@
 <!--if client is signed in-->
 		<% elsif client_signed_in? %>
 
-		<ul class="collection">
+		<ul class="collection z-depth-1">
 			<li class="collection-item">
 				<div class="row" style="margin-bottom:0px;">
 					<div class="col s4">
-						<%= link_to image_tag(current_client.clientprofile.avatar, class:"circle", style:"max-width:100%;"), (clientprofile_path(current_client.clientprofile)) %>
+						<%= link_to image_tag(current_client.clientprofile.avatar(:mini), class:"circle responsive-img"), clientprofile_path(current_client.clientprofile)%>
 					</div>
 				<div class="col s6 gray-text">
 						<p >
@@ -44,7 +44,7 @@
 
 <!-- else show a default item -->
 		<% else %>
-				<ul class="collection">
+				<ul class="collection z-depth-1">
 					<li class="collection-item">
 						<div class="row" style="margin-bottom:0px;">
 							<div class="col s4">
@@ -62,7 +62,7 @@
 	<% end %>
 </div>
 
-  <ul class="collection ">
+  <ul class="collection z-depth-1">
 
 		<a href= "<%= wikis_path %>" class="collection-item avatar grey-text text-darken-4">
 			<i class="material-icons circle green">location_city</i>

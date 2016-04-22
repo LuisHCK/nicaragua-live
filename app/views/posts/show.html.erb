@@ -1,28 +1,61 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+  <ul class="collection z-depth-2">
+    <li class="collection-item row">
+      <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= @post.profile.avatar.url(:mini) %>" alt="" class="circle responsive-img">
+      <b><%= link_to @post.profile.name, @post.profile %></b>
 
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
+    </li>
 
-<p>
-  <strong>Likes:</strong>
-  <%= @post.likes %>
-</p>
+    <li class="collection-item">
+      <p class="responsive-text">
+        <%= @post.body %>
+      </p>
+      <% if @post.pictures.count > 1 %>
+        <div class="fotorama" data-nav="thumbs" data-allowfullscreen="true">
+            <% @post.pictures.each do |pic| %>
+              <a href="<%= pic.image.url() %>"><img src="<%= pic.image.url(:thumb)%>"></a>
+            <% end %>
+        </div>
+        <% else %>
+        <% @post.pictures.each do |pic| %>
+        <div class="center">
+          <%= image_tag(pic.image, class:"responsive-img")%>
+        </div>
+          <% end %>
+      <% end %>
 
-<p>
-  <strong>Visit count:</strong>
-  <%= @post.visit_count %>
-</p>
-<% unless @post.pictures.empty? %>
+    </li>
 
-<% @post.pictures.each do |pic| %>
-  <a href="<%= pic.image.url %>"><img src="<%= pic.image.url(:tumb)%>"></a>
-<% end %>
-<% end %>
-<%= link_to 'Edit', edit_post_path(@post) %> |
+    <li class="collection-item">
+      <div class="row">
+        <% if client_signed_in? or user_signed_in? %>
+          <%= render '/comments/form' %>
+        <% end %>
+      </div>
+
+      <% @post.comments.each do |comment| %>
+
+        <div class="collection z-depth-1">
+          <div class="collection-item">
+            <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= comment.client.clientprofile.avatar.url(:mini) %>" alt="img" class="circle responsive-img">
+            <b><%= link_to comment.client.clientprofile.name, comment.client.clientprofile %></b>
+
+            <%= link_to [comment.post, comment], method: :delete, data: { confirm: '¿Borrar tu comentario?' }, class:"right" do%>
+              <i class="material-icons">delete</i>
+            <% end %>
+          </div>
+          <div class="collection-item">
+            <p>
+              <%= comment.body %>
+            </p>
+          </div>
+        </div>
+
+
+      <% end %>
+    </li>
+   </ul>
+
+<!-- fotorama.css & fotorama.js. -->
+<link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->

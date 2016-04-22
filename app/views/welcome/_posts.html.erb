@@ -2,7 +2,7 @@
   <div class="center">
     <img src="https://cdn3.iconfinder.com/data/icons/map/500/around_me-512.png" alt="" class="responsive-img" />
     <p>
-      <b class="white-text">Esto está un poco vacío. Toca la brújula y encuenta sitios de tu interés.</b>
+      <b class="grey-text darken-4">Esto está un poco vacío. Toca la brújula y encuenta sitios de tu interés.</b>
     </p>
   </div>
 <% else %>
@@ -46,9 +46,19 @@
       <% end %>
 
     </li>
-    <%= div_for(post, class: "collection-item row center") do %>
-        <%= render partial: "hearts/button", locals: {post: post} %>
-   <% end %>
+
+      <div class="row" style="margin-bottom: 2px;">
+        <%= div_for(post, class: "col s4") do %>
+            <%= render partial: "hearts/button", locals: {post: post} %>
+          <% end %>
+          <div class="col s4 center">
+            <%= link_to post do %>
+              <i class="material-icons like-text" style="font-size:2.5rem">message</i>
+            <% end %>
+          </div>
+          <div class="col s4 center">
+            <i class="material-icons like-text" style="font-size:2.5rem">share</i>
+          </div>
 
    </ul>
 <% end %>

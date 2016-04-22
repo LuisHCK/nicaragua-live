@@ -1,11 +1,11 @@
 <div class="container">
 
   <%= form_tag(offers_path, :method => "get", id: "search-form") do %>
-    <h5 class="white-text">Buscar</h5>
-    <p class="white-text">
+    <h5 class="grey-text darken-4">Buscar</h5>
+    <p class="grey-text darken-4">
       Busca productos o servicios segun tu presupuesto.
     </p>
-    <%= number_field_tag :search, params[:search], placeholder: "Buscar por precio",class:"white-text", style:"max-width: 130px;" %>
+    <%= number_field_tag :search, params[:search], placeholder: "Buscar por precio",class:"grey-text darken-4", style:"max-width: 130px;" %>
     <%= submit_tag "Buscar", class:"btn red" %>
   <% end %>
 </div>
@@ -13,5 +13,5 @@
 <% if @offers.present? %>
   <%= render 'offerts' %>
 <% else %>
-  <p class="white-text">No hay resultados para el precio: <%= params[:search] %>.</p>
+  <p class="grey-text darken-4">No hay resultados para el precio: <%= params[:search] %>.</p>
 <% end %>
