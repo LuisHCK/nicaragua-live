@@ -37,10 +37,19 @@
       <% end %>
 
     </li>
-    <%= div_for(post, class: "collection-item row center") do %>
-
-        <%= render partial: "hearts/button", locals: { post: post } %>
-   <% end %>
+    <div class="row" style="margin-bottom: 2px;">
+      <%= div_for(post, class: "col s4") do %>
+          <%= render partial: "hearts/button", locals: {post: post} %>
+        <% end %>
+        <div class="col s4 center">
+          <%= link_to post do %>
+            <i class="material-icons like-text" style="font-size:2.5rem">forum</i>
+          <% end %>
+        </div>
+        <div class="col s4 center">
+          <i class="material-icons like-text" style="font-size:2.5rem">share</i>
+        </div>
+      </div>
 
    </ul>
 <% end %>
