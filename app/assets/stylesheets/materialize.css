@@ -2585,7 +2585,7 @@ nav ul a span.badge {
 
 @font-face {
   font-family: "Material-Design-Icons";
-  src: url("Material-Design-Icons.woff2") format("woff2"), url("Material-Design-Icons.woff") format("woff"), url("Material-Design-Icons.ttf") format("truetype");
+  src: url("Material-Design-Icons.woff") format("woff"), url("Material-Design-Icons.ttf") format("truetype");
   font-weight: normal;
   font-style: normal; }
 
@@ -5553,7 +5553,7 @@ nav {
 
 @font-face {
   font-family: "Roboto";
-  src: local(Roboto Light), url("Roboto-Light.woff2") format("woff2"), url("Roboto-Light.woff") format("woff"), url("Roboto-Light.ttf") format("truetype");
+  src: url("Roboto-Light.woff") format("woff"), url("Roboto-Light.ttf") format("truetype");
   font-weight: 300; }
 
 @font-face {
