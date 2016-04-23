@@ -37,9 +37,16 @@
 
         <div class="collection z-depth-1">
           <div class="collection-item">
+            <% if comment.client_id <=> nil %>
+            <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= comment.user.profile.avatar.url(:mini) %>" alt="img" class="circle responsive-img">
+            <b><%= link_to comment.user.profile.name, comment.user.profile %></b>
+
+
+            <% elsif comment.user_id <=> nil %>
             <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= comment.client.clientprofile.avatar.url(:mini) %>" alt="img" class="circle responsive-img">
             <b><%= link_to comment.client.clientprofile.name, comment.client.clientprofile %></b>
 
+            <% end %>
             <!--If client is the owner of the comment cant delete it-->
             <% if client_signed_in? %>
               <% if comment.client_id = current_client.id %>
