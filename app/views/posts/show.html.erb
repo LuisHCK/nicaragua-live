@@ -32,7 +32,7 @@
           <%= render '/comments/form' %>
         <% end %>
       </div>
-
+<b> <%= @post.comments.count %> Comentarios</b>
       <% @post.comments.each do |comment| %>
 
         <div class="collection z-depth-1">
@@ -40,8 +40,26 @@
             <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= comment.client.clientprofile.avatar.url(:mini) %>" alt="img" class="circle responsive-img">
             <b><%= link_to comment.client.clientprofile.name, comment.client.clientprofile %></b>
 
-            <%= link_to [comment.post, comment], method: :delete, data: { confirm: '¿Borrar tu comentario?' }, class:"right" do%>
-              <i class="material-icons">delete</i>
+            <!--If client is the owner of the comment cant delete it-->
+            <% if client_signed_in? %>
+              <% if comment.client_id = current_client.id %>
+
+                <%= link_to [comment.post, comment], method: :delete, data: { confirm: '¿Borrar tu comentario?' }, class:"right" do%>
+                  <i class="red-text material-icons">delete</i>
+                  <% end %>
+
+              <% end %>
+            <% elsif user_signed_in? %>
+              <% if comment.user_id = current_user.id %>
+
+                <%= link_to [comment.post, comment], method: :delete, data: { confirm: '¿Borrar tu comentario?' }, class:"right" do%>
+                    <i class="red-text material-icons">delete</i>
+                  <% end %>
+
+              <% end %>
+
+            <!--If client is the owner of the comment cant delete it-->
+
             <% end %>
           </div>
           <div class="collection-item">
