@@ -13,14 +13,14 @@
 
 ActiveRecord::Schema.define(version: 201602121639210) do
 
-  create_table "categories", options: 'ROW_FORMAT=DYNAMIC', force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.string   "icon",       limit: 255
   end
 
-  create_table "clientprofiles", options: 'ROW_FORMAT=DYNAMIC', force: :cascade do |t|
+  create_table "clientprofiles", force: :cascade do |t|
     t.string   "name",                limit: 255
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
@@ -34,14 +34,12 @@ ActiveRecord::Schema.define(version: 201602121639210) do
     t.integer  "cover_file_size",     limit: 4
     t.datetime "cover_updated_at"
     t.string   "city",                limit: 255
-    t.string   "biography",           ,
-
-
+    t.string   "biography",           limit: 255
   end
 
   add_index "clientprofiles", ["client_id"], name: "index_clientprofiles_on_client_id", using: :btree
 
-  create_table "clients", options: 'ROW_FORMAT=DYNAMIC', force: :cascade do |t|
+  create_table "clients", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
     t.string   "reset_password_token",   limit: 255
@@ -59,10 +57,8 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   end
 
   add_index "clients", ["avatar_id"], name: "index_clients_on_avatar_id", using: :btree
-  add_index "clients", ["email"], name: "index_clients_on_email", unique: true, using: :btree
-  add_index "clients", ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true, using: :btree
 
-  create_table "comments", options: 'ROW_FORMAT=DYNAMIC', force: :cascade do |t|
+  create_table "comments", force: :cascade do |t|
     t.text     "body",       limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
@@ -75,7 +71,7 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
-  create_table "follows", options: 'ROW_FORMAT=DYNAMIC', force: :cascade do |t|
+  create_table "follows", force: :cascade do |t|
     t.integer  "profile_id",       limit: 4
     t.integer  "clientprofile_id", limit: 4
     t.datetime "created_at",                 null: false
@@ -85,7 +81,7 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_index "follows", ["clientprofile_id"], name: "index_follows_on_clientprofile_id", using: :btree
   add_index "follows", ["profile_id"], name: "index_follows_on_profile_id", using: :btree
 
-  create_table "galleries", options: 'ROW_FORMAT=DYNAMIC', force: :cascade do |t|
+  create_table "galleries", force: :cascade do |t|
     t.string   "title",      limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -94,7 +90,7 @@ ActiveRecord::Schema.define(version: 201602121639210) do
 
   add_index "galleries", ["post_id"], name: "index_galleries_on_post_id", using: :btree
 
-  create_table "hearts", options: 'ROW_FORMAT=DYNAMIC', force: :cascade do |t|
+  create_table "hearts", force: :cascade do |t|
     t.integer  "post_id",    limit: 4
     t.integer  "user_id",    limit: 4
     t.integer  "client_id",  limit: 4
@@ -106,7 +102,37 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_index "hearts", ["post_id"], name: "index_hearts_on_post_id", using: :btree
   add_index "hearts", ["user_id"], name: "index_hearts_on_user_id", using: :btree
 
-  create_table "master_admins", options: 'ROW_FORMAT=DYNAMIC', force: :cascade do |t|
+  create_table "items", force: :cascade do |t|
+    t.string   "titulo",      limit: 191
+    t.text     "descripcion", limit: 65535
+    t.decimal  "precio",                    precision: 10
+    t.string   "ubicacion",   limit: 191
+    t.string   "estado",      limit: 191
+    t.integer  "valoracion",  limit: 4
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.integer  "client_id",   limit: 4
+    t.string   "moneda",      limit: 191
+    t.string   "telefono",    limit: 191
+    t.string   "email",       limit: 191
+    t.string   "nombre",      limit: 191
+    t.integer  "marke_id",    limit: 4
+    t.integer  "market_id",   limit: 4
+  end
+
+  add_index "items", ["client_id"], name: "index_items_on_client_id", using: :btree
+  add_index "items", ["marke_id"], name: "index_items_on_marke_id", using: :btree
+  add_index "items", ["market_id"], name: "index_items_on_market_id", using: :btree
+
+  create_table "markets", force: :cascade do |t|
+    t.string   "title",       limit: 191
+    t.string   "description", limit: 191
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "icon",        limit: 191
+  end
+
+  create_table "master_admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
     t.string   "reset_password_token",   limit: 255
@@ -124,12 +150,12 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_index "master_admins", ["email"], name: "index_master_admins_on_email", unique: true, using: :btree
   add_index "master_admins", ["reset_password_token"], name: "index_master_admins_on_reset_password_token", unique: true, using: :btree
 
-  create_table "menus", options: 'ROW_FORMAT=DYNAMIC', force: :cascade do |t|
+  create_table "menus", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "offers", options: 'ROW_FORMAT=DYNAMIC', force: :cascade do |t|
+  create_table "offers", force: :cascade do |t|
     t.string   "titulo",             limit: 255
     t.string   "descripcion",        limit: 255
     t.string   "image_file_name",    limit: 255
@@ -145,12 +171,12 @@ ActiveRecord::Schema.define(version: 201602121639210) do
 
   add_index "offers", ["profile_id"], name: "index_offers_on_profile_id", using: :btree
 
-  create_table "panels", options: 'ROW_FORMAT=DYNAMIC', force: :cascade do |t|
+  create_table "panels", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "pictures", options: 'ROW_FORMAT=DYNAMIC', force: :cascade do |t|
+  create_table "pictures", force: :cascade do |t|
     t.string   "image_file_name",    limit: 255
     t.string   "image_content_type", limit: 255
     t.integer  "image_file_size",    limit: 4
@@ -158,11 +184,13 @@ ActiveRecord::Schema.define(version: 201602121639210) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.integer  "post_id",            limit: 4
+    t.integer  "item_id",            limit: 4
   end
 
+  add_index "pictures", ["item_id"], name: "index_pictures_on_item_id", using: :btree
   add_index "pictures", ["post_id"], name: "index_pictures_on_post_id", using: :btree
 
-  create_table "posts", options: 'ROW_FORMAT=DYNAMIC', force: :cascade do |t|
+  create_table "posts", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.text     "body",        limit: 65535
     t.integer  "likes",       limit: 4
@@ -174,7 +202,7 @@ ActiveRecord::Schema.define(version: 201602121639210) do
 
   add_index "posts", ["profile_id"], name: "index_posts_on_profile_id", using: :btree
 
-  create_table "profiles", options: 'ROW_FORMAT=DYNAMIC', force: :cascade do |t|
+  create_table "profiles", force: :cascade do |t|
     t.string   "name",                limit: 255
     t.string   "cover_file_name",     limit: 255
     t.string   "cover_content_type",  limit: 255
@@ -204,7 +232,7 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
   add_index "profiles", ["user_id"], name: "user_id", using: :btree
 
-  create_table "users", options: 'ROW_FORMAT=DYNAMIC', force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
     t.string   "reset_password_token",   limit: 255
@@ -225,7 +253,7 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "wikis", options: 'ROW_FORMAT=DYNAMIC', force: :cascade do |t|
+  create_table "wikis", force: :cascade do |t|
     t.string   "title",              limit: 255
     t.text     "body",               limit: 65535
     t.integer  "likes",              limit: 4
@@ -242,7 +270,10 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_foreign_key "comments", "clients"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "items", "clients"
+  add_foreign_key "items", "markets"
   add_foreign_key "offers", "profiles"
+  add_foreign_key "pictures", "items"
   add_foreign_key "pictures", "posts"
   add_foreign_key "posts", "profiles"
   add_foreign_key "profiles", "categories"

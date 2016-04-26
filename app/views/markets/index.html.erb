@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="grey-text darken-4">
+
+  <p id="notice"><%= notice %></p>
+
+
+  <h5>Anuncios Clasificados</h5>
+
+        <ul class="collection z-depth-1">
+          <% @markets.each do |market| %>
+  		<a href="<%= market_path(market) %>" class="collection-item  blue-grey-text darken-4">
+  			<i class="material-icons">
+  				<%= market.icon %>
+  			</i> <%= market.title %>
+
+
+  		</a>
+
+          <% end %>
+        </ul>
+
+  <% if master_admin_signed_in? %>
+    <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;">
+    	<a href="<%= new_market_path %>" class="btn-floating waves-effect btn-large red"><i class="material-icons">add</i></a>
+    </div>
+
+  <% end %>
+  </div>
+
+</div>
+
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+  <%= link_to new_item_path, class:"btn-floating btn-large red" do%>
+    <i class="large material-icons">mode_edit</i>
+  <% end %>
+</div>

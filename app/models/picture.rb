@@ -1,5 +1,6 @@
 class Picture < ActiveRecord::Base
 	belongs_to :post
+	belongs_to :item
 
 	has_attached_file :image, styles: { thumb: ["64x64#", :jpg],
 						original: ['600', :jpg] },

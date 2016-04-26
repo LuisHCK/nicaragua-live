@@ -73,8 +73,13 @@ class PicturesController < ApplicationController
   def update
 
     @post = post.find(params[:post_id])
+    @item = item.find(params[:item_id])
 
-    @picture = @post.pictures.find(params[:id])
+    if picture.item_id <=> nil
+      @picture = @post.pictures.find(params[:id])
+    else
+      @picture = pictures.find(params[:id])
+    end
 
     respond_to do |format|
       if @picture.update_attributes(picture_params)
@@ -116,6 +121,6 @@ class PicturesController < ApplicationController
   private
 
   def picture_params
-    params.require(:picture).permit(:post_id, :image)
+    params.require(:picture).permit(:post_id, :item_id, :image)
   end
 end

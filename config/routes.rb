@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  resources :items
+  resources :markets
   resources :offers
   resources :menus
   resources :clientprofiles
