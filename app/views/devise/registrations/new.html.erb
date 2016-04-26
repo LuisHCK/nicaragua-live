@@ -1,7 +1,10 @@
 <div class="container grey-text darken-4">
 <h5>Registrarse</h5>
 <% if session_path(resource) == "/users/sign_in" %>
-    <h5 class="yellow-text">Administrador</h5>
+    <p>
+      <i class="material-icons">warning</i> Crea una cuenta para tu negocio o empresa y muestra tus productos o
+      servicios a los usuarios de <b>Estelí Live</b>
+    </p>
   <% end %>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
