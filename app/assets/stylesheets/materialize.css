@@ -6456,7 +6456,7 @@ button:focus {
 
 label {
   font-size: 0.8rem;
-  color: ##DCDCDC; }
+  color: #B2B2B2; }
 
 /***************************
    Text Inputs + Textarea
@@ -6527,7 +6527,7 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
   position: relative;
   margin-top: 1rem; }
   .input-field label {
-    color: #DCDCDC;
+    color: #B2B2B2;
     position: absolute;
     top: 0.8rem;
     left: 0.75rem;
@@ -6697,12 +6697,12 @@ textarea {
 /* Radio With gap */
 [type="radio"].with-gap:checked + label:before {
   border-radius: 50%;
-  border: 2px solid #b2ebf2; }
+  border: 2px solid #7F7F7F; }
 
 [type="radio"].with-gap:checked + label:after {
   border-radius: 50%;
-  border: 2px solid #b2ebf2;
-  background-color: #b2ebf2;
+  border: 2px solid #7F7F7F;
+  background-color: #7F7F7F;
   z-index: 0;
   -webkit-transform: scale(.5);
   -moz-transform: scale(.5);
