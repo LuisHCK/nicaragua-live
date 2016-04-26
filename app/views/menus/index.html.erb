@@ -18,12 +18,6 @@
 	</ul>
 
 <!-- if master admin is signed in -->
-		<% elsif master_admin_signed_in? %>
-			<%= image_tag "no_cover.jpg", class:"responsive-img" %>
-			<span class="profile-img">
-				<%= image_tag "unknown_user.png", class:"circle", size:"64" %>
-			</span>
-
 <!--if client is signed in-->
 		<% elsif client_signed_in? %>
 
