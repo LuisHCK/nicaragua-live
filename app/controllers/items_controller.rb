@@ -50,6 +50,13 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
+        if params[:images]
+          # The magic is here ;)
+          params[:images].each { |image|
+            @item.pictures.create(image: image)
+          }
+        end
+
         format.html { redirect_to market_path(@item.market_id), notice: 'La Publicación se actualizó con exito.' }
         format.json { render :show, status: :ok, location: @item }
       else
