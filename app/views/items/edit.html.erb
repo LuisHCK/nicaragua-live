@@ -1,6 +1,16 @@
-<h1>Editing Item</h1>
+<div class="container">
+  <h5>Editar</h5>
 
-<%= render 'form' %>
+  <%= render 'form' %>
 
-<%= link_to 'Show', @item %> |
-<%= link_to 'Back', items_path %>
+  <%= link_to 'Show', @item %> |
+  <%= link_to 'Back', items_path %>
+
+  <!-- Initialize category selector -->
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('select').material_select();
+      });
+  </script>
+
+</div>
