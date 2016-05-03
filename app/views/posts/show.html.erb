@@ -7,9 +7,6 @@
     </li>
 
     <li class="collection-item">
-      <p class="responsive-text">
-        <%= @post.body %>
-      </p>
       <% if @post.pictures.count > 1 %>
         <div class="fotorama" data-nav="thumbs" data-allowfullscreen="true">
             <% @post.pictures.each do |pic| %>
@@ -23,13 +20,21 @@
         </div>
           <% end %>
       <% end %>
+      <% unless @post.video.nil? %>
+        <%= youtube_video @post.video %>
+      <% end %>
 
+      <p class="responsive-text">
+        <%= markdown(@post.body) %>
+      </p>
     </li>
 
     <li class="collection-item">
       <div class="row">
         <% if client_signed_in? or user_signed_in? %>
           <%= render '/comments/form' %>
+          <% else %>
+            <%= link_to "Inicia sesión", new_client_session_path %> para dejar un comentario
         <% end %>
       </div>
 <b> <%= @post.comments.count %> Comentarios</b>
