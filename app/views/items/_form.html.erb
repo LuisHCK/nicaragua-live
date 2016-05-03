@@ -51,7 +51,7 @@
   <div class="file-field input-field">
     <div class="btn-large red">
       <i class="material-icons">attach_file</i>
-      <input type="file" multiple>
+      <input type="file" multiple accept='image/*'>
            <%= file_field_tag "images[]", type: :image, multiple: true, input_html: { hidden: true }%>
     </div>
     <div class="file-path-wrapper">
@@ -74,7 +74,7 @@
     <%= f.text_field :email %>
   </div>
   <div class="actions">
-    <%= button_to(type: 'submit', id:"btn-post", remote: true, class: "btn blue", onclick:"$('.spinner').show();") do %>
+    <%= button_tag(type: 'submit', id:"submit_btn", class: "btn blue") do %>
      <i class="material-icons">check_circle</i>
     <% end %>
     <p class="grey-text lighten-4">
@@ -82,3 +82,10 @@
     </p>
   </div>
 <% end %>
+
+<script>
+$("#submit_btn").on("click", function() {
+// do something
+$(".spinner").show();
+});
+</script>
