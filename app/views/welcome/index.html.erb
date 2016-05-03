@@ -3,6 +3,12 @@
 <%= %>
 
 <%= render partial: "posts" %>
+<ul class="pagination">
+  <div class="apple_pagination">
+      <%= will_paginate @posts, :container => false %>
+    </div>
+</ul>
+
 
     </div>
     <% if user_signed_in? %>
