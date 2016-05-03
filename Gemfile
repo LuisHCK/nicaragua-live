@@ -49,10 +49,9 @@ end
 gem 'devise'
 gem 'paperclip'
 gem 'jquery-turbolinks'
-gem 'tinymce-rails'
-gem 'tinymce-rails-langs'
 gem 'redcarpet'
 gem 'socialization'
+gem 'will_paginate'
 
 gem 'tzinfo-data'
 gem 'tzinfo'
