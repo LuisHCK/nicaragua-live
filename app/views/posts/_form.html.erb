@@ -1,11 +1,11 @@
-<div id="modal1" class="modal" style="background-color: #446F6F;">
+<div id="modal1" class="modal" style="background-color: #4D4D4D;">
   <div class="modal-content">
   <%= form_for @post, :html => { :class => 'form-horizontal', multipart: true }, :authenticity_token => true do |f| %>
 
 
       <div class="row">
-        <div id="input_body" class="input-field col s12">
-          <%= f.text_area :body, id:"text_area_body", class:"materialize-textarea", length:"180", input_html: { hidden: true } %>
+        <div id="input_body" class="input-field col s12 white-text">
+          <%= f.text_area :body, id:"text_area_body", class:"materialize-textarea white-text", input_html: { hidden: true } %>
           <label for="textarea1">Escribir publicación</label>
         </div>
       </div>
@@ -19,6 +19,11 @@
       <div class="file-path-wrapper">
         <input class="file-path validate" type="text" placeholder="Seleccione uno o mas archivos">
       </div>
+    </div>
+
+    <div class="input-field white-text">
+      <%= f.label :video, "Pega un video de youtube (opcional)" %>
+      <%= f.text_field :video %>
     </div>
 
   <div class="row right">
