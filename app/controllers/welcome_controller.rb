@@ -9,10 +9,10 @@ class WelcomeController < ApplicationController
        @follows = Follow.all
 
     if client_signed_in?
-       @posts = Post.where(:profile_id => current_client.clientprofile.follows.collect(&:profile_id) ).order(created_at: :desc).all
+       @posts = Post.where(:profile_id => current_client.clientprofile.follows.collect(&:profile_id) ).order(created_at: :desc).paginate(:page => params[:page], :per_page => 10)
        #this line collect the ids from followed users, then compare with the id of the post's owner and show in to welcome page. (an entire night for make this lol)
      else
-       @posts = Post.order(created_at: :desc).all
+       @posts = Post.paginate(:page => params[:page], :per_page => 10).order(created_at: :desc)
      end
 
   end
@@ -22,10 +22,6 @@ class WelcomeController < ApplicationController
     @category = Category.find(params[:id])
   end
 
-  def order_posts
-
-    @posts = follow.profile.order(created_at: :desc)
-  end
 
  private
     # Use callbacks to share common setup or constraints between actions.
