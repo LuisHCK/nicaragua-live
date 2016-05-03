@@ -19,4 +19,11 @@ module ApplicationHelper
 
     @markdown.render(text).html_safe
   end
+
+  def youtube_video(url)
+     youtube_id = url.split("=").last
+    render :partial => 'posts/video_frame', :locals => { :url => youtube_id }
+  end
+
+
 end
