@@ -49,7 +49,7 @@
         <h4 class="center"><%= @item.titulo %></h4>
         <p>
           <b>Descripción:</b>
-          <%= @item.descripcion %>
+          <%= markdown(@item.descripcion) %>
           <br>
           <b>Estado: </b><%= @item.estado %><br>
           <b>Dirección: </b><%= @item.ubicacion %><br>
@@ -62,4 +62,9 @@
         </p>
       </li>
     </ul>
+    <% if @item.client_id = current_client.id %>
+      <%= link_to "Editar", edit_item_path, class:"btn blue" %>
+    <% end %>
 </div>
+<link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->

@@ -29,7 +29,7 @@
 
     <li class="collection-item">
       <p class="responsive-text">
-        <%= post.body %>
+        <%= truncate(post.body, length: 140) { link_to "Ver más", post_path(post) } %>
       </p>
       <% if post.pictures.count > 1 %>
         <div class="fotorama" data-nav="thumbs" data-allowfullscreen="true">
@@ -42,6 +42,14 @@
         <div class="center">
           <%= image_tag(pic.image, class:"responsive-img")%>
         </div>
+          <% end %>
+      <% end %>
+
+      <% unless post.video.nil?%>
+          <% if post.pictures.count < 1 %>
+            <%= youtube_video post.video %>
+            <% else %>
+            Ver video: <a href="<%= post.video%>"><%= post.video %></a>
           <% end %>
       <% end %>
 
