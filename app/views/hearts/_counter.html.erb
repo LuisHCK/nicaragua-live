@@ -1,0 +1,9 @@
+<% if client_signed_in? or user_signed_in? %>
+<span class="blue-text like-text badge1">
+  <b><%= post.hearts.count%></b>
+</span>
+<% else %>
+<span class="blue-text like-text">
+  <b><%= post.hearts.count%></b>
+</span>
+<% end %>
