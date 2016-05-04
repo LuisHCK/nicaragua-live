@@ -1,9 +1,12 @@
 
 <!--Tarjetas-->
-<%= %>
+  <% if client_signed_in? or user_signed_in? %>
+    <%= render "posts" %>
+    <% else %>
+    <%= render @posts.five_days_ago.sort_by { |post| post.hearts.count }.reverse %>
+<% end %>
 
-<%= render partial: "posts" %>
-<ul class="pagination">
+ <ul class="pagination">
   <div class="apple_pagination">
       <%= will_paginate @posts, :container => false %>
     </div>

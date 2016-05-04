@@ -25,5 +25,9 @@ module ApplicationHelper
     render :partial => 'posts/video_frame', :locals => { :url => youtube_id }
   end
 
-
+  def show_likes(post)
+    if post.hearts.count > 0
+      render :partial => 'hearts/counter', :locals => {:post => post}
+    end
+  end
 end
