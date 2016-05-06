@@ -65,11 +65,29 @@ ActiveRecord::Schema.define(version: 201602121639210) do
     t.integer  "post_id",    limit: 4
     t.integer  "client_id",  limit: 4
     t.integer  "user_id",    limit: 4
+    t.integer  "event_id",   limit: 4
   end
 
   add_index "comments", ["client_id"], name: "index_comments_on_client_id", using: :btree
+  add_index "comments", ["event_id"], name: "index_comments_on_event_id", using: :btree
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "events", force: :cascade do |t|
+    t.string   "title",              limit: 191
+    t.date     "date"
+    t.time     "time"
+    t.text     "description",        limit: 65535
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "user_id",            limit: 4
+    t.string   "cover_file_name",    limit: 191
+    t.string   "cover_content_type", limit: 191
+    t.integer  "cover_file_size",    limit: 4
+    t.datetime "cover_updated_at"
+  end
+
+  add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
 
   create_table "follows", force: :cascade do |t|
     t.integer  "profile_id",       limit: 4
@@ -116,12 +134,10 @@ ActiveRecord::Schema.define(version: 201602121639210) do
     t.string   "telefono",    limit: 191
     t.string   "email",       limit: 191
     t.string   "nombre",      limit: 191
-    t.integer  "marke_id",    limit: 4
     t.integer  "market_id",   limit: 4
   end
 
   add_index "items", ["client_id"], name: "index_items_on_client_id", using: :btree
-  add_index "items", ["marke_id"], name: "index_items_on_marke_id", using: :btree
   add_index "items", ["market_id"], name: "index_items_on_market_id", using: :btree
 
   create_table "markets", force: :cascade do |t|
@@ -195,9 +211,11 @@ ActiveRecord::Schema.define(version: 201602121639210) do
     t.text     "body",        limit: 65535
     t.integer  "likes",       limit: 4
     t.integer  "visit_count", limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.integer  "profile_id",  limit: 4
+    t.string   "video",       limit: 191
+    t.boolean  "trending",                  default: false
   end
 
   add_index "posts", ["profile_id"], name: "index_posts_on_profile_id", using: :btree
@@ -233,20 +251,20 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_index "profiles", ["user_id"], name: "user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "email",                  limit: 255, default: "",     null: false
+    t.string   "encrypted_password",     limit: 255, default: "",     null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,      null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
     t.integer  "category_id",            limit: 4
-    t.boolean  "has_section"
+    t.string   "user_type",              limit: 191, default: "user"
   end
 
   add_index "users", ["category_id"], name: "index_users_on_category_id", using: :btree
@@ -268,8 +286,10 @@ ActiveRecord::Schema.define(version: 201602121639210) do
 
   add_foreign_key "clientprofiles", "clients"
   add_foreign_key "comments", "clients"
+  add_foreign_key "comments", "events"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "events", "users"
   add_foreign_key "items", "clients"
   add_foreign_key "items", "markets"
   add_foreign_key "offers", "profiles"

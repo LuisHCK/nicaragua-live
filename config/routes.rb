@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
+  resources :events do
+    resources :comments
+  end
   #ajax for post
 
   devise_for :master_admins

@@ -1,0 +1,59 @@
+<%= form_for(@event) do |f| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h5><%= pluralize(@event.errors.count, "error") %> evita que se guarde:</h5>
+
+      <ul>
+      <% @event.errors.full_messages.each do |message| %>
+        <li><%= message %></li><br>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="input-field">
+    <%= f.label "Título" %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="input-field">
+    <%= f.label :date, "Fecha" %><br>
+    <%= f.date_field :date, class:"datepicker"%>
+  </div>
+
+  <div class="input-field" style="max-width: 100px;">
+    <%= f.label :time, "Hora"%><br>
+    <%= f.time_select :time, {ampm: true, time_separator: 'Minutos:'}%>
+  </div>
+
+  <div class="input-field">
+    <%= f.text_area :description, id:"textarea1", class:"materialize-textarea", length:"180", input_html: { hidden: true } %>
+    <label for="textarea1">Descripcion</label>
+  </div>
+
+  <div class="file-field input-field">
+    <div class="btn red">
+      <span>Abrir</span>
+      <input type="file">
+      <%= f.file_field :cover, input_html: { hidden: true }%>
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path validate" type="text">
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<script>
+$('.datepicker').pickadate({
+selectMonths: true, // Creates a dropdown to control month
+selectYears: 15 // Creates a dropdown of 15 years to control year
+});
+
+$(document).ready(function() {
+    $('select').material_select();
+  });
+</script>
