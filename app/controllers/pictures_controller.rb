@@ -6,7 +6,7 @@ class PicturesController < ApplicationController
   # GET /pictures.json
   def index
 
-    @post = post.find(params[:post_id])
+    @post = Post.find(params[:post_id])
 
     @pictures = @post.pictures.order('created_at desc')
 
@@ -108,7 +108,7 @@ class PicturesController < ApplicationController
 
   def make_default
     @picture = Picture.find(params[:id])
-    @post = post.find(params[:post_id])
+    @post = Post.find(params[:post_id])
 
     @post.cover = @picture.id
     @post.save

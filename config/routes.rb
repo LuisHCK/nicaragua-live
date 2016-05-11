@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-
-
+  resources :event_comments
+  resources :event_comments
   resources :items
   resources :markets
   resources :offers
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :comments
   end
   resources :events do
-    resources :comments
+    resources :event_comments
   end
   #ajax for post
 

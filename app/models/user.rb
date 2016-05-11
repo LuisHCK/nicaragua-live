@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :posts, through: :hearts
 
   has_many :comments
+  has_many :event_comments
 
   has_many :events
   # creates a new heart row with post_id and user_id

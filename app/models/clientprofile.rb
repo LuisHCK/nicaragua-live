@@ -9,6 +9,7 @@ class Clientprofile < ActiveRecord::Base
   has_many :profiles, through: :follows, dependent: :destroy
 
   has_many :clients, through: :follows, dependent: :destroy
+  has_many :event_comments
 
   ##Adding Followin methods
     def follow_user

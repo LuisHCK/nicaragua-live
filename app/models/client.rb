@@ -12,6 +12,7 @@ class Client < ActiveRecord::Base
   has_many :posts, through: :hearts, dependent: :destroy
 
   has_many :comments
+  has_many :event_comments
   has_many :items
 
   # creates a new heart row with post_id and user_id

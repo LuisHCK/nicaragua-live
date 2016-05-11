@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
   validates :description, presence: true
   belongs_to :user
 
-  has_many :comments
+  has_many :event_comments
 
   has_attached_file :cover, styles: { thumb: ["64x64#", :jpg],
             original: ['600', :jpg] },

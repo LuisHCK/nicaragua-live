@@ -27,15 +27,15 @@
 
 <div>
 
-  <b> <%= @event.comments.count %> Comentarios</b>
+  <b> <%= @event.event_comments.count %> Comentarios</b>
   <div class="row">
     <% if client_signed_in? or user_signed_in? %>
-      <%= render '/comments/form' %>
+      <%= render '/event_comments/form' %>
       <% else %>
         <%= link_to "Inicia sesión", new_client_session_path %> para dejar un comentario
     <% end %>
   </div>
-        <% @event.comments.each do |comment| %>
+        <% @event.event_comments.each do |comment| %>
 
           <div class="collection z-depth-1">
             <div class="collection-item">

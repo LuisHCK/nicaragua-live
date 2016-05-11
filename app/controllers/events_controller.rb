@@ -11,7 +11,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @comment = Comment.new
+    @event_comment = EventComment.new
   end
 
   # GET /events/new
