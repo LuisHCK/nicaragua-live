@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Body</strong>
+  <%= @event_comment.body %>
+</p>
+
+<%= link_to 'Edit', edit_event_comment_path(@event_comment) %> |
+<%= link_to 'Back', event_comments_path %>

@@ -1,0 +1,27 @@
+<%= form_for([@event,@event_comment]) do |f| %>
+  <% if @event_comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event_comment.errors.count, "error") %> prohibited this event_comment from being saved:</h2>
+
+      <ul>
+      <% @event_comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="row" style="margin-bottom: 0px">
+  <div class="col s9">
+    <%= f.text_area :body, placeholder:"Escribe tu comentario", class:"materialize-textarea", style:"
+    background:#F2F2F2;
+    padding-bottom: 0px;
+    margin-bottom: 0px;" %>
+  </div>
+  <div class="col s2">
+    <%= button_tag(type: 'submit', class: "btn-large green") do %>
+     <i class="material-icons">send</i>
+    <% end %>
+  </div>
+</div>
+<% end %>
