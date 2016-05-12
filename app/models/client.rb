@@ -14,6 +14,8 @@ class Client < ActiveRecord::Base
   has_many :comments
   has_many :event_comments
   has_many :items
+  has_many :reviews, dependent: :destroy
+
 
   # creates a new heart row with post_id and user_id
   def heart!(post)
@@ -29,5 +31,9 @@ class Client < ActiveRecord::Base
   # returns true of false if a post is hearted by user
   def heart?(post)
     self.hearts.find_by_post_id(post.id)
+  end
+
+  def reviewed?(profile)
+    self.reviews.find_by_profile_id(profile.id)
   end
 end

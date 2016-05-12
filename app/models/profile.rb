@@ -16,5 +16,5 @@ class Profile < ActiveRecord::Base
 
 	has_many :follows, dependent: :destroy
 	has_many :clientprofiles, through: :follows
-
+	has_many :reviews
 end
