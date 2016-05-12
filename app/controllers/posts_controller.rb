@@ -66,7 +66,7 @@ class PostsController < ApplicationController
               }
               end
 
-              format.html { redirect_to @post, notice: 'La publicación fué actualizada correctamente' }
+              format.html { redirect_to @post, notice: 'La publicación fue actualizada correctamente' }
               format.json { render :show, status: :ok, location: @post }
             else
               format.html { render :edit }

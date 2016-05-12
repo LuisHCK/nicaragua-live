@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
             @item.pictures.create(image: image)
           }
         end
-        format.html { redirect_to market_path(@item.market_id), notice: 'La Publicación se creó con exito.' }
+        format.html { redirect_to market_path(@item.market_id), notice: 'La Publicación se creó con éxito.' }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -57,7 +57,7 @@ class ItemsController < ApplicationController
           }
         end
 
-        format.html { redirect_to market_path(@item.market_id), notice: 'La Publicación se actualizó con exito.' }
+        format.html { redirect_to market_path(@item.market_id), notice: 'La Publicación se actualizó con éxito.' }
         format.json { render :show, status: :ok, location: @item }
       else
         format.html { render :edit }
@@ -71,7 +71,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to items_url, notice: 'La Publicación fue eliminada' }
       format.json { head :no_content }
     end
   end

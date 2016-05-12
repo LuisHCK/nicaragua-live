@@ -7,7 +7,7 @@ class FollowsController < ApplicationController
     @profile = Profile.find(params[:profile_id])
     @clientprofile.follow!(@profile)
   else
-    redirect_to new_client_session_path, notice: 'Debes iniciar seción primero'
+    redirect_to new_client_session_path, notice: 'Debes iniciar sesión primero'
   end
   end
 
@@ -18,7 +18,7 @@ class FollowsController < ApplicationController
     @profile = Profile.find(params[:profile_id])
     @follow.destroy!
   else
-    redirect_to new_client_session_path, notice: 'Debes iniciar seción primero'
+    redirect_to new_client_session_path, notice: 'Debes iniciar sesión primero'
 end
 
   end
