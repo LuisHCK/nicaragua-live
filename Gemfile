@@ -50,7 +50,7 @@ gem 'devise'
 gem 'paperclip'
 gem 'jquery-turbolinks'
 gem 'redcarpet'
-gem 'socialization'
+gem 'ratyrate'
 gem 'will_paginate'
 
 gem 'tzinfo-data'

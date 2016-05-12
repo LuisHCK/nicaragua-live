@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  resources :event_comments
-  resources :event_comments
+
   resources :items
   resources :markets
   resources :offers
@@ -10,10 +9,15 @@ Rails.application.routes.draw do
   resources :panels
   resources :galleries
   resources :pictures
-  resources :profiles
+
+  resources :profiles do
+    resources :reviews, except: [:show, :index]
+  end
+
   resources :posts do
     resources :comments
   end
+
   resources :events do
     resources :event_comments
   end

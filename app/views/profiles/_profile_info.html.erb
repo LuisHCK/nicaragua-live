@@ -12,6 +12,16 @@
   <div style="padding-left:5%;" class="col s8 m6 grey-text darken-4">
     <b><%= @profile.name %></b>
     <br>
+
+    <div class="star-rating" data-score= <%= @avg_review %> ></div>
+    <em><%= "#{@reviews.length} valoraciones" %></em>
+    <% if current_client.reviewed?(@profile) %>
+      <% @reviews.where(client_id: current_client.id).each do |rev|%>
+        <%= link_to "editar", edit_profile_review_path(@profile,rev) %>
+      <% end %>
+      <% else %>
+        no
+    <% end %>
     <table class="striped centered black-text">
       <thead>
         <tr>
