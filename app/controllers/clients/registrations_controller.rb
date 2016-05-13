@@ -10,6 +10,9 @@ class Clients::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   # def create
   #   super
+  #   if @client.save
+  #      format.html { redirect_to @client.clientprofile, notice: 'Tu perfil se creó correctamente.' }
+  #    end
   # end
 
   # GET /resource/edit
