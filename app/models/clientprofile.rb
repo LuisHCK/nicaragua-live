@@ -5,7 +5,7 @@ class Clientprofile < ActiveRecord::Base
   validates_attachment_content_type :cover, content_type: /\Aimage\/.*\z/ , presence: true
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/ , presence: true
 
-  has_many :follows, dependent: :destroy
+  has_many :follows
   has_many :profiles, through: :follows, dependent: :destroy
 
   has_many :clients, through: :follows, dependent: :destroy
