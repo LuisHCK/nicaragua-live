@@ -9,7 +9,7 @@ class WelcomeController < ApplicationController
        @follows = Follow.all
 
     if client_signed_in?
-       @posts = Post.where(:profile_id => current_client.clientprofile.follows.collect(&:profile_id) ).order(created_at: :desc).paginate(:page => params[:page], :per_page => 10)
+       @posts = Post.where(:profile_id => current_client.follows.collect(&:profile_id) ).order(created_at: :desc).paginate(:page => params[:page], :per_page => 10)
        #this line collect the ids from followed users, then compare with the id of the post's owner and show in to welcome page. (an entire night for make this lol)
      else
        @posts = Post.paginate(:page => params[:page], :per_page => 10).all

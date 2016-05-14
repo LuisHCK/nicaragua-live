@@ -112,13 +112,13 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
 
   create_table "follows", force: :cascade do |t|
-    t.integer  "profile_id",       limit: 4
-    t.integer  "clientprofile_id", limit: 4
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "profile_id", limit: 4
+    t.integer  "client_id",  limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
-  add_index "follows", ["clientprofile_id"], name: "index_follows_on_clientprofile_id", using: :btree
+  add_index "follows", ["client_id"], name: "index_follows_on_client_id", using: :btree
   add_index "follows", ["profile_id"], name: "index_follows_on_profile_id", using: :btree
 
   create_table "galleries", force: :cascade do |t|
@@ -280,31 +280,6 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
   add_index "profiles", ["user_id"], name: "user_id", using: :btree
 
-  create_table "rates", force: :cascade do |t|
-    t.integer  "rater_id",      limit: 4
-    t.integer  "rateable_id",   limit: 4
-    t.string   "rateable_type", limit: 191
-    t.float    "stars",         limit: 24,  null: false
-    t.string   "dimension",     limit: 191
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "rates", ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type", using: :btree
-  add_index "rates", ["rater_id"], name: "index_rates_on_rater_id", using: :btree
-
-  create_table "rating_caches", force: :cascade do |t|
-    t.integer  "cacheable_id",   limit: 4
-    t.string   "cacheable_type", limit: 191
-    t.float    "avg",            limit: 24,  null: false
-    t.integer  "qty",            limit: 4,   null: false
-    t.string   "dimension",      limit: 191
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
-
   create_table "reviews", force: :cascade do |t|
     t.integer  "rating",     limit: 4
     t.text     "comment",    limit: 65535
@@ -337,11 +312,6 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_index "users", ["category_id"], name: "index_users_on_category_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
-  create_table "valorations", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "wikis", force: :cascade do |t|
     t.string   "title",              limit: 255

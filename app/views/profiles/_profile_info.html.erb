@@ -4,25 +4,32 @@
     <img style="margin-left:1%; max-width:100px;"
     src="<%= @profile.avatar.url(:mini) %>" alt="" class="circle responsive-img">
     <!--Follow Button-->
-    <div id="follow_profile">
-      <%= render partial: "follows/followbtn", locals: { profile: @profile } %>
-    </div>
   </div>
 
   <div style="padding-left:5%;" class="col s8 m6 grey-text darken-4">
     <b><%= @profile.name %></b>
     <br>
-
-    <div class="star-rating" data-score= <%= @avg_review %> ></div>
+    <div href="/root" class="star-rating" data-score= <%= @avg_review %> ></div>
     <em><%= "#{@reviews.length} valoraciones" %></em>
-    
+
     <% if client_signed_in? && current_client.reviewed?(@profile) %>
       <% @reviews.where(client_id: current_client.id).each do |rev|%>
         <%= link_to "editar", edit_profile_review_path(@profile,rev) %>
       <% end %>
+      <% elsif  client_signed_in? %>
+      <a class="modal-trigger btn-floating blue right" href="#review-modal"><i class="material-icons">star</i></a>
+
     <% end %>
 
-    <table class="striped centered black-text">
+    <div id="follow_profile">
+      <%= render partial: "follows/followbtn", locals: { profile: @profile } %>
+    </div>
+
+  </div>
+
+</div>
+<div>
+      <table class="striped centered black-text">
       <thead>
         <tr>
             <th data-field="id">Publicaciones</th>
@@ -40,14 +47,10 @@
         </tr>
       </tbody>
     </table>
-    <div>
+    <div class="row">
       <%= @profile.body %>
     </div>
-
-  </div>
-
 </div>
-
 <div class="row center">
   <div>
     <b><i style="vertical-align: middle" class="material-icons blue-text">people</i> Redes Sociales</b>

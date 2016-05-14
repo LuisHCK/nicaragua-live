@@ -15,6 +15,9 @@ class Client < ActiveRecord::Base
   has_many :event_comments
   has_many :items
   has_many :reviews, dependent: :destroy
+  
+  has_many :follows
+  has_many :profiles, through: :follows, dependent: :destroy
 
 
   # creates a new heart row with post_id and user_id
@@ -36,4 +39,25 @@ class Client < ActiveRecord::Base
   def reviewed?(profile)
     self.reviews.find_by_profile_id(profile.id)
   end
+
+  ##Adding Followin methods
+    def follow_user
+      if @clientprofile.follow!(@profile)
+        format.html { redirect_to @profile, notice: 'Has seguido a' }
+      end
+    end
+
+    def follow!(profile)
+      self.follows.create(profile_id: profile.id)
+    end
+
+    def unfollow!(profile)
+      follow = self.follows.find_by profile_id:(profile.id)
+      follow.destroy!
+    end
+
+    def follow?(profile)
+      self.follows.find_by profile_id:(profile.id)
+    end
+
 end

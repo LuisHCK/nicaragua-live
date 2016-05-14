@@ -1,12 +1,14 @@
 <% if client_signed_in? %>
-  <% if current_client.clientprofile.follow?(@profile) %>
-    <%= button_to unfollow_path(profile_id: profile.id), remote: true,id:"follow", class:"btn small green",style:"max-width:106px;", method: :delete do%>
+  <% if current_client.follow?(@profile) %>
+    <%= button_to unfollow_path(profile_id: profile.id), remote: true,id:"follow", class:"btn small green", method: :delete do%>
+      <i class="material-icons left">star</i>
       Siguiendo
     <% end %>
   <% else %>
     <%= button_to follow_path(profile_id: profile.id), class:"btn small grey", remote: true, id:"follow" do %>
+      <i class="material-icons left">favorite</i>
       Seguir
-    <% end %>
+      <% end %>
   <% end %>
 
 <% else %>

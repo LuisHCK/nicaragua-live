@@ -17,6 +17,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    @review = Review.new
     @offers = Offer.where(profile_id: @profile.id)
     @reviews = Review.where(profile_id: @profile.id).order("created_at DESC")
 

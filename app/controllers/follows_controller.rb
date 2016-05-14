@@ -3,9 +3,9 @@ class FollowsController < ApplicationController
 
   def follow
     if client_signed_in?
-    @clientprofile = current_client.clientprofile
+    @client = current_client
     @profile = Profile.find(params[:profile_id])
-    @clientprofile.follow!(@profile)
+    @client.follow!(@profile)
   else
     redirect_to new_client_session_path, notice: 'Debes iniciar seción primero'
   end
@@ -13,8 +13,8 @@ class FollowsController < ApplicationController
 
   def unfollow
     if client_signed_in?
-    @clientprofile = current_client.clientprofile
-    @follow = @clientprofile.follows.find_by_profile_id(params[:profile_id])
+    @client = current_client
+    @follow = @client.follows.find_by_profile_id(params[:profile_id])
     @profile = Profile.find(params[:profile_id])
     @follow.destroy!
   else
