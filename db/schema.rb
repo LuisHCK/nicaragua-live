@@ -30,20 +30,20 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   end
 
   create_table "clientprofiles", force: :cascade do |t|
-    t.string   "name",                limit: 255
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.integer  "client_id",           limit: 4
-    t.string   "avatar_file_name",    limit: 255
-    t.string   "avatar_content_type", limit: 255
-    t.integer  "avatar_file_size",    limit: 4
-    t.datetime "avatar_updated_at"
-    t.string   "cover_file_name",     limit: 255
-    t.string   "cover_content_type",  limit: 255
+    t.string   "name",                limit: 191
+    t.string   "city",                limit: 191
+    t.text     "biography",           limit: 65535
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "cover_file_name",     limit: 191
+    t.string   "cover_content_type",  limit: 191
     t.integer  "cover_file_size",     limit: 4
     t.datetime "cover_updated_at"
-    t.string   "city",                limit: 255
-    t.string   "biography",           limit: 255
+    t.string   "avatar_file_name",    limit: 191
+    t.string   "avatar_content_type", limit: 191
+    t.integer  "avatar_file_size",    limit: 4
+    t.datetime "avatar_updated_at"
+    t.integer  "client_id",           limit: 4
   end
 
   add_index "clientprofiles", ["client_id"], name: "index_clientprofiles_on_client_id", using: :btree

@@ -4,7 +4,7 @@ class Client < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_one :clientprofile,  dependent: :destroy
+  has_one :clientprofile, dependent: :destroy
 
   after_create :create_clientprofile
 
@@ -15,7 +15,7 @@ class Client < ActiveRecord::Base
   has_many :event_comments
   has_many :items
   has_many :reviews, dependent: :destroy
-  
+
   has_many :follows
   has_many :profiles, through: :follows, dependent: :destroy
 
@@ -42,7 +42,7 @@ class Client < ActiveRecord::Base
 
   ##Adding Followin methods
     def follow_user
-      if @clientprofile.follow!(@profile)
+      if current_client.follow!(@profile)
         format.html { redirect_to @profile, notice: 'Has seguido a' }
       end
     end

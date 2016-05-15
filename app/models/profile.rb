@@ -15,6 +15,6 @@ class Profile < ActiveRecord::Base
 	validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/ , presence: true
 
 	has_many :follows, dependent: :destroy
-	has_many :clientprofiles, through: :follows
+#	has_many :clientprofiles, through: :follows
 	has_many :reviews
 end
