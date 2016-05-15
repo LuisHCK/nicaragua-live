@@ -11,10 +11,10 @@ class ClientprofilesController < ApplicationController
   # GET /clientprofiles/1
   # GET /clientprofiles/1.json
   def show
-    #find_hearts = @clientprofile.client.hearts.limit(2).order(created_at: :asc).collect(&:post_id)
-    find_hearts = @clientprofile.client.hearts.limit(2).map(&:post_id)
+    #find_hearts = current_client.hearts.limit(2).order(created_at: :asc).collect(&:post_id)
+    find_hearts = current_client.hearts.limit(2).map(&:post_id)
     @posts = Post.where(id: find_hearts).order(created_at: :asc)
-    @profiles = Profile.limit(2).where(:id => @clientprofile.follows.collect(&:profile_id) )
+    @profiles = Profile.limit(2).where(:id => current_client.follows.collect(&:profile_id) )
   end
 
   # GET /clientprofiles/new
