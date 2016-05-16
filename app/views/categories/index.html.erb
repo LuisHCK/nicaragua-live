@@ -1,5 +1,12 @@
 <div class="grey-text darken-4 container">
-
+  <%= form_tag(profiles_path, method: "get", id: "search-form") do %>
+    <h5 class="grey-text darken-4">Buscar</h5>
+    <p class="grey-text darken-4">
+      Busca productos o servicios segun tu presupuesto.
+    </p>
+    <%= text_field_tag :query, params[:query], placeholder: "Buscar...",class:"grey-text darken-4", style:"max-width: 50%;" %>
+    <%= submit_tag "Buscar", class:"btn red" %>
+  <% end %>
 <p id="notice"><%= notice %></p>
 
 
