@@ -37,7 +37,7 @@ Rails.application.routes.draw do
 
   match 'clients/:id' => 'clients#destroy', :via => :delete, :as => :admin_destroy_client
 
-  get 'search', to: 'menus#search'
+  match 'search', to: 'menus#search', via: :get
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
