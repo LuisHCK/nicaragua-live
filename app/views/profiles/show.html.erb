@@ -16,8 +16,8 @@
 
   <div id="tab2" class="col s12">
     <% if user_signed_in? %>
-        <% if current_user.id == @profile.user_id %>
-          <%= link_to "Publicar Oferta", new_offer_path, class:"btn teal right" %>
+        <% if current_user.id == @profile.user_id %><br>
+          <%= link_to "Publicar Oferta", new_offer_path, class:"btn teal right" %><br>
         <% end %>
     <% end %>
 
