@@ -44,7 +44,7 @@ class ProfilesController < ApplicationController
   def create
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to edit_profile_path, notice: 'El perfil se creó correctamante' }
+        format.html { redirect_to edit_profile_path, notice: 'El perfil se creó correctamente' }
         format.json { render :show, status: :created, location: @profile }
       else
         format.html { render :new }
@@ -58,7 +58,7 @@ class ProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @profile.update(profile_params)
-        format.html { redirect_to @profile, notice: 'El perfil se actualizó correctamante' }
+        format.html { redirect_to @profile, notice: 'El perfil se actualizó correctamente' }
         format.json { render :show, status: :ok, location: @profile }
       else
         format.html { render :edit }
@@ -72,7 +72,7 @@ class ProfilesController < ApplicationController
   def destroy
     @profile.destroy
     respond_to do |format|
-      format.html { redirect_to profiles_url, notice: 'Profile was successfully destroyed.' }
+      format.html { redirect_to profiles_url, notice: 'Tu perfil fue borrado permanentemente.' }
       format.json { head :no_content }
     end
   end

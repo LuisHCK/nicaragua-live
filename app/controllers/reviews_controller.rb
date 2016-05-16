@@ -26,7 +26,7 @@ class ReviewsController < ApplicationController
   def create
     if client_signed_in?
       if current_client.reviewed?(@profile)
-        redirect_to @profile, notice:"Ya has dado una valoracion"
+        redirect_to @profile, notice:"Ya has dado una valoración"
       else
       @review = Review.new(review_params)
       @review.client_id = current_client.id
