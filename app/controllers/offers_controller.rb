@@ -4,16 +4,12 @@ class OffersController < ApplicationController
   # GET /offers
   # GET /offers.json
   def index
-    @category = Category.all
-    @offers = Offer.all
-      if params[:search]
-        @offers = Offer.search(params[:search]).order("created_at DESC")
-      else
-        @offers = Offer.all.order('created_at DESC')
-      end
-
+    if params[:query].present?
+      @offers = Offer.search(params[:query], page: params[:page], per_page: 10)
+        else
+          @offers = Offer.all.paginate(page: params[:page], per_page: 10)
+        end
   end
-
   # GET /offers/1
   # GET /offers/1.json
   def show

@@ -5,13 +5,18 @@
     <p class="grey-text darken-4">
       Busca productos o servicios segun tu presupuesto.
     </p>
-    <%= number_field_tag :search, params[:search], placeholder: "Buscar por precio",class:"grey-text darken-4", style:"max-width: 130px;" %>
+    <%= text_field_tag :query, params[:query], placeholder: "Buscar ejem:'Comida C$200'",class:"grey-text darken-4", style:"max-width: 50%;" %>
     <%= submit_tag "Buscar", class:"btn red" %>
   <% end %>
-</div>
 
 <% if @offers.present? %>
   <%= render 'offerts' %>
 <% else %>
-  <p class="grey-text darken-4">No hay resultados para el precio: <%= params[:search] %>.</p>
+  <p class="grey-text darken-4">No hay resultados para: <em><%= params[:query] %></em>.</p>
 <% end %>
+<ul class="pagination">
+ <div class="apple_pagination">
+     <%= will_paginate @offers, container: false %>
+   </div>
+</ul>
+</div>

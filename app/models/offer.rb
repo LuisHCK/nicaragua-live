@@ -1,4 +1,5 @@
 class Offer < ActiveRecord::Base
+  searchkick
   belongs_to :profile
   validates :titulo, presence: true
   validates :descripcion, presence: true
@@ -12,7 +13,4 @@ class Offer < ActiveRecord::Base
 validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/ , presence: true
 
 #Search method
-def self.search(search)
-  where("precio LIKE ?", "%#{search}%")
-end
 end
