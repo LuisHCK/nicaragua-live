@@ -4,16 +4,15 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.all
+    if params[:query].present?
+      @profiles = Profile.search(params[:query], page: params[:page], per_page: 10)
+        else
+          @profiles = Profile.all.paginate(page: params[:page], per_page: 10)
+        end
     @posts = Post.all
 
     #@pictures = @post.pictures
   end
-
-  def search
-    @profiles = Profile.search(parms[:search])
-  end
-
   # GET /profiles/1
   # GET /profiles/1.json
   def show

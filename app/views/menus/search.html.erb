@@ -1,0 +1,41 @@
+<script>
+  $(document).ready(function(){
+  $('ul.tabs').tabs();
+  });
+</script>
+<ul class="tabs">
+  <li class="tab col s3"><a href="#profiles">Perfiles</a></li>
+  <li class="tab col s3"><a href="#offers">Ofertas</a></li>
+</ul>
+
+<div class="container">
+    <div class="row">
+      <div class="col s12">
+        <div class="col s12" id="profiles">
+          <%= form_tag(profiles_path, method: "get", id: "search-form") do %>
+            <h5 class="grey-text darken-4">Perfiles</h5>
+            <p class="grey-text darken-4">
+              Buscar perfiles de negocio y empresas.
+            </p>
+            <%= text_field_tag :query, params[:query], placeholder: "Buscar...",class:"grey-text darken-4", style:"max-width: 100%;" %>
+              <%= button_tag(type: 'submit', class: "btn-large green right") do %>
+                Buscar<i class="material-icons left">send</i>
+              <% end %>
+          <% end %>
+        </div>
+
+        <div class="col s12" id="offers">
+            <%= form_tag(offers_path, :method => "get", id: "search-form") do %>
+              <h5 class="grey-text darken-4">Ofertas</h5>
+              <p class="grey-text darken-4">
+                Busca productos o servicios segun tu presupuesto.
+              </p>
+              <%= text_field_tag :query, params[:query], placeholder: "Buscar ejem:'Comida C$200'",class:"grey-text darken-4", style:"max-width: 100%;" %>
+                <%= button_tag(type: 'submit', class: "btn-large green right") do %>
+                  <i class="material-icons left">send</i>Buscar
+                <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>

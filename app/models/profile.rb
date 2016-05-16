@@ -1,4 +1,5 @@
 class Profile < ActiveRecord::Base
+	searchkick searchable: [:name,:body]
 	has_many :posts, dependent: :destroy
 	has_many :offers, dependent: :destroy
 	has_attached_file :cover,
@@ -10,7 +11,8 @@ class Profile < ActiveRecord::Base
 							     path: ":rails_root/public/system/covers/:id/:style/cover.jpg",
 																			dependent: :destroy
 
-	has_attached_file :avatar, styles: {mini: "400x400#"}, dependent: :destroy
+	has_attached_file :avatar, styles: {mini: "400x400#"},convert_options: { thumb: "-quality 75 -strip",
+										 original: "-quality 95 -strip" }, dependent: :destroy
 	validates_attachment_content_type :cover, content_type: /\Aimage\/.*\z/ , presence: true
 	validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/ , presence: true
 
