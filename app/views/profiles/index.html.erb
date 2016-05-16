@@ -1,21 +1,40 @@
-
 <div class="container">
-<% @profiles.each do |profile| %>
-
-      <div class="row">
-          <div class="card">
-            <div class="card-image">
-              <%= image_tag profile.cover.url(:card) class:"circle" %>
-              <span style="text-shadow: 0px 0px 6px rgba(0, 0, 0, 1);" class="card-title text_transp"><%= profile.name %></span>
-            </div>
-            <div class="card-content">
-              <p><%= profile.body %></p>
-            </div>
-            <div class="card-action">
-              <%= link_to "Ver Mas", profile %>
-            </div>
-          </div>
+  <% if @profiles.present? %>
+  <% @profiles.each do |profile| %>
+    <div  class="card row z-depth-1">
+      <div class="col s5">
+        <%= link_to image_tag(profile.avatar(:mini), class:"responsive-img"), profile %>
       </div>
+      <div class="col s7">
+        <b><%= profile.name %></b> <br>
+        <div class="star-rating" data-score= <%= profile.reviews.average(:rating).round(2) %> ></div>
+            <em><%= "#{profile.reviews.length} valoraciones" %></em><br>
+              <p>
+                <%= profile.body  %><br>
+                <b>Dirección: </b><%= profile.direccion %>
+              </p>
+      </div>
+    </div>
+  <% end %>
+  </div>
 
-<% end %>
+  <script>
+  $('.star-rating').raty({
+    path: '/assets/',
+    readOnly: true,
+    score: function() {
+          return $(this).attr('data-score');
+  }
+  });
+  </script>
+  <% else %>
+  <div class="center">
+    <br>
+    <%= image_tag 'search.png', class:"responsive-img" %><br>
+  <h5 class="">No se encontraron resultados para: <em><%= params[:query] %></em></h5>
+      <a href="/search" class="btn-large teal">
+        <i class="material-icons left">search</i>
+        Volver a Buscar</a>
+  </div>
+    <% end %>
 </div>
