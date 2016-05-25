@@ -1,0 +1,13 @@
+<ul class="collection">
+  <li class="collection-item row">
+    <%= image_tag(valoration.client.clientprofile.avatar, class:"circle responsive-img", style:"max-width:50px;vertical-align: middle") %>
+    <b><%= link_to valoration.client.clientprofile.name, valoration.client.clientprofile %></b>
+  </li>
+
+  <li class="collection-item">
+    <div class="star-rating" data-score= <%= valoration.rating %> ></div>
+    <p>
+      <%= valoration.comment %>
+    </p>
+  </li>
+</ul>

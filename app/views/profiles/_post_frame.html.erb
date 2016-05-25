@@ -35,6 +35,13 @@
         </div>
           <% end %>
       <% end %>
+      <% if post.video.present? || post.video =! ""%>
+          <% if post.pictures.count < 1 %>
+            <%= youtube_video post.video %>
+            <% else %>
+            Ver video: <a href="<%= post.video%>"><%= post.video %></a>
+          <% end %>
+      <% end %>
 
     </li>
     <div class="row" style="margin-bottom: 2px;">

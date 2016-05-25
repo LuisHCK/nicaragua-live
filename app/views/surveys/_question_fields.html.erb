@@ -1,0 +1,25 @@
+<div class='field'>
+  <h4>Preguntas</h4>
+  <br>
+  <div class='row'>
+    <div class='input-field'>
+      <%= f.label :text, "Pregunta" %>
+      <%= f.text_field :text, class: 'materialize-texarea' %>
+    </div>
+  </div>
+  <ol class='appendable'>
+    <%= f.fields_for :options do |builder| %>
+      <%= render 'option_fields', :f => builder %>
+    <% end -%>
+  </ol>
+ <div class="row">
+<div class="col s6"> 
+  <%= link_to_add_field 'Agregar opción', f, :options %>
+</div> 
+
+<div class="col s6">
+  <%= link_to_remove_field 'Eliminar pregunta', f %>  
+</div>
+ </div> 
+ 
+</div>

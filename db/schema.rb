@@ -195,14 +195,14 @@ ActiveRecord::Schema.define(version: 201602121639210) do
 
   create_table "offers", force: :cascade do |t|
     t.string   "titulo",             limit: 255
-    t.string   "descripcion",        limit: 255
+    t.text     "descripcion",        limit: 65535
     t.string   "image_file_name",    limit: 255
     t.string   "image_content_type", limit: 255
     t.integer  "image_file_size",    limit: 4
     t.datetime "image_updated_at"
-    t.decimal  "precio",                         precision: 10
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.decimal  "precio",                           precision: 10
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.boolean  "cordoba"
     t.integer  "profile_id",         limit: 4
   end
@@ -292,6 +292,53 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_index "reviews", ["client_id"], name: "index_reviews_on_client_id", using: :btree
   add_index "reviews", ["profile_id"], name: "index_reviews_on_profile_id", using: :btree
 
+  create_table "survey_answers", force: :cascade do |t|
+    t.integer  "attempt_id",  limit: 4
+    t.integer  "question_id", limit: 4
+    t.integer  "option_id",   limit: 4
+    t.boolean  "correct"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "survey_attempts", force: :cascade do |t|
+    t.integer "participant_id",   limit: 4
+    t.string  "participant_type", limit: 191
+    t.integer "survey_id",        limit: 4
+    t.boolean "winner"
+    t.integer "score",            limit: 4
+  end
+
+  create_table "survey_options", force: :cascade do |t|
+    t.integer  "question_id", limit: 4
+    t.integer  "weight",      limit: 4,   default: 0
+    t.string   "text",        limit: 191
+    t.boolean  "correct"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "survey_questions", force: :cascade do |t|
+    t.integer  "survey_id",  limit: 4
+    t.string   "text",       limit: 191
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "survey_surveys", force: :cascade do |t|
+    t.string   "name",            limit: 191
+    t.text     "description",     limit: 65535
+    t.integer  "attempts_number", limit: 4,     default: 0
+    t.boolean  "finished",                      default: false
+    t.boolean  "active",                        default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "survey_type",     limit: 4
+    t.integer  "user_id",         limit: 4
+  end
+
+  add_index "survey_surveys", ["user_id"], name: "index_survey_surveys_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "",     null: false
     t.string   "encrypted_password",     limit: 255, default: "",     null: false
@@ -313,6 +360,16 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "valorations", force: :cascade do |t|
+    t.text     "comment",    limit: 65535
+    t.integer  "rating",     limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "client_id",  limit: 4
+  end
+
+  add_index "valorations", ["client_id"], name: "index_valorations_on_client_id", using: :btree
+
   create_table "wikis", force: :cascade do |t|
     t.string   "title",              limit: 255
     t.text     "body",               limit: 65535
@@ -326,7 +383,7 @@ ActiveRecord::Schema.define(version: 201602121639210) do
     t.datetime "cover_updated_at"
   end
 
-  add_foreign_key "clientprofiles", "clients"
+  add_foreign_key "clientprofiles", "clients", on_delete: :cascade
   add_foreign_key "comments", "clients"
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "posts"
@@ -335,6 +392,8 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_foreign_key "event_comments", "events"
   add_foreign_key "event_comments", "users"
   add_foreign_key "events", "users"
+  add_foreign_key "follows", "clients", name: "follows_ibfk_2", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "follows", "profiles", name: "follows_ibfk_1", on_update: :cascade, on_delete: :cascade
   add_foreign_key "items", "clients"
   add_foreign_key "items", "markets"
   add_foreign_key "offers", "profiles"
@@ -345,4 +404,6 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_foreign_key "profiles", "users"
   add_foreign_key "reviews", "clients"
   add_foreign_key "reviews", "profiles"
+  add_foreign_key "survey_surveys", "users"
+  add_foreign_key "valorations", "clients"
 end

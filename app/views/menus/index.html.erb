@@ -74,33 +74,34 @@
 			</p>
 		</a>
 
-		<a href="/categories" class="collection-item avatar grey-text text-darken-4">
-			<i class="material-icons circle orange">collections</i>
-			<span class="title"><b>Noticias</b></span>
-			<p>Información actual
+		<a href="/valorations" class="collection-item avatar grey-text text-darken-4">
+			<i class="material-icons circle orange">book</i>
+			<span class="title"><b>Libro de Visitas</b></span>
+			<p>Dejanos un comentario
 			</p>
 		</a>
 
-		<a href="/categories" class="collection-item avatar grey-text text-darken-4">
-			<i class="material-icons circle teal">collections</i>
-			<span class="title"><b>Galerías</b></span>
-			<p>Fotos<br>
-				Videos
-			</p>
-		</a>
 
 <% if user_signed_in? %>
 	<a href="<%= edit_user_registration_path %>" class="collection-item avatar grey-text text-darken-4">
-		<i class="material-icons circle cyan">face</i>
+		<i class="material-icons circle cyan">settings</i>
 		<span class="title"> <b>Configuración</b> </span>
 		<p>Administrar<br>
 			Perfil
 		</p>
 	</a>
+	<!--Premium Tools-->
+	<a href="<%= tools_path %>" class="collection-item avatar grey-text text-darken-4">
+		<i class="material-icons circle pink">build</i>
+		<span class="title"> <b>Herramientas</b> </span>
+		<p>Utilidades Avanzadas<br>
+			Encuestas, estadísticas, etc.
+		</p>
+	</a>
 
 <% elsif client_signed_in? %>
 		<a href="<%= edit_clientprofile_path(current_client.clientprofile) %>" class="collection-item avatar grey-text text-darken-4">
-			<i class="material-icons circle cyan">face</i>
+			<i class="material-icons circle cyan">build</i>
 			<span class="title"> <b>Configuración</b> </span>
 			<p>Administrar<br>
 				Perfil

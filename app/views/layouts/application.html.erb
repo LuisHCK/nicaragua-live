@@ -5,7 +5,30 @@
   <title>Liveapp</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+<%= csrf_meta_tags %>
+<style type="text/css">
+      @font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v16/2fcrYFNaTjcS6g4U3t-Y5RV6cRhDpPC5P4GCEJpqGoc.woff) format('woff');
+}
+        .material-icons {
+          font-family: 'Material Icons';
+          font-weight: normal;
+          font-style: normal;
+          font-size: 24px;
+          /* line-height: 1; */
+          letter-spacing: normal;
+          text-transform: none;
+          display: inline-block;
+          white-space: nowrap;
+          word-wrap: normal;
+          direction: ltr;
+          text-rendering: optimizeLegibility;
+          -webkit-font-smoothing: antialiased;
+        }
+      </style>
 </head>
 
 <header>
@@ -13,24 +36,14 @@
 <div class="navbar-fixed">
   <nav class="blue darken-4">
     <div class="nav-wrapper">
-      <!---a href="/" class="brand-logo">Esteli Live</a--->
       <div class="row center">
         <a href="/menus" class="col s2"><i class="material-icons icon-navbar" style="font-size:3rem;">menu</i></a>
         <a href="/" class="col s2"><i class="material-icons icon-navbar">home</i></a>
         <a href= "/categories" class="col s2"><i class="material-icons icon-navbar">explore</i></a>
         <a href="/markets" class="col s2"><i class="material-icons icon-navbar">shopping_basket</i></a>
-        <a href="/events" class="col s2"><i class="material-icons icon-navbar">event<!--span class="badge1">1</span--></i></a>
+        <a href="/events" class="col s2"><i class="material-icons icon-navbar">event<span class="badge1">1</span></i></a>
         <a href="/search" class="col s2"><i class="material-icons icon-navbar">search</i></a>
       </div>
-
-      <ul class="right hide-on-med-and-down">
-
-
-      </ul>
-      <ul class="side-nav" id="mobile-demo">
-
-
-      </ul>
     </div>
   </nav>
 </div>

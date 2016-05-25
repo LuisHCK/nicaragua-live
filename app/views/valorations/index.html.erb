@@ -1,0 +1,51 @@
+<div class="container">
+  <h4>Libro de Visitas</h4>
+  <p>
+    ¿Que te pareció Estelí-Live?<br>Deja tu valoracion, será de gran ayuda.
+  </p>
+
+      <% if client_signed_in? && current_client.valorations.present? %>
+      <b>Mi valoracíon</b>
+      <ul class="collection">
+        <li class="collection-item row">
+          <%= image_tag(current_client.valorations.last.client.clientprofile.avatar, class:"circle responsive-img", style:"max-width:50px;vertical-align: middle") %>
+          <b><%= link_to current_client.valorations.last.client.clientprofile.name, current_client.valorations.last.client.clientprofile %></b>
+          <%= link_to "Editar", edit_valoration_path(current_client.valorations.last), class:"right" %>
+        </li>
+
+        <li class="collection-item">
+          <div class="star-rating" data-score= <%= current_client.valorations.last.rating %> ></div>
+          <p>
+            <%= current_client.valorations.last.comment %>
+          </p>
+        </li>
+      </ul>
+
+      <% elsif client_signed_in? %>
+            <div class="card" style="padding:5%;">
+              <%= render "form" %>
+            </div>
+            <% else %>
+              <div class="card">
+                <div class="card-content">
+                  <%= link_to "Inicia sesión para dejar una valoración", client_session_path %>
+                </div>
+              </div>
+        <% end %>
+  <b>Comentarios</b>
+    <% if @valorations.count > 0 %>
+      <%= render @valorations %>
+      <% else %>
+        <h5>No hay comentarios todavía. Sé el primero :3</h5>
+        <% end %>
+
+</div>
+<script>
+$('.star-rating').raty({
+  path: '/assets/',
+  readOnly: true,
+  score: function() {
+        return $(this).attr('data-score');
+}
+});
+</script>

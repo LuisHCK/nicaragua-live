@@ -1,6 +1,7 @@
 class Client < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  has_surveys
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -15,6 +16,7 @@ class Client < ActiveRecord::Base
   has_many :event_comments
   has_many :items
   has_many :reviews, dependent: :destroy
+  has_many :valorations
 
   has_many :follows
   has_many :profiles, through: :follows, dependent: :destroy
@@ -36,8 +38,14 @@ class Client < ActiveRecord::Base
     self.hearts.find_by_post_id(post.id)
   end
 
+  #returns true or dalse if the client already reviewed profile
   def reviewed?(profile)
     self.reviews.find_by_profile_id(profile.id)
+  end
+
+  #returns true or dalse if the client already reviewed profile
+  def valorated?(valoration)
+    self.valorations.find_by_valorarion_id(valoration.id)
   end
 
   ##Adding Followin methods

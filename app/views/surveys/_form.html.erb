@@ -1,0 +1,85 @@
+<%= form_for(@survey, url: survey_scope(@survey), html: { class: 'form' }, validate: true) do |f| %>
+  <%= f.hidden_field :survey_type, value: @survey.survey_type  %>
+  <div class='field'>
+      <div class='input-field'>
+        <%= f.label :name, "Título de la encuesta" %>
+        <%= f.text_field :name %>
+      </div>
+      <br>
+     <div class='input-field col s6'>
+        <%= f.label :attempts_number, 'Veces que un mismo usuario puede llenar la misma encuesta' %>
+        <%= f.number_field :attempts_number, min: 0, value: 1 %>
+      </div>
+      <br>
+  <label>Privacidad</label>
+    <div class="row">
+  <div class="col s6">
+    <%= f.radio_button :active, true, class:"with-gap", checked: true %>
+    <%= f.label :active_true, "Público"%>
+    </div>
+    <div class="col s6">
+    <%= f.radio_button :active, false, class:"with-gap" %>
+    <%= f.label :active_false, "Oculto"%>
+  </div>
+</div>
+<br>
+    <div class='row'>
+      <div class='input-field'>
+        <%= f.label :description, "Describe en que consiste la encuesta" %>
+        <%= f.text_area :description, size: '100x5', class: 'materialize-textarea'%>
+      </div>
+    </div>
+    
+    <div class='appendable'>
+      <% if is_score?(@survey.survey_type) %>
+        <br/>
+        <div> In this type of survey, you have to enter a score for each question option (negative values are allowed) </div>
+        <% elsif is_quiz?(@survey.survey_type) %>
+        <p>
+        <em>En este tipo de encuestas se realiza una pregunta y se indica las posibles respuestas que el usario puede elegir.</em>
+        </p>
+      <% end -%>
+      <%= f.fields_for :questions do |builder| %>
+        <%= render 'question_fields', f: builder %>
+      <% end %>
+    </div>
+    <br/>
+    <%= link_to_add_field 'Agregar pregunta', f, :questions %>
+    
+        <div style="margin-top:5%;">
+          <%= f.submit 'Enviar', class: 'btn-large blue' %>
+        </div>
+     <% end %>
+</div>
+
+
+<script type='text/javascript'>
+  // remove attachment field
+  function removeField(link) {
+    $(link).prev("input[type=hidden]").val("true");
+    tag = $(link).closest(".field")
+    tag.hide('slow');
+  }
+  // add attachment field
+  function addField(link, association, content) {
+    var new_id = new Date().getTime();
+    var regexp = new RegExp("new_" + association, "g");
+    var html = $(content.replace(regexp, new_id)).hide();
+    var target = $(link).closest("div.field").find(".appendable").first();
+    var last_height = 0
+    html.appendTo(target).slideDown({
+      duration: 'slow',
+      progress: function () {
+        delta = $(this).outerHeight(true) - last_height
+        $(window).scrollTop( $(window).scrollTop() + delta );
+        last_height = $(this).outerHeight(true);
+      },
+      complete: function () {
+        $(this).find('input[type=text]').focus();
+      }});
+    }
+    $(document).ready(function() {
+    $('select').material_select();
+});
+
+</script>

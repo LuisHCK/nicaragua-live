@@ -20,7 +20,7 @@
         </div>
           <% end %>
       <% end %>
-      <% unless @post.video.nil? %>
+      <% if @post.video.present? || @post.video =! ""%>
         <%= youtube_video @post.video %>
       <% end %>
 
@@ -85,7 +85,3 @@
       <% end %>
     </li>
    </ul>
-
-<!-- fotorama.css & fotorama.js. -->
-<link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->

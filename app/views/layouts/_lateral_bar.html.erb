@@ -6,7 +6,6 @@
 		<%= link_to image_tag(current_user.profile.avatar, class:"circle", size:"74"), (profile_path(current_user.profile)) %>
 	</span>
 
-
 <!-- if master admin is signed in -->
 		<% elsif master_admin_signed_in? %>
 			<%= image_tag "no_cover.jpg", class:"responsive-img" %>
@@ -64,6 +63,14 @@
 		</a>
 
 <% if user_signed_in? %>
+	<a href="<%= edit_user_registration_path %>" class="collection-item avatar grey-text text-darken-4">
+		<i class="material-icons circle cyan">build</i>
+		<span class="title"> <b>Configuración</b> </span>
+		<p>Administrar<br>
+			Perfil
+		</p>
+	</a>
+
 	<a href="<%= edit_user_registration_path %>" class="collection-item avatar grey-text text-darken-4">
 		<i class="material-icons circle cyan">face</i>
 		<span class="title"> <b>Configuración</b> </span>

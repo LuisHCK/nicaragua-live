@@ -4,7 +4,7 @@
 
         <!--Show pictures-->
         <% if @item.pictures.count > 1 %>
-          <div class="fotorama" data-nav="thumbs" data-allowfullscreen="true">
+          <div class="fotorama" data-allowfullscreen="true" data-nav="thumbs" >
               <% @item.pictures.each do |pic| %>
                 <a href="<%= pic.image.url() %>"><img src="<%= pic.image.url(:thumb)%>"></a>
               <% end %>
@@ -62,9 +62,7 @@
         </p>
       </li>
     </ul>
-    <% if @item.client_id = current_client.id %>
+    <% if client_signed_in? && @item.client_id = current_client.id %>
       <%= link_to "Editar", edit_item_path, class:"btn blue" %>
     <% end %>
 </div>
-<link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->

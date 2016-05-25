@@ -3,6 +3,7 @@
   <% if client_signed_in? or user_signed_in? %>
     <%= render "posts" %>
     <% else %>
+    <h5>Tendencias</h5>
     <%= render @posts.five_days_ago.sort_by { |post| post.hearts.count }.reverse %>
 <% end %>
 

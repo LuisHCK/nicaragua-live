@@ -1,0 +1,32 @@
+<%= form_for(@valoration) do |f| %>
+  <% if @valoration.errors.any? %>
+    <div id="error_explanation">
+      <%= pluralize(@valoration.errors.count, "error") %> prohibited this valoration from being saved:
+
+      <ul>
+      <% @valoration.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="input-field">
+    <div id="star-rating"></div>
+  </div>
+  <div class="row">
+    <div id="input_body" class="input-field col s12">
+      <%= f.text_area :comment, id:"text_area_body", class:"materialize-textarea", input_html: { hidden: true } %>
+      <label for="textarea1">Comentario</label>
+    </div>
+  </div>
+  <div class="actions">
+    <%= f.submit "Enviar", class:"btn-large green " %>
+  </div>
+<% end %>
+<script>
+  $('#star-rating').raty({
+    path: '/assets/',
+    scoreName: 'valoration[rating]'
+  });
+</script>

@@ -1,0 +1,58 @@
+<div class="row">
+	<% @surveys.each do |survey| %>
+		<h5><%= survey.name %></h5>
+
+  <div class="col s12">
+    <ul class="tabs blue-text">
+    <% i||=0 %>
+    <% survey.questions.each do |question| %>
+    	      <li class="tab col s3"><a href="#tab<%= question.id %>">Pregunta <%= i+=1 %></a></li>
+    <% end %>
+    </ul>
+  </div>
+
+	<% survey.questions.each do |question| %>
+	<div id="tab<%= question.id %>" class="col s12 center">
+	<b class="center"><%= question.text %></b><br>
+		<canvas id="surv<%= question.id %>" style="width: 276px; height: 276px;">
+	<script>
+		var ctx = document.getElementById("surv<%= question.id %>");
+		var data = {
+		    labels: [ 
+		    	<% question.options.each do |option| %>
+		    		"<%= option.text %>",
+		    	<% end %>
+		    ],
+		    datasets: [
+		        {
+		            data: [
+				        <% question.options.each do |option| %>
+				    		"<%= count = number_of_people_who_also_answered_count(option.id) %>",
+				    	<% end %>
+		            ],
+		            backgroundColor: [
+		                "#36A2EB",
+		                "#FFCE56",
+		                "#FF6384",
+		                "#FF58D4"
+		            ],
+		            hoverBackgroundColor: [
+		                "#36A2EB",
+		                "#FFCE56",
+		                "#FF6384",
+		                "#FF58D4"
+		            ]
+		        }]
+		};
+		// And for a doughnut chart
+		var surv<%= question.id %> = new Chart(ctx, {
+		    type: 'pie',
+		    data: data,
+		});
+			</script>
+		</canvas>
+		</div>
+			
+	<% end %>
+<% end %>
+</div>

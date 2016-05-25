@@ -52,6 +52,6 @@ gem 'jquery-turbolinks'
 gem 'redcarpet'
 gem 'will_paginate'
 gem 'searchkick'
-
+gem "survey", "~> 0.1"
 gem 'tzinfo-data'
 gem 'tzinfo'

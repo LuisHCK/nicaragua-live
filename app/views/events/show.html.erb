@@ -28,7 +28,7 @@
 <div>
 
   <b> <%= @event.event_comments.count %> Comentarios</b>
-  <div class="row">
+  <div>
     <% if client_signed_in? or user_signed_in? %>
       <%= render '/event_comments/form' %>
       <% else %>

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+    resources :surveys, :attempts
 
+  resources :contests
+  resources :valorations
   resources :items
   resources :markets
   resources :offers
@@ -27,8 +30,8 @@ Rails.application.routes.draw do
 
   resources :categories
 
-  devise_for :users, :controllers => {:registrations => "user/registrations"}
-  devise_for :clients, :controllers => {:registrations => "clients/registrations"}
+  devise_for :users, controllers: {registrations: "user/registrations"}
+  devise_for :clients, controllers: {registrations: "clients/registrations"}
 
   match 'heart',    to: 'hearts#heart', via: :post
   match 'unheart',  to: 'hearts#unheart', via: :delete
@@ -38,6 +41,7 @@ Rails.application.routes.draw do
   match 'clients/:id' => 'clients#destroy', :via => :delete, :as => :admin_destroy_client
 
   match 'search', to: 'menus#search', via: :get
+  match 'tools', to: 'menus#tools', via: :get
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

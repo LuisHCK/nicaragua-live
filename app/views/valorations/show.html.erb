@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @valoration.comment %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @valoration.rating %>
+</p>
+
+<%= link_to 'Edit', edit_valoration_path(@valoration) %> |
+<%= link_to 'Back', valorations_path %>

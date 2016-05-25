@@ -1,0 +1,11 @@
+<div class="field">
+  <div class="row">
+    <div class="form-group col-xs-4">
+      <%= f.text_field :text, placeholder: 'Posible Respuesta', class: 'form-control' %>
+    </div>
+    <%= render "surveys/inputs/input_#{get_survey_type(@survey.survey_type)}", f: f %>
+    <div class="col-xs-4">
+      <%= link_to_remove_field "Quitar Respuesta", f %>
+    </div>
+  </div>
+</div>
