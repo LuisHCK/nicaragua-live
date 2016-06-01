@@ -33,7 +33,7 @@ class ClientprofilesController < ApplicationController
 
     respond_to do |format|
       if @clientprofile.save
-        format.html { redirect_to @clientprofile, notice: 'Tu perfil se creó correctamente.' }
+        format.html { redirect_to edit_clientprofile_path(@clientprofile), notice: 'Tu perfil se creó correctamente.' }
         format.json { render :show, status: :created, location: @clientprofile }
       else
         format.html { render :new }

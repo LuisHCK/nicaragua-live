@@ -1,20 +1,10 @@
-<div class="row">
 	<% @surveys.each do |survey| %>
-		<h5><%= survey.name %></h5>
-
-  <div class="col s12">
-    <ul class="tabs blue-text">
-    <% i||=0 %>
-    <% survey.questions.each do |question| %>
-    	      <li class="tab col s3"><a href="#tab<%= question.id %>">Pregunta <%= i+=1 %></a></li>
-    <% end %>
-    </ul>
-  </div>
-
+		<h5><%= survey.name %></h5><br>
+<div class="flex-row">
 	<% survey.questions.each do |question| %>
-	<div id="tab<%= question.id %>" class="col s12 center">
+	<div class="col-xs-3 middle-xs">
 	<b class="center"><%= question.text %></b><br>
-		<canvas id="surv<%= question.id %>" style="width: 276px; height: 276px;">
+		<canvas id="surv<%= question.id %>" style="width: 400px; height: 400px;">
 	<script>
 		var ctx = document.getElementById("surv<%= question.id %>");
 		var data = {

@@ -1,0 +1,19 @@
+    <div class="flex-row">
+        <div class="panel-box col-xs-8 box-margin">
+            <div class="box-header">Ultimos Seguidores</div>
+            <div class="flex-row">
+            <ul>
+                <% profile.follows.each do |follower|%>
+                        <li class="user_list">
+                            <%= image_tag(follower.client.clientprofile.avatar(:mini), class:"circle responsive-img") %>
+                            <%= follower.client.clientprofile.name %>                   
+                        </li>
+                <% end %>
+            </ul>
+            </div>
+        </div>
+
+        <div class="col-xs-4 box-margin">
+            <div class="box-header only-header">Cupones</div>
+        </div>
+    </div>

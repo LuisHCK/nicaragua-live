@@ -9,7 +9,7 @@ class Client < ActiveRecord::Base
 
   after_create :create_clientprofile
 
-  has_many :hearts, dependent: :destroy
+  has_many :hearts
   has_many :posts, through: :hearts, dependent: :destroy
 
   has_many :comments
@@ -24,7 +24,7 @@ class Client < ActiveRecord::Base
 
   # creates a new heart row with post_id and user_id
   def heart!(post)
-    self.hearts.create!(post_id: post.id)
+    self.hearts.create(post_id: post.id, client_id: :id)
   end
 
   # destroys a heart with matching post_id and user_id

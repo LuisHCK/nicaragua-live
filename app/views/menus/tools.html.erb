@@ -1,14 +1,111 @@
-<div class="container">
-	<div class="row" style="margin-top:3%;">
-		<div class="col s6 center">
-			<a href="/surveys">
-				<img src="/assets/icons/survey.png" class="responsive-img">
-			</a><br>
-			 <b>Crea encuestas</b>
-		</div>
-		<div class="col s6 center">
-			<img src="/assets/icons/statistics.png" class="responsive-img"><br>
-			<b>Revisa estadísticas</b>
-		</div>
-	</div>
+<aside class="main-sidebar white-text">
+<h5 class="side-blue     center">Panel de Administración</h5>
+    <div class="flex-row  middle-xs">
+        <div class="col-xs">
+            <%= image_tag(current_user.profile.avatar(:mini), class:"circle mini-img") %>
+        </div>
+
+        <div class="col-xs-2">
+            <b><%= current_user.profile.name %></b>
+        </div>
+    </div>
+
+ <ul class="tabs1">
+        <li class="li-sidebar tab li-title">
+        Administración
+    </li>
+    
+    <li class="li-sidebar tab">
+        <a href="#tab1" class="hvr-sweep-to-right"><i class="material-icons icon-middle">build</i>Inicio</a>
+    </li>
+
+    <li class="li-sidebar tab">
+        <a href="#tab2" class="hvr-sweep-to-right"><i class="material-icons icon-middle">assignment</i>Encuestas</a>
+    </li>
+
+    <li class="li-sidebar tab">
+        <a href="#tab3" class="hvr-sweep-to-right"><i class="material-icons icon-middle">today</i>Eventos</a>
+    </li>
+
+    <li class="li-sidebar tab">
+        <a href="#tab4" class="hvr-sweep-to-right"><i class="material-icons icon-middle">local_offer</i>Cupones</a>
+    </li>
+
+    <li class="li-sidebar tab">
+        <a href="#" class="hvr-sweep-to-right"><i class="material-icons icon-middle">email</i>Mensajes</a>
+    </li>
+
+    <li class="li-sidebar tab">
+        <a href="#" class="hvr-sweep-to-right"><i class="material-icons icon-middle">book</i>Documentación</a>
+    </li>
+
+    <li class="li-sidebar tab li-title">
+        Cuenta
+    </li>
+
+    <li class="li-sidebar tab">
+        <a href="#" class="hvr-sweep-to-right"><i class="material-icons icon-middle">settings</i>Configurar</a>
+    </li>
+
+    <li class="li-sidebar tab">
+        <a href="#" class="hvr-sweep-to-right"><i class="material-icons icon-middle">star</i>Premium</a>
+    </li>
+ </ul>
+</aside> 
+<div class="content-wrapper">
+    <section class="content">
+        <hl>Tablero</hl><text style="color:#9F9F9F"> Ver 0.1</text>
+        <div class="stats-label">
+            Estadísticas
+        </div>
+                <div class="flex-row between-xs">
+            <div class="col-xs-3">
+                <div class="info-box">
+                    <span class="info-box-icon cyan">
+                        <i class="material-icons white-text">star</i>
+                    </span>
+                    <div class="info-box-content">
+                        SEGUIDORES<br>
+                        <b><%= current_user.profile.follows.count %></b>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <div class="info-box">
+                    <span class="info-box-icon teal">
+                        <i class="material-icons white-text">favorite</i>
+                    </span>
+                    <div class="info-box-content">
+                        ME GUSTA<br>
+                        <b><%= @hearts.count %></b>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <div class="info-box">
+                    <span class="info-box-icon indigo lighthen-4">
+                        <i class="material-icons white-text">content_copy</i>
+                    </span>
+                    <div class="info-box-content">
+                        PUBLICACIONES<br>
+                        <b><%= @posts.count %></b>
+                    </div>
+                </div>
+            </div>          
+        </div>
+        <!--END Box-->
+        <div id="tab1"><%= render 'menus/tool/overview' %></div>
+        <div id="tab2"><%= render 'menus/tool/surveys' %></div>
+        <div id="tab3"></div>
+        <div id="tab4"><%= render 'menus/tool/coupons' %></div>
+    </section>
 </div>
+<script>
+    $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
+ $(document).ready(function(){
+    $('ul.tabs1').tabs();
+  });
+</script>

@@ -1,0 +1,2 @@
+class CouponRedemptionsController < ApplicationController
+end

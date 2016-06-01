@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-    resources :surveys, :attempts
 
+  resources :coupons
+  resources :surveys, :attempts
   resources :contests
   resources :valorations
   resources :items

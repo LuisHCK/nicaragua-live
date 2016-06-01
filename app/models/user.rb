@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :event_comments
 
   has_many :events
+  has_many :surveys
   # creates a new heart row with post_id and user_id
   def heart!(post)
     self.hearts.create!(post_id: post.id)

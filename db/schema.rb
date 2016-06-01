@@ -82,6 +82,33 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
+  create_table "coupon_redemptions", force: :cascade do |t|
+    t.integer  "coupon_id",  limit: 4,   null: false
+    t.string   "order_id",   limit: 191
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "client_id",  limit: 4
+  end
+
+  add_index "coupon_redemptions", ["client_id"], name: "index_coupon_redemptions_on_client_id", using: :btree
+
+  create_table "coupons", force: :cascade do |t|
+    t.string   "code",                     limit: 191,               null: false
+    t.string   "description",              limit: 191
+    t.date     "valid_from",                                         null: false
+    t.date     "valid_until"
+    t.integer  "redemption_limit",         limit: 4,     default: 1, null: false
+    t.integer  "coupon_redemptions_count", limit: 4,     default: 0, null: false
+    t.integer  "amount",                   limit: 4,     default: 0, null: false
+    t.string   "type",                     limit: 191,               null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.text     "attachments",              limit: 65535
+    t.integer  "user_id",                  limit: 4
+  end
+
+  add_index "coupons", ["user_id"], name: "index_coupons_on_user_id", using: :btree
+
   create_table "event_comments", force: :cascade do |t|
     t.text     "body",       limit: 65535
     t.datetime "created_at",               null: false
@@ -140,6 +167,7 @@ ActiveRecord::Schema.define(version: 201602121639210) do
 
   add_index "hearts", ["client_id"], name: "index_hearts_on_client_id", using: :btree
   add_index "hearts", ["post_id"], name: "index_hearts_on_post_id", using: :btree
+  add_index "hearts", ["post_id"], name: "post_id", using: :btree
   add_index "hearts", ["user_id"], name: "index_hearts_on_user_id", using: :btree
 
   create_table "items", force: :cascade do |t|
@@ -277,6 +305,7 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   end
 
   add_index "profiles", ["category_id"], name: "index_profiles_on_category_id", using: :btree
+  add_index "profiles", ["user_id", "category_id"], name: "user_id_2", using: :btree
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
   add_index "profiles", ["user_id"], name: "user_id", using: :btree
 
@@ -354,6 +383,7 @@ ActiveRecord::Schema.define(version: 201602121639210) do
     t.datetime "updated_at",                                          null: false
     t.integer  "category_id",            limit: 4
     t.string   "user_type",              limit: 191, default: "user"
+    t.datetime "last_seen"
   end
 
   add_index "users", ["category_id"], name: "index_users_on_category_id", using: :btree
@@ -388,20 +418,25 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "coupon_redemptions", "clients"
+  add_foreign_key "coupons", "users"
   add_foreign_key "event_comments", "clients"
   add_foreign_key "event_comments", "events"
   add_foreign_key "event_comments", "users"
   add_foreign_key "events", "users"
   add_foreign_key "follows", "clients", name: "follows_ibfk_2", on_update: :cascade, on_delete: :cascade
   add_foreign_key "follows", "profiles", name: "follows_ibfk_1", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "hearts", "clients", name: "hearts_ibfk_3", on_delete: :cascade
+  add_foreign_key "hearts", "posts", name: "hearts_ibfk_1", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "hearts", "users", name: "hearts_ibfk_2", on_delete: :cascade
   add_foreign_key "items", "clients"
   add_foreign_key "items", "markets"
   add_foreign_key "offers", "profiles"
   add_foreign_key "pictures", "items"
   add_foreign_key "pictures", "posts"
   add_foreign_key "posts", "profiles"
-  add_foreign_key "profiles", "categories"
-  add_foreign_key "profiles", "users"
+  add_foreign_key "profiles", "categories", on_delete: :cascade
+  add_foreign_key "profiles", "users", on_delete: :cascade
   add_foreign_key "reviews", "clients"
   add_foreign_key "reviews", "profiles"
   add_foreign_key "survey_surveys", "users"
