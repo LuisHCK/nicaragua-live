@@ -1,8 +1,40 @@
-<table>
+<div class="panel-box">
+    <div class="box-header">Tus Cupones</div>
+	<table class="bordered">
 	<thead>
 		<tr>
-			<th></th>
+			<th class="center">Código</th>
+			<th class="center">Descuento</th>
+			<th class="center">Descipción</th>
+			<th class="center">Reclamado</th>
+			<th class="center">Expira</th>
 		</tr>
 	</thead>
-</table>
-<%= render "/coupons/form" %>     
+	<tbody>
+		<% current_user.coupons.each do |coupon| %>
+			<tr>
+				<td class="center">
+					<%= coupon.code %>
+				</td>
+				<td class="center">
+					<%= coupon.amount %>%
+				</td>
+				<td class="center">
+					<%= coupon.description %>
+				</td>
+				<td class="center">
+					<%= coupon.coupon_redemptions_count %>
+				</td>
+				<td class="center">
+					<%= coupon.valid_until %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>   
+</div>
+
+<div class="panel-box">
+    <div class="box-header">Nuevo Cupón</div>
+	<%= render "/coupons/form" %>  
+</div>

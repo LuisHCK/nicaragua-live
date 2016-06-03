@@ -1,5 +1,12 @@
 <%= simple_form_for @coupon do |f| %>
-    <%= f.input :code, label:"Código" %>
+<div class="flex-row">
+	<div class="col-xs-4">
+		<%= f.input :code, label:"Código" %>
+	</div>
+	<div class="col-xs-8">
+		<%= f.input :description, label:"Descripción" %>
+	</div>
+</div>
 
 <div class="flex-row">
 	<div class="col-xs-6">

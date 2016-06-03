@@ -15,5 +15,16 @@
 
         <div class="col-xs-4 box-margin">
             <div class="box-header only-header">Cupones</div>
+            <% current_user.coupons.limit(3).each do |coupon| %>
+                <div class="info-box">
+                    <span class="info-box-icon blue">
+                        <i class="material-icons white-text">local_offer</i>
+                    </span>
+                    <div class="info-box-content">
+                        <%= coupon.code %><br>
+                        <b><%= coupon.amount %>%</b>
+                    </div>
+                </div>
+            <% end %>
         </div>
     </div>

@@ -60,3 +60,4 @@ gem "survey", "~> 0.1"
 gem 'tzinfo-data'
 gem 'tzinfo'
 gem 'simple_form'
+#gem 'aasm'

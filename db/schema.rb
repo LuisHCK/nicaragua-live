@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 201602121639210) do
     t.integer  "redemption_limit",         limit: 4,     default: 1, null: false
     t.integer  "coupon_redemptions_count", limit: 4,     default: 0, null: false
     t.integer  "amount",                   limit: 4,     default: 0, null: false
-    t.string   "type",                     limit: 191,               null: false
+    t.string   "type",                     limit: 191
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
     t.text     "attachments",              limit: 65535
