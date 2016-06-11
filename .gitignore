@@ -15,4 +15,4 @@
 public/assets
 /app/assets/stylesheets/material-icons.css
 liveapp/app/assets/stylesheets/materialize.css
-/app/assets/javascripts/materialize.js
+#/app/assets/javascripts/materialize.js
