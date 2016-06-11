@@ -6,7 +6,7 @@
 			<th class="center">Código</th>
 			<th class="center">Descuento</th>
 			<th class="center">Descipción</th>
-			<th class="center">Reclamado</th>
+			<th class="center">Reclamos</th>
 			<th class="center">Expira</th>
 		</tr>
 	</thead>
@@ -34,7 +34,33 @@
 </table>   
 </div>
 
-<div class="panel-box">
+<div class="row">
+	<div class="panel-box col s6">
+	<div class="box-header">Cangear Cupón</div>
+		<table class="center">
+			<tr>
+				<th>Código de Cupón</th>
+				<th>Cliente</th>
+				<th>Orden de canjeo</th>
+				<th>Fecha de vencimiento</th>
+				<th>Estado de canjeo</th>
+			</tr>
+			<tbody>
+				<% @coupon_redemptions.each do |coupon_redemption| %>	
+				<tr>
+					<td><%= coupon_redemption.coupon.code %></td>
+					<td><%= client_coupon(coupon_redemption) %></td>
+					<td><%= coupon_redemption.unique_code %></td>
+					<td><%= coupon_redemption.coupon.valid_until %></td>
+					<td><%= is_valid?(coupon_redemption.coupon)%></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+</div>
+
+<div class="panel-box col s6">
     <div class="box-header">Nuevo Cupón</div>
 	<%= render "/coupons/form" %>  
+</div>
 </div>

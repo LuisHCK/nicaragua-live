@@ -83,11 +83,12 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "coupon_redemptions", force: :cascade do |t|
-    t.integer  "coupon_id",  limit: 4,   null: false
-    t.string   "order_id",   limit: 191
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "client_id",  limit: 4
+    t.integer  "coupon_id",   limit: 4,   null: false
+    t.string   "order_id",    limit: 191
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "client_id",   limit: 4
+    t.string   "unique_code", limit: 191
   end
 
   add_index "coupon_redemptions", ["client_id"], name: "index_coupon_redemptions_on_client_id", using: :btree

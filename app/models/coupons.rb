@@ -3,4 +3,5 @@ class Coupons < ActiveRecord::Base
 
   aasm do
   end
+  has_many :coupon_redemtions
 end

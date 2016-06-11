@@ -1,10 +1,14 @@
 class CouponsController < ApplicationController
   before_action :set_coupon, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:show,:index]
   # GET /coupons
   # GET /coupons.json
   def index
     @coupons = Coupon.all
+    if client_signed_in? 
+      @client_coupons = Coupon.where(id: current_client.coupon_redemptions.collect(&:coupon_id)) 
+      @client_redemptions = CouponRedemption.where(client_id: current_client.id)
+    end
   end
 
   # GET /coupons/1

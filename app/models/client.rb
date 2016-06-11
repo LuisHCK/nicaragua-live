@@ -17,6 +17,7 @@ class Client < ActiveRecord::Base
   has_many :items
   has_many :reviews, dependent: :destroy
   has_many :valorations
+  has_many :coupon_redemptions
 
   has_many :follows
   has_many :profiles, through: :follows, dependent: :destroy
@@ -67,5 +68,9 @@ class Client < ActiveRecord::Base
     def follow?(profile)
       self.follows.find_by profile_id:(profile.id)
     end
-
+  
+  #client has redeemed?
+  def redeemed?(coupon)
+    self.coupon_redemptions.find_by coupon_id:(coupon.id)
+  end
 end

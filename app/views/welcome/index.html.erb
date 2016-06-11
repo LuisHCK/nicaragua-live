@@ -4,12 +4,12 @@
     <%= render "posts" %>
     <% else %>
     <h5>Tendencias</h5>
-    <%= render @posts.five_days_ago.sort_by { |post| post.hearts.count }.reverse %>
+    <%= render @posts.sort_by { |post| post.hearts.count }.reverse %>
 <% end %>
 
  <ul class="pagination">
   <div class="apple_pagination">
-      <%= will_paginate @posts, :container => false %>
+      <%= will_paginate @posts, container: false %>
     </div>
 </ul>
 

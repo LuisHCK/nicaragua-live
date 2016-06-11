@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   resources :coupons
   resources :surveys, :attempts
   resources :contests
@@ -43,6 +42,8 @@ Rails.application.routes.draw do
 
   match 'search', to: 'menus#search', via: :get
   match 'tools', to: 'menus#tools', via: :get
+  
+  match 'redeem', to: 'coupon_redemptions#create',  via: :post
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

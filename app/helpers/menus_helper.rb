@@ -1,4 +1,5 @@
 module MenusHelper
+	extend CouponsHelper
 	def profile
 		current_user.profile		
 	end
@@ -9,5 +10,9 @@ module MenusHelper
 
 	def follow_date(client_id)
 		@follow = Follow.where(profile_id: current_user.profile.id).limit(9)
+	end
+
+	def client_coupon(coupon_redemption)
+		coupon_redemption.client.clientprofile.name
 	end
 end

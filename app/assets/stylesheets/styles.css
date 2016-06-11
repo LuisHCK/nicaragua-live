@@ -217,6 +217,9 @@ hl{
   padding: 10px 10px;
   margin-left: 90px;
 }
+.with-top{
+  border-top: 3px solid #d2d6de;
+}
 .panel-box{
   position: relative;
   border-radius: 3px;
@@ -244,5 +247,16 @@ hl{
   float: left;
   padding: 10px;
   text-align: center;
+}
+.coupon-amount{
+  color: #FFFFFF;
+  font-size: 30px;
+}
+.redeem-btn{
+  display: block;
+  cursor: auto;
+}
+.coupon-box{
+  background-color: #F2F2F2;
 }
 /*ADMIN SIDEBAR*/
