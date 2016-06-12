@@ -1,5 +1,40 @@
 <div class="panel-box">
-    <div class="box-header">Tus Cupones</div>
+	<div class="box-header">Cangear Cupón</div>
+		<table class="centered striped">
+			<tr>
+				<th class="center">Código de Cupón</th>
+				<th class="center">Descuento</th>
+				<th class="center">Cliente</th>
+				<th class="center">Orden de canjeo</th>
+				<th class="center">Fecha de vencimiento</th>
+				<th class="center">Estado de canjeo</th>
+			</tr>
+			<tbody>
+				<% @coupon_redemptions.each do |coupon_redemption| %>	
+				<tr>
+					<td><%= coupon_redemption.coupon.code %></td>
+					<td><%= coupon_redemption.coupon.amount %>%</td>
+					<td><%= client_coupon(coupon_redemption) %></td>
+					<td><%= coupon_redemption.unique_code %></td>
+					<td><%= coupon_redemption.coupon.valid_until %></td>
+					<td><%= is_valid?(coupon_redemption.coupon, coupon_redemption)%></td>
+					<td><% if is_valid?(coupon_redemption.coupon, coupon_redemption) =="Válido" %>
+						<%= link_to("Cangear", exchange_path(id: coupon_redemption.id, coupon_id: coupon_redemption.coupon.id) , method: :patch, data:{confirm:"#{'Cangear el cupon: '}#{coupon_redemption.coupon.code}#{', para '}#{client_coupon(coupon_redemption)} "}) %>
+						<% else %>
+							---
+						<% end %>
+					</td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+</div>
+        <div class="stats-label">
+            <b>Gestionar Cupones</b>
+        </div>
+<div class="row">
+	<div class="panel-box col s8">
+    <div class="box-header">Cupones Activos</div>
 	<table class="bordered">
 	<thead>
 		<tr>
@@ -31,35 +66,10 @@
 			</tr>
 		<% end %>
 	</tbody>
-</table>   
+</table> 
 </div>
 
-<div class="row">
-	<div class="panel-box col s6">
-	<div class="box-header">Cangear Cupón</div>
-		<table class="centered">
-			<tr>
-				<th>Código de Cupón</th>
-				<th>Cliente</th>
-				<th>Orden de canjeo</th>
-				<th>Fecha de vencimiento</th>
-				<th>Estado de canjeo</th>
-			</tr>
-			<tbody>
-				<% @coupon_redemptions.each do |coupon_redemption| %>	
-				<tr>
-					<td><%= coupon_redemption.coupon.code %></td>
-					<td><%= client_coupon(coupon_redemption) %></td>
-					<td><%= coupon_redemption.unique_code %></td>
-					<td><%= coupon_redemption.coupon.valid_until %></td>
-					<td><%= is_valid?(coupon_redemption.coupon)%></td>
-				</tr>
-				<% end %>
-			</tbody>
-		</table>
-</div>
-
-<div class="panel-box col s6">
+<div class="panel-box col s4">
     <div class="box-header">Nuevo Cupón</div>
 	<%= render "/coupons/form" %>  
 </div>

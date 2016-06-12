@@ -41,12 +41,16 @@ module MenusHelper
 		end
 	end
 
-	def is_interchanged?
-		
+	def not_redeemed(redeem_check)
+		if redeem_check.state = "active"
+			return true
+		else
+			return false
+		end
 	end
 
-	def is_valid?(coupon)
-		if is_on_date?(coupon) && has_space?(coupon)
+	def is_valid?(coupon,redeem)
+		if is_on_date?(coupon) && has_space?(coupon) && redeem.state == "active"
 			return valid = "Válido"
 		else
 			return valid = "No es válido"

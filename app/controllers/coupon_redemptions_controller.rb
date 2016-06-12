@@ -1,6 +1,7 @@
 class CouponRedemptionsController < ApplicationController
   before_action :set_coupon_redemption, only: [:show, :edit, :update, :destroy]
   before_action :set_coupon
+  
   # GET /coupon_redemptions
   # GET /coupon_redemptions.json
   def index
@@ -49,9 +50,10 @@ class CouponRedemptionsController < ApplicationController
   # PATCH/PUT /coupon_redemptions/1
   # PATCH/PUT /coupon_redemptions/1.json
   def update
+    @coupon_redemption.state = 'exchanged'
     respond_to do |format|
       if @coupon_redemption.update(coupon_redemption_params)
-        format.html { redirect_to coupons_path, notice: 'Coupon redemption was successfully updated.' }
+        format.html { redirect_to '/tools#tab4', notice: 'El cupón fue cangeado con éxito' }
         format.json { render :show, status: :ok, location: @coupon_redemption }
       else
         format.html { render :edit }
@@ -65,7 +67,7 @@ class CouponRedemptionsController < ApplicationController
   def destroy
     @coupon_redemption.destroy
       #Free space
-      count = @coupon.coupon_redemptions_count+1
+      count = @coupon.coupon_redemptions_count-1
       @coupon.update_attributes(coupon_redemptions_count: count)
 
     respond_to do |format|
@@ -78,6 +80,7 @@ class CouponRedemptionsController < ApplicationController
     def set_coupon
       @coupon = Coupon.find(params[:coupon_id]) 
     end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_coupon_redemption
       @coupon_redemption = CouponRedemption.find(params[:id])
@@ -85,6 +88,7 @@ class CouponRedemptionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coupon_redemption_params
-      params.fetch(:coupon_redemption, {})
+      params.fetch(:coupon_redemption, {}).permit(:coupon_id,:unique_code,:state,:client_id)
+
     end
 end
