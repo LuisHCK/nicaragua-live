@@ -1,3 +1,4 @@
+<div class="container">
 
 <!--Tarjetas-->
   <% if client_signed_in? or user_signed_in? %>
@@ -16,14 +17,14 @@
 
     </div>
     <% if user_signed_in? %>
-  	  <div class="z-depth-1">
+      <div class="z-depth-1">
         <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
           <a href="#modal1" class="modal-trigger btn-floating btn-large red">
             <i class="large material-icons">mode_edit</i>
 
         </a>
-  	  </div>
-  	<% end %>
+      </div>
+    <% end %>
 
     <%= render "posts/form" %>
 
@@ -47,3 +48,5 @@ $('.modal-trigger').leanModal({
     }
 });
 </script>
+  
+</div>
