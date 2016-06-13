@@ -42,7 +42,7 @@ module MenusHelper
 	end
 
 	def not_redeemed(redeem_check)
-		if redeem_check.state = "active"
+		if redeem_check.state == "active"
 			return true
 		else
 			return false
