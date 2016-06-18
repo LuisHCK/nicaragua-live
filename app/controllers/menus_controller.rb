@@ -7,6 +7,7 @@ class MenusController < ApplicationController
     		@posts = Post.where(profile_id: current_user.profile.id)
     		@hearts = Heart.where(post_id: current_user.profile.posts.collect(&:id))
 			@coupon = Coupon.new
+			@event = Event.new
 			@coupon_redemptions = CouponRedemption.where(coupon_id: current_user.coupons.collect(&:id))
 			#@active_coupons = current
 
