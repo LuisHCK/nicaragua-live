@@ -1,0 +1,49 @@
+<div class="panel-box">
+	<div class="box-header">Eventos</div>
+	<ul class="collection">
+		<% current_user.events.each do |event| %>
+		    <li class="collection-item avatar">
+		      <i class="material-icons circle event-ico red">date_range</i>
+		      <span><b><%= event.title %></b></span>
+		      <p class="truncate" style="max-width:90%;">
+		      	<%= event.description %><br>
+		      	<b>Fecha:</b> <%= human_date(event) %> |
+		      	<b>Hora:</b> <%= human_time(event) %> |
+		      	<b></b>
+		      </p>
+		      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+		    </li>
+    	<% end %>
+	</ul>
+</div>
+<div class="panel-box">
+	<div class="panel-header">Crear Evento</div>
+<%= label_tag @event.title, "Título del Evento" %>
+<%= text_field_tag @event.title, nil%>
+
+<%= label_tag @event.description, "Información detallada del evento" %>
+<%= text_area_tag @event.description, nil%>
+
+<br><%= label_tag @event.time, "Hora del evento" %>
+<div class="timepicker flex-row">
+<div class="valign-wrapper" style="margin-left:2%;">
+  <i class="material-icons">access_time</i>
+</div>
+
+  <select class="hour form-control col-xs-1" name="event[hour]">
+    <%= options_for_select((1..12).to_a, @event.time ? @event.time.strftime('%l').to_i : nil) %>
+  </select>
+<select class="minute form-control col-xs-1" name="event[minute]" >
+    <%= options_for_select(['00', '15', '30', '45'], @event.time ? @event.time.strftime('%M').to_i : nil) %>
+  </select>
+  <select class="meridiem form-control col-xs-1" name="event[meridiem]" >
+    <%= options_for_select(['AM', 'PM'], @event.time ? @event.time.strftime('%p') : nil) %>
+  </select>
+</div>
+</div>
+<script>
+	  $(document).ready(function() {
+    $('select').material_select();
+  });
+      
+</script>

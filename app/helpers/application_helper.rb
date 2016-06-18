@@ -66,4 +66,13 @@ module ApplicationHelper
   def number_of_people_who_also_answered_count option_id
     Survey::Answer.where(option_id: option_id).count
   end
+
+  def human_date(in_human_date)
+    #in_human_date.date.strftime()
+    I18n.l(in_human_date.date, format: "%A %d %B, %Y")
+  end
+
+  def human_time(in_human_time)
+    in_human_time.time.strftime("%I:%M %p")
+  end
 end

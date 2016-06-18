@@ -2,8 +2,8 @@
 <%= image_tag @event.cover.url, class:"responsive-img centered" %>
 
       <h4><%= @event.title %></h4>
-      <i class="material-icons">date_range</i><%= @event.date.strftime("%A %-d %B, %Y")%><br>
-      <i class="material-icons">alarm</i><%= @event.time.strftime("%I:%M %p") %>
+      <i class="material-icons">date_range</i><%= human_date(@event) %><br>
+      <i class="material-icons">alarm</i><%= human_time(@event) %>
 
     <p>
       <%= markdown(@event.description) %><br>
