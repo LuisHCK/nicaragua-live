@@ -5,7 +5,7 @@
 	<ul class="collection z-depth-1">
 		<li class="collection-item">
 			<div class="row" style="margin-bottom:0px;">
-				<div class="col s4">
+				<div class="col s2">
 					<%= link_to image_tag(current_user.profile.avatar(:mini), class:"circle responsive-img", style:"max-height:100px;"), profile_path(current_user.profile)%>
 				</div>
 			<div class="col s6 gray-text">
@@ -24,8 +24,8 @@
 		<ul class="collection z-depth-1">
 			<li class="collection-item">
 				<div class="row" style="margin-bottom:0px;">
-					<div class="col s4">
-						<%= link_to image_tag(current_client.clientprofile.avatar(:mini), class:"circle responsive-img"), clientprofile_path(current_client.clientprofile)%>
+					<div class="col s2">
+						<%= link_to image_tag(current_client.clientprofile.avatar(:mini), class:"circle responsive-img",style:"max-height:100px;"), clientprofile_path(current_client.clientprofile)%>
 					</div>
 				<div class="col s6 gray-text">
 						<p >
@@ -41,8 +41,8 @@
 				<ul class="collection z-depth-1">
 					<li class="collection-item">
 						<div class="row" style="margin-bottom:0px;">
-							<div class="col s4">
-								<%= link_to image_tag("unknown_user", class:"circle", style:"max-width:100%;"), (new_client_session_path) %>
+							<div class="col s2">
+								<%= link_to image_tag("unknown_user", class:"circle", style:"max-height:100px;"), (new_client_session_path) %>
 							</div>
 						<div class="col s6 gray-text">
 								<p >

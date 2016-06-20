@@ -1,9 +1,9 @@
   <div class="container grey-text darken-4">
     <h5 class="center">Iniciar Sesión</h5>
 <% if session_path(resource) == "/users/sign_in" %>
-    <p>
-      Inicia seción como una empresa o negocio.
-    </p>
+    <div class="center">
+      <b>Inicia seción como una empresa o negocio.</b>
+    </div>
   <% end %>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
@@ -27,7 +27,7 @@
       <% end %>
 
 
-      <div style="margin-top:5%" class="actions">
+      <div style="margin-top:5%" class="actions center">
         <button class="btn-large teal darken-2">
             Iniciar Sesión
           <%f.submit "Log in" %>
@@ -35,6 +35,8 @@
         </button>
       </div>
     <% end %>
-
-    <%= render "devise/shared/links" %>
+  
+    <div class="panel-box" style="margin-top:10%;">
+      <%= render "devise/shared/links" %>
+    </div>
   </div>

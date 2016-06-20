@@ -7,91 +7,45 @@
 <% end %>
 
 <div class="container">
+  <% if @clientprofile.errors.full_messages.any? %>
+    <div class="coupon-box" style="margin:2%;">
+      <% @clientprofile.errors.full_messages.each do |error| %>
+        <%= error %>
+        <% end %>
+    </div>
+  <% end %>
 
   <%= form_for(current_client.clientprofile) do |f| %>
-    <% if current_client.clientprofile.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@clientprofile.errors.count, "error") %> prohibited this clientprofile from being saved:</h2>
+    <div class="row">
+      <div class="col s2">
+        <%= image_tag(@clientprofile.avatar(:mini), class:"circle mini-avatar") %>
+      </div>
+      <div id="input_body" class="input-field col s4">
+        <%= f.text_field :name, placeholder:"Escribe tu nombre (Obligatorio)", class:"materialize-textarea", length:"50" %>
+      </div>
+    </div>
+    <div class="row">
+    <div class="col s6">
+       <%= f.label :ubication, "Tu Ubicación (Opcional)" %>
+      <%= f.text_field :ubication, placeholder:"Ubicación"%>
 
-        <ul>
-        <% @clientprofile.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-    
-    <div class="field">
-      <div id="input_body" class="input-field col s12">
-        <%= f.text_field :name, id:"text_area_name", class:"materialize-textarea", length:"50" %>
-        <label for="text_area_name">Tu Nombre (Requerido)</label>
-      </div>
+    </div>
     </div>
 
     <div class="field">
       <label for="text_bio">Cuentanos sobre tí</label>
       <%= f.text_area :biography, id:"text_bio", class:"input-field col s12", style:"max-width:100%; height:150px;"%>
     </div>
+    
+    <div class="row">
 
-<!--    <div class="field">
-      <b>Foto de perfil</b>
-        <div class="row">
-            <img src="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/contact-icon.png" id="image" style="max-height:120px;" />
-        </div>
-
-        <div class="file-field input-field">
-          <div class="btn red">
-            <span>Abrir</span>
-            <input type="file">
-            <%= f.file_field :avatar, id:"files", input_html: { hidden: true }%>
-          </div>
-          <div class="file-path-wrapper">
-            <input class="file-path validate" type="text">
-          </div>
-        </div>
-
-    </div> -->
-
-    <div class="row ">
-
-      <%= button_tag(type: 'submit', id:"btn-post", class: "btn blue") do %>
+      <%= button_tag(type: 'submit', class: "btn blue") do %>
+       Listo!
        <i class="material-icons">check_circle</i>
       <% end %>
 
     </div>
   <% end %>
+  <%= link_to "Eliminar cuenta", admin_destroy_client_path(current_client), method: :delete, data: { confirm: "¿?" } %>
 
-  <div class="">
-      <%= link_to "Cerrar Seción", destroy_client_session_path, method: :delete, class:"btn red" %>
-      <%= link_to "Destroy", admin_destroy_client_path(current_client), method: :delete, data: { confirm: "You sure?" } %>
-  </div>
-
-</div>user
-
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('#btn-post').attr('disabled',true);
-
-    $('#text_area_name').keyup(function(){
-        if($(this).val().length !=0){
-            $('#btn-post').attr('disabled', false);
-        }
-        else
-        {
-            $('#btn-post').attr('disabled', true);
-        }
-    })
-
-    $('#text_bio').keyup(function(){
-        if($(this).val().length !=0){
-            $('#btn-post').attr('disabled', false);
-        }
-        else
-        {
-            $('#btn-post').attr('disabled', true);
-        }
-    })
-  });
-
-</script>
+</div>
