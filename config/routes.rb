@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
   match 'search', to: 'menus#search', via: :get
   match 'tools', to: 'menus#tools', via: :get
+  match 'install', to:'menus#install', via: :get
   
   match 'redeem', to: 'coupon_redemptions#create',  via: :post
   match 'exchange', to: 'coupon_redemptions#update',  via: :patch
