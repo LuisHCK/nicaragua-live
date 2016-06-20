@@ -5,4 +5,5 @@ class Clientprofile < ActiveRecord::Base
   validates_attachment_content_type :cover, content_type: /\Aimage\/.*\z/ , presence: true
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/ , presence: true
 
+  validates :name, presence: true
 end

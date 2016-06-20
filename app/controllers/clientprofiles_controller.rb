@@ -30,7 +30,7 @@ class ClientprofilesController < ApplicationController
   # POST /clientprofiles.json
   def create
     @clientprofile = Clientprofile.new(clientprofile_params)
-
+    @clientprofile.name = current_client.email
     respond_to do |format|
       if @clientprofile.save
         format.html { redirect_to edit_clientprofile_path(@clientprofile), notice: 'Tu perfil se creó correctamente.' }
@@ -74,6 +74,6 @@ class ClientprofilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def clientprofile_params
-      params.require(:clientprofile).permit(:name, :avatar, :cover, :biography)
+      params.require(:clientprofile).permit(:name, :avatar, :ubication, :cover, :biography)
     end
 end

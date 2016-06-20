@@ -1,5 +1,6 @@
 class MenusController < ApplicationController
-	def index
+	def install
+
 	end
 
 	def tools
