@@ -1,3 +1,8 @@
+@media only screen and (max-width: 320px) {
+
+   body { font-size: 0.9em; }
+
+}
 /* fallback */
 .material-icons {
   font-family: 'Material Icons';
@@ -262,4 +267,19 @@ hl{
 .event-ico{
   margin-top: 1%;
 }
+.appview{
+  background-image: url("back_login.jpg");
+  background-size: 100% 100%;
+  width: 100%;
+  height: 100%;
+  height: auto !important;
+  min-height:100%;
+}
 /*ADMIN SIDEBAR*/
+
+.mini-avatar{
+  max-width: 100%;
+}
+.mini-cover{
+  max-height: 50%; 
+}
