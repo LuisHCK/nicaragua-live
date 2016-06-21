@@ -10,11 +10,11 @@
     </ul>
   </div>
 
-  <div id="tab1" class="col s12">
+  <div id="tab1" class="col s12 container">
     <%= render "post_frame" %>
   </div>
 
-  <div id="tab2" class="col s12">
+  <div id="tab2" class="col s12 container">
     <% if user_signed_in? %>
         <% if current_user.id == @profile.user_id %><br>
           <%= link_to "Publicar Oferta", new_offer_path, class:"btn teal right" %><br>
@@ -23,25 +23,19 @@
 
     <%= render "offers/offerts" %>
   </div>
+  
   <div id="tab3" class="col s12">
-      <div class="row">
-    <% @profile.posts.order("created_at DESC").each do |post| %>
-
-    <% unless post.pictures.empty? %>
-
-    <% post.pictures.each do |pic| %>
-
-
-        <div class="col s6">
-          <img src="<%= pic.image.url %>" class="responsive-img"/>
-        </div>
-
-
-    <% end %>
-    <% end %>
-    <% end %>
-
-    </div>
+    <div class="row">
+      <% @profile.posts.order("created_at DESC").each do |post| %>
+      <% unless post.pictures.empty? %>
+      <% post.pictures.each do |pic| %>
+          <div class="col s6">
+            <img src="<%= pic.image.url %>" class="responsive-img"/>
+          </div>
+      <% end %>
+      <% end %>
+      <% end %>
+  </div>
 
   </div>
   <% if user_signed_in? && current_user.id == @profile.user_id %>

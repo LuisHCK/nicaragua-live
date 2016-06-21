@@ -1,4 +1,8 @@
 <h5>Ofertas</h5>
+
+<% if editable?(@profile) %>
+  <i class="material-icons">mode_edit</i>
+<% end %>
   <% @offers.each do  |offer | %>
       <div  class="card row z-depth-1">
         <div class="col s5">
