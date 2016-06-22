@@ -55,6 +55,26 @@
     <%= link_to "Editar tu Perfil", edit_clientprofile_path, class:"btn green"%>
 <% end %>
   </div>
+<!--Show my coupons-->
+<% if my_coupons(@clientprofile) %>
+<h5>Mis Cupones</h3>
+<ul class="collection">
+  <li class="collection-item">
+    <% @coupon_redemptions.each do |coupon| %>
+    <div class="info-box">
+    <span class="info-box-icon cyan">
+        <i class="material-icons white-text">star</i>
+    </span>
+    <div class="info-box-content">
+        <%= coupon.coupon.code %><br>
+        Orden: <b><%= coupon.unique_code %></b>
+    </div>
+    </div>
+  <% end %>
+</li>
+</ul>
+
+<% end %>
 
     <div class="row">
     <b class="grey-text darken-4">Le gustó recientemente</b>
