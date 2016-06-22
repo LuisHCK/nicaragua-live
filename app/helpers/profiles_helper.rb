@@ -4,8 +4,11 @@ module ProfilesHelper
 	end 
 
 	def editable?(profile)
-		if client_signed_in? && profile.id == current_user.profile.id
-		 return true
+		if user_signed_in?
+			if profile.id == current_user.profile.id
+			 return true
+			end
 		end
 	end
+
 end

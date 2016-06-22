@@ -1,14 +1,14 @@
 <div class="container">
 
-<!-- if user is signed in-->
+	<!-- if user is signed in-->
 	<% if user_signed_in? %>
 	<ul class="collection z-depth-1">
 		<li class="collection-item">
 			<div class="row" style="margin-bottom:0px;">
-				<div class="col s2">
+				<div class="col s3">
 					<%= link_to image_tag(current_user.profile.avatar(:mini), class:"circle responsive-img", style:"max-height:100px;"), profile_path(current_user.profile)%>
 				</div>
-			<div class="col s6 gray-text">
+				<div class="col s6 gray-text">
 					<p >
 						<b><%= current_user.profile.name %></b>
 					</p>
@@ -17,72 +17,72 @@
 		</li>
 	</ul>
 
-<!-- if master admin is signed in -->
-<!--if client is signed in-->
-		<% elsif client_signed_in? %>
+	<!-- if master admin is signed in -->
+	<!--if client is signed in-->
+	<% elsif client_signed_in? %>
 
-		<ul class="collection z-depth-1">
-			<li class="collection-item">
-				<div class="row" style="margin-bottom:0px;">
-					<div class="col s2">
-						<%= link_to image_tag(current_client.clientprofile.avatar(:mini), class:"circle responsive-img",style:"max-height:100px;"), clientprofile_path(current_client.clientprofile)%>
-					</div>
-				<div class="col s6 gray-text">
-						<p >
-							<b><%= current_client.clientprofile.name %></b>
-						</p>
-					</div>
+	<ul class="collection z-depth-1">
+		<li class="collection-item">
+			<div class="row" style="margin-bottom:0px;">
+				<div class="col s3">
+					<%= link_to image_tag(current_client.clientprofile.avatar(:mini), class:"circle responsive-img",style:"max-height:100px;"), clientprofile_path(current_client.clientprofile)%>
 				</div>
-			</li>
-		</ul>
+				<div class="col s6 gray-text">
+					<p >
+						<b><%= current_client.clientprofile.name %></b>
+					</p>
+				</div>
+			</div>
+		</li>
+	</ul>
 
-<!-- else show a default item -->
-		<% else %>
-				<ul class="collection z-depth-1">
-					<li class="collection-item">
-						<div class="row" style="margin-bottom:0px;">
-							<div class="col s2">
-								<%= link_to image_tag("unknown_user", class:"circle", style:"max-height:100px;"), (new_client_session_path) %>
-							</div>
-						<div class="col s6 gray-text">
-								<p >
-									<b>¡Invitado! Inicia seción para disfrutar de todo el contenido de Estelí Live</b>
-								</p>
-							</div>
-						</div>
-					</li>
-				</ul>
+	<!-- else show a default item -->
+	<% else %>
+	<ul class="collection z-depth-1">
+		<li class="collection-item">
+			<div class="row" style="margin-bottom:0px;">
+				<div class="col s4">
+					<%= link_to image_tag("unknown_user", class:"circle responsive-img", style:"max-height:100px;"), (new_client_session_path) %>
+				</div>
+				<div class="col s8 gray-text">
+					<p >
+						<b>¡Invitado! Inicia seción para disfrutar de todo el contenido de Estelí Live</b>
+					</p>
+				</div>
+			</div>
+		</li>
+	</ul>
 
 	<% end %>
 </div>
 
-  <ul class="collection z-depth-1">
+<ul class="collection z-depth-1">
 
-		<a href= "<%= wikis_path %>" class="collection-item avatar grey-text text-darken-4">
-			<i class="material-icons circle green">location_city</i>
-			<span class="title"><b>Esteli</b></span>
-			<p>Historia y cultura<br>
-				de la ciudad
-			</p>
-		</a>
+	<a href= "<%= wikis_path %>" class="collection-item avatar grey-text text-darken-4">
+		<i class="material-icons circle green">location_city</i>
+		<span class="title"><b>Esteli</b></span>
+		<p>Historia y cultura<br>
+			de la ciudad
+		</p>
+	</a>
 
-		<a href="/categories" class="collection-item avatar grey-text text-darken-4">
-			<i class="material-icons circle blue">navigation</i>
-			<span class="title"><b>Explorar</b></span>
-			<p>Lugares, productos<br>
-				y servicios
-			</p>
-		</a>
+	<a href="/categories" class="collection-item avatar grey-text text-darken-4">
+		<i class="material-icons circle blue">navigation</i>
+		<span class="title"><b>Explorar</b></span>
+		<p>Lugares, productos<br>
+			y servicios
+		</p>
+	</a>
 
-		<a href="/valorations" class="collection-item avatar grey-text text-darken-4">
-			<i class="material-icons circle orange">book</i>
-			<span class="title"><b>Libro de Visitas</b></span>
-			<p>Dejanos un comentario
-			</p>
-		</a>
+	<a href="/valorations" class="collection-item avatar grey-text text-darken-4">
+		<i class="material-icons circle orange">book</i>
+		<span class="title"><b>Libro de Visitas</b></span>
+		<p>Dejanos un comentario
+		</p>
+	</a>
 
 
-<% if user_signed_in? %>
+	<% if user_signed_in? %>
 	<a href="<%= edit_user_registration_path %>" class="collection-item avatar grey-text text-darken-4">
 		<i class="material-icons circle cyan">settings</i>
 		<span class="title"> <b>Configuración</b> </span>
@@ -99,24 +99,24 @@
 		</p>
 	</a>
 
-<% elsif client_signed_in? %>
-		<a href="<%= edit_clientprofile_path(current_client.clientprofile) %>" class="collection-item avatar grey-text text-darken-4">
-			<i class="material-icons circle cyan">build</i>
-			<span class="title"> <b>Configuración</b> </span>
-			<p>Administrar<br>
-				Perfil
-			</p>
-		</a>
+	<% elsif client_signed_in? %>
+	<a href="<%= edit_clientprofile_path(current_client.clientprofile) %>" class="collection-item avatar grey-text text-darken-4">
+		<i class="material-icons circle cyan">build</i>
+		<span class="title"> <b>Configuración</b> </span>
+		<p>Administrar<br>
+			Perfil
+		</p>
+	</a>
 
-<% else %>
-				<a href= "<%= client_session_path %>" class="collection-item avatar grey-text text-darken-4">
-					<i class="material-icons circle red">verified_user</i>
-					<span class="title"><b>Iniciar Seción</b></span>
+	<% else %>
+	<a href= "<%= client_session_path %>" class="collection-item avatar grey-text text-darken-4">
+		<i class="material-icons circle red">verified_user</i>
+		<span class="title"><b>Iniciar Seción</b></span>
 
-				</a>
+	</a>
 
-<% end %>
-	      <% if master_admin_signed_in? %>
-          <a href="/panels/">Panel</a>
-          <% end %>
-  </ul>
+	<% end %>
+	<% if master_admin_signed_in? %>
+	<a href="/panels/">Panel</a>
+	<% end %>
+</ul>

@@ -1,125 +1,128 @@
 <div class="container">
   <div class="card-panel">
 
-          <% if client_signed_in? %>
-              <%= link_to "#modalpic", class:"modal-trigger btn-floating blue", style:"position:absolute" do%>
-                <i class="material-icons">mode_edit</i>
-              <% end %>
-          <% end %>
+    <% if client_signed_in? %>
+    <%= link_to "#modalpic", class:"modal-trigger btn-floating blue", style:"position:absolute" do%>
+    <i class="material-icons">mode_edit</i>
+    <% end %>
+    <% end %>
 
-  <div class="row card-content">
-    <div class="col s5">
+    <div class="row card-content">
+      <div class="col s5">
 
-          <%= image_tag @clientprofile.avatar(:mini), class:"responsive-img materialboxed circle"%>
+        <%= image_tag @clientprofile.avatar(:mini), class:"responsive-img materialboxed circle"%>
+
+      </div>
+
+      <div class="col s6">
+        <h5><b><%= @clientprofile.name %></b></h5>
+        <table class="centered">
+          <thead>
+            <tr>
+              <th>Likes</th>
+              <th>Seguidos</th>
+              <th>Karma</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>
+                <%= @clientprofile.client.hearts.count %>
+              </td>
+              <td>
+                0
+              </td>
+              <td>
+                0
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
 
     </div>
 
-    <div class="col s6">
-      <b><%= @clientprofile.name %></b>
-      <table class="centered">
-        <thead>
-          <tr>
-            <th>Likes</th>
-            <th>Seguidos</th>
-            <th>Karma</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>
-              <%= @clientprofile.client.hearts.count %>
-            </td>
-            <td>
-              0
-            </td>
-            <td>
-              0
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
+    <div>
+      <b>Ubicación: </b><%= @clientprofile.ubication %>
     </div>
-
-</div>
-
-<div>
-  <b>Ubicación: </b><%= @clientprofile.ubication %>
-</div>
-<div>
-  <p><b>Biografía: </b><%= @clientprofile.biography %>
-  </p>
-</div>
-<% if client_signed_in? %>
+    <div>
+      <p><b>Biografía: </b><%= @clientprofile.biography %>
+      </p>
+    </div>
+    <% if client_signed_in? %>
     <%= link_to "Editar tu Perfil", edit_clientprofile_path, class:"btn green"%>
-<% end %>
+    <% end %>
   </div>
-<!--Show my coupons-->
-<% if my_coupons(@clientprofile) %>
-<h5>Mis Cupones</h3>
-<ul class="collection">
-  <li class="collection-item">
-    <% @coupon_redemptions.each do |coupon| %>
-    <div class="info-box">
-    <span class="info-box-icon cyan">
-        <i class="material-icons white-text">star</i>
-    </span>
-    <div class="info-box-content">
-        <%= coupon.coupon.code %><br>
-        Orden: <b><%= coupon.unique_code %></b>
-    </div>
-    </div>
-  <% end %>
-</li>
-</ul>
 
-<% end %>
-
-    <div class="row">
-    <b class="grey-text darken-4">Le gustó recientemente</b>
-      <%= render 'welcome/posts'%>
-    </div>
-
-    <div class="row">
-    <b class="grey-text darken-4">Se suscribió recientemente</b>
-      <% @profiles.order(created_at: :asc).each do |profile| %>
-        <ul class="collection">
-          <li class="collection-item">
-            <div class="row" style="margin-top:2%;">
-              <div class="col s4">
-                <%= image_tag profile.avatar, style:"max-width:100%;" %>
-              </div>
-              <div class="col s8">
-                <%= link_to profile.name, profile %>
-                <br>
-                <%= profile.body %>
-              </div>
-              <%= div_for profile, class:"right" do %>
-                <%= render partial: "follows/followbtn_client", locals: { profile: profile } %>
-              <% end %>
+  <!--Show my coupons-->
+  <% if my_coupons(@clientprofile) %>
+  <h5>Mis Cupones</h3>
+    <div class="card-panel">
+      <div class="row">
+        <% @coupon_redemptions.each do |coupon| %>
+        <div class="col s4 m4">
+          <div class="info-box grey lighten-4">
+            <span class="info-box-icon cyan">
+              <i class="material-icons white-text">star</i>
+            </span>
+            <div class="info-box-content">
+              <%= coupon.coupon.code %><br>
+              Orden: <b><%= coupon.unique_code %></b>
             </div>
-
-            <div>
-            </div>
-          </li>
-        </ul>
+          </div>
+        </div>
+        <% end %>
+      </div>
       <% end %>
     </div>
-</div>
+
+  <!-- Show my likes -->
+    <div class="row">
+      <b class="grey-text darken-4">Le gustó recientemente</b>
+      <%= render 'welcome/posts'%>
+    </div>
+  <!-- Show my followings -->
+    <div class="row">
+      <b class="grey-text darken-4">Se suscribió recientemente</b>
+      <% @profiles.order(created_at: :asc).each do |profile| %>
+      <ul class="collection">
+        <li class="collection-item">
+          <div class="row" style="margin-top:2%;">
+            <div class="col s4">
+              <%= image_tag profile.avatar, style:"max-width:100%;" %>
+            </div>
+            <div class="col s8">
+              <%= link_to profile.name, profile %>
+              <br>
+              <%= profile.body %>
+            </div>
+            <%= div_for profile, class:"right" do %>
+            <%= render partial: "follows/followbtn_client", locals: { profile: profile } %>
+            <% end %>
+          </div>
+
+          <div>
+          </div>
+        </li>
+      </ul>
+      <% end %>
+    </div>
+  </div>
 
 
 
 
-<!-- Load modal for change profile pic -->
+  <!-- Load modal for change profile pic -->
 
-<% if client_signed_in? %>
-<!-- Modal upload pic -->
-<div id="modalpic" class="modal">
-  <div class="modal-content">
-    <b>Cambiar foto de perfil</b>
-    <%= image_tag @clientprofile.avatar(:mini), id:"image", class:"responsive-img circle", style:"max-width:120px;"%>
-    <span>Vista previa</span>
+  <% if client_signed_in? %>
+  <!-- Modal upload pic -->
+  <div id="modalpic" class="modal">
+    <div class="modal-content">
+      <b>Cambiar foto de perfil</b>
+      <%= image_tag @clientprofile.avatar(:mini), id:"image", class:"responsive-img circle", style:"max-width:120px;"%>
+      <span>Vista previa</span>
       <%= form_for(current_client.clientprofile) do |f| %>
       <div class="file-field input-field">
         <div class="btn red">
@@ -131,43 +134,43 @@
           <input class="file-path validate" type="text">
         </div>
       </div>
-  </div>
-  <div class="modal-footer">
-    <%= button_tag("Listo",type: 'submit',remote: true, id:"btn-post", class: "modal-action modal-close waves-effect waves-green btn-flat") %>
+    </div>
+    <div class="modal-footer">
+      <%= button_tag("Listo",type: 'submit',remote: true, id:"btn-post", class: "modal-action modal-close waves-effect waves-green btn-flat") %>
+      <% end %>
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a></div>
+    </div>
     <% end %>
-    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a></div>
-  </div>
-<% end %>
 
-<script type="text/javascript">
-$('.modal-trigger').leanModal({
-    dismissible: true,
-    opacity: 0.5,
-    in_duration: 300,
-    out_duration: 200,
-    ready: function() {
-        if($(".lean-overlay").length > 1) {
+    <script type="text/javascript">
+      $('.modal-trigger').leanModal({
+        dismissible: true,
+        opacity: 0.5,
+        in_duration: 300,
+        out_duration: 200,
+        ready: function() {
+          if($(".lean-overlay").length > 1) {
             $(".lean-overlay:not(:first)").each(function() {
-                $(this).remove();
+              $(this).remove();
             });
-        }
-    },
-    complete: function() {
-        $(".lean-overlay").each(function() {
+          }
+        },
+        complete: function() {
+          $(".lean-overlay").each(function() {
             $(this).remove();
-        });
-    }
-});
+          });
+        }
+      });
 
-  document.getElementById("files").onchange = function () {
-    var reader = new FileReader();
+      document.getElementById("files").onchange = function () {
+        var reader = new FileReader();
 
-    reader.onload = function (e) {
+        reader.onload = function (e) {
         // get loaded data and render thumbnail.
         document.getElementById("image").src = e.target.result;
-    };
+      };
 
     // read the image file as a data URL.
     reader.readAsDataURL(this.files[0]);
-};
+  };
 </script>

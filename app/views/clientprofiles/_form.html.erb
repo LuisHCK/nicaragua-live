@@ -1,51 +1,51 @@
 <% if current_client.clientprofile.avatar = nil %>
-  <h4>TE DAMOS LA CORIDAL BIENVENIDA A NUESTRA COMUNIDAD</h4>
-  <p>
-    Estamos complacidos de tenerte con nosotros.
-    Antes de empezar a explorar, considera llenar los datos que se requieren acontinuacion:
-  </p>
+<h4>TE DAMOS LA CORIDAL BIENVENIDA A NUESTRA COMUNIDAD</h4>
+<p>
+  Estamos complacidos de tenerte con nosotros.
+  Antes de empezar a explorar, considera llenar los datos que se requieren acontinuacion:
+</p>
 <% end %>
 
 <div class="container">
   <% if @clientprofile.errors.full_messages.any? %>
-    <div class="coupon-box" style="margin:2%;">
-      <% @clientprofile.errors.full_messages.each do |error| %>
-        <%= error %>
-        <% end %>
-    </div>
+  <div class="coupon-box" style="margin:2%;">
+    <% @clientprofile.errors.full_messages.each do |error| %>
+    <%= error %>
+    <% end %>
+  </div>
   <% end %>
 
   <%= form_for(current_client.clientprofile) do |f| %>
-    <div class="row">
-      <div class="col s2">
-        <%= image_tag(@clientprofile.avatar(:mini), class:"circle mini-avatar") %>
-      </div>
-      <div id="input_body" class="input-field col s4">
-        <%= f.text_field :name, placeholder:"Escribe tu nombre (Obligatorio)", class:"materialize-textarea", length:"50" %>
-      </div>
+  <div class="row">
+    <div class="col s2">
+      <%= image_tag(@clientprofile.avatar(:mini), class:"circle mini-avatar") %>
     </div>
-    <div class="row">
+    <div id="input_body" class="input-field col s4">
+      <%= f.text_field :name, placeholder:"Escribe tu nombre (Obligatorio)", class:"materialize-textarea", length:"50" %>
+    </div>
+  </div>
+  <div class="row">
     <div class="col s6">
-       <%= f.label :ubication, "Tu Ubicación (Opcional)" %>
-      <%= f.text_field :ubication, placeholder:"Ubicación"%>
+     <%= f.label :ubication, "Tu Ubicación (Opcional)" %>
+     <%= f.text_field :ubication, placeholder:"Ubicación"%>
 
-    </div>
-    </div>
+   </div>
+ </div>
 
-    <div class="field">
-      <label for="text_bio">Cuentanos sobre tí</label>
-      <%= f.text_area :biography, id:"text_bio", class:"input-field col s12", style:"max-width:100%; height:150px;"%>
-    </div>
-    
-    <div class="row">
+ <div class="field">
+  <label for="text_bio">Cuentanos sobre tí</label>
+  <%= f.text_area :biography, id:"text_bio", class:"input-field col s12", style:"max-width:100%; height:150px;"%>
+</div>
 
-      <%= button_tag(type: 'submit', class: "btn blue") do %>
-       Listo!
-       <i class="material-icons">check_circle</i>
-      <% end %>
+<div class="row">
 
-    </div>
+  <%= button_tag(type: 'submit', class: "btn blue") do %>
+  Listo!
+  <i class="material-icons">check_circle</i>
   <% end %>
-  <%= link_to "Eliminar cuenta", admin_destroy_client_path(current_client), method: :delete, data: { confirm: "¿?" } %>
+
+</div>
+<% end %>
+<%= link_to "Eliminar cuenta", admin_destroy_client_path(current_client), method: :delete, data: { confirm: "¿?" } %>
 
 </div>

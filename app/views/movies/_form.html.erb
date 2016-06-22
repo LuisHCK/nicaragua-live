@@ -1,0 +1,18 @@
+<%= simple_form_for(@movie) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title, label:"Título" %>
+    <%= f.input :original_title, label:"Título original" %>
+    <%= f.input :country, :as => :string, label:"País" %>
+    <%= f.input :production, label:"Producción" %>
+    <%= f.input :script, label:"Guión" %>
+    <%= f.input :allocation, label:"Reparto" %>
+    <%= f.input :clasification, label:"Clasificación" %>
+    <%= f.input :sinopsis %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, label:"Publicar Película" %>
+  </div>
+<% end %>

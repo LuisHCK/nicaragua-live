@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 201602121639210) do
+ActiveRecord::Schema.define(version: 201606222219123) do
 
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id",      limit: 4
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 201602121639210) do
 
   create_table "clientprofiles", force: :cascade do |t|
     t.string   "name",                limit: 191
-    t.string   "city",                limit: 191
+    t.string   "ubication",           limit: 191
     t.text     "biography",           limit: 65535
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
@@ -83,28 +83,29 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "coupon_redemptions", force: :cascade do |t|
-    t.integer  "coupon_id",   limit: 4,   null: false
-    t.string   "order_id",    limit: 191
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "coupon_id",   limit: 4,                      null: false
     t.integer  "client_id",   limit: 4
     t.string   "unique_code", limit: 191
+    t.string   "state",       limit: 191, default: "active", null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
   end
 
   add_index "coupon_redemptions", ["client_id"], name: "index_coupon_redemptions_on_client_id", using: :btree
+  add_index "coupon_redemptions", ["unique_code"], name: "unique_code", unique: true, using: :btree
 
   create_table "coupons", force: :cascade do |t|
-    t.string   "code",                     limit: 191,               null: false
+    t.string   "code",                     limit: 191,                    null: false
     t.string   "description",              limit: 191
-    t.date     "valid_from",                                         null: false
+    t.date     "valid_from",                                              null: false
     t.date     "valid_until"
-    t.integer  "redemption_limit",         limit: 4,     default: 1, null: false
-    t.integer  "coupon_redemptions_count", limit: 4,     default: 0, null: false
-    t.integer  "amount",                   limit: 4,     default: 0, null: false
+    t.integer  "redemption_limit",         limit: 4,   default: 1,        null: false
+    t.integer  "coupon_redemptions_count", limit: 4,   default: 0,        null: false
+    t.integer  "amount",                   limit: 4,   default: 0,        null: false
     t.string   "type",                     limit: 191
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
-    t.text     "attachments",              limit: 65535
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+    t.string   "state",                    limit: 120, default: "active"
     t.integer  "user_id",                  limit: 4
   end
 
@@ -222,6 +223,31 @@ ActiveRecord::Schema.define(version: 201602121639210) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "movies", force: :cascade do |t|
+    t.string   "title",               limit: 191
+    t.string   "original_title",      limit: 191
+    t.string   "country",             limit: 191
+    t.string   "production",          limit: 191
+    t.string   "script",              limit: 191
+    t.text     "allocation",          limit: 65535
+    t.string   "clasification",       limit: 191
+    t.text     "sinopsis",            limit: 65535
+    t.string   "lang",                limit: 191
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "user_id",             limit: 4
+    t.string   "cover_file_name",     limit: 191
+    t.string   "cover_content_type",  limit: 191
+    t.integer  "cover_file_size",     limit: 4
+    t.datetime "cover_updated_at"
+    t.string   "banner_file_name",    limit: 191
+    t.string   "banner_content_type", limit: 191
+    t.integer  "banner_file_size",    limit: 4
+    t.datetime "banner_updated_at"
+  end
+
+  add_index "movies", ["user_id"], name: "index_movies_on_user_id", using: :btree
+
   create_table "offers", force: :cascade do |t|
     t.string   "titulo",             limit: 255
     t.text     "descripcion",        limit: 65535
@@ -280,6 +306,7 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_index "posts", ["profile_id"], name: "index_posts_on_profile_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
+    t.string   "offer_section_name",  limit: 120,   default: "Oferta", null: false
     t.string   "name",                limit: 255
     t.string   "cover_file_name",     limit: 255
     t.string   "cover_content_type",  limit: 255
@@ -293,16 +320,14 @@ ActiveRecord::Schema.define(version: 201602121639210) do
     t.string   "instagram",           limit: 255
     t.string   "youtube",             limit: 255
     t.string   "other",               limit: 255
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
     t.integer  "user_id",             limit: 4
     t.integer  "category_id",         limit: 4
     t.string   "avatar_file_name",    limit: 255
     t.string   "avatar_content_type", limit: 255
     t.integer  "avatar_file_size",    limit: 4
     t.datetime "avatar_updated_at"
-    t.integer  "followers",           limit: 4
-    t.integer  "following",           limit: 4
   end
 
   add_index "profiles", ["category_id"], name: "index_profiles_on_category_id", using: :btree
@@ -419,7 +444,7 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
-  add_foreign_key "coupon_redemptions", "clients"
+  add_foreign_key "coupon_redemptions", "clients", on_delete: :cascade
   add_foreign_key "coupons", "users"
   add_foreign_key "event_comments", "clients"
   add_foreign_key "event_comments", "events"
@@ -432,6 +457,7 @@ ActiveRecord::Schema.define(version: 201602121639210) do
   add_foreign_key "hearts", "users", name: "hearts_ibfk_2", on_delete: :cascade
   add_foreign_key "items", "clients"
   add_foreign_key "items", "markets"
+  add_foreign_key "movies", "users"
   add_foreign_key "offers", "profiles"
   add_foreign_key "pictures", "items"
   add_foreign_key "pictures", "posts"
