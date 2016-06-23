@@ -6,11 +6,6 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Original title</th>
-      <th>Country</th>
-      <th>Production</th>
-      <th>Script</th>
-      <th>Allocation</th>
       <th>Clasification</th>
       <th>Sinopsis</th>
       <th colspan="3"></th>
@@ -21,11 +16,6 @@
     <% @movies.each do |movie| %>
       <tr>
         <td><%= movie.title %></td>
-        <td><%= movie.original_title %></td>
-        <td><%= movie.country %></td>
-        <td><%= movie.production %></td>
-        <td><%= movie.script %></td>
-        <td><%= movie.allocation %></td>
         <td><%= movie.clasification %></td>
         <td><%= movie.sinopsis %></td>
         <td><%= link_to 'Show', movie %></td>

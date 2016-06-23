@@ -1,44 +1,26 @@
-<p id="notice"><%= notice %></p>
+  <div class="parallax-container">
+    <div class="parallax"><%= image_tag(@movie.cover) %></div>
+  </div>
+  <div class="section white">
+    <div class="row container">
+      <h2 class="header"><%= @movie.title %></h2>
+      <strong>Estreno: </strong><%= movie_date(@movie.date_from) %> <br>
+      <strong>Horarios</strong><br>
+      <%= @movie.times %><br>
+      
+      <strong>Trailer</strong><br>
+      <%= youtube_video(@movie.trailer) %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @movie.title %>
-</p>
+      <p class="grey-text text-darken-3 lighten-3">
+        <strong>Sinopsis:</strong><br>
+        <%= @movie.sinopsis %>
+      </p>
 
-<p>
-  <strong>Original title:</strong>
-  <%= @movie.original_title %>
-</p>
+    </div>
+  </div>
 
-<p>
-  <strong>Country:</strong>
-  <%= @movie.country %>
-</p>
-
-<p>
-  <strong>Production:</strong>
-  <%= @movie.production %>
-</p>
-
-<p>
-  <strong>Script:</strong>
-  <%= @movie.script %>
-</p>
-
-<p>
-  <strong>Allocation:</strong>
-  <%= @movie.allocation %>
-</p>
-
-<p>
-  <strong>Clasification:</strong>
-  <%= @movie.clasification %>
-</p>
-
-<p>
-  <strong>Sinopsis:</strong>
-  <%= @movie.sinopsis %>
-</p>
-
-<%= link_to 'Edit', edit_movie_path(@movie) %> |
-<%= link_to 'Back', movies_path %>
+  <script>
+    $(document).ready(function(){
+      $('.parallax').parallax();
+    });
+  </script>

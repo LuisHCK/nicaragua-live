@@ -1,6 +1,6 @@
 class CreateMovies < ActiveRecord::Migration
   def change
-    drop_table :movies
+    #drop_table :movies
     create_table :movies do |t|
       t.string :title
       t.string :original_title
