@@ -29,6 +29,12 @@ ActiveRecord::Schema.define(version: 201606222219123) do
     t.string   "icon",       limit: 255
   end
 
+  create_table "cinemas", force: :cascade do |t|
+    t.string   "name",       limit: 191
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "clientprofiles", force: :cascade do |t|
     t.string   "name",                limit: 191
     t.string   "ubication",           limit: 191
