@@ -1,7 +1,16 @@
 <div class="flex-row">
-    <div class="panel-box">
-        <div class="box-header">Últimas Encuestas Realizadas</div>        
-        <%= render "chart" %>
-    </div>
+	<div class="panel-box">
+		<div class="box-header">Últimas Encuestas Realizadas</div>        
+		<%= render "chart" %>
+	</div>
+
+	<div class="panel-box">
+		<div class="box-header">
+			Crear encuesta
+		</div>
+		<%= link_to 'Encuesta de Opnion Libre', new_survey_path(type: 'poll'), class:"btn" %>
+    	<%= link_to 'Encuesta de Selección Multiple', new_survey_path(type: 'quiz'), class:"btn" %>
+    	<%= link_to 'Encuesta de Puntuación', new_survey_path(type: 'score'), class:"btn" %>
+	</div>
 </div>
 
