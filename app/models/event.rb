@@ -8,7 +8,7 @@ class Event < ActiveRecord::Base
   has_many :event_comments
 
   has_attached_file :cover, styles: { thumb: ["64x64#", :jpg],
-            original: ['600', :jpg] },
+            original: ["780x300#", :jpg] },
   convert_options: { thumb: "-quality 85 -strip",
                      original: "-quality 90 -strip" }, dependent: :destroy
 
