@@ -29,6 +29,12 @@ ActiveRecord::Schema.define(version: 201606222219123) do
     t.string   "icon",       limit: 255
   end
 
+  create_table "cinemas", force: :cascade do |t|
+    t.string   "name",       limit: 191
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "clientprofiles", force: :cascade do |t|
     t.string   "name",                limit: 191
     t.string   "ubication",           limit: 191
@@ -225,14 +231,10 @@ ActiveRecord::Schema.define(version: 201606222219123) do
 
   create_table "movies", force: :cascade do |t|
     t.string   "title",               limit: 191
-    t.string   "original_title",      limit: 191
-    t.string   "country",             limit: 191
-    t.string   "production",          limit: 191
-    t.string   "script",              limit: 191
-    t.text     "allocation",          limit: 65535
     t.string   "clasification",       limit: 191
     t.text     "sinopsis",            limit: 65535
     t.string   "lang",                limit: 191
+    t.string   "trailer",             limit: 120,   null: false
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.integer  "user_id",             limit: 4
@@ -244,6 +246,9 @@ ActiveRecord::Schema.define(version: 201606222219123) do
     t.string   "banner_content_type", limit: 191
     t.integer  "banner_file_size",    limit: 4
     t.datetime "banner_updated_at"
+    t.date     "date_from",                         null: false
+    t.date     "date_until",                        null: false
+    t.text     "times",               limit: 65535, null: false
   end
 
   add_index "movies", ["user_id"], name: "index_movies_on_user_id", using: :btree
