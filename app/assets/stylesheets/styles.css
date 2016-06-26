@@ -283,3 +283,22 @@ hl{
 .mini-cover{
   max-height: 50%; 
 }
+
+/*SPAN COVER*/
+.cover{
+  position: relative;
+}
+.span-cover{
+  width:100%;
+  height: 100%;
+  color: white; 
+  background: rgba(25, 25, 25, .3);  
+  float:left; 
+  position:absolute; 
+  top:60%; 
+  left:5px;
+}
+.span-text{
+  margin-left: 5%;
+  margin-right: 5%;
+}

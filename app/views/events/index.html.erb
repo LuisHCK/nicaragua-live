@@ -1,17 +1,13 @@
 <div class="container">
   <% @events.each do |event| %>
-        <div class="card small">
-          <div class="card-image">
-            <img src="<%= event.cover.url %>">
-            <span class="card-title">Card Title</span>
-          </div>
-          <div class="card-content">
-            <p><%= event.description %></p>
-          </div>
-          <div class="card-action">
-            <a href= "<%= event_path(event) %>">Ver Más</a>
-            <a href= "<%= event_path(event) %>">Asistir</a>
-          </div>
-        </div>
-  <% end %>
+  <div id="event-view">
+  </div>
+  <script>
+    if (document.body.offsetWidth <= 481) {
+     $('#event-view').append('<%=j render "events/sizes/movile", event: event %>');
+   } else {
+     $('#event-view').append('<%=j render "events/sizes/desktop", event: event %>');
+   }
+ </script>
+ <% end %>
 </div>
