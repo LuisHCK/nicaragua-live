@@ -7,7 +7,7 @@
 <p id="notice"><%= notice %></p>
 
 
-<h5>Lugares</h5>
+<h5>Categorías</h5>
 
       <ul class="collection z-depth-1">
         <% @categories.each do |category| %>
@@ -26,6 +26,9 @@
   <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;">
   	<a href="<%= new_category_path %>" class="btn-floating waves-effect btn-large red"><i class="material-icons">add</i></a>
   </div>
-
 <% end %>
+
+<div>
+  <h5>Recomendados</h5>
+</div>
 </div>

@@ -1,16 +1,15 @@
 <div style="margin-top:3%;margin-bottom: 0px;" class="row">
 
-  <div class="col s4 m2">
-    <img style="margin-left:1%; max-width:100px;"
+  <div class="col s4 l3">
+    <img style="margin-left:1%;"
     src="<%= @profile.avatar.url(:mini) %>" alt="" class="circle responsive-img">
     <!--Follow Button-->
   </div>
-
   <div style="padding-left:5%;" class="col s8 m6 grey-text darken-4">
-    <b><%= @profile.name %></b>
+      <h5><b><%= @profile.name %></b></h5>
     <br>
     <div href="/root" class="star-rating" data-score= <%= @avg_review %> ></div>
-    <em><%= "#{@reviews.length} valoraciones" %></em>
+    <em><%= "#{@reviews.count} valoraciones" %></em>
 
     <% if client_signed_in? && current_client.reviewed?(@profile) %>
       <% @reviews.where(client_id: current_client.id).each do |rev|%>

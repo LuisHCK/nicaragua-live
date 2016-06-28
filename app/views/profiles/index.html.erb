@@ -1,13 +1,13 @@
 <div class="container">
   <% if @profiles.present? %>
-  <% @profiles.each do |profile| %>
+  <% @profiles.where.not(aasm_state: "banned").each do |profile| %>
     <div  class="card row z-depth-1">
       <div class="col s5">
         <%= link_to image_tag(profile.avatar(:mini), class:"responsive-img"), profile %>
       </div>
       <div class="col s7">
         <b><%= profile.name %></b> <br>
-        <div class="star-rating" data-score= <%= profile.reviews.average(:rating).round(2) %> ></div>
+        <div class="star-rating" data-score= <%= profile.reviews.average(:rating) %> ></div>
             <em><%= "#{profile.reviews.length} valoraciones" %></em><br>
               <p>
                 <%= profile.body  %><br>

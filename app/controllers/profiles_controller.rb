@@ -16,17 +16,20 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-    @post = Post.new
-    @review = Review.new
-    @offers = Offer.where(profile_id: @profile.id)
-    @reviews = Review.where(profile_id: @profile.id).order("created_at DESC")
+    if @profile.banned?
+      redirect_to profiles_path
+    else
+      @post = Post.new
+      @review = Review.new
+      @offers = Offer.where(profile_id: @profile.id)
+      @reviews = Review.where(profile_id: @profile.id).order("created_at DESC")
 
-      if @reviews.blank?
+      if @reviews.blank? || @reviews.nil?
         @avg_review = 0
       else
         @avg_review = @reviews.average(:rating).round(2)
       end
-
+    end
   end
 
   # GET /profiles/new

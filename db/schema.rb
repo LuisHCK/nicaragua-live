@@ -333,6 +333,8 @@ ActiveRecord::Schema.define(version: 201606222219123) do
     t.string   "avatar_content_type", limit: 255
     t.integer  "avatar_file_size",    limit: 4
     t.datetime "avatar_updated_at"
+    t.string   "aasm_state",          limit: 191
+    t.string   "aasm_campaign",       limit: 191,   default: "noone"
   end
 
   add_index "profiles", ["category_id"], name: "index_profiles_on_category_id", using: :btree
