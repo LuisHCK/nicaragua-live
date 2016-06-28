@@ -53,6 +53,6 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: liveapp_development
+  database: liveapp_production
   pool: 15
   password:
