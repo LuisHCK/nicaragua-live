@@ -54,5 +54,5 @@ production:
   adapter: postgresql
   encoding: unicode
   database: liveapp_development
-  pool: 5
-  password: <%= ENV['LIVEAPP_DATABASE_PASSWORD'] %>
+  pool: 15
+  password:
