@@ -30,5 +30,28 @@
 
 <div>
   <h5>Recomendados</h5>
+  <% @promoved_profiles.each do |promoved_profile| %>
+  <div class="row panel-box">
+    <div class="col s4" style="padding:1px;">
+    <%= link_to image_tag(promoved_profile.cover, class:"responsive-img"),profile_path(promoved_profile) %>
+    </div>
+    <div class="col s8">
+    <b><%= promoved_profile.name %></b>
+      <div class="star-rating" data-score= <%= promoved_profile.reviews.average(:rating) %> >
+      </div>
+      <%= promoved_profile.body %>
+    </div>
+  </div>
+  <% end %>
 </div>
 </div>
+<script>
+  $('.star-rating').raty({
+   path: '/assets/',
+   readOnly: true,
+   score: function() {
+    return $(this).attr('data-score');
+  }
+});
+</script>
+

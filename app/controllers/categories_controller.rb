@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
   # GET /categories.json
   def index
     @categories = Category.all
-    #@promoved_profiles = 
+    @promoved_profiles = Profile.where.not(aasm_campaign: 'noone')
   end
 
   # GET /categories/1
