@@ -25,7 +25,9 @@
 		<li class="collection-item">
 			<div class="row" style="margin-bottom:0px;">
 				<div class="col s3">
+					<% if current_client.clientprofile.avatar != nil %>
 					<%= link_to image_tag(current_client.clientprofile.avatar(:mini), class:"circle responsive-img",style:"max-height:100px;"), clientprofile_path(current_client.clientprofile)%>
+					<% end %>
 				</div>
 				<div class="col s6 gray-text">
 					<p >
