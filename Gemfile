@@ -49,6 +49,11 @@ group :development do
   gem "binding_of_caller"
 end
 
+group :production do
+	gem 'rails_12factor'
+	gem 'pg'
+end
+
 #Custom gems
 gem 'devise'
 gem 'paperclip'
