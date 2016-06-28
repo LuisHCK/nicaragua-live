@@ -55,5 +55,4 @@ production:
   encoding: unicode
   database: liveapp_development
   pool: 5
-  username: liveapp
   password: <%= ENV['LIVEAPP_DATABASE_PASSWORD'] %>
