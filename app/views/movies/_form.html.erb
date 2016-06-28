@@ -10,9 +10,20 @@
 
 <div class="file-field input-field">
   <div class="btn red">
-    <span>Abrir</span>
+    <span>Portada orizontal</span>
     <input type="file">
     <%= f.file_field :cover, input_html: { hidden: true }%>
+  </div>
+  <div class="file-path-wrapper">
+    <input class="file-path validate" type="text">
+  </div>
+</div>
+
+<div class="file-field input-field">
+  <div class="btn red">
+    <span>Banner Vertical</span>
+    <input type="file">
+    <%= f.file_field :banner, input_html: { hidden: true }%>
   </div>
   <div class="file-path-wrapper">
     <input class="file-path validate" type="text">
