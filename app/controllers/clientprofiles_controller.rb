@@ -11,8 +11,7 @@ class ClientprofilesController < ApplicationController
   # GET /clientprofiles/1
   # GET /clientprofiles/1.json
   def show
-      @coupon_redemptions = CouponRedemption.where(client_id: current_client.id)
-
+    @coupon_redemptions = CouponRedemption.where(client_id: current_client.id)
     #find_hearts = current_client.hearts.limit(2).order(created_at: :asc).collect(&:post_id)
     find_hearts = @clientprofile.client.hearts.limit(2).map(&:post_id)
     @posts = Post.where(id: find_hearts).order(created_at: :asc)
@@ -31,8 +30,7 @@ class ClientprofilesController < ApplicationController
   # POST /clientprofiles
   # POST /clientprofiles.json
   def create
-    @clientprofile = Clientprofile.new(clientprofile_params)
-    @clientprofile.name = current_client.email
+    @clientprofile = current_client.clientprofile.new(clientprofile_params)
     respond_to do |format|
       if @clientprofile.save
         format.html { redirect_to edit_clientprofile_path(@clientprofile), notice: 'Tu perfil se creó correctamente.' }

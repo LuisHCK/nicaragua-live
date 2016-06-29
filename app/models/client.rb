@@ -5,7 +5,7 @@ class Client < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_one :clientprofile, dependent: :destroy
+  has_one :clientprofile
 
   after_create :create_clientprofile
 
@@ -73,4 +73,5 @@ class Client < ActiveRecord::Base
   def redeemed?(coupon)
     self.coupon_redemptions.find_by coupon_id:(coupon.id)
   end
+
 end
