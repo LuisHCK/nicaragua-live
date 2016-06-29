@@ -1,33 +1,33 @@
 <div class="container">
 	<h5 class="grey-text darken-4"><%= @category.name %></h5>
 	<% @category.profiles.each do |profile| %>
-        <div class="row panel-box">
-          <div class="col s4" style="padding:1px;">
-            <%= link_to image_tag(profile.cover, class:"responsive-img"),profile_path(profile) %>
-          </div>
-          <div class="col s8">
-          <b><%= profile.name %></b>
-          <div class="star-rating" data-score= <%= profile.reviews.average(:rating) %> >
-          </div>
-              <%= profile.body %>
-            </div>
-          </div>
-<% end %>
+  <div class="row panel-box">
+    <div class="col s4" style="padding:1px;">
+      <%= link_to image_tag(profile.cover, class:"responsive-img"),profile_path(profile) %>
+    </div>
+    <div class="col s8">
+      <b><%= profile.name %></b>
+      <div class="star-rating" data-score= <%= profile.reviews.average(:rating) %> >
+      </div>
+      <%= profile.body %>
+    </div>
+  </div>
+  <% end %>
 
-<% if master_admin_signed_in? %>
+  <% if master_admin_signed_in? %>
   <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;">
     <a href="<%= edit_category_path %>" class="btn-floating waves-effect btn-large red"><i class="material-icons">edit</i></a>
   </div>
 
-<% end %>
+  <% end %>
 </div>
 </div>
 <script>
-$('.star-rating').raty({
-	path: '/assets/',
-	readOnly: true,
-	score: function() {
-				return $(this).attr('data-score');
-}
+  $('.star-rating').raty({
+   path: '/assets/',
+   readOnly: true,
+   score: function() {
+    return $(this).attr('data-score');
+  }
 });
 </script>
