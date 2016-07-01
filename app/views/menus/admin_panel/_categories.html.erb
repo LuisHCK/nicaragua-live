@@ -1,0 +1,24 @@
+<table class="striped">
+	<thead>
+		<tr>
+			<th data-field="id">Nombre</th>
+			<th data-field="name">Icono</th>
+			<th data-field="price">Editar</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @categories.each do |category| %>
+		<tr>
+			<td> <%= category.name %> </td>
+			<td> <i class="material-icons"><%= category.icon %></i> </td>
+			<td> <%= link_to "Editar",[:edit, category], class:"btn gree" %> 
+				<%= link_to 'Eliminar', category,
+				data: {confirm: '¿Estas Seguro?'}, method: :delete, remote: true, class:"btn red", id:"btn-delete" %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<script>
+
+</script>

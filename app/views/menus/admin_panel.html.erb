@@ -1,0 +1,12 @@
+<div class="container">
+	<h5>Categorías</h5>
+	<div id='categories_table' class="categories-container">
+		<%= render partial:'menus/admin_panel/categories', locals:{categories: @categories} %>
+	</div>
+<br>
+
+	<div class="panel-box">
+	<h5>Nueva Categoría</h5>
+		<%= render 'menus/admin_panel/categories_form'  %>
+	</div>
+</div>

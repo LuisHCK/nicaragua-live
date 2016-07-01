@@ -302,3 +302,10 @@ hl{
   margin-left: 5%;
   margin-right: 5%;
 }
+
+/*admin panel*/
+.categories-container {
+    height: 200px;
+    overflow-y: scroll;
+    overflow-x:hidden;
+}

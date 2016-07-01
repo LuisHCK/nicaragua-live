@@ -1,20 +1,30 @@
 class MenusController < ApplicationController
+	before_action :authenticate_user!, only:[:toolss]
+	before_action :authenticate_client!, only:[:admin_panel]
 	def install
 
 	end
 
 	def tools
 		if user_signed_in?
-    		@posts = Post.where(profile_id: current_user.profile.id)
-    		@hearts = Heart.where(post_id: current_user.profile.posts.collect(&:id))
+			@posts = Post.where(profile_id: current_user.profile.id)
+			@hearts = Heart.where(post_id: current_user.profile.posts.collect(&:id))
 			@coupon = Coupon.new
 			@event = Event.new
 			@coupon_redemptions = CouponRedemption.where(coupon_id: current_user.coupons.collect(&:id))
-			#@active_coupons = current
 
 			type = view_context.get_survey_type(params[:type])
-		    query = if type then Survey::Survey.where(survey_type: type) else Survey::Survey end
-		    @surveys = query.where(user_id: current_user.id).order(created_at: :desc).page(params[:page])end
-			@survey = Survey::Survey.new(survey_type: view_context.get_survey_type(params[:type]))
+			query = if type then Survey::Survey.where(survey_type: type) else Survey::Survey end
+				@surveys = query.where(user_id: current_user.id).order(created_at: :desc).page(params[:page])end
+				@survey = Survey::Survey.new(survey_type: view_context.get_survey_type(params[:type]))
+			end
+	
+	def admin_panel
+			if current_client.role == 'admin'
+				@categories = Category.all
+				@category = Category.new
+			else
+				redirect_to root_path
+			end
 	end
 end
