@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 201606222219123) do
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.integer  "avatar_id",              limit: 4
-    t.string   "name",                   limit: 255
+    t.string   "role",                   limit: 255
   end
 
   add_index "clients", ["avatar_id"], name: "index_clients_on_avatar_id", using: :btree
