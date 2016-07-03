@@ -2585,7 +2585,7 @@ nav ul a span.badge {
 
 @font-face {
   font-family: "Material-Design-Icons";
-  src: url("Material-Design-Icons.woff") format("woff"), url("Material-Design-Icons.ttf") format("truetype");
+  src: url("fonts/Material-Design-Icons.woff") format("woff"), url("fonts/Material-Design-Icons.ttf") format("truetype");
   font-weight: normal;
   font-style: normal; }
 

@@ -57,4 +57,15 @@ module MenusHelper
 		end
 	end
 
+	def is_admin?(client)
+		if client.role == 'admin'
+			return true
+		end
+	end
+
+	def category(profile)
+		category = Category.find(profile.category_id)
+		return category.name
+	end
+
 end

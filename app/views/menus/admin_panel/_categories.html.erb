@@ -7,7 +7,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% @categories.each do |category| %>
+		<% categories.each do |category| %>
 		<tr>
 			<td> <%= category.name %> </td>
 			<td> <i class="material-icons"><%= category.icon %></i> </td>
@@ -19,6 +19,3 @@
 		<% end %>
 	</tbody>
 </table>
-<script>
-
-</script>

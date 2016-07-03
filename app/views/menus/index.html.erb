@@ -20,7 +20,6 @@
 	<!-- if master admin is signed in -->
 	<!--if client is signed in-->
 	<% elsif client_signed_in? %>
-
 	<ul class="collection z-depth-1">
 		<li class="collection-item">
 			<div class="row" style="margin-bottom:0px;">
@@ -107,7 +106,18 @@
 			Perfil
 		</p>
 	</a>
-	<%= link_to('Cerrar Sesión', destroy_user_session_path, :method => :delete)%>
+
+	<% if is_admin?(current_client) %>
+	<a href="<%= admin_panel_path %>" class="collection-item avatar grey-text text-darken-4">
+		<i class="material-icons circle cyan">build</i>
+		<span class="title"> <b>Panel Administrativo</b> </span>
+	</a>
+	<% end %>
+
+	<%= link_to(destroy_user_session_path, method: :delete, class:"collection-item avatar grey-text text-darken-4") do %>
+	<i class="material-icons circle red">build</i>
+		<span class="title"> <b>Cerrar Sesión</b> </span>
+	<% end %>
 
 	<% else %>
 	<a href= "<%= client_session_path %>" class="collection-item avatar grey-text text-darken-4">
@@ -116,8 +126,5 @@
 
 	</a>
 
-	<% end %>
-	<% if master_admin_signed_in? %>
-	<a href="/panels/">Panel</a>
 	<% end %>
 </ul>

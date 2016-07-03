@@ -23,6 +23,11 @@ class MenusController < ApplicationController
 			if current_client.role == 'admin'
 				@categories = Category.all
 				@category = Category.new
+
+				@markets = Market.all
+				@market = Market.new
+
+				@profiles = Profile.all
 			else
 				redirect_to root_path
 			end

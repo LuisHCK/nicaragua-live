@@ -1,0 +1,11 @@
+<%= simple_form_for @market, remote: true  do |f|%>
+<div class="flex-row">
+	<div class="col-xs-6">
+		<%= f.input :name, placeholder:"Nombre" %>
+	</div>
+	<div class="col-xs-6">
+		<%= f.input :icon, placeholder:"Icono" %>		
+	</div>
+</div>
+<%= f.submit %>
+<% end %>

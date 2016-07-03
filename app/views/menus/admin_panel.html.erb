@@ -1,12 +1,42 @@
+<div class="row">
+	<div class="col s12">
+		<ul class="tabs">
+			<li class="tab"><a href="#tab1">Categorías</a></li>
+			<li class="tab"><a href="#tab2">Empresas</a></li>
+			<li class="tab"><a href="#tab3">Usuarios</a></li>
+		</ul>
+	</div>
+</div>
 <div class="container">
-	<h5>Categorías</h5>
-	<div id='categories_table' class="categories-container">
-		<%= render partial:'menus/admin_panel/categories', locals:{categories: @categories} %>
-	</div>
-<br>
+	<div id="tab1" class="row">
+		<div class="col s12 l6">
+			<h5>Negocios</h5>
+			<div id='categories_table' class="categories-container">
+				<%= render partial:'menus/admin_panel/categories', locals:{categories: @categories} %>
+			</div>
+			<br>
 
-	<div class="panel-box">
-	<h5>Nueva Categoría</h5>
-		<%= render 'menus/admin_panel/categories_form'  %>
+			<div class="panel-box">
+				<h5>Nueva Categoría</h5>
+				<%= render 'menus/admin_panel/categories_form'  %>
+			</div>
+		</div>
+		<div class="col s12 l6">
+			<h5>Anuncios Clasificados</h5>
+			<div id='market_table' class="categories-container">
+				<%= render partial:'menus/admin_panel/categories', locals:{categories: @markets} %>
+			</div>
+			<div class="panel-box">
+				<h5>Crear Seccion Clasificados</h5>
+				<%= render 'menus/admin_panel/market_form' %>
+			</div>
+		</div>
 	</div>
+
+	<div id="tab2">
+		<div id="clients_table" class="categories-container">
+			<%= render partial:"menus/admin_panel/clients_table", locals:{profiles: @profiles, limite: 10} %>
+		</div>
+	</div>
+	<div id="tab3"></div>
 </div>

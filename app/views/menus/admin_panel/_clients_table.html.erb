@@ -1,0 +1,20 @@
+<table class="striped responsive">
+	<thead>
+		<tr>
+			<th data-field="id">Nombre</th>
+			<th data-field="name">Categoría</th>
+			<th data-field="price">Fecha Reg.</th>
+			<th>Estado</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% profiles.limit(limite).each do |profile| %>
+		<tr>
+			<td> <%= profile.name %> </td>
+			<td> <%= category(profile) %> </td>
+			<td> <%= humanize_date(profile.created_at )%></td>
+			<td> estado-ico </td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
