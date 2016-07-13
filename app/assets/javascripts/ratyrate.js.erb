@@ -200,7 +200,7 @@
         evt.preventDefault();
       });
     },
-  
+
     _bindClickCancel: function() {
       var that = this;
 
@@ -739,17 +739,17 @@
     cancel       : false,
     cancelClass  : 'raty-cancel',
     cancelHint   : 'Cancel this rating!',
-    cancelOff    : 'cancel-off.png',
-    cancelOn     : 'cancel-on.png',
+    cancelOff    : '<%= asset_path("cancel-off.png") %>',
+    cancelOn     : '<%= asset_path("cancel-on.png") %>',
     cancelPlace  : 'left',
     click        : undefined,
     half         : false,
     halfShow     : true,
-    hints        : ['bad', 'poor', 'regular', 'good', 'gorgeous'],
+    hints        : ['Malo', 'Deficiente', 'Regular', 'Bueno', 'Increible'],
     iconRange    : undefined,
     mouseout     : undefined,
     mouseover    : undefined,
-    noRatedMsg   : 'Not rated yet!',
+    noRatedMsg   : 'Aún sin valorar!',
     number       : 5,
     numberMax    : 20,
     path         : undefined,
@@ -760,9 +760,9 @@
     scoreName    : 'score',
     single       : false,
     space        : true,
-    starHalf     : 'star-half.png',
-    starOff      : 'star-off.png',
-    starOn       : 'star-on.png',
+    starHalf     : '<%= asset_path("star-half.png") %>',
+    starOff      : '<%= asset_path("star-off.png") %>',
+    starOn       : '<%= asset_path("star-on.png") %>',
     starType     : 'img',
     target       : undefined,
     targetFormat : '{score}',
