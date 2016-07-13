@@ -37,6 +37,13 @@
 		<div id="clients_table" class="categories-container">
 			<%= render partial:"menus/admin_panel/clients_table", locals:{profiles: @profiles, limite: 10} %>
 		</div>
+		<div class="panel-box">
+			<div class="box-header">Gestionar Perfil de Empresa</div> 
+			<%= render '/menus/admin_panel/search_profile_form' %>
+			<div id="client_form">
+			<%= render '/menus/admin_panel/result_profiles' %>
+			</div>
+		</div>
 	</div>
 	<div id="tab3"></div>
 </div>

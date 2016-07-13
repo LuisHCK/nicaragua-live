@@ -1,6 +1,6 @@
 module ClientsProfilesHelper
 	def my_coupons(clientprofile)
-		if clientprofile.id == current_client.clientprofile.id
+		if client_signed_in? && clientprofile.id == current_client.clientprofile.id
 			return true
 		else
 			return false

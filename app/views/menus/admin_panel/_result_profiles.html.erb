@@ -1,0 +1,32 @@
+<table>
+	<thead>
+		<tr>
+			<th data-field="id">Nombre</th>
+			<th data-field="name">Estado</th>
+			<th data-field="price">Acciones</th>
+		</tr>
+	</thead>
+
+	<tbody>
+	<% if @search_profiles.present? %>
+	<% @search_profiles.each do |profile| %>
+	<tr>
+		<td><%= profile.name %></td>
+		<td>Estado</td>
+		<td>
+			<!-- Dropdown Trigger -->
+			<a class='dropdown-button btn' href='#' data-activates='dropdown1'>Acciones</a>
+
+			<!-- Dropdown Structure -->
+			<ul id='dropdown1' class='dropdown-content'>
+				<li><a href="#!">one</a></li>
+				<li><a href="#!">two</a></li>
+				<li><a href="#!">three</a></li>
+				</ul>			
+		</td>
+	</tr>
+	<% end %>
+	<% end %>
+
+	</tbody>
+</table>

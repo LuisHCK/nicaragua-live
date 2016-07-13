@@ -1,87 +1,39 @@
+<div class="container">
 
-  <ul class="collection z-depth-2">
-    <li class="collection-item row">
-      <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= @post.profile.avatar.url(:mini) %>" alt="" class="circle responsive-img">
-      <b><%= link_to @post.profile.name, @post.profile %></b>
+    <ul class="collection z-depth-2">
+        <li class="collection-item row">
+            <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= @post.profile.avatar.url(:mini) %>" alt="" class="circle responsive-img">
+            <b><%= link_to @post.profile.name, @post.profile %></b>
 
-    </li>
+        </li>
 
-    <li class="collection-item">
-      <% if @post.pictures.count > 1 %>
-        <div class="fotorama" data-nav="thumbs" data-allowfullscreen="true">
-            <% @post.pictures.each do |pic| %>
-              <a href="<%= pic.image.url() %>"><img src="<%= pic.image.url(:thumb)%>"></a>
-            <% end %>
-        </div>
+        <li class="collection-item">
+            <% if @post.pictures.count > 1 %>
+            <div class="fotorama" data-nav="thumbs" data-allowfullscreen="true">
+                <% @post.pictures.each do |pic| %>
+                <a href="<%= pic.image.url() %>"><img src="<%= pic.image.url(:thumb)%>"></a>
+                <% end %>
+            </div>
         <% else %>
-        <% @post.pictures.each do |pic| %>
-        <div class="center">
-          <%= image_tag(pic.image, class:"responsive-img")%>
-        </div>
-          <% end %>
-      <% end %>
-      <% if @post.video.present? || @post.video =! ""%>
-        <%= youtube_video @post.video %>
-      <% end %>
-
-      <p class="responsive-text">
-        <%= markdown(@post.body) %>
-      </p>
-    </li>
-
-    <li class="collection-item">
-      <div class="row">
-        <% if client_signed_in? or user_signed_in? %>
-          <%= render '/comments/form' %>
-          <% else %>
-            <%= link_to "Inicia sesión", new_client_session_path %> para dejar un comentario
-        <% end %>
-      </div>
-<b> <%= @post.comments.count %> Comentarios</b>
-      <% @post.comments.each do |comment| %>
-
-        <div class="collection z-depth-1">
-          <div class="collection-item">
-            <% if comment.client_id <=> nil %>
-            <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= comment.user.profile.avatar.url(:mini) %>" alt="img" class="circle responsive-img">
-            <b><%= link_to comment.user.profile.name, comment.user.profile %></b>
-
-
-            <% elsif comment.user_id <=> nil %>
-            <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= comment.client.clientprofile.avatar.url(:mini) %>" alt="img" class="circle responsive-img">
-            <b><%= link_to comment.client.clientprofile.name, comment.client.clientprofile %></b>
-
+            <% @post.pictures.each do |pic| %>
+            <div class="center">
+                <%= image_tag(pic.image, class:"responsive-img")%>
+            </div>
             <% end %>
-            <!--If client is the owner of the comment cant delete it-->
-            <% if client_signed_in? %>
-              <% if comment.client_id = current_client.id %>
-
-                <%= link_to [comment.post, comment], method: :delete, data: { confirm: '¿Borrar tu comentario?' }, class:"right" do%>
-                  <i class="red-text material-icons">delete</i>
-                  <% end %>
-
-              <% end %>
-            <% elsif user_signed_in? %>
-              <% if comment.user_id = current_user.id %>
-
-                <%= link_to [comment.post, comment], method: :delete, data: { confirm: '¿Borrar tu comentario?' }, class:"right" do%>
-                    <i class="red-text material-icons">delete</i>
-                  <% end %>
-
-              <% end %>
-
-            <!--If client is the owner of the comment cant delete it-->
-
             <% end %>
-          </div>
-          <div class="collection-item">
-            <p>
-              <%= comment.body %>
+            <% if @post.video.present? || @post.video =! ""%>
+            <%= youtube_video @post.video %>
+            <% end %>
+
+            <p class="responsive-text">
+                <%= markdown(@post.body) %>
             </p>
-          </div>
+        </li>
+
+        <div id="coments_field">
+            <%= render partial:"posts/comments" %>
         </div>
 
+    </ul>
 
-      <% end %>
-    </li>
-   </ul>
+</div>

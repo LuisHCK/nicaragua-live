@@ -1,0 +1,5 @@
+ <%= form_tag("/admin_panel#tab2", method: "get",remote: false) do %>
+ <h5 class="grey-text darken-4">Buscar</h5>
+ <%= text_field_tag :query, params[:query], placeholder: "Buscar...",class:"grey-text darken-4", style:"max-width: 50%;" %>
+ <%= submit_tag "Buscar", class:"btn red" %>
+ <% end %>

@@ -27,7 +27,7 @@
 					<%= link_to image_tag(current_client.clientprofile.avatar(:mini), class:"circle responsive-img",style:"max-height:100px;"), clientprofile_path(current_client.clientprofile)%>
 				</div>
 				<div class="col s6 gray-text">
-					<p >
+					<p>
 						<b><%= current_client.clientprofile.name %></b>
 					</p>
 				</div>
@@ -41,7 +41,7 @@
 		<li class="collection-item">
 			<div class="row" style="margin-bottom:0px;">
 				<div class="col s4">
-					<%= link_to image_tag("unknown_user", class:"circle responsive-img", style:"max-height:100px;"), (new_client_session_path) %>
+					<%= link_to image_tag('icon-user-default.png', class:"circle responsive-img", style:"max-height:100px;"), (new_client_session_path) %>
 				</div>
 				<div class="col s8 gray-text">
 					<p >

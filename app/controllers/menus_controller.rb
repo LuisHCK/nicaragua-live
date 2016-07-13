@@ -1,5 +1,5 @@
 class MenusController < ApplicationController
-	before_action :authenticate_user!, only:[:toolss]
+	before_action :authenticate_user!, only:[:tools]
 	before_action :authenticate_client!, only:[:admin_panel]
 	def install
 
@@ -18,18 +18,24 @@ class MenusController < ApplicationController
 				@surveys = query.where(user_id: current_user.id).order(created_at: :desc).page(params[:page])end
 				@survey = Survey::Survey.new(survey_type: view_context.get_survey_type(params[:type]))
 			end
-	
-	def admin_panel
-			if current_client.role == 'admin'
-				@categories = Category.all
-				@category = Category.new
 
-				@markets = Market.all
-				@market = Market.new
+			def admin_panel
+				if current_client.role == 'admin'
+					@categories = Category.all
+					@category = Category.new
 
-				@profiles = Profile.all
-			else
-				redirect_to root_path
+					@markets = Market.all
+					@market = Market.new
+
+					@profiles = Profile.all
+					@profile = Profile.new
+			#search profiles for edit
+			if params[:query].present?
+				@search_profiles = Profile.search(params[:query], page: params[:page], per_page: 10)
 			end
+
+		else
+			redirect_to root_path
+		end
 	end
 end

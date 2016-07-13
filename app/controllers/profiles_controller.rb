@@ -3,13 +3,13 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!, except: [:show,:index]
   # GET /profiles
   # GET /profiles.json
-  def index
-    if params[:query].present?
-      @profiles = Profile.search(params[:query], page: params[:page], per_page: 10)
-        else
-          @profiles = Profile.all.paginate(page: params[:page], per_page: 10)
-        end
-    @posts = Post.all
+def index
+  if params[:query].present?
+    @profiles = Profile.search(params[:query], page: params[:page], per_page: 10)
+  else
+    @profiles = Profile.all.paginate(page: params[:page], per_page: 10)
+  end
+  @posts = Post.all
 
     #@pictures = @post.pictures
   end
@@ -88,6 +88,6 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:name, :cover, :avatar, :body, :direccion, :horario, :facebook, :twiter, :instagram, :youtube, :other, :category_id)
+      params.require(:profile).permit(:name, :cover, :avatar, :body, :direccion, :horario, :facebook, :twiter, :instagram, :youtube, :other, :category_id, :offer_section_name)
     end
-end
+  end

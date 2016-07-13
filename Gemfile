@@ -52,8 +52,13 @@ end
 group :production do
 	gem 'rails_12factor'
 	gem 'pg'
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
 end
-
+gem 'puma'
 #Custom gems
 gem 'devise'
 gem 'paperclip'
@@ -67,3 +72,4 @@ gem 'tzinfo'
 gem 'simple_form'
 gem 'mailboxer'
 gem 'aasm'
+#gem "lazyload-rails", git:'https://github.com/techbang/lazyload-rails.git'

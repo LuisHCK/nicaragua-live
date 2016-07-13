@@ -79,4 +79,37 @@ def human_date(in_human_date)
   def humanize_date(date)
     I18n.l(date, format: "%A %d %B, %Y")
   end
+
+#common helper methods for clients
+  def avatar_client(client)
+    if client.clientprofile.present?
+      image_tag(client.clientprofile.avatar(:mini),class:'circle resposive-img avatar_profile')
+    else
+      image_tag('icon-user-default.png',class:'circle resposive-img avatar_profile')
+    end
+  end
+  def link_to_client(client)
+    if client.clientprofile.present?
+      link_to(client.clientprofile.name, client.clientprofile)
+    else
+      client.email
+    end
+  end
+#common helper methods for users
+  def avatar_user(user)
+    if user.profile.present?
+      image_tag(user.profile.avatar(:mini),class:'circle resposive-img avatar_profile')
+    else
+      image_tag('icon-user-default.png',class:'circle resposive-img avatar_profile')
+    end
+  end
+  def link_to_user(user)
+    if user.profile.present?
+      link_to(user.profile.name, user.profile)
+    else
+      user.email
+    end
+
+
+end
 end

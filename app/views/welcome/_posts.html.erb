@@ -33,7 +33,9 @@
       <% if post.pictures.count > 1 %>
         <div class="fotorama" data-nav="thumbs" data-allowfullscreen="true">
             <% post.pictures.each do |pic| %>
-              <a href="<%= pic.image.url() %>"><img src="<%= pic.image.url(:thumb)%>"></a>
+              <%= link_to (image_tag(pic.image,lazy: true)) do %>
+                <%= image_tag(pic.image(:thumb))%>
+              <% end %>
             <% end %>
         </div>
         <% else %>

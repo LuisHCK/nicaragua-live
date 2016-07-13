@@ -1,7 +1,7 @@
 module MenusHelper
 	extend CouponsHelper
 	def profile
-		current_user.profile		
+		current_user.profile
 	end
 
 	def follower_info(client_id)
@@ -27,7 +27,7 @@ module MenusHelper
 	def not_limited?(coupon_check)
 		if coupon_check.redemption_limit = "0"
 			return true
-		else 
+		else
 			return false
 		end
 	end
@@ -66,6 +66,13 @@ module MenusHelper
 	def category(profile)
 		category = Category.find(profile.category_id)
 		return category.name
+	end
+
+	def picture(follower)
+		if follower.client.clientprofile.present?
+			concat image_tag(follower.client.clientprofile.avatar(:mini), class:"circle responsive-img")
+			follower.client.clientprofile.name
+		end
 	end
 
 end
