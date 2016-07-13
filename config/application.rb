@@ -25,7 +25,7 @@ module Liveapp
     config.active_record.raise_in_transactional_callbacks = true
     config.i18n.default_locale = :es
     config.serve_static_files = true
-    config.secret_key_base = 'blipblapblup'
+    config.secret_key_base = '4080d2442fd6e660c47b6a393f9bf52b556e3a27d3008e6a7be1dfff8c7da5136dd85c2adde36c69adc259c943ea6324b4ade3749ec368e1d744eb7c504739d8'
   end
 
 
