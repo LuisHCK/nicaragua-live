@@ -73,4 +73,5 @@ gem 'tzinfo'
 gem 'simple_form'
 gem 'mailboxer'
 gem 'aasm'
+gem 'jquery-raty-rails', github: 'bmc/jquery-raty-rails' # Bleeding edge
 #gem "lazyload-rails", git:'https://github.com/techbang/lazyload-rails.git'
