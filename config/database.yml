@@ -53,7 +53,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  #username: rails
+  username: rails
   password: <%= ENV['LIVEAPP_DATABASE_PASSWORD'] %>
   database: liveapp_production
   pool: 15
