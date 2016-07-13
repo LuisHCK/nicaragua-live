@@ -745,9 +745,15 @@
     scoreName    : 'score',
     single       : false,
     space        : true,
+  <% if Rails.env.production? %>
+    starHalf     : 'http://nica-live.com/assets/star-half-d00d022fbd0884e1800f3b434e54cd8b5816dfdc360467e59db7dea2d8928320.png',
+    starOff      : 'http://nica-live.com/assets/star-off-dd76aac93e4c3a09e880c52790b89d928ee263b71e551d8744fdd5bb901b1305.png',
+    starOn       : 'http://nica-live.com/assets/star-on-eaedc0252c2954694505a1997016c4606da9806d79cdb982e272c5763c9715dc.png',
+  <% else %>
     starHalf     : '<%= image_url("star-half.png") %>',
     starOff      : '<%= image_url("star-off.png") %>',
     starOn       : '<%= image_url("star-on.png") %>',
+  <% end %>
     starType     : 'img',
     target       : undefined,
     targetFormat : '{score}',
