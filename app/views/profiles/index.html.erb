@@ -1,6 +1,6 @@
 <div class="container">
   <% if @profiles.present? %>
-  <% @profiles.where.not(aasm_state: "banned").each do |profile| %>
+  <% @profiles.each do |profile| %>
     <div  class="card row z-depth-1">
       <div class="col s5">
         <%= link_to image_tag(profile.avatar(:mini), class:"responsive-img"), profile %>
