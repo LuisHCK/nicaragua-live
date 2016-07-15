@@ -49,6 +49,13 @@ end
 
 namespace :deploy do
   desc "Make sure local git is in sync with remote."
+  task :restart, :roles => :web do
+  run "touch #{ current_path }/tmp/restart.txt"
+end
+
+task :restart_daemons, :roles => :app do
+  sudo "monit restart all -g daemons"
+end
   task :check_revision do
     on roles(:app) do
       unless `git rev-parse HEAD` == `git rev-parse origin/master`
@@ -78,7 +85,7 @@ namespace :deploy do
   after  :finishing,    :compile_assets
   after  :finishing,    :cleanup
   after  :finishing,    :restart
-  after "deploy", "deploy:restart_daemons" 
+  after "deploy", "deploy:restart_daemons"
 end
 
 # ps aux | grep puma    # Get puma pid
