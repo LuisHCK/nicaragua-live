@@ -11,8 +11,8 @@
 		<% profiles.limit(limite).each do |profile| %>
 		<tr>
 			<td> <%= profile.name %> </td>
-			<td> <%= category(profile) %> </td>
-			<td> <%= humanize_date(profile.created_at )%></td>
+			<td> <%= if profile.category_id.present? then category(profile) end %> </td>
+			<td> <%= if profile.created_at.present? then humanize_date(profile.created_at ) end %></td>
 			<td> estado-ico </td>
 		</tr>
 		<% end %>
