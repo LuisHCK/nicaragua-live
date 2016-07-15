@@ -64,8 +64,12 @@ module MenusHelper
 	end
 
 	def category(profile)
+		if profile.present?
 		category = Category.find(profile.category_id)
 		return category.name
+	else
+		return 'Vacio'
+	end
 	end
 
 	def picture(follower)
