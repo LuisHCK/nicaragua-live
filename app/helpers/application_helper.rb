@@ -83,7 +83,7 @@ def human_date(in_human_date)
 #common helper methods for clients
   def avatar_client(client)
     if client.clientprofile.present?
-      image_tag(client.clientprofile.avatar(:mini),class:'circle resposive-img avatar_profile')
+      image_tag(client.clientprofile.avatar(:thumb),class:'circle resposive-img avatar_profile')
     else
       image_tag('icon-user-default.png',class:'circle resposive-img avatar_profile')
     end
@@ -98,7 +98,7 @@ def human_date(in_human_date)
 #common helper methods for users
   def avatar_user(user)
     if user.profile.present?
-      image_tag(user.profile.avatar(:mini),class:'circle resposive-img avatar_profile')
+      image_tag(user.profile.avatar(),class:'circle resposive-img avatar_profile')
     else
       image_tag('icon-user-default.png',class:'circle resposive-img avatar_profile')
     end

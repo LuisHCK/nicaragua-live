@@ -34,7 +34,7 @@ class Profile < ActiveRecord::Base
 			transitions from: :free, to: :premium
 		end
 
-		event :downgrade do 
+		event :downgrade do
 			transitions from: :premium, to: :free
 		end
 
@@ -45,7 +45,7 @@ class Profile < ActiveRecord::Base
 		event :unban do
 			transitions from: :banned, to: :free
 		end
-		
+
 	end
 
 	searchkick searchable: [:name,:body]
@@ -61,8 +61,12 @@ class Profile < ActiveRecord::Base
 			url: "/system/covers/:id/:style/cover.jpg",
 			path: ":rails_root/public/system/covers/:id/:style/cover.jpg", default_url: "cover-default.png"
 
-			has_attached_file :avatar, styles: {mini: "400x400#"},convert_options: { thumb: "-quality 75 -strip",
-				original: "-quality 95 -strip" }, default_url: "icon-user-default.png" , dependent: :destroy
+  has_attached_file :avatar, styles: { thumb: ["80x80#", :jpg],
+    url: "/system/avatars/:id/:style/avatar.jpg",
+                original: ['300x300#', :jpg] },
+                convert_options: { thumb: "-quality 85 -strip",
+                                            original: "-quality 85 -strip" }, default_url: "icon-user-default.png"
+
 				validates_attachment_content_type :cover, content_type: /\Aimage\/.*\z/ , presence: true
 				validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/ , presence: true
 

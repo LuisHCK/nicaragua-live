@@ -74,7 +74,7 @@ module MenusHelper
 
 	def picture(follower)
 		if follower.client.clientprofile.present?
-			concat image_tag(follower.client.clientprofile.avatar(:mini), class:"circle responsive-img")
+			concat image_tag(follower.client.clientprofile.avatar(:thumb), class:"circle responsive-img")
 			follower.client.clientprofile.name
 		end
 	end
