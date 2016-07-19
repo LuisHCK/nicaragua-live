@@ -6,7 +6,7 @@
 		<li class="collection-item">
 			<div class="row" style="margin-bottom:0px;">
 				<div class="col s3">
-					<%= link_to image_tag(current_user.profile.avatar(:mini), class:"circle responsive-img", style:"max-height:100px;"), profile_path(current_user.profile)%>
+					<%= link_to image_tag(current_user.profile.avatar(:thumb), class:"circle responsive-img", style:"max-height:100px;"), profile_path(current_user.profile)%>
 				</div>
 				<div class="col s6 gray-text">
 					<p >
@@ -24,7 +24,7 @@
 		<li class="collection-item">
 			<div class="row" style="margin-bottom:0px;">
 				<div class="col s3">
-					<%= link_to image_tag(current_client.clientprofile.avatar(:mini), class:"circle responsive-img",style:"max-height:100px;"), clientprofile_path(current_client.clientprofile)%>
+					<%= link_to image_tag(current_client.clientprofile.avatar(:thumb), class:"circle responsive-img",style:"max-height:100px;"), clientprofile_path(current_client.clientprofile)%>
 				</div>
 				<div class="col s6 gray-text">
 					<p>

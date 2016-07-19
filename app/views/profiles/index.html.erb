@@ -3,7 +3,7 @@
   <% @profiles.each do |profile| %>
     <div  class="card row z-depth-1">
       <div class="col s5">
-        <%= link_to image_tag(profile.avatar(:mini), class:"responsive-img"), profile %>
+        <%= link_to image_tag(profile.avatar(), class:"responsive-img"), profile %>
       </div>
       <div class="col s7">
         <b><%= profile.name %></b> <br>

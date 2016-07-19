@@ -10,7 +10,7 @@
         <div class="row card-content">
             <div class="col l3 s5">
 
-                <%= image_tag @clientprofile.avatar(:mini), class:"responsive-img materialboxed circle"%>
+                <%= image_tag @clientprofile.avatar(:thumb), class:"responsive-img materialboxed circle"%>
 
             </div>
 
@@ -123,7 +123,7 @@
 <div id="modalpic" class="modal">
     <div class="modal-content">
         <b>Cambiar foto de perfil</b>
-        <%= image_tag @clientprofile.avatar(:mini), id:"image", class:"responsive-img circle", style:"max-width:120px;"%>
+        <%= image_tag @clientprofile.avatar(:thumb), id:"image", class:"responsive-img circle", style:"max-width:120px;"%>
         <span>Vista previa</span>
         <%= form_for(current_client.clientprofile) do |f| %>
         <div class="file-field input-field">

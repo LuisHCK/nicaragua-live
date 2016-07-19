@@ -1,6 +1,6 @@
   <ul class="collection z-depth-2">
     <li class="collection-item row">
-      <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= post.profile.avatar.url(:mini) %>" alt="" class="circle responsive-img">
+      <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= post.profile.avatar.url(:thumb) %>" alt="" class="circle responsive-img">
       <b><%= link_to post.profile.name, post.profile %></b>
 
       <% if user_signed_in? %>

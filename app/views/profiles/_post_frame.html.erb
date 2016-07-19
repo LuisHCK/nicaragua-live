@@ -2,7 +2,7 @@
 <% @profile.posts.order(created_at: :desc).each do |post| %>
   <ul class="collection z-depth-2">
     <li class="collection-item row">
-      <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= @profile.avatar.url(:mini) %>" alt="" class="circle responsive-img">
+      <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= @profile.avatar %>" alt="" class="circle responsive-img">
       <b><%= @profile.name %></b>
 
       <% if user_signed_in? %>
