@@ -1,0 +1,31 @@
+<div>
+  <div class="center">
+    <h3 class="white-text">¡Bienvenido a Nicaragua Live!</h3><br>
+    <h2 class="white-text">Nombre del Usuario</h2><br>
+
+    <div class="welcome_text">
+      <p class="responsive-text white-text" style="margin: 3%;">
+        Es un honor para nosotros que formes parte de nuestra comunidad.
+        Queremos decirte que eres el usuario Número <=user_number>, y eso es
+        algo que nos emociona.
+        ¡Hay muchas cosas por descubrir y compartir!
+      </p>
+    </div>
+  </div>
+  <div class="welcome_text center">
+    <h5 class="white-text">Nicaragua Live te recomienda:</h5>
+    <%= render :partial => "profiles", :locals => { :profiles => @profiles } %>
+  </div>
+</div>
+
+
+<style media="screen">
+html {
+  background-image: url("https://4.bp.blogspot.com/-RQVBFn6f_OM/V4rVF-PnzrI/AAAAAAAACAk/FI0uCp9yI5A2Ta3nJP8EB4aGOcGtKgtNwCLcB/s1600/concepcion.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  left: 0;
+  right: 0;
+  background-position: center;
+}
+</style>

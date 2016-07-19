@@ -44,14 +44,16 @@ Rails.application.routes.draw do
 
   match 'search', to: 'menus#search', via: :get
   match 'tools', to: 'menus#tools', via: :get
-  
+
   match 'admin_panel', to: 'menus#admin_panel', via: :get
   match 'post_category', to: 'menus#post_category', via: :post
 
   match 'install', to:'menus#install', via: :get
-  
+
   match 'redeem', to: 'coupon_redemptions#create',  via: :post
   match 'exchange', to: 'coupon_redemptions#update',  via: :patch
+
+  match 'bienvenido', to: 'menus#user_welcome', via: :get
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
