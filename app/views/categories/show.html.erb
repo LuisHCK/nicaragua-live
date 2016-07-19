@@ -1,5 +1,21 @@
 <div class="container">
 	<h5 class="grey-text darken-4"><%= @category.name %></h5>
+
+	<% unless @category.profiles.any? %>
+	<div class="center">
+		<h4>¡Enhorabuena!</h4>
+		<em>Aún no hay ningun negocio en esta categoría. Es tu oportunidad para ser el primero.</em><br>
+		<%= image_tag('business.gif', class:"responsive-img") %><br>
+		<div style="margin-top:5%">
+			<% unless user_signed_in? %>
+				<%= link_to "Ser el primero", new_user_registration_path, class:"btn green" %>
+				<% else %>
+				<%= link_to "Ser el primero", edit_user_registration_path, class:"btn green" %>
+			<% end %>
+		</div>
+	</div>
+	<% end %>
+
 	<% @category.profiles.each do |profile| %>
   <div class="row panel-box">
     <div class="col s4" style="padding:1px;">
@@ -24,7 +40,7 @@
 </div>
 <script>
   $('.star-rating').raty({
-   
+
    readOnly: true,
    score: function() {
     return $(this).attr('data-score');
