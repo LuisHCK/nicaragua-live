@@ -1,7 +1,7 @@
 <%= form_for(@market, remote: true )do |f| %>
   <% if @market.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@market.errors.count, "error") %> prohibited this market from being saved:</h2>
+      <h4><%= pluralize(@market.errors.count, "error") %> prohibited this market from being saved:</h4>
 
       <ul>
       <% @market.errors.full_messages.each do |message| %>
@@ -16,8 +16,8 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
+    <%= f.label :icon %><br>
+    <%= f.text_field :icon %>
   </div>
   <div class="actions">
     <%= f.submit %>

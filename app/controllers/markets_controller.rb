@@ -38,7 +38,7 @@ class MarketsController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @market.errors, status: :unprocessable_entity }
-        forma.js
+        format.js {  flash[:notice] = "Creado" }
       end
     end
   end
@@ -79,6 +79,6 @@ class MarketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def market_params
-      params.require(:market).permit(:title, :description)
+      params.require(:market).permit(:title, :icon, :description)
     end
 end
