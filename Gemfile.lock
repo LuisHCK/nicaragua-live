@@ -124,6 +124,8 @@ GEM
       railties (>= 3.1.0)
       turbolinks
     json (1.8.3)
+    layzr-rails (0.1.0)
+      nokogiri (~> 1.5)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -270,6 +272,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
+  layzr-rails
   mailboxer
   mysql2 (>= 0.3.13, < 0.5)
   paperclip

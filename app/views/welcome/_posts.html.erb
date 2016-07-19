@@ -35,14 +35,14 @@
         <div class="fotorama" data-nav="thumbs" data-allowfullscreen="true">
             <% post.pictures.each do |pic| %>
               <%= link_to (image_tag(pic.image,lazy: true)) do %>
-                <%= image_tag(pic.image(:thumb))%>
+                <%= image_tag(pic.image(:thumb), lazy: true)%>
               <% end %>
             <% end %>
         </div>
         <% else %>
         <% post.pictures.each do |pic| %>
         <div class="center">
-          <%= image_tag(pic.image, class:"responsive-img")%>
+          <%= image_tag(pic.image, class:"responsive-img", lazy: true)%>
         </div>
           <% end %>
       <% end %>

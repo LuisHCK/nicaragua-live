@@ -31,6 +31,12 @@
     <%= render "posts/form" %>
 
 <script type="text/javascript">
+$(document).ready(function() {
+   const instance = Layzr({
+     threshold: -5500
+   })
+});
+
 $('.modal-trigger').leanModal({
     dismissible: true,
     opacity: 0.5,
