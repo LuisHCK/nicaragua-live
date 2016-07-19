@@ -54,6 +54,9 @@ Rails.application.routes.draw do
   match 'exchange', to: 'coupon_redemptions#update',  via: :patch
 
   match 'bienvenido', to: 'menus#user_welcome', via: :get
+
+  match '/google13e2745398afabff.html',
+      :to => proc { |env| [200, {}, ["google-site-verification: /google13e2745398afabff.html"]] }, via: :get
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
