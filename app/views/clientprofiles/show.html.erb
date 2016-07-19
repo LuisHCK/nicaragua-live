@@ -8,7 +8,7 @@
         <% end %>
 
         <div class="row card-content">
-            <div class="col s5">
+            <div class="col l3 s5">
 
                 <%= image_tag @clientprofile.avatar(:mini), class:"responsive-img materialboxed circle"%>
 
@@ -16,7 +16,7 @@
 
             <div class="col s6">
                 <h5>
-                    <b><%= @clientprofile.name %></b>
+                    <b><%= "#{first_name(@clientprofile)} #{last_name(@clientprofile)}" %></b>
                 </h5>
                 <table class="centered">
                     <thead>

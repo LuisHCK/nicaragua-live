@@ -1,5 +1,15 @@
 <div class="container">
 <h5><%= @market.title %></h5>
+  <% unless @market.items.any? %>
+    <div class="center">
+      <h4>¡Vaya!</h4>
+      <em>Parece que aun no hay artículos en esta categoría.</em><br>
+      <%= image_tag('sales.png') %><br>
+      <div style="margin-top:5%">
+        <%= link_to "Publicar el primero", new_item_path, class:"btn green" %>
+      </div>
+    </div>
+  <% end %>
   <% @market.items.each do  |item | %>
       <div  class="card row z-depth-1">
         <div class="col s5">

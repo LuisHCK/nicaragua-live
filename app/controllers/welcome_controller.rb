@@ -3,6 +3,7 @@ class WelcomeController < ApplicationController
   def index
        @categories = Category.all
        @profiles = Profile.all
+       @promoved_profiles = Profile.limit(2).all
        @clientprofiles = Clientprofile.all
 
        @post = Post.new

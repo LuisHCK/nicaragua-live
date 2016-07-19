@@ -1,8 +1,11 @@
 <div class="container">
 <!--Tarjetas-->
   <% if client_signed_in? or user_signed_in? %>
+  <h5>Inicio</h5>
     <%= render "posts" %>
     <% else %>
+    <h5>Recomendados</h5>
+      <%= render 'promo_profiles' %>
     <h5>Tendencias</h5>
     <%= render @posts.sort_by { |post| post.hearts.count }.reverse %>
 <% end %>

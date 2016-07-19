@@ -1,0 +1,21 @@
+<table class="striped">
+	<thead>
+		<tr>
+			<th data-field="id">Nombre</th>
+			<th data-field="name">Icono</th>
+			<th data-field="price">Editar</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% markets.each do |market| %>
+		<tr>
+			<td> <%= market.title %> </td>
+			<td> <i class="material-icons"><%= market.icon %></i> </td>
+			<td> <%= link_to "Editar",[:edit, market], class:"btn gree" %>
+				<%= link_to 'Eliminar', market,
+				data: {confirm: '¿Estas Seguro?'}, method: :delete, remote: true, class:"btn red", id:"btn-delete" %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
