@@ -30,7 +30,7 @@
         <% else %>
         <% post.pictures.each do |pic| %>
         <div class="center">
-          <%= image_tag(pic.image, class:"responsive-img")%>
+          <%= image_tag(pic.image.url, class:"responsive-img", lazy: true)%>
         </div>
           <% end %>
       <% end %>

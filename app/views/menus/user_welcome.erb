@@ -1,12 +1,12 @@
 <div>
   <div class="center">
     <h3 class="white-text">¡Bienvenido a Nicaragua Live!</h3><br>
-    <h2 class="white-text">Nombre del Usuario</h2><br>
+    <h2 class="white-text"><%= "#{current_client.first_name} #{current_client.last_name}" %></h2><br>
 
     <div class="welcome_text">
       <p class="responsive-text white-text" style="margin: 3%;">
         Es un honor para nosotros que formes parte de nuestra comunidad.
-        Queremos decirte que eres el usuario Número <=user_number>, y eso es
+        Queremos decirte que eres el usuario Número <b><%= current_client.id %></b>  y eso es
         algo que nos emociona.
         ¡Hay muchas cosas por descubrir y compartir!
       </p>
@@ -14,7 +14,7 @@
   </div>
   <div class="welcome_text center">
     <h5 class="white-text">Nicaragua Live te recomienda:</h5>
-    <%= render :partial => "profiles", :locals => { :profiles => @profiles } %>
+    <%= render "menus/profiles"%>
   </div>
 </div>
 

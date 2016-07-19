@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/techbang/lazyload-rails.git
+  revision: ba29f8beca42af494ed8629c3703703011c344d1
+  specs:
+    lazyload-rails (0.3.1)
+      jquery-rails
+      nokogiri (~> 1.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -124,8 +132,6 @@ GEM
       railties (>= 3.1.0)
       turbolinks
     json (1.8.3)
-    layzr-rails (0.1.0)
-      nokogiri (~> 1.5)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -272,7 +278,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
-  layzr-rails
+  lazyload-rails!
   mailboxer
   mysql2 (>= 0.3.13, < 0.5)
   paperclip

@@ -1,7 +1,7 @@
 class MenusController < ApplicationController
 	before_action :authenticate_user!, only:[:tools]
-	before_action :authenticate_client!, only:[:admin_panel]
-	def install
+	before_action :authenticate_client!, only:[:admin_panel,:user_welcome]
+	def user_welcome
 
 	end
 

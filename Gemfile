@@ -73,4 +73,4 @@ gem 'tzinfo'
 gem 'simple_form'
 gem 'mailboxer'
 gem 'aasm'
-gem 'layzr-rails'
+gem "lazyload-rails", github: "techbang/lazyload-rails"
