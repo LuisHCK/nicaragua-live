@@ -321,3 +321,7 @@ hl{
     overflow-y: scroll;
     overflow-x:hidden;
 }
+
+.welcome_text{
+  background: rgba(25, 25, 25, .4);
+}

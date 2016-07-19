@@ -15,7 +15,15 @@
   <div class="welcome_text center">
     <h5 class="white-text">Nicaragua Live te recomienda:</h5>
     <%= render "menus/profiles"%>
-  </div>
+
+<div class="panel-box">
+    <h3 class="grey-text">
+        <b>Tambien Puedes:</b>
+    </h3>
+    <%= link_to "Editar tu Perfil", edit_clientprofile_path(current_client.clientprofile), class:"btn blue" %>
+    <%= link_to "Publicar un anuncio", new_item_path, class:"btn blue" %>
+</div>
+</div>
 </div>
 
 
