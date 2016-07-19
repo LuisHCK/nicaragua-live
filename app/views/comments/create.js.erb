@@ -1,2 +1,4 @@
-$("#coments_field").html("<%= escape_javascript(render partial:"posts/comments" ) %>"); 
+$("#coments_field").html("<%= escape_javascript(render partial:"posts/comments" ) %>");
 $('#cform').val('');
+var $toastContent = $('<span>Enviado.</span>');
+Materialize.toast($toastContent, 5000);

@@ -1,1 +1,4 @@
-$("#categories_table").html("<%= escape_javascript(render partial:'menus/admin_panel/categories', locals:{categories: @categories} ) %>"); 
+$("#categories_table").html("<%= escape_javascript(render partial:'menus/admin_panel/categories', locals:{categories: @categories} ) %>");
+
+var $toastContent = $('<span>La categoría se eliminó.</span>');
+Materialize.toast($toastContent, 5000);
