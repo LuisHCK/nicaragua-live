@@ -10,9 +10,22 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
+  <% if session_path(resource) == "/clients/sign_in" %>
+    <div class="row">
+      <div class="col s6">
+        <%= f.label "Nombre" %><br />
+        <%= f.email_field :first_name, autofocus: true %>
+      </div>
+      <div class="col s6">
+        <%= f.label "Apellido" %><br />
+        <%= f.email_field :last_name %>
+      </div>
+    </div>
+  <% end %>
+
   <div class="field">
     <%= f.label "Email" %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email %>
   </div>
 
   <div class="field">

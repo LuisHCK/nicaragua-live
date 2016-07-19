@@ -1,6 +1,8 @@
 class Client < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  validates :first_name, presence:
+
   has_surveys
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -68,7 +70,7 @@ class Client < ActiveRecord::Base
     def follow?(profile)
       self.follows.find_by profile_id:(profile.id)
     end
-  
+
   #client has redeemed?
   def redeemed?(coupon)
     self.coupon_redemptions.find_by coupon_id:(coupon.id)

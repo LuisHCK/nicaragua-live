@@ -69,6 +69,8 @@ ActiveRecord::Schema.define(version: 201606222219123) do
     t.datetime "updated_at",                                      null: false
     t.integer  "avatar_id",              limit: 4
     t.string   "role",                   limit: 255
+    t.string   "first_name",             limit: 191
+    t.string   "last_name",              limit: 191
   end
 
   add_index "clients", ["avatar_id"], name: "index_clients_on_avatar_id", using: :btree
@@ -311,7 +313,6 @@ ActiveRecord::Schema.define(version: 201606222219123) do
   add_index "posts", ["profile_id"], name: "index_posts_on_profile_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
-    t.string   "offer_section_name",  limit: 120,   default: "Oferta", null: false
     t.string   "name",                limit: 255
     t.string   "cover_file_name",     limit: 255
     t.string   "cover_content_type",  limit: 255
@@ -335,6 +336,7 @@ ActiveRecord::Schema.define(version: 201606222219123) do
     t.datetime "avatar_updated_at"
     t.string   "aasm_state",          limit: 191
     t.string   "aasm_campaign",       limit: 191,   default: "noone"
+    t.string   "offer_section_name",  limit: 120,   default: "Oferta", null: false
   end
 
   add_index "profiles", ["category_id"], name: "index_profiles_on_category_id", using: :btree
