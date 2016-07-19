@@ -5,10 +5,10 @@
 	<ul class="collection z-depth-1">
 		<li class="collection-item">
 			<div class="row" style="margin-bottom:0px;">
-				<div class="col s3">
+				<div class="col l3 s4">
 					<%= link_to image_tag(current_user.profile.avatar(:thumb), class:"circle responsive-img", style:"max-height:100px;"), profile_path(current_user.profile)%>
 				</div>
-				<div class="col s6 gray-text">
+				<div class="col l9 s8 gray-text">
 					<p >
 						<b><%= current_user.profile.name %></b>
 					</p>
@@ -23,10 +23,10 @@
 	<ul class="collection z-depth-1">
 		<li class="collection-item">
 			<div class="row" style="margin-bottom:0px;">
-				<div class="col s3">
+				<div class="col l3 s4">
 					<%= link_to image_tag(current_client.clientprofile.avatar(:thumb), class:"circle responsive-img",style:"max-height:100px;"), clientprofile_path(current_client.clientprofile)%>
 				</div>
-				<div class="col s6 gray-text">
+				<div class="col l9 s8 gray-text">
 					<p>
 						<b><%= current_client.clientprofile.name %></b>
 					</p>
@@ -40,10 +40,10 @@
 	<ul class="collection z-depth-1">
 		<li class="collection-item">
 			<div class="row" style="margin-bottom:0px;">
-				<div class="col s4">
+				<div class="col l3 s4">
 					<%= link_to image_tag('icon-user-default.png', class:"circle responsive-img", style:"max-height:100px;"), (new_client_session_path) %>
 				</div>
-				<div class="col s8 gray-text">
+				<div class="col l9 s8 gray-text">
 					<p >
 						<b>¡Invitado! Inicia seción para disfrutar de todo el contenido de Estelí Live</b>
 					</p>
