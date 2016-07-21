@@ -1,20 +1,11 @@
 <div class="container">
     <div class="card-panel">
-
-        <% if client_signed_in? %>
-        <%= link_to "#modalpic", class:"modal-trigger btn-floating blue", style:"position:absolute" do%>
-          <%= icon("pencil") %>
-        <% end %>
-        <% end %>
-
         <div class="row card-content">
-            <div class="col l3 s5 m3">
-
-                <%= image_tag @clientprofile.avatar(), class:"responsive-img materialboxed circle"%>
-
+            <div class="col l3 s12 m3 center">
+                <%= image_tag @clientprofile.avatar(), class:"responsive-img circle", style:"max-width:150px;"%>
             </div>
 
-            <div class="col s6">
+            <div class="col l9 s12 m9">
                 <h5>
                     <b><%= "#{first_name(@clientprofile)} #{last_name(@clientprofile)}" %></b>
                 </h5>
@@ -23,7 +14,7 @@
                         <tr>
                             <th>Likes</th>
                             <th>Seguidos</th>
-                            <th>Karma</th>
+                            <th>Puntuación</th>
                         </tr>
                     </thead>
 
@@ -96,10 +87,10 @@
         <ul class="collection">
             <li class="collection-item">
                 <div class="row" style="margin-top:2%;">
-                    <div class="col s4">
-                        <%= image_tag profile.avatar, style:"max-width:100%;" %>
+                    <div class="col l3 m4 s4">
+                        <%= image_tag profile.avatar, class:"responsive-img circle" %>
                     </div>
-                    <div class="col s8">
+                    <div class="col l9 m8 s8">
                         <%= link_to profile.name, profile %>
                         <br>
                         <%= profile.body %>
@@ -115,35 +106,6 @@
         <% end %>
     </div>
 </div>
-
-<!-- Load modal for change profile pic -->
-
-<% if client_signed_in? %>
-<!-- Modal upload pic -->
-<div id="modalpic" class="modal">
-    <div class="modal-content">
-        <b>Cambiar foto de perfil</b>
-        <%= image_tag @clientprofile.avatar(:thumb), id:"image", class:"responsive-img circle", style:"max-width:120px;"%>
-        <span>Vista previa</span>
-        <%= form_for(current_client.clientprofile) do |f| %>
-        <div class="file-field input-field">
-            <div class="btn red">
-                <span>Abrir</span>
-                <input type="file">
-                <%= f.file_field :avatar, id:"files", input_html: { hidden: true }%>
-            </div>
-            <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
-            </div>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <%= button_tag("Listo",type: 'submit',remote: true, id:"btn-post", class: "modal-action modal-close waves-effect waves-green btn-flat") %>
-        <% end %>
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
-    </div>
-</div>
-<% end %>
 
 <script type="text/javascript">
     $('.modal-trigger').leanModal({
@@ -164,16 +126,4 @@
             });
         }
     });
-
-    document.getElementById("files").onchange = function () {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            // get loaded data and render thumbnail.
-            document.getElementById("image").src = e.target.result;
-        };
-
-        // read the image file as a data URL.
-        reader.readAsDataURL(this.files[0]);
-    };
 </script>
