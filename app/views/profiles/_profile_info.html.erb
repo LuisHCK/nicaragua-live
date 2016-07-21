@@ -51,8 +51,9 @@
     </div>
 </div>
 <div class="row center">
-  <div>
-    <b><i style="vertical-align: middle" class="material-icons blue-text">people</i> Redes Sociales</b>
+  <div class="center">
+    <%= icon('users',style:'font-size:2rem;') %>
+    Redes Sociales
   </div>
 <% if @profile.facebook != nil%>
     <div class="fb-like" data-href= "<%= @profile.facebook %>"

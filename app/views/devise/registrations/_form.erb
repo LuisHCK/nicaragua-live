@@ -6,7 +6,7 @@
 <ul class="collapsible popout" data-collapsible="accordion">
 <!--Campo Email-->
  <li>
-    <div class="collapsible-header"> <i class="material-icons">email</i> Correo Electrónico </div>
+    <div class="collapsible-header"> <%= icon("envelope",style:"font-size:2rem;") %> Correo Electrónico </div>
     <div class="collapsible-body">
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -19,7 +19,7 @@
  </li>
 
 <li>
-    <div class="collapsible-header"> <i class="material-icons">fingerprint</i> Contraseña </div>
+    <div class="collapsible-header"> <%= icon("key",style:"font-size:2rem;") %> Contraseña </div>
     <div class="collapsible-body">
         <p class="field">
           <%= f.label "Contraseña" %> <i>(Déjalo en blanco si no vas a cambiarla)</i>
@@ -33,10 +33,10 @@
 </li>
 
 <li>
-  <div class="collapsible-header"> <i class="material-icons">save</i> Guardar los cambios </div>
+  <div class="collapsible-header"> <%= icon("floppy-o",style:"font-size:2rem;") %> Guardar los cambios </div>
     <div class="collapsible-body">
 
-            
+
             <p class="field">
               <%= f.label "Contraseña Actual"%> <i>(Debes escribirla para poder guardar los cambios que has realizado)</i><br />
               <%= f.password_field :current_password, autocomplete: "off" %>
@@ -62,7 +62,7 @@
 </p>
 
   <!-- Modal Trigger -->
-  <a class="red waves-effect waves-light btn modal-trigger" href="#modal1"> <i class="material-icons left">delete</i> Eliminar Cuenta</a>
+  <a class="red waves-effect waves-light btn modal-trigger" href="#modal1"> <%= icon("trash",style:"font-size:2rem;") %> Eliminar Cuenta</a>
 
   <!-- Modal Structure -->
   <div id="modal1" class="modal modal-fixed-footer">
@@ -73,7 +73,7 @@
       <br>-La eliminacion es <b>irreversible.</b>
       <br>-El contenido que hayas publicado será <b>eliminado.</b>
       <br>-Las personas que te siguen <b>ya no podrán encontrar tu perfil.</b>
-      <br>Si estás de acuerdo con estas condiciones y realmente ya no deseas seguir usando nuestro servicio haz clic en <b>"Eliminar mi cuenta".</b> 
+      <br>Si estás de acuerdo con estas condiciones y realmente ya no deseas seguir usando nuestro servicio haz clic en <b>"Eliminar mi cuenta".</b>
       </p>
 
       <p>En caso que no quieras eliminar tu cuenta pero no estás conforme con nuestro servicio o has tenido algún problema, por favor ponte en contacto con nuestro equipo de desarrollo para ayudar a mejorar <b>Estelí Live </b> haciendo clic en <b>"Contactar"</b>
@@ -86,4 +86,3 @@
     </div>
 
   </div>
-

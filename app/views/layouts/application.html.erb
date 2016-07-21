@@ -7,6 +7,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 <%= csrf_meta_tags %>
+<script src="https://use.fontawesome.com/025c4aeae8.js"></script>
 <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 <meta name="google-site-verification" content="yJ5C5gpFv43Wcqxgl6z9wANka2YjJPNNP9Nt5oTreZY" />
 </head>
@@ -17,12 +18,12 @@
   <nav class="teal darken-2">
     <div class="nav-wrapper">
       <div class="row center">
-        <a href="/menus" class="col s2"><i class="material-icons icon-navbar" style="font-size:3rem;">menu</i></a>
-        <a href="/" class="col s2"><i class="material-icons icon-navbar">home</i></a>
-        <a href= "/categories" class="col s2"><i class="material-icons icon-navbar">explore</i></a>
-        <a href="/markets" class="col s2"><i class="material-icons icon-navbar">shopping_basket</i></a>
-        <a href="/events" class="col s2"><i class="material-icons icon-navbar">event<span class="badge1">1</span></i></a>
-        <a href="/search" class="col s2"><i class="material-icons icon-navbar">search</i></a>
+        <a href="/menus" class="col s2"><%= icon('bars', class:'material-icons') %></a>
+        <a href="/" class="col s2"><%= icon('home',class:'material-icons') %></a>
+        <a href= "/categories" class="col s2"><%= icon('compass', class:'material-icons') %></a>
+        <a href="/markets" class="col s2"><%= icon('shopping-basket', class:'material-icons',style:'font-size:1.6rem;') %></a>
+        <a href="/events" class="col s2"><%= icon('calendar-o', class:'material-icons',style:'font-size:1.6rem;') %></a>
+        <a href="/search" class="col s2"><%= icon('search', class:'material-icons',style:'font-size:1.6rem;') %></a>
       </div>
     </div>
   </nav>
@@ -53,7 +54,7 @@ height: 100%;
 
 <% if notice %>
   <script type="text/javascript">
-  var $toastContent = $('<span> <i class="material-icons">warning</i> <%= notice %></span>');
+  var $toastContent = $("<span> <%= icon('exclamation') %> <%= notice %></span>");
   Materialize.toast($toastContent, 8000);
   </script>
 <% end %>

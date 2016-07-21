@@ -3,7 +3,7 @@
 
         <% if client_signed_in? %>
         <%= link_to "#modalpic", class:"modal-trigger btn-floating blue", style:"position:absolute" do%>
-        <i class="material-icons">mode_edit</i>
+          <%= icon("pencil") %>
         <% end %>
         <% end %>
 
@@ -69,8 +69,8 @@
             <% @coupon_redemptions.each do |coupon| %>
             <div class="col s12 l4">
                 <div class="info-box grey lighten-4">
-                    <span class="info-box-icon cyan">
-                        <i class="material-icons white-text">star</i>
+                    <span class="info-box-icon cyan material-icons white-text">
+                        <%= icon("star") %>
                     </span>
                     <div class="info-box-content">
                         <%= coupon.coupon.code %><br>

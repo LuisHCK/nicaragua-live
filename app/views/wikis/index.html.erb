@@ -13,19 +13,22 @@
         <%= link_to "Ver más", wiki %>
       </li>
 
-      <li class="collection-item row center">
-          <a href="#" style="margin-left:5%; margin-right:5%;"><i class="material-icons icon-navbar">favorite</i></a>
-          <a href="#" style="margin-left:5%; margin-right:5%;"><i class="material-icons icon-navbar">comment</i></a>
-          <a href="#" style="margin-left:5%; margin-right:5%;"><i class="material-icons icon-navbar">share</i></a>
+      <li class="collection-item row center icon-navbar">
+          <a href="#" style="margin-left:5%; margin-right:5%;">
+          <%= icon('heart-o') %></a>
+          <a href="#" style="margin-left:5%; margin-right:5%;">
+          <%= icon('comment') %></a>
+          <a href="#" style="margin-left:5%; margin-right:5%;">
+          <%= icon('share') %></a>
       </li>
 
     </ul>
   <% end %>
 
-  <% if master_admin_signed_in? %>
+  <% if editor(current_client) %>
         <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
             <a href="<%= new_wiki_path %>" class="btn-floating btn-large red">
-              <i class="large material-icons">add</i>
+              <%= icon('plus',class:'large material-icons') %>
             </a>
         </div>
   <% end %>

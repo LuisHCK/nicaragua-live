@@ -1,56 +1,43 @@
 <div class="grey-text darken-4 container">
-  <%= form_tag(profiles_path, method: "get", id: "search-form") do %>
+    <%= form_tag(profiles_path, method: "get", id: "search-form") do %>
     <h5 class="grey-text darken-4">Buscar</h5>
     <%= text_field_tag :query, params[:query], placeholder: "Buscar...",class:"grey-text darken-4", style:"max-width: 50%;" %>
     <%= submit_tag "Buscar", class:"btn red" %>
-  <% end %>
-<p id="notice"><%= notice %></p>
+    <% end %>
+    <p id="notice"><%= notice %></p>
 
+    <h5>Categorías</h5>
 
-<h5>Categorías</h5>
-
-      <ul class="collection z-depth-1">
+    <ul class="collection z-depth-1">
         <% @categories.each do |category| %>
-		<a href="<%= category_path(category) %>" class="collection-item  blue-grey-text darken-4">
-			<i class="material-icons">
-				<%= category.icon %>
-			</i> <%= category.name %>
-
-
-		</a>
-
+        <a href="<%= category_path(category) %>" class="collection-item  blue-grey-text darken-4">
+            <%= icon(category.icon,style:'font-size:2rem;') %>
+            <%= category.name %>
+        </a>
         <% end %>
-      </ul>
-
-<% if master_admin_signed_in? %>
-  <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;">
-  	<a href="<%= new_category_path %>" class="btn-floating waves-effect btn-large red"><i class="material-icons">add</i></a>
-  </div>
-<% end %>
-
-<div>
-  <h5>Recomendados</h5>
-  <% @promoved_profiles.each do |promoved_profile| %>
-  <div class="row panel-box">
-    <div class="col s4" style="padding:1px;">
-    <%= link_to image_tag(promoved_profile.cover, class:"responsive-img"),profile_path(promoved_profile) %>
+    </ul>
+    <div>
+        <h5>Recomendados</h5>
+        <% @promoved_profiles.each do |promoved_profile| %>
+        <div class="row panel-box">
+            <div class="col s4" style="padding:1px;">
+                <%= link_to image_tag(promoved_profile.cover, class:"responsive-img"),profile_path(promoved_profile) %>
+            </div>
+            <div class="col s8">
+                <b><%= promoved_profile.name %></b>
+                <div class="star-rating" data-score=<%= promoved_profile.reviews.average(:rating) %>></div>
+                <%= promoved_profile.body %>
+            </div>
+        </div>
+        <% end %>
     </div>
-    <div class="col s8">
-    <b><%= promoved_profile.name %></b>
-      <div class="star-rating" data-score= <%= promoved_profile.reviews.average(:rating) %> >
-      </div>
-      <%= promoved_profile.body %>
-    </div>
-  </div>
-  <% end %>
-</div>
 </div>
 <script>
-  $('.star-rating').raty({
-   
-   readOnly: true,
-   score: function() {
-    return $(this).attr('data-score');
-  }
-});
+    $('.star-rating').raty({
+
+        readOnly: true,
+        score: function () {
+            return $(this).attr('data-score');
+        }
+    });
 </script>
