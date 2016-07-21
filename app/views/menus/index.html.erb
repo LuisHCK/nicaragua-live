@@ -101,13 +101,16 @@
 
 	<% if is_admin?(current_client) %>
 	<a href="<%= admin_panel_path %>" class="collection-item avatar grey-text text-darken-4">
-		<i class="material-icons circle cyan">build</i>
 		<%= icon('wrench', class:"material-icons circle pink") %>
+		<span class="title"> <b>Panel</b> </span>
+		<p>Administrar<br>
+			Funciones de Nicaragua Live
+		</p>
 	</a>
 	<% end %>
 
-	<%= link_to(destroy_user_session_path, method: :delete, class:"collection-item avatar grey-text text-darken-4") do %>
-	<%= icon('sing-out', class:"material-icons circle red") %>
+	<%= link_to(destroy_user_session_path, method: :delete, class:"collection-item avatar grey-text text-darken-4",data: {confirm: '¿Vas a Salir de Nicaragua Live?'}) do %>
+	<%= icon('sign-out', class:"material-icons circle red") %>
 		<span class="title"> <b>Cerrar Sesión</b> </span>
 	<% end %>
 
