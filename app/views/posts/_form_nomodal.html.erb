@@ -10,7 +10,7 @@
 
       <div class="file-field input-field">
       <div class="btn-large">
-        <i class="material-icons">attach_file</i>
+        <%= icon("picture-o") %>
         <input type="file" multiple>
              <%= file_field_tag "images[]", type: :file, multiple: true, input_html: { hidden: true }%>
       </div>
@@ -21,10 +21,10 @@
 
   <div class="row right">
     <%= button_tag(type: 'submit', id:"btn-post", remote: true, class: "btn blue") do %>
-     <i class="material-icons">check_circle</i>
+     <%= icon("check") %>
     <% end %>
 
-    <a href="#!" class=" modal-action modal-close btn red"><i class="material-icons">cancel</i></a>
+    <a href="#!" class=" modal-action modal-close btn red"><%= icon("ban") %></a>
 
   </div>
 

@@ -12,7 +12,7 @@
 
       <div class="file-field input-field">
       <div class="btn-large red">
-        <i class="material-icons">attach_file</i>
+        <%= icon("picture-o") %>
         <input type="file" multiple>
              <%= file_field_tag "images[]", type: :image, multiple: true, input_html: { hidden: true }%>
       </div>
@@ -31,7 +31,7 @@
       <%= icon("check") %>
     <% end %>
 
-    <a href="#!" class=" modal-action modal-close btn red"><i class="material-icons">cancel</i></a>
+    <a href="#!" class=" modal-action modal-close btn red"><%= icon("ban") %></a>
 
   </div>
 

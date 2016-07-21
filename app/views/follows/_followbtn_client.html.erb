@@ -1,11 +1,11 @@
 <% if client_signed_in? %>
   <% if current_client.follow?(profile) %>
     <%= button_to unfollow_path(profile_id: profile.id), remote: true,id:"follow", class:"btn small green", method: :delete do%>
-      <i class="material-icons">check</i>
+      <%= icon("check") %>
     <% end %>
   <% else %>
     <%= button_to follow_path(profile_id: profile.id), class:"btn small grey",  remote: true, id:"follow" do %>
-      <i class="material-icons">add_circle_outline</i>
+      <%= icon("plus") %>
     <% end %>
   <% end %>
 

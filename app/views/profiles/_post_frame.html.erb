@@ -8,11 +8,11 @@
       <% if user_signed_in? %>
           <% if current_user.id == post.profile.user_id %>
             <%= link_to post, method: :delete, data: { confirm: '¿Borrar tu publicación?' }, class:"right" do%>
-              <i class="material-icons">delete</i>
+              <%= icon("trash") %>
             <% end %>
 
             <%= link_to edit_post_path(post), class:"right" do%>
-              <i class="material-icons">mode_edit</i>
+              <%= icon("pencil-square-o") %>
             <% end %>
           <% end %>
       <% end %>
