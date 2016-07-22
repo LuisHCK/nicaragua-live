@@ -33,7 +33,7 @@ function validate_form()
  else
    return true;
 }
-
+/*Initialize tabs*/
   $(document).ready(function(){
-    $('ul.tabs').tabs('select_tab', 'tab_id');
+    $('ul.tabs').tabs();
   });
