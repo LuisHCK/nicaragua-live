@@ -11,7 +11,7 @@
 		      	<b>Hora:</b> <%= human_time(event) %> |
 		      	<b></b>
 		      </p>
-		      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+		      <a href="#!" class="secondary-content"><%= icon("star") %></a>
 		    </li>
     	<% end %>
 	</ul>
@@ -27,7 +27,7 @@
 <br><%= label_tag @event.time, "Hora del evento" %>
 <div class="timepicker flex-row">
 <div class="valign-wrapper" style="margin-left:2%;">
-  <i class="material-icons">access_time</i>
+<%= icon("clock") %>
 </div>
 
   <select class="hour form-control col-xs-1" name="event[hour]">
@@ -45,5 +45,5 @@
 	  $(document).ready(function() {
     $('select').material_select();
   });
-      
+
 </script>

@@ -10,7 +10,7 @@
 		<% markets.each do |market| %>
 		<tr>
 			<td> <%= market.title %> </td>
-			<td> <i class="material-icons"><%= market.icon %></i> </td>
+			<td> <%= icon(market.icon,style:'font-size:2rem;') %> </td>
 			<td> <%= link_to "Editar",[:edit, market], class:"btn gree" %>
 				<%= link_to 'Eliminar', market,
 				data: {confirm: '¿Estas Seguro?'}, method: :delete, remote: true, class:"btn red", id:"btn-delete" %>

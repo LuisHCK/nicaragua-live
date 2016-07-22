@@ -10,7 +10,7 @@
   <% if master_admin_signed_in? %>
         <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
             <a href="<%= edit_wiki_path %>" class="btn-floating btn-large red">
-              <i class="large material-icons">mode_edit</i>
+              <%= icon('pencil') %>
             </a>
         </div>
   <% end %>

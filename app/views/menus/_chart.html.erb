@@ -2,7 +2,7 @@
   <% @surveys.limit(1).each do |survey| %>
   <li>
 
-  <div class="collapsible-header"><i class="material-icons">assignment</i><%= survey.name %></div>
+  <div class="collapsible-header"><%= icon("tasks") %><%= survey.name %></div>
 
   <div class="collapsible-body">
     <% survey.questions.each do |question| %>
@@ -43,10 +43,10 @@
     </script>
   </canvas>
     <% end %>
-  
+
   </div>
 
   </li>
-  
-<% end %>  
+
+<% end %>
 </ul>

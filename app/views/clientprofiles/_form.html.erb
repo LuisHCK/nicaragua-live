@@ -13,10 +13,10 @@
         <% end %>
     </div>
     <% end %>
-
     <%= form_for(current_client.clientprofile) do |f| %>
     <div class="center">
-        <%= image_tag(@clientprofile.avatar, class:"circle mini-avatar",style:"max-width:120px") %>
+        <%= image_tag(@clientprofile.avatar, class:"circle mini-avatar",style:"max-width:120px") %><br>
+        <%= f.file_field(:avatar, class:"btn" ) %>
         <%= f.text_field :name, placeholder:"Escribe tu nombre (Obligatorio)", class:"materialize-textarea", length:"50" %>
     </div>
     <div class="row">
@@ -36,7 +36,7 @@
 
         <%= button_tag(type: 'submit', class: "btn blue") do %>
         Listo!
-        <i class="material-icons">check_circle</i>
+        <%= icon("check") %>
         <% end %>
 
     </div>

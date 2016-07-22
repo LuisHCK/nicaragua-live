@@ -1,7 +1,7 @@
 <%= form_for(@market) do |f| %>
   <% if @market.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@market.errors.count, "error") %> prohibited this market from being saved:</h2>
+      <h3><%= pluralize(@market.errors.count, "error") %> prohibited this market from being saved:</h3>
 
       <ul>
       <% @market.errors.full_messages.each do |message| %>
@@ -12,14 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br>
+    <%= f.label "Nombre" %><br>
     <%= f.text_field :title %>
   </div>
+
   <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
+    <%= f.label "Icono"%><br>
+    <%= f.text_field :icon %>
   </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar", class:"btn-large green" %>
+    <%= link_to "Volver", panels_path, class:"btn-large red" %>
   </div>
 <% end %>

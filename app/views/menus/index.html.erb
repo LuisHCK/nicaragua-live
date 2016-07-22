@@ -58,7 +58,7 @@
 <ul class="collection z-depth-1">
 
 	<a href= "<%= wikis_path %>" class="collection-item avatar grey-text text-darken-4">
-		<i class="material-icons circle green">location_city</i>
+		<%= icon('map-marker', class:"material-icons circle green") %>
 		<span class="title"><b>Esteli</b></span>
 		<p>Historia y cultura<br>
 			de la ciudad
@@ -66,24 +66,16 @@
 	</a>
 
 	<a href="/categories" class="collection-item avatar grey-text text-darken-4">
-		<i class="material-icons circle blue">navigation</i>
+		<%= icon('arrows', class:"material-icons circle blue") %>
 		<span class="title"><b>Explorar</b></span>
 		<p>Lugares, productos<br>
 			y servicios
 		</p>
 	</a>
 
-	<a href="/valorations" class="collection-item avatar grey-text text-darken-4">
-		<i class="material-icons circle orange">book</i>
-		<span class="title"><b>Libro de Visitas</b></span>
-		<p>Dejanos un comentario
-		</p>
-	</a>
-
-
 	<% if user_signed_in? %>
 	<a href="<%= edit_user_registration_path %>" class="collection-item avatar grey-text text-darken-4">
-		<i class="material-icons circle cyan">settings</i>
+		<%= icon('sliders', class:"material-icons circle teal") %>
 		<span class="title"> <b>Configuración</b> </span>
 		<p>Administrar<br>
 			Perfil
@@ -91,7 +83,7 @@
 	</a>
 	<!--Premium Tools-->
 	<a href="<%= tools_path %>" class="collection-item avatar grey-text text-darken-4">
-		<i class="material-icons circle pink">build</i>
+		<%= icon('cogs', class:"material-icons circle pink") %>
 		<span class="title"> <b>Herramientas</b> </span>
 		<p>Utilidades Avanzadas<br>
 			Encuestas, estadísticas, etc.
@@ -100,7 +92,7 @@
 
 	<% elsif client_signed_in? %>
 	<a href="<%= edit_clientprofile_path(current_client.clientprofile) %>" class="collection-item avatar grey-text text-darken-4">
-		<i class="material-icons circle cyan">build</i>
+		<%= icon('sliders', class:"material-icons circle teal") %>
 		<span class="title"> <b>Configuración</b> </span>
 		<p>Administrar<br>
 			Perfil
@@ -109,19 +101,22 @@
 
 	<% if is_admin?(current_client) %>
 	<a href="<%= admin_panel_path %>" class="collection-item avatar grey-text text-darken-4">
-		<i class="material-icons circle cyan">build</i>
-		<span class="title"> <b>Panel Administrativo</b> </span>
+		<%= icon('wrench', class:"material-icons circle pink") %>
+		<span class="title"> <b>Panel</b> </span>
+		<p>Administrar<br>
+			Funciones de Nicaragua Live
+		</p>
 	</a>
 	<% end %>
 
-	<%= link_to(destroy_user_session_path, method: :delete, class:"collection-item avatar grey-text text-darken-4") do %>
-	<i class="material-icons circle red">build</i>
+	<%= link_to(destroy_user_session_path, method: :delete, class:"collection-item avatar grey-text text-darken-4",data: {confirm: '¿Vas a Salir de Nicaragua Live?'}) do %>
+	<%= icon('sign-out', class:"material-icons circle red") %>
 		<span class="title"> <b>Cerrar Sesión</b> </span>
 	<% end %>
 
 	<% else %>
 	<a href= "<%= client_session_path %>" class="collection-item avatar grey-text text-darken-4">
-		<i class="material-icons circle red">verified_user</i>
+		<%= icon('sign-in', class:"material-icons circle pink") %>
 		<span class="title"><b>Iniciar Seción</b></span>
 
 	</a>

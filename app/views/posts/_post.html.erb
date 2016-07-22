@@ -6,11 +6,11 @@
       <% if user_signed_in? %>
           <% if current_user.id == post.profile.user_id %>
             <%= link_to post, method: :delete, data: { confirm: '¿Borrar tu publicación?' }, class:"right" do%>
-              <i class="material-icons">delete</i>
+              <%= icon("trash") %>
             <% end %>
 
             <%= link_to edit_post_path(post), class:"right" do%>
-              <i class="material-icons">mode_edit</i>
+              <%= icon("pencil") %>
             <% end %>
           <% end %>
       <% end %>
@@ -52,11 +52,11 @@
           <% end %>
           <div class="col s4 center">
             <%= link_to post do %>
-              <i class="material-icons like-text" style="font-size:2.5rem">forum</i>
+              <%= icon('comments',style:'font-size:2.5rem;') %>
             <% end %>
           </div>
           <div class="col s4 center">
-            <i class="material-icons like-text" style="font-size:2.5rem">share</i>
+            <%= icon('share-alt',style:'font-size:2.5rem;') %>
           </div>
         </div>
    </ul>

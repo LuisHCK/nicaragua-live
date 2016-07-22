@@ -50,7 +50,7 @@
 </p>
   <div class="file-field input-field">
     <div class="btn-large red">
-      <i class="material-icons">attach_file</i>
+    <%= icon("upload") %>
       <input type="file" multiple accept='image/*'>
            <%= file_field_tag "images[]", type: :image, multiple: true, input_html: { hidden: true }%>
     </div>
@@ -75,7 +75,7 @@
   </div>
   <div class="actions">
     <%= button_tag(type: 'submit', id:"submit_btn", class: "btn blue") do %>
-     <i class="material-icons">check_circle</i>
+     <%= icon("check") %>
     <% end %>
     <p class="grey-text lighten-4">
       (*)Estos campos son obligatorios.

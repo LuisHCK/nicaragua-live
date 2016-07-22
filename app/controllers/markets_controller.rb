@@ -48,7 +48,7 @@ class MarketsController < ApplicationController
   def update
     respond_to do |format|
       if @market.update(market_params)
-        format.html { redirect_to @market, notice: 'Market was successfully updated.' }
+        format.html { redirect_to admin_panel_path, notice: 'Market was successfully updated.' }
         format.json { render :show, status: :ok, location: @market }
         format.js
       else

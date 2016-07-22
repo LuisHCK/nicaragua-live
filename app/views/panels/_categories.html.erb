@@ -13,7 +13,7 @@
   <% @categories.each do |category| %>
     <tr>
         <td> <%= category.name %> </td>
-        <td> <i class="material-icons"><%= category.icon %></i> </td>
+        <td> <%= icon(category.icon) %> </td>
         <td> <%= link_to "Editar",[:edit, category], class:"btn red" %> </td>
     </tr>
     <% end %>

@@ -1,11 +1,11 @@
 <div class="container">
 <!--Tarjetas-->
+<h5>Recomendados</h5>
+  <%= render 'promo_profiles' %>
   <% if client_signed_in? or user_signed_in? %>
   <h5>Inicio</h5>
     <%= render "posts" %>
     <% else %>
-    <h5>Recomendados</h5>
-      <%= render 'promo_profiles' %>
     <h5>Tendencias</h5>
     <%= render @posts.sort_by { |post| post.hearts.count }.reverse %>
 <% end %>
@@ -22,7 +22,7 @@
       <div class="z-depth-1">
         <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
           <a href="#modal1" class="modal-trigger btn-floating btn-large red">
-            <i class="large material-icons">mode_edit</i>
+            <%= icon('pencil') %>
 
         </a>
       </div>

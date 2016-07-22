@@ -16,7 +16,7 @@
         <%= link_to "editar", edit_profile_review_path(@profile,rev) %>
       <% end %>
       <% elsif  client_signed_in? %>
-      <a class="modal-trigger btn-floating blue right" href="#review-modal"><i class="material-icons">star</i></a>
+      <a class="modal-trigger btn-floating blue right" href="#review-modal"><%= icon("star") %></a>
 
     <% end %>
 
@@ -51,8 +51,9 @@
     </div>
 </div>
 <div class="row center">
-  <div>
-    <b><i style="vertical-align: middle" class="material-icons blue-text">people</i> Redes Sociales</b>
+  <div class="center">
+    <%= icon('users',style:'font-size:2rem;') %>
+    Redes Sociales
   </div>
 <% if @profile.facebook != nil%>
     <div class="fb-like" data-href= "<%= @profile.facebook %>"
