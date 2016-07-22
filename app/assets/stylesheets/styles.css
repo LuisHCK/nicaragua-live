@@ -15,14 +15,10 @@
 .material-icons {
   font-size: 2rem;
   line-height: 1
-  -webkit-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
 }
 .post-icons {
   font-size: 2.5rem;
   line-height: 1
-  -webkit-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
 }
 .avatar_profile{
   vertical-align: middle;

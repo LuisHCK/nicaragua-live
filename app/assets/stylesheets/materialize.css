@@ -3420,14 +3420,7 @@ input[type=range] + .thumb {
   padding: 0 !important;
 }
 
-/* This is needed for some mobile phones to display the Google Icon font properly
-.material-icons {
-  text-rendering: optimizeLegibility;
-  -webkit-font-feature-settings: 'liga';
-     -moz-font-feature-settings: 'liga';
-          font-feature-settings: 'liga';
-}
-*/
+
 .container {
   margin: 0 auto;
   max-width: 1280px;
