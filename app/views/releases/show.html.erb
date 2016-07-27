@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Version:</strong>
+  <%= @release.version %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @release.description %>
+</p>
+
+<p>
+  <strong>Changelog:</strong>
+  <%= @release.changelog %>
+</p>
+
+<p>
+  <strong>Dwnl link:</strong>
+  <%= @release.dwnl_link %>
+</p>
+
+<p>
+  <strong>Dwnl count:</strong>
+  <%= @release.dwnl_count %>
+</p>
+
+<p>
+  <strong>Client:</strong>
+  <%= @release.client %>
+</p>
+
+<%= link_to 'Edit', edit_release_path(@release) %> |
+<%= link_to 'Back', releases_path %>

@@ -344,6 +344,19 @@ ActiveRecord::Schema.define(version: 201606222219123) do
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
   add_index "profiles", ["user_id"], name: "user_id", using: :btree
 
+  create_table "releases", force: :cascade do |t|
+    t.decimal  "version",                   precision: 10
+    t.text     "description", limit: 65535
+    t.text     "changelog",   limit: 65535
+    t.string   "dwnl_link",   limit: 191
+    t.integer  "dwnl_count",  limit: 4
+    t.integer  "client_id",   limit: 4
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
+  add_index "releases", ["client_id"], name: "index_releases_on_client_id", using: :btree
+
   create_table "reviews", force: :cascade do |t|
     t.integer  "rating",     limit: 4
     t.text     "comment",    limit: 65535
@@ -473,6 +486,7 @@ ActiveRecord::Schema.define(version: 201606222219123) do
   add_foreign_key "posts", "profiles"
   add_foreign_key "profiles", "categories", on_delete: :cascade
   add_foreign_key "profiles", "users", on_delete: :cascade
+  add_foreign_key "releases", "clients"
   add_foreign_key "reviews", "clients"
   add_foreign_key "reviews", "profiles"
   add_foreign_key "survey_surveys", "users"

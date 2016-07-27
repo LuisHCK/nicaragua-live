@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  version: 
+  description: MyText
+  changelog: MyText
+  dwnl_link: MyString
+  dwnl_count: 1
+  client_id: 
+
+two:
+  version: 
+  description: MyText
+  changelog: MyText
+  dwnl_link: MyString
+  dwnl_count: 1
+  client_id: 
