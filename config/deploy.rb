@@ -1,5 +1,5 @@
 # Change these
-server '104.236.199.49',user: 'deploy', roles: %w{web app db}, port: 22, roles: [:web, :app, :db], primary: true
+server '104.236.199.49',user: 'deploy', port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@bitbucket.org:luishck/liveapp.git'
 set :application,     'liveapp'
