@@ -1,34 +1,17 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Version:</strong>
-  <%= @release.version %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @release.description %>
-</p>
-
-<p>
-  <strong>Changelog:</strong>
-  <%= @release.changelog %>
-</p>
-
-<p>
-  <strong>Dwnl link:</strong>
-  <%= @release.dwnl_link %>
-</p>
-
-<p>
-  <strong>Dwnl count:</strong>
-  <%= @release.dwnl_count %>
-</p>
-
-<p>
-  <strong>Client:</strong>
-  <%= @release.client %>
-</p>
-
-<%= link_to 'Edit', edit_release_path(@release) %> |
-<%= link_to 'Back', releases_path %>
+<div class="container">
+<div class="center">
+  <h2>Lista de cambios</h2>
+  <h4>Versión: <%= @release.version  %></h4>
+  <p>
+    <%= human_date(@release.created_at) %>
+  </p>
+</div>
+  <br>
+  <div class="panel-box">
+    <div class="box-header">
+      <%= @release.description %>
+    </div>
+    <%= markdown(@release.changelog) %>
+  </div>
+  <%= link_to "Volver", releases_path %>
+</div>

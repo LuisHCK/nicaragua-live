@@ -322,3 +322,14 @@ hl{
 .icon-navbar{
   font-size: 2rem;
 }
+/*app download*/
+.app-banner{
+  max-height: 200px;
+}
+.phone-banner{
+  max-height: 450px;
+}
+.logo-banner{
+  max-height: 85px;
+  padding-right: 2%;
+}

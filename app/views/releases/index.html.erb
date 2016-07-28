@@ -1,5 +1,51 @@
-<div class="container">
-  <div class="center">
-    <h4>Descarga la App Oficial</h4>
+<div style="margin-top:5%;">
+  <div class="row white-text">
+      <div class="col s12 m4 s4 center">
+          <%= image_tag("android_phone.png", class:"responsive-img phone-banner", lazy:true) %>
+      </div>
+      <div class="col s12 m6 s6" style="vertical-align: middle;">
+          <%= image_tag("nica-logo.gif", class:"logo-banner left", lazy:true) %>
+          <h4 class="">
+              <b>Nicaragua</b>
+              Live</h4>
+          <br>
+          <p class="center flow-text">
+              La forma mas fácil de encontrar las mejores ofertas en Nicaragua.
+          </p>
+
+          <br>
+          <div class="center flow-text">
+            <p>
+              Descubre, comenta, conecta, aporta, vende, compra. Todo desde el mismo sitio.
+
+              Descarga nuestra App y disfruta de todo el contenido de <b>Nicaragua Live</b> estes donde estes.
+            </p>
+              <%= link_to download_link,class:"btn-large green" do %>
+                <%= icon('cloud-download', class:"left") %>*Descargar
+              <% end %>
+          </div>
+          <br>
+          <blockquote>
+            <ul>
+              <li><%= icon('check') %>Disponible de momento solo para dispositivos Android</li>
+              <li><%= icon('check') %>Requiere Android 2.3 o superior</li>
+              <li><%= icon('check') %>Conección a Internet</li>
+              <li><%= icon('check') %>3mb de espacio disponible</li>
+            </ul>
+          </blockquote>
+          <div class="center">
+            <%= link_to "Lista de cambios", link_to_last_release %>
+          </div>
+      </div>
   </div>
 </div>
+<style media="screen">
+html {
+  background-image: url("https://3.bp.blogspot.com/-MHypl1PAQpQ/V5hHaRWhp3I/AAAAAAAACCQ/ogA9rHt3D4oNcM0RoB5p842Zv8O7wxojQCLcB/s1600/Woman-using-iPhone.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  left: 0;
+  right: 0;
+  background-position: center;
+}
+</style>

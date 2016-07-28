@@ -1,4 +1,5 @@
 class ReleasesController < ApplicationController
+  before_action :authenticate_client!, only:[:new, :update, :destroy]
   before_action :set_release, only: [:show, :edit, :update, :destroy]
 
   # GET /releases
@@ -14,17 +15,26 @@ class ReleasesController < ApplicationController
 
   # GET /releases/new
   def new
-    @release = Release.new
+    unless current_client.role == 'admin'
+      redirect_to root_path
+    else
+      @release = Release.new
+    end
   end
 
   # GET /releases/1/edit
   def edit
+    unless current_client.role == 'admin'
+      redirect_to root_path
+    else
+      set_release
+    end
   end
 
   # POST /releases
   # POST /releases.json
   def create
-    @release = Release.new(release_params)
+    @release = current_client.releases.new(release_params)
 
     respond_to do |format|
       if @release.save
@@ -54,11 +64,16 @@ class ReleasesController < ApplicationController
   # DELETE /releases/1
   # DELETE /releases/1.json
   def destroy
-    @release.destroy
-    respond_to do |format|
-      format.html { redirect_to releases_url, notice: 'Release was successfully destroyed.' }
-      format.json { head :no_content }
+    unless current_client.role == 'admin'
+      redirect_to root_path
+    else
+      @release.destroy
+      respond_to do |format|
+        format.html { redirect_to releases_url, notice: 'Release was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
+
   end
 
   private
