@@ -20,10 +20,10 @@ class Client < ActiveRecord::Base
   has_many :reviews, dependent: :destroy
   has_many :valorations
   has_many :coupon_redemptions
+  has_many :releases
 
   has_many :follows
   has_many :profiles, through: :follows, dependent: :destroy
-
 
   # creates a new heart row with post_id and user_id
   def heart!(post)
