@@ -333,3 +333,27 @@ hl{
   max-height: 85px;
   padding-right: 2%;
 }
+
+/*Crop banner coupons*/
+.crop {
+    width: 100%;
+    height: 20%;
+    overflow: hidden;
+}
+
+.crop img {
+    width: 100%;
+    height: 300px;
+}
+.tab-offer{
+  height: 100px;
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+}
+.tab-offer text{
+  height: 100px;
+  line-height: 100px;
+  white-space: nowrap;
+  font-size: 24px;
+}

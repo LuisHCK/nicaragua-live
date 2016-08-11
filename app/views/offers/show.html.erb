@@ -1,4 +1,27 @@
-<p id="notice"><%= notice %></p>
+<div  class="crop">
+	<%= image_tag(@offer.image, class:"responsive-img", lazy: true ) %>
+</div>
+	<div class="center">
+		<h4><%= @offer.titulo %></h4>
+	</div>
+	<div class="row">
+		<div class="col s6 tab-offer  green accent-4">
+			<text>
+				<%= icon("heart") %> 1
+			</text>
+		</div>
+		<div class="col s6 tab-offer blue darken-3">
+			<text>
+				<%= icon("bookmark") %>
+			</text>
+		</div>
+	</div>
+	<div class="container">
+		<div class="center">
+			<%= @offer.descripcion %>
+		</div>
 
-<%= link_to 'Edit', edit_offer_path(@offer) %> |
-<%= link_to 'Back', offers_path %>
+		<div>
+			
+		</div>
+	</div>
