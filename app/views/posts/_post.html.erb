@@ -3,17 +3,11 @@
       <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= post.profile.avatar.url(:thumb) %>" alt="" class="circle responsive-img">
       <b><%= link_to post.profile.name, post.profile %></b>
 
-      <% if user_signed_in? %>
-          <% if current_user.id == post.profile.user_id %>
-            <%= link_to post, method: :delete, data: { confirm: '¿Borrar tu publicación?' }, class:"right" do%>
-              <%= icon("trash") %>
-            <% end %>
-
-            <%= link_to edit_post_path(post), class:"right" do%>
-              <%= icon("pencil") %>
-            <% end %>
-          <% end %>
-      <% end %>
+      <!--Acciones para los posts-->
+      <div class="right actions-post">
+        <%= post_edit(post) %>
+        <%= post_delete(post) %>
+      </div>
 
     </li>
 
@@ -35,21 +29,14 @@
           <% end %>
       <% end %>
 
-      <% if post.video.present? || post.video =! ""%>
-          <% if post.pictures.count < 1 %>
-            <%= youtube_video post.video %>
-            <% else %>
-            Ver video: <a href="<%= post.video%>"><%= post.video %></a>
-          <% end %>
-      <% end %>
+      <%= show_video(post) %>
 
     </li>
 
       <div class="row" style="margin-bottom: 6px;">
         <%= div_for(post, class: "col s4 center") do %>
             <%= render partial: "hearts/button", locals: {post: post} %>
-            <%= show_likes post %>
-          <% end %>
+        <% end %>
           <div class="col s4 center">
             <%= link_to post do %>
               <%= icon('comments',style:'font-size:2.5rem;') %>

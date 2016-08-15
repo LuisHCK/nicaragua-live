@@ -11,6 +11,14 @@
 </div>
 
 <div id="tab1" class="col s12 container">
+  <br>
+  Publicación destacada
+  <div class="card-panel grey lighten-5">
+    <%= icon('star', class:"left yellow-text") %>
+    <br>
+      <%= render partial: "posts/post",locals:{post: @pinned} %>
+  </div>
+
   <%= render "post_frame" %>
 </div>
 

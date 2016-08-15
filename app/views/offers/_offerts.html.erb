@@ -1,23 +1,23 @@
   
 <% if editable?(@profile) %>
-  <%= icon("pencil-square-o") %>
+<%= icon("pencil-square-o") %>
 <% end %>
-  <% @offers.each do  |offer | %>
-      <div  class="card row z-depth-1">
-        <div class="col s5">
-          <%= link_to image_tag(offer.image, class:"responsive-img"), offer %>
-        </div>
-        <div class="col s7">
-          <b><%= offer.titulo %></b> <br>
-          <%= offer.descripcion.first(100) %>...<br>
-          <b>Precio: </b>
-          <% if offer.precio == 'cordoba' %>
-            C$
-          <% else %>
-            $
-            <% end %>
-                <%= offer.precio %>
-                <br>
-        </div>
-      </div>
-  <% end %>
+<% @offers.each do  |offer | %>
+<div  class="card row z-depth-1">
+  <div class="col s5">
+    <%= link_to image_tag(offer.image, class:"responsive-img"), offer %>
+  </div>
+  <div class="col s7">
+    <b><%= offer.titulo %></b> <br>
+    <%= offer.descripcion.first(100) %>...<br>
+      <b>Precio: </b>
+    <% if offer.precio == 'cordoba' %>
+      C$
+    <% else %>
+      $
+    <% end %>
+    <%= offer.precio %>
+    <br>
+  </div>
+</div>
+<% end %>

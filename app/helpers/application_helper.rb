@@ -122,4 +122,26 @@ def icon(icon, text = nil, html_options = {})
   html << ' ' << text.to_s unless text.blank?
   html
 end
+
+  def post_delete(post)
+    if user_signed_in?
+      if current_user.id == post.profile.user_id
+        link_to post_path(post), method: :delete, data: { confirm: '¿Estás seguro de borrar esta publicación?' } do
+        icon('trash-o red-text')
+    end
+      end
+    end
+  end
+
+  #buttons fror post
+  def post_edit(post)
+    if user_signed_in?
+      if current_user.id == post.profile.user_id
+        return link_to edit_post_path(post) do
+           icon('pencil-square-o') 
+         end
+     end
+  end
+end
+
 end

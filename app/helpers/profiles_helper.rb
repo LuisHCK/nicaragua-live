@@ -10,5 +10,4 @@ module ProfilesHelper
 			end
 		end
 	end
-
 end

@@ -23,6 +23,7 @@ def index
       @review = Review.new
       @offers = Offer.where(profile_id: @profile.id)
       @reviews = Review.where(profile_id: @profile.id).order("created_at DESC")
+      @pinned = Post.where(pin = 1).first
 
       if @reviews.blank? || @reviews.nil?
         @avg_review = 0
