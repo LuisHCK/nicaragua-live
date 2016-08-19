@@ -3,32 +3,32 @@ module HeartsHelper
 		if user_signed_in?
 
 			if current_user.heart?(post)
-				return button_to unheart_path(post_id: post.id), remote: true, method: :delete, class:"col s4 btn-flat" do
+				return button_to unheart_path(post_id: post.id), remote: true, method: :delete, class:"btn-link" do
 
-					icon('heart',class:'red-text', style:'font-size:2.5rem;')
-
+					concat icon('heart',class:'red-text', style:'font-size:2rem;')
+					concat content_tag(:span, post.hearts.count,class:'label label-info')
 				end
 
 			else
 
-				return button_to heart_path(post_id: post.id), remote: true, class:"col s4 btn-flat" do
-					icon('heart-o',style:'font-size:2.5rem')
-
+				return button_to heart_path(post_id: post.id), remote: true, class:"btn-link" do
+					icon('heart-o',style:'font-size:2rem')
+					content_tag(:span, post.hearts.count,class:'label label-info')
 				end
 			end
 
 		elsif client_signed_in?
 
 			if current_client.heart?(post)
-				return button_to unheart_path(post_id: post.id), remote: true, method: :delete, class:"btn-flat" do
-
-					icon('heart',class:'red-text', style:'font-size:2.5rem;')
-
+				return button_to unheart_path(post_id: post.id), remote: true, method: :delete, class:"btn-link" do
+					concat icon('heart',class:'red-text', style:'font-size:2rem;')
+					concat content_tag(:span, post.hearts.count,class:'label label-info')
 				end
 			else
 
-				return button_to heart_path(post_id: post.id), remote: true, class:"btn-flat" do
-					icon('heart-o',style:'font-size:2.5rem')
+				return button_to heart_path(post_id: post.id), remote: true, class:"btn-link" do
+					concat icon('heart-o',style:'font-size:2rem')
+					concat content_tag(:span, post.hearts.count,class:'label label-info')
 				end
 			end
 		end
@@ -36,9 +36,9 @@ module HeartsHelper
 		if client_signed_in? or user_signed_in?
 		else
 			if post.hearts.count > 0
-				icon('heart',class:'red-text', style:'font-size:2.5rem;')
+				icon('heart',class:'red-text', style:'font-size:2rem;')
 			else
-				icon('heart-o',style:'font-size:2.5rem')
+				icon('heart-o',style:'font-size:2rem')
 			end
 		end
 

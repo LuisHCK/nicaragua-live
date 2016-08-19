@@ -1,51 +1,49 @@
-<div class="container">
+<div class="">
   <%= render "profile_info" %>
 </div>
 
-<div class="col s12">
-  <ul class="tabs blue-text">
-    <li class="tab col s3"><a href="#tab1">Publicaciones</a></li>
-    <li class="tab col s3"><a href="#tab2"><%= @profile.offer_section_name %></a></li>
-    <li class="tab col s3"><a href="#tab3">Galería</a></li>
-  </ul>
-</div>
 
-<div id="tab1" class="col s12 container">
-  <br>
-  Publicación destacada
-  <div class="card-panel grey lighten-5">
-    <%= icon('star', class:"left yellow-text") %>
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active container" id="tab1">
     <br>
+    Publicación destacada
+    <div class="card-panel grey lighten-5">
+      <%= icon('star', class:"left yellow-text") %>
+      <br>
       <%= render partial: "posts/post",locals:{post: @pinned} %>
-  </div>
-
-  <%= render "post_frame" %>
-</div>
-
-<div id="tab2" class="col s12 container">
-  <% if user_signed_in? %>
-  <% if current_user.id == @profile.user_id %><br>
-  <%= link_to "Publicar Oferta", new_offer_path, class:"btn teal right" %><br>
-  <% end %>
-  <% end %>
-
-  <%= render "offers/offerts" %>
-</div>
-
-<div id="tab3" class="col s12">
-  <div class="row">
-    <% @profile.posts.order("created_at DESC").each do |post| %>
-    <% unless post.pictures.empty? %>
-    <% post.pictures.each do |pic| %>
-    <div class="col s6">
-      <%= image_tag(pic.image, class:"responsive-img", lazy: true) %>
     </div>
-    <% end %>
-    <% end %>
-    <% end %>
+
+    <%= render "post_frame" %>
   </div>
 
+  <div role="tabpanel" class="tab-pane active container" id="tab2">
+    <% if user_signed_in? %>
+    <% if current_user.id == @profile.user_id %><br>
+    <%= link_to "Publicar Oferta", new_offer_path, class:"btn teal right" %><br>
+    <% end %>
+    <% end %>
+
+    <%= render @offers%>
+  </div>
+
+  <div role="tabpanel" class="tab-pane active container" id="tab3">
+    <div class="row">
+      <% @profile.posts.order("created_at DESC").each do |post| %>
+      <% unless post.pictures.empty? %>
+      <% post.pictures.each do |pic| %>
+      <div class="col-xs-6 col-md-4">
+        <a class="thumbnail">
+          <%= image_tag(pic.image, class:"responsive-img", lazy: true) %>
+        </a>
+      </div>
+      <% end %>
+      <% end %>
+      <% end %>
+    </div>
+
+  </div>
 </div>
+
 <% if user_signed_in? && current_user.id == @profile.user_id %>
 <div class="z-depth-1">
   <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
@@ -62,9 +60,9 @@
 
 
   <script>
-  $("img.lazy").lazyload({
-    effect : "fadeIn"
-  });
+    $("img.lazy").lazyload({
+      effect : "fadeIn"
+    });
 
     $('.modal-trigger').leanModal({
     dismissible: true, // Modal can be dismissed by clicking outside of the modal
@@ -79,4 +77,8 @@
         return $(this).attr('data-score');
       }
     });
+    $('#myTabs a').click(function (e) {
+      e.preventDefault()
+      $(this).tab('show')
+    })
   </script>

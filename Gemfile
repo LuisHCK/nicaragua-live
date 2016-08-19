@@ -51,6 +51,10 @@ group :development do
   gem 'mysql2', '>= 0.3.13', '< 0.5'
 end
 
+#Migrate to bootstrap 3
+gem 'bootstrap-sass'
+
+
 group :production do
 	gem 'rails_12factor'
 	gem 'pg'

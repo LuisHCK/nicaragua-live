@@ -4,51 +4,19 @@
   <%= render 'promo_profiles' %>
   <% if client_signed_in? or user_signed_in? %>
   <h5>Inicio</h5>
-    <%= render "posts" %>
+    <%= render @posts %>
     <% else %>
     <h5>Tendencias</h5>
     <%= render @posts.sort_by { |post| post.hearts.count }.reverse %>
 <% end %>
 
- <ul class="pagination">
+<div class="center">
+ <ul class="pagination center">
   <div class="apple_pagination">
-      <%= will_paginate @posts, container: false %>
-    </div>
+    <%= will_paginate @posts, container: false %>
+  </div>
 </ul>
+</div>
 
-
-    </div>
-    <% if user_signed_in? %>
-      <div class="z-depth-1">
-        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-          <a href="#modal1" class="modal-trigger btn-floating btn-large red">
-            <%= icon('pencil') %>
-
-        </a>
-      </div>
-    <% end %>
-
-    <%= render "posts/form" %>
-
-<script type="text/javascript">
-$('.modal-trigger').leanModal({
-    dismissible: true,
-    opacity: 0.5,
-    in_duration: 300,
-    out_duration: 200,
-    ready: function() {
-        if($(".lean-overlay").length > 1) {
-            $(".lean-overlay:not(:first)").each(function() {
-                $(this).remove();
-            });
-        }
-    },
-    complete: function() {
-        $(".lean-overlay").each(function() {
-            $(this).remove();
-        });
-    }
-});
-</script>
 
 </div>

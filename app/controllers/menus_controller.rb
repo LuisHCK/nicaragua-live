@@ -31,11 +31,16 @@ class MenusController < ApplicationController
 					@profile = Profile.new
 			#search profiles for edit
 			if params[:query].present?
-				@search_profiles = Profile.search(params[:query], page: params[:page], per_page: 10)
+				#Profile.search(params[:query], page: params[:page], per_page: 10)
 			end
 
 		else
 			redirect_to root_path
 		end
+	end
+
+	def search
+		@search = Searchkick.search(params[:query], page: params[:page], per_page: 10, index_name: [Offer,Profile])
+		@search2 = Offer.search(params[:query], page: params[:page], per_page: 10)
 	end
 end
