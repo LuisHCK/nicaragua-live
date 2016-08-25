@@ -1,0 +1,7 @@
+<div class="container">
+<%= link_to "Crear nueva tarea", new_todo_path, class:"btn btn-primary pull-right" %>
+<h3>Lista de Pendientes</h3>
+  <div class="row">
+  	<%= render @todos %>
+  </div>
+</div>

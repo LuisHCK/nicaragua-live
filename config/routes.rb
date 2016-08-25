@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :todos
   resources :releases
   resources :cinemas
   resources :movies
@@ -53,6 +54,10 @@ Rails.application.routes.draw do
 
   match 'redeem', to: 'coupon_redemptions#create',  via: :post
   match 'exchange', to: 'coupon_redemptions#update',  via: :patch
+
+  match 'close_todo', to: 'todos#close', via: :patch
+  match 'open_todo', to: 'todos#close', via: :patch
+
 
   match 'bienvenido', to: 'menus#user_welcome', via: :get
 

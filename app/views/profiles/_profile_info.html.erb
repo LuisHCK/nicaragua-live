@@ -5,7 +5,8 @@
   <div class="row panel">
     <div class="col-md-4 bg_blur" style="    background-image:url('<%= @profile.cover.url() %>');
       ">
-      <a href="#" class="follow_btn hidden-xs">Follow</a>
+      <!--a href="#" class="follow_btn hidden-xs">Follow</a-->
+      <%= render partial:'/follows/followbtn_client', locals:{profile: @profile} %>
     </div>
     <div class="col-md-8  col-xs-12">
       <%= image_tag(@profile.cover, class:"img-thumbnail picture hidden-xs") %>

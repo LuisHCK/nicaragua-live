@@ -1,6 +1,6 @@
 <div class="container">
-    <ul class="collection z-depth-1">
-      <li class="collection-item">
+    <div class="panel panel-default">
+      <div class="panel-heading">
 
         <!--Show pictures-->
         <% if @item.pictures.count > 1 %>
@@ -18,9 +18,9 @@
         <% end %>
         <!--Show pictures-->
 
-      </li>
-      <li class="collection-item">
-        <table>
+      </div>
+      <div class="panel-body">
+        <table class="table">
           <thead>
             <tr>
                 <th data-field="id" class="center">Categoria</th>
@@ -46,7 +46,7 @@
             </td>
           </tbody>
         </table>
-        <h4 class="center"><%= @item.titulo %></h4>
+        <div class="page-header"><h2 class="center"><%= @item.titulo %></h2></div>
         <p>
           <b>Descripción:</b>
           <%= markdown(@item.descripcion) %>
@@ -60,9 +60,9 @@
           <b>Teléfono: </b><%= @item.telefono %><br>
           <b>Email: </b><%= @item.email %>
         </p>
-      </li>
-    </ul>
+      </div>
+    </div>
     <% if client_signed_in? && @item.client_id = current_client.id %>
-      <%= link_to "Editar", edit_item_path, class:"btn blue" %>
+      <%= link_to "Editar", edit_item_path, class:"btn btn-warning" %>
     <% end %>
 </div>

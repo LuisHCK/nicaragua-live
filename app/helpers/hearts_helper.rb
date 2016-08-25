@@ -36,7 +36,8 @@ module HeartsHelper
 		if client_signed_in? or user_signed_in?
 		else
 			if post.hearts.count > 0
-				icon('heart',class:'red-text', style:'font-size:2rem;')
+				concat icon('heart',class:'red-text', style:'font-size:2rem;')
+				content_tag(:span, post.hearts.count,class:'label label-info')
 			else
 				icon('heart-o',style:'font-size:2rem')
 			end

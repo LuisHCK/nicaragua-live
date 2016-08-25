@@ -1,4 +1,3 @@
-  <li class="collection-item">
     <div class="row">
       <% if client_signed_in? or user_signed_in? %>
       <%= render '/comments/form' %>
@@ -8,22 +7,5 @@
     </div>
     <b> <%= @post.comments.count %> Comentarios</b>
     <% @post.comments.each do |comment| %>
-    <div class="collection z-depth-1">
-      <div class="collection-item">
-        <% if comment.client_id <=> nil %>
-          <%= avatar_user(comment.user) %>
-        <b><%= link_to_user(comment.user) %></b>
-        <% elsif comment.user_id <=> nil %>
-        <%= avatar_client(comment.client) %>
-        <b><%= link_to_client(comment.client) %></b>
-        <% end %>
-          <%= delete_comment(comment) %>
-      </div>
-      <div class="collection-item">
-        <p>
-          <%= comment.body %>
-        </p>
-      </div>
-    </div>
+      <%= render partial:'/comments/comments', locals:{comment: comment} %>
     <% end %>
-  </li>

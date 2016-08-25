@@ -4,7 +4,7 @@
 
 
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane active container" id="tab1">
+<div role="tabpanel" class="tab-pane active container" style="max-width:700px;" id="tab1">
     <br>
     Publicación destacada
     <div class="card-panel grey lighten-5">
@@ -61,16 +61,10 @@
 
   <script>
     $("img.lazy").lazyload({
-      effect : "fadeIn"
+      effect : "fadeIn",
+      treshold: 100
     });
 
-    $('.modal-trigger').leanModal({
-    dismissible: true, // Modal can be dismissed by clicking outside of the modal
-    opacity: .5, // Opacity of modal background
-    in_duration: 300, // Transition in duration
-    out_duration: 200, // Transition out duration
-  }
-  );
     $('.star-rating').raty({
       readOnly: true,
       score: function() {

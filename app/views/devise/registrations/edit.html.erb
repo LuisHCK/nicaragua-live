@@ -1,38 +1,19 @@
+<div>
 
-      <ul class="tabs tab-demo z-depth-1">
-        <li class="tab col s3"><a href="#profile">Perfil</a></li>
-        <li class="tab col s3"><a href="#user">Cuenta</a></li>
-      </ul>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Perfil</a></li>
+    <li role="presentation"><a href="#user" aria-controls="user" role="tab" data-toggle="tab">Acceso</a></li>
+  </ul>
 
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active container" id="profile">
+      <%= render '/profiles/form' %>
+    </div>
+    <div role="tabpanel" class="tab-pane fade container" id="user">
+      <%= render '/devise/registrations/form' %>
+    </div>
+    </div>
 
-<div class="container">
-
-<p id="notice"><%= notice %></p>
-  <% if user_signed_in? %>
-    <div id="profile" class="col s6"> <%= render "/profiles/form" %> </div>
-    <div id="user" class="col s6"> <%= render "/devise/registrations/form" %> </div>
-  <% elsif client_signed_in? %>
-    <div id="profile" class="col s6"> <%= render "/clientprofiles/form" %> </div>
-  <% end %>
 </div>
-
-<script type="text/javascript">
-$('.modal-trigger').leanModal({
-  dismissible: true,
-  opacity: 0.5,
-  in_duration: 300,
-  out_duration: 200,
-  ready: function() {
-      if($(".lean-overlay").length > 1) {
-          $(".lean-overlay:not(:first)").each(function() {
-              $(this).remove();
-          });
-      }
-  },
-  complete: function() {
-      $(".lean-overlay").each(function() {
-          $(this).remove();
-      });
-  }
-});
-</script>
