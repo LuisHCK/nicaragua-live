@@ -53,7 +53,7 @@ end
 
 group :production do
 	gem 'rails_12factor'
-	gem 'pg'
+	#gem 'pg'
   gem 'capistrano',         require: false
   gem 'capistrano-rvm',     require: false
   gem 'capistrano-rails',   require: false
