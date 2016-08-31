@@ -1,12 +1,14 @@
-  <div class="panel panel-primary">
+  <% color ||= 'primary' %>
+  <div class="panel panel-<%= color %>">
     <div class="panel-heading">
       <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= post.profile.avatar.url(:thumb) %>" alt="img" class="img-circle">
       <b class="panel-title"><%= link_to post.profile.name, post.profile %></b>
 
       <!--Acciones para los posts-->
-      <div class="right actions-post">
+      <div class="pull-right actions-post">
         <%= post_edit(post) %>
         <%= post_delete(post) %>
+        <%= pin_post(post) %>
       </div>
 
     </div>
@@ -18,15 +20,13 @@
       <% if post.pictures.count > 1 %>
       <div class="fotorama" data-nav="thumbs" data-allowfullscreen="true">
         <% post.pictures.each do |pic| %>
-        <a href="<%= pic.image.url() %>"><img src="<%= pic.image.url(:thumb)%>"></a>
-      </div>
+          <a href="<%= pic.image.url() %>"><img src="<%= pic.image.url(:thumb)%>"></a>
         <% end %>
+      </div>
       <% else %>
-      <div class="row">
         <% post.pictures.each do |pic| %>
         <%= image_tag(pic.image.url, class:"responsive-img center-block", lazy: true)%>
         <% end %>
-        </div>
 
       <% end %>
 
@@ -51,5 +51,3 @@
     </div>
 
   </div>
-
-  <link href="//cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">

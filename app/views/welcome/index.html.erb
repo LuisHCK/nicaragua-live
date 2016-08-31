@@ -37,7 +37,13 @@
 <div class="container" style="max-width:700px;">
   <h4>Comentarios recientes</h4>
   <%= render @comments %>
-  <%= will_paginate @comments %>
+  <div class="center">
+   <ul class="pagination center">
+    <div class="apple_pagination">
+    <%= will_paginate @comments, container: false %>
+    </div>
+  </ul>
+</div>
 </div>
 
 </div>

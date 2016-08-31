@@ -1,91 +1,49 @@
-<%= form_for(@item,:html => {:multipart => true}) do |f| %>
-  <% if @item.errors.any? %>
-    <div id="error_explanation">
-      <h5 class="red-text"><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h5>
+<%= simple_form_for(@item,:html => {:multipart => true}) do |f| %>
+<% if @item.errors.any? %>
+<div id="error_explanation">
+  <h5 class="red-text"><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h5>
 
-      <ul class="red-text lighten-2">
-      <% @item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-<div class="input-field">
-  <%= f.label "Categoria" %><br>
-  <%= f.select :market_id, options_from_collection_for_select(Market.all, :id, :title) %>
-
-</div>
-  <div class="input-field">
-    <%= f.label :titulo, 'Título*'%>
-    <%= f.text_field :titulo %>
-  </div>
-  <div class="input-field">
-    <%= f.text_area :descripcion, id:"text_area_body", class:"materialize-textarea", length:"180", input_html: { hidden: true } %>
-    <label for="textarea1">Descripcion</label>
-  </div>
-<div class="row">
-  <div class="input-field col s6">
-    <%= f.label :precio, 'Precio*'%>
-    <%= f.number_field :precio %>
-  </div>
-  <div class="input-field col s6">
-    <%= f.radio_button :moneda, "cordoba", class:"with-gap"%>
-    <%= f.label :moneda_cordoba, "Cordobas (C$)", class:"grey-text lighten-2"%>
-
-    <%= f.radio_button :moneda, "dolar", class:"with-gap" %>
-    <%= f.label :moneda_dolar, "Dólares ($)", class:"grey-text lighten-2"%>
-  </div>
-</div>
-  <div class="input-field col s6">
-    <%= f.label :ubicacion, "Dirección"%>
-    <%= f.text_field :ubicacion %>
-  </div>
-  <div class="input-field">
-    <%= f.label "Estado" %><br>
-    <%= f.select :estado, (['Nuevo', 'Usado']),{include_blank: 'Sin especificar'} %>
-  </div>
-<br>
-<p>
-  Fotos* (Una como mínimo)
-</p>
-  <div class="file-field input-field">
-    <div class="btn-large red">
-    <%= icon("upload") %>
-      <input type="file" multiple accept='image/*'>
-           <%= file_field_tag "images[]", type: :image, multiple: true, input_html: { hidden: true }%>
-    </div>
-    <div class="file-path-wrapper">
-      <input class="file-path validate" type="text" placeholder="Seleccione uno o mas archivos">
-    </div>
-  </div>
-  <p class="grey lighten-2">
-    Datos del anunciante:
-  </p>
-  <div class="input-field">
-    <%= f.label 'Nombre*' %>
-    <%= f.text_field :nombre %>
-  </div>
-  <div class="input-field">
-    <%= f.label 'Teléfono*' %>
-    <%= f.text_field :telefono %>
-  </div>
-  <div class="input-field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-  <div class="actions">
-    <%= button_tag(type: 'submit', id:"submit_btn", class: "btn blue") do %>
-     <%= icon("check") %>
+  <ul class="red-text lighten-2">
+    <% @item.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
     <% end %>
-    <p class="grey-text lighten-4">
-      (*)Estos campos son obligatorios.
-    </p>
-  </div>
+  </ul>
+</div>
 <% end %>
 
-<script>
-$("#submit_btn").on("click", function() {
-// do something
-$(".spinner").show();
-});
-</script>
+<%= f.label :market_id, "Categoría" %> <br>
+<%= f.select :market_id, options_from_collection_for_select(Market.all, :id, :title) %>
+
+<%= f.input :titulo, label:"Título" %>
+<%= f.input :descripcion, label:"Decipción del producto" %>
+
+<%= f.input :precio%>
+<%= f.radio_button :moneda, "cordoba", class:"with-gap"%>
+<%= f.label :moneda_cordoba, "Cordobas (C$)", class:"grey-text lighten-2"%>
+
+<%= f.radio_button :moneda, "dolar", class:"with-gap" %>
+<%= f.label :moneda_dolar, "Dólares ($)", class:"grey-text lighten-2"%>
+
+<%= f.input :ubicacion, label:"Ubicación" %>
+
+<p>
+  <%= f.label :estado %> <br>
+  <%= f.select :estado, (['Nuevo', 'Usado']),{include_blank: 'Sin especificar'} %>
+</p>
+
+<p><b>*Imágenes del producto(Una como mínimo)</b></p>
+<%= file_field_tag "images[]", type: :image, multiple: true %>
+
+<div class="page-header"><h3>Datos de contacto</h3></div>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= f.input :nombre %>
+    <%= f.input :telefono %>
+    <%= f.input :email %>
+  </div>
+</div>
+
+<p>
+  <%= f.submit "Publicar", class:"btn btn-lg btn-success" %>
+</p>
+<% end %>

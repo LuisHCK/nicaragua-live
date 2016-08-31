@@ -76,7 +76,7 @@ class CommentsController < ApplicationController
               format.json { head :no_content }
               format.js
           end
-      elsif @comment.client_id == nil && @comment.user_id == nil
+      elsif @comment.client_id == nil && @comment.user_id == current_user.id
           @comment.destroy
           respond_to do |format|
               format.html { redirect_to post_path(@comment.post_id), notice: 'El comentario se eliminó.' }

@@ -307,7 +307,7 @@ ActiveRecord::Schema.define(version: 201606222219123) do
     t.integer  "profile_id",  limit: 4
     t.string   "video",       limit: 191
     t.boolean  "trending",                  default: false
-    t.boolean  "pin"
+    t.boolean  "pin",                       default: false
   end
 
   add_index "posts", ["profile_id"], name: "index_posts_on_profile_id", using: :btree
@@ -337,6 +337,7 @@ ActiveRecord::Schema.define(version: 201606222219123) do
     t.string   "aasm_state",          limit: 191
     t.string   "aasm_campaign",       limit: 191,   default: "noone"
     t.string   "offer_section_name",  limit: 120,   default: "Oferta", null: false
+    t.string   "keywords",            limit: 191
   end
 
   add_index "profiles", ["category_id"], name: "index_profiles_on_category_id", using: :btree

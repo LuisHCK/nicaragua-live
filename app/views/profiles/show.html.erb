@@ -2,21 +2,21 @@
   <%= render "profile_info" %>
 </div>
 
-
 <div class="tab-content">
-<div role="tabpanel" class="tab-pane active container" style="max-width:700px;" id="tab1">
-    <br>
-    Publicación destacada
-    <div class="card-panel grey lighten-5">
+  <div role="tabpanel" class="tab-pane active container" style="max-width:700px;" id="tab1">
+    <% if @pinned.present? %>
+    <div class="page-header">
+      <em><b>Publicación destacada</b></em>
       <%= icon('star', class:"left yellow-text") %>
       <br>
-      <%= render partial: "posts/post",locals:{post: @pinned} %>
+      <%= render partial: "posts/post",locals:{post: @pinned, color: 'warning'} %>
     </div>
-
+    <% end %><!---->
+    <b>Recientes</b>
     <%= render "post_frame" %>
   </div>
 
-  <div role="tabpanel" class="tab-pane active container" id="tab2">
+  <div role="tabpanel" class="tab-pane container" id="tab2">
     <% if user_signed_in? %>
     <% if current_user.id == @profile.user_id %><br>
     <%= link_to "Publicar Oferta", new_offer_path, class:"btn teal right" %><br>
@@ -26,7 +26,7 @@
     <%= render @offers%>
   </div>
 
-  <div role="tabpanel" class="tab-pane active container" id="tab3">
+  <div role="tabpanel" class="tab-pane container" id="tab3">
     <div class="row">
       <% @profile.posts.order("created_at DESC").each do |post| %>
       <% unless post.pictures.empty? %>
@@ -43,36 +43,20 @@
 
   </div>
 </div>
+<script>
+  $("img.lazy").lazyload({
+    effect : "fadeIn",
+    treshold: 200
+  });
 
-<% if user_signed_in? && current_user.id == @profile.user_id %>
-<div class="z-depth-1">
-  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a href="#modal1" class="modal-trigger btn-floating btn-large red">
-      <%= icon('pencil') %>
-
-    </a>
-  </div>
-  <%= render "posts/form" %>
-  <% end %>
-
-  <!-- Modal Structure -->
-  <%= render "reviews/form" %>
-
-
-  <script>
-    $("img.lazy").lazyload({
-      effect : "fadeIn",
-      treshold: 100
-    });
-
-    $('.star-rating').raty({
-      readOnly: true,
-      score: function() {
-        return $(this).attr('data-score');
-      }
-    });
-    $('#myTabs a').click(function (e) {
-      e.preventDefault()
-      $(this).tab('show')
-    })
-  </script>
+  $('.star-rating').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    }
+  });
+  $('#myTabs a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  })
+</script>

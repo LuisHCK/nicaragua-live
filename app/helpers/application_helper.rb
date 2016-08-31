@@ -81,34 +81,34 @@ def human_date(in_human_date)
   end
 
 #common helper methods for clients
-  def avatar_client(client)
-    if client.clientprofile.present?
-      image_tag(client.clientprofile.avatar(:thumb),class:'img-circle resposive-img avatar_profile')
-    else
-      image_tag('icon-user-default.png',class:'img-circle resposive-img avatar_profile')
-    end
+def avatar_client(client)
+  if client.clientprofile.present?
+    image_tag(client.clientprofile.avatar(:thumb),class:'img-circle resposive-img avatar_profile')
+  else
+    image_tag('icon-user-default.png',class:'img-circle resposive-img avatar_profile')
   end
-  def link_to_client(client)
-    if client.clientprofile.present?
-      link_to(client.clientprofile.name, client.clientprofile)
-    else
-      client.email
-    end
+end
+def link_to_client(client)
+  if client.clientprofile.present?
+    link_to(client.clientprofile.name, client.clientprofile)
+  else
+    client.email
   end
+end
 #common helper methods for users
-  def avatar_user(user)
-    if user.profile.present?
-      image_tag(user.profile.avatar(),class:'img-circle resposive-img avatar_profile')
-    else
-      image_tag('icon-user-default.png',class:'img-circle resposive-img avatar_profile')
-    end
+def avatar_user(user)
+  if user.profile.present?
+    image_tag(user.profile.avatar(),class:'img-circle resposive-img avatar_profile')
+  else
+    image_tag('icon-user-default.png',class:'img-circle resposive-img avatar_profile')
   end
-  def link_to_user(user)
-    if user.profile.present?
-      link_to(user.profile.name, user.profile)
-    else
-      user.email
-    end
+end
+def link_to_user(user)
+  if user.profile.present?
+    link_to(user.profile.name, user.profile)
+  else
+    user.email
+  end
 end
 #Icon helper
 def icon(icon, text = nil, html_options = {})
@@ -121,27 +121,6 @@ def icon(icon, text = nil, html_options = {})
   html = content_tag(:i, nil, html_options)
   html << ' ' << text.to_s unless text.blank?
   html
-end
-
-  def post_delete(post)
-    if user_signed_in?
-      if current_user.id == post.profile.user_id
-        link_to post_path(post), method: :delete, data: { confirm: '¿Estás seguro de borrar esta publicación?' } do
-        icon('trash-o red-text')
-    end
-      end
-    end
-  end
-
-  #buttons fror post
-  def post_edit(post)
-    if user_signed_in?
-      if current_user.id == post.profile.user_id
-        return link_to edit_post_path(post) do
-           icon('pencil-square-o') 
-         end
-     end
-  end
 end
 
 end

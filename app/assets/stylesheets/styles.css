@@ -3,6 +3,9 @@
  body { font-size: 0.9em; }
 
 }
+.red-text{
+  color: red;
+}
 /*Fix Bootstrap navbar margin*/
 body { 
   padding-top: 55px; 

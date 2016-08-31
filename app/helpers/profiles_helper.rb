@@ -6,8 +6,16 @@ module ProfilesHelper
 	def editable?(profile)
 		if user_signed_in?
 			if profile.id == current_user.profile.id
-			 return true
+				return true
 			end
+		end
+	end
+
+	def reviewed?(profile)
+		if profile.reviews.count > 0
+			return true
+		else
+			return false
 		end
 	end
 end

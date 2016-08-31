@@ -4,7 +4,7 @@
     <%- if devise_mapping.registerable? && controller_name != 'registrations' && session_path(resource) == "/clients/sign_in" %>
       ¿No tienes cuenta? <%= link_to "Crear una", new_registration_path(resource_name) %>
       <% else %>
-      <%= link_to "Registra tu empresa", new_registration_path(resource_name) %>
+      <%= link_to "Registra tu empresa", new_user_registration_path %>
     <% end -%>
 </div>
 

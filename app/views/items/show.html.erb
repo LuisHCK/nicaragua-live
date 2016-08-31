@@ -1,68 +1,72 @@
 <div class="container">
-    <div class="panel panel-default">
-      <div class="panel-heading">
+  <div class="panel panel-default">
+    <div class="panel-heading">
 
-        <!--Show pictures-->
-        <% if @item.pictures.count > 1 %>
-          <div class="fotorama" data-allowfullscreen="true" data-nav="thumbs" >
-              <% @item.pictures.each do |pic| %>
-                <a href="<%= pic.image.url() %>"><img src="<%= pic.image.url(:thumb)%>"></a>
-              <% end %>
-          </div>
-          <% else %>
-          <% @item.pictures.each do |pic| %>
-          <div class="center">
-            <%= image_tag(pic.image, class:"responsive-img")%>
-          </div>
-            <% end %>
+      <!--Show pictures-->
+      <% if @item.pictures.count > 1 %>
+      <div class="fotorama" data-allowfullscreen="true" data-nav="thumbs" >
+        <% @item.pictures.each do |pic| %>
+        <a href="<%= pic.image.url() %>"><img src="<%= pic.image.url(:thumb)%>"></a>
         <% end %>
-        <!--Show pictures-->
-
       </div>
-      <div class="panel-body">
-        <table class="table">
-          <thead>
-            <tr>
-                <th data-field="id" class="center">Categoria</th>
-                <th data-field="name" class="center">Publicado</th>
-                <th data-field="price" class="center">Precio</th>
-            </tr>
-          </thead>
-
-          <tbody class="grey lighten-4">
-            <td class="center">
-              <%= @item.market.title %>
-            </td>
-            <td class="center">
-              <%= @item.created_at.strftime("%B %d, %Y")  %>
-            </td>
-            <td class="center">
-              <% if @item.precio == 'cordoba' %>
-              C$
-              <% else %>
-                $
-                <% end %>
-              <%= @item.precio %>
-            </td>
-          </tbody>
-        </table>
-        <div class="page-header"><h2 class="center"><%= @item.titulo %></h2></div>
-        <p>
-          <b>Descripción:</b>
-          <%= markdown(@item.descripcion) %>
-          <br>
-          <b>Estado: </b><%= @item.estado %><br>
-          <b>Dirección: </b><%= @item.ubicacion %><br>
-
-          <br>
-          <b>Contactar al anunciante</b><br>
-          <b>Publicado por: </b><%= link_to @item.client.clientprofile.name, @item.client.clientprofile %><br>
-          <b>Teléfono: </b><%= @item.telefono %><br>
-          <b>Email: </b><%= @item.email %>
-        </p>
+      <% else %>
+      <% @item.pictures.each do |pic| %>
+      <div class="center">
+        <%= image_tag(pic.image, class:"responsive-img")%>
       </div>
+      <% end %>
+      <% end %>
+      <!--Show pictures-->
+
     </div>
-    <% if client_signed_in? && @item.client_id = current_client.id %>
-      <%= link_to "Editar", edit_item_path, class:"btn btn-warning" %>
-    <% end %>
+    <div class="panel-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th data-fiend="prd-id" class="center">ID</th>
+            <th data-field="id" class="center">Categoria</th>
+            <th data-field="name" class="center">Publicado</th>
+            <th data-field="price" class="center">Precio</th>
+          </tr>
+        </thead>
+
+        <tbody class="grey lighten-4">
+          <td class="center">
+          <%= @item.id %>
+          </td>
+          <td class="center">
+            <%= @item.market.title %>
+          </td>
+          <td class="center">
+            <%= humanize_date(@item.created_at)  %>
+          </td>
+          <td class="center">
+            <% if @item.precio == 'cordoba' %>
+            C$
+            <% else %>
+            $
+            <% end %>
+            <%= @item.precio %>
+          </td>
+        </tbody>
+      </table>
+      <div class="page-header"><h2 class="center"><%= @item.titulo %></h2></div>
+      <p>
+        <b>Descripción:</b>
+        <%= markdown(@item.descripcion) %>
+        <br>
+        <b>Estado: </b><%= @item.estado %><br>
+        <b>Dirección: </b><%= @item.ubicacion %><br>
+
+        <br>
+        <b>Contactar al anunciante</b><br>
+        <b>Publicado por: </b><%= link_to @item.client.clientprofile.name, @item.client.clientprofile %><br>
+        <b>Teléfono: </b><%= @item.telefono %><br>
+        <b>Email: </b><%= @item.email %>
+      </p>
+    </div>
+  </div>
+  <% if client_signed_in? && @item.client_id = current_client.id %>
+  <%= link_to "Editar", edit_item_path, class:"btn btn-warning" %>
+  <% end %>
 </div>
