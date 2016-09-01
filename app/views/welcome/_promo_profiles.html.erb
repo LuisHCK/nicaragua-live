@@ -1,12 +1,10 @@
 <div class="row">
     <% if @promoved_profiles.present? %>
     <% @promoved_profiles.each do |profile| %>
-    <div class="col l6 s12">
-        <div class="card row z-depth-1">
-            <div class="col s4 l5">
-                <%= link_to image_tag(profile.avatar(), class:"circle responsive-img"), profile %>
-            </div>
-            <div class="col s7">
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <%= link_to image_tag(profile.avatar(), class:"promo-img responsive-img"), profile %>
+            <div class="caption center">
                 <b><%= profile.name %></b>
                 <br>
                 <div class="star-rating" data-score=<%= profile.reviews.average(:rating) %>></div>
@@ -15,6 +13,7 @@
                     <%= truncate(profile.body ) %><br>
                     <b>Dirección:
                     </b><%= profile.direccion %>
+                    <div class="center"><%= link_to 'Ver Más', profile_path(profile), class:"btn btn-primary" %></div>
                 </p>
             </div>
         </div>
@@ -22,11 +21,4 @@
     <% end %>
 </div>
 <% end %>
-<script>
-    $('.star-rating').raty({
-        readOnly: true,
-        score: function () {
-            return $(this).attr('data-score');
-        }
-    });
-</script>
+

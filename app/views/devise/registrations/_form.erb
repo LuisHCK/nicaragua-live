@@ -1,88 +1,17 @@
-
-<h5>Configuración de acceso a la cuenta</h5>
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-<ul class="collapsible popout" data-collapsible="accordion">
-<!--Campo Email-->
- <li>
-    <div class="collapsible-header"> <%= icon("envelope",style:"font-size:2rem;") %> Correo Electrónico </div>
-    <div class="collapsible-body">
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-        <% end %>
-        <p class="field">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true %>
-        </p>
+<div class="container">
+<div class="col-xs-8 col-xs-offset-2">
+    <div class="page-header"><h3>Ediar datos de acceso</h3></div>
+    <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-horizontal' }) do |f| %>
+    <%= f.input :email, label:"Correo Electrónico", as: :email %>
+    <%= f.input :password, label:"Nueva contraseña", as: :password , autocomplete: :off %>
+    <%= f.input :password_confirmation, label:"Confirmar contraseña", as: :password %>
+    <em>Confirma tu contraseña actual para guardar los cambios</em>
+    <%= f.input :current_password, label:"Contraseña actual", as: :password %>
+    <%= f.button :submit, "Guardar", class:"btn btn-success btn-lg"%>
+    <div>
+      <br>
     </div>
- </li>
-
-<li>
-    <div class="collapsible-header"> <%= icon("key",style:"font-size:2rem;") %> Contraseña </div>
-    <div class="collapsible-body">
-        <p class="field">
-          <%= f.label "Contraseña" %> <i>(Déjalo en blanco si no vas a cambiarla)</i>
-    </p>
-
-    <p class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    </p>
-    </div>
-</li>
-
-<li>
-  <div class="collapsible-header"> <%= icon("floppy-o",style:"font-size:2rem;") %> Guardar los cambios </div>
-    <div class="collapsible-body">
-
-
-            <p class="field">
-              <%= f.label "Contraseña Actual"%> <i>(Debes escribirla para poder guardar los cambios que has realizado)</i><br />
-              <%= f.password_field :current_password, autocomplete: "off" %>
-            </p>
-
-            <div class="actions">
-              <%= f.submit "Guardar", class:"cyan darken-2 btn" %>
-            </div>
-
-
-    </div>
-
-</li>
- </ul>
-
-
-<% end %>
-
-
-<h5>Cancelar mi cuenta</h5>
-<p>
-  ¿No deseas usar nuestros servicios?
-</p>
-
-  <!-- Modal Trigger -->
-  <a class="red waves-effect waves-light btn modal-trigger" href="#modal1"> <%= icon("trash",style:"font-size:2rem;") %> Eliminar Cuenta</a>
-
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <h4>¿Eliminar de manera permanente?</h4>
-      <p>Al eliminar tu cuenta ya no aparecerás en ninguna de las categorias.</p>
-      <p>Ten encuenta que:
-      <br>-La eliminacion es <b>irreversible.</b>
-      <br>-El contenido que hayas publicado será <b>eliminado.</b>
-      <br>-Las personas que te siguen <b>ya no podrán encontrar tu perfil.</b>
-      <br>Si estás de acuerdo con estas condiciones y realmente ya no deseas seguir usando nuestro servicio haz clic en <b>"Eliminar mi cuenta".</b>
-      </p>
-
-      <p>En caso que no quieras eliminar tu cuenta pero no estás conforme con nuestro servicio o has tenido algún problema, por favor ponte en contacto con nuestro equipo de desarrollo para ayudar a mejorar <b>Estelí Live </b> haciendo clic en <b>"Contactar"</b>
-      </p>
-    </div>
-    <div class="modal-footer">
-    <%= button_to "Eliminar mi cuenta", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:" modal-action modal-close waves-effect waves-green btn-flat" %>
-
-    <div class="modal-action modal-close waves-effect waves-green btn-flat">Contactar</div>
-    </div>
+    <% end %>
 
   </div>
+</div>

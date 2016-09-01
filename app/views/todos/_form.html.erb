@@ -1,0 +1,13 @@
+<%= simple_form_for(@todo, html: { class: 'form-horizontal' }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title, label:'Titulo' %>
+    <%= f.input :body, label:'Detalles'%>
+    <%= f.input :state, as: :select, label:'Estado', collection: ['Open','Close'], prompt:'Estado del pendiente' %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

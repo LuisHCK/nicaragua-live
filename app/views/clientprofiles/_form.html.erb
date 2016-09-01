@@ -5,7 +5,7 @@
 </p>
 <% end %>
 
-<div class="container">
+<div class="container" style="max-width:700px;">
     <% if @clientprofile.errors.full_messages.any? %>
     <div class="coupon-box" style="margin:2%;">
         <% @clientprofile.errors.full_messages.each do |error| %>
@@ -13,33 +13,25 @@
         <% end %>
     </div>
     <% end %>
-    <%= form_for(current_client.clientprofile) do |f| %>
+    <%= simple_form_for(current_client.clientprofile) do |f| %>
     <div class="center">
-        <%= image_tag(@clientprofile.avatar, class:"circle mini-avatar",style:"max-width:120px") %><br>
-        <%= f.file_field(:avatar, class:"btn" ) %>
-        <%= f.text_field :name, placeholder:"Escribe tu nombre (Obligatorio)", class:"materialize-textarea", length:"50" %>
+        <%= image_tag(@clientprofile.avatar, class:"img-circle mini-avatar",style:"max-width:120px") %><br>
     </div>
-    <div class="row">
-        <div class="col s6">
-            <%= f.label :ubication, "Tu Ubicación (Opcional)" %>
-            <%= f.text_field :ubication, placeholder:"Ubicación"%>
-
-        </div>
+    <div class="col-xs-8 col-xs-offset-4">
+        <%= f.input(:avatar, as: :file, class:"center") %>
     </div>
+    <%= f.input :name , label:"Nombre", placeholder:"Tu nombre(*Campo Obligatorio)" %>
+    <%= f.input :ubication, label:"Ubicación", placeholder:"Ubicación"%>
 
     <div class="field">
-        <label for="text_bio">Cuentanos sobre tí</label>
-        <%= f.text_area :biography, id:"text_bio", class:"input-field col s12", style:"max-width:100%; height:150px;"%>
+        <%= f.input :biography, label:"Biografía", placeholder:"Cuéntanos sobre tí", as: :text%>
     </div>
 
-    <div class="row">
+    <%= button_tag(type: 'submit', class: "btn btn-success") do %>
+    Listo!
+    <%= icon("check") %>
+    <% end %>
 
-        <%= button_tag(type: 'submit', class: "btn blue") do %>
-        Listo!
-        <%= icon("check") %>
-        <% end %>
-
-    </div>
     <% end %>
     <%= link_to "Eliminar cuenta", admin_destroy_client_path(current_client), method: :delete, data: { confirm: "¿?" } %>
 

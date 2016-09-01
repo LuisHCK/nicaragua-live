@@ -1,22 +1,25 @@
 <div class="container">
     <div class="grey-text darken-4">
 
-        <h5>Anuncios Clasificados</h5>
+        <div class="page-header"><h4>Anuncios Clasificados</h4></div>
 
-        <%= form_tag(profiles_path, method: "get", id: "search-form") do %>
-          <b><em>¿Que desea encontrar?</em></b><br>
-          <%= text_field_tag :query, params[:query], placeholder: "Buscar...",class:"grey-text darken-4", style:"max-width: 60%;" %>
-          <%= submit_tag "Buscar", class:"btn red" %>
-        <% end %>
-
-        <ul class="collection z-depth-1">
+        <div class="form-group">
+            <%= form_tag(items_path, method: "get", id: "search-form") do %>
+            <b><em>¿Que desea encontrar?</em></b><br>
+            <%= text_field_tag :query, params[:query], placeholder: "Buscar...",class:"grey-text darken-4", style:"max-width: 60%;" %>
+            <%= submit_tag "Buscar", class:"btn red" %>
+            <% end %>
+        </div>
+        
+        <b>Categorías</b>
+        <div class="list-group">
             <% @markets.each do |market| %>
-            <a href="<%= market_path(market) %>" class="collection-item  blue-grey-text darken-4">
-                    <%= icon(market.icon,style:'font-size:2rem;') %>
+            <a href="<%= market_path(market) %>" class="list-group-item">
+                <%= icon(market.icon,style:'font-size:2rem;') %>
                 <%= market.title %>
             </a>
             <% end %>
-        </ul>
+        </div>
 
     </div>
 </div>

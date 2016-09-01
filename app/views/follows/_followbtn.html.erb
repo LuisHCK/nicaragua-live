@@ -12,5 +12,9 @@
   <% end %>
 
 <% else %>
-  <%= link_to "Seguir", new_client_session_path, notice:'Debes iniciar sesión', class:"btn small green" %>
+  <% if user_signed_in? %>
+    <% if current_user.id == @profile.user_id %>
+IGUAL
+<% end %>
+  <% end %>
 <% end %>

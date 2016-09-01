@@ -1,20 +1,20 @@
 <div class="container">
 
-    <ul class="collection z-depth-2">
-        <li class="collection-item row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
             <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= @post.profile.avatar.url(:thumb) %>" alt="" class="circle responsive-img">
             <b><%= link_to @post.profile.name, @post.profile %></b>
 
-        </li>
+        </div>
 
-        <li class="collection-item">
+        <div class="panel-body">
             <% if @post.pictures.count > 1 %>
             <div class="fotorama" data-nav="thumbs" data-allowfullscreen="true">
                 <% @post.pictures.each do |pic| %>
                 <a href="<%= pic.image.url() %>"><img src="<%= pic.image.url(:thumb)%>"></a>
                 <% end %>
             </div>
-        <% else %>
+            <% else %>
             <% @post.pictures.each do |pic| %>
             <div class="center">
                 <%= image_tag(pic.image, class:"responsive-img")%>
@@ -28,12 +28,12 @@
             <p class="responsive-text">
                 <%= markdown(@post.body) %>
             </p>
-        </li>
+        </div>
 
-        <div id="coments_field">
+        <div class="panel-footer" id="coments_field">
             <%= render partial:"posts/comments" %>
         </div>
 
-    </ul>
+    </div>
 
 </div>

@@ -48,7 +48,7 @@ class Profile < ActiveRecord::Base
 
 	end
 
-	searchkick searchable: [:name,:body]
+	searchkick searchable: [:name,:body,:keywords]
 	has_many :posts, dependent: :destroy
 	has_many :offers, dependent: :destroy
 	has_many :hearts
@@ -67,8 +67,8 @@ class Profile < ActiveRecord::Base
                 convert_options: { thumb: "-quality 85 -strip",
                                             original: "-quality 85 -strip" }, default_url: "icon-user-default.png"
 
-				validates_attachment_content_type :cover, content_type: /\Aimage\/.*\z/ , presence: true
-				validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/ , presence: true
+				validates_attachment_content_type :cover, content_type: /\Aimage\/.*\z/
+				validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
 				has_many :follows, dependent: :destroy
 #	has_many :clientprofiles, through: :follows

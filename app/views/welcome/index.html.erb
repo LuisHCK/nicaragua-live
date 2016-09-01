@@ -1,54 +1,49 @@
 <div class="container">
-<!--Tarjetas-->
-<h5>Recomendados</h5>
+  <!--Tarjetas-->
+  <h4>Recomendados</h4>
   <%= render 'promo_profiles' %>
-  <% if client_signed_in? or user_signed_in? %>
-  <h5>Inicio</h5>
-    <%= render "posts" %>
-    <% else %>
-    <h5>Tendencias</h5>
-    <%= render @posts.sort_by { |post| post.hearts.count }.reverse %>
-<% end %>
+</div>
 
- <ul class="pagination">
-  <div class="apple_pagination">
+<div class="container" style="max-width:700px;">
+  <% if client_signed_in? or user_signed_in? %>
+  <h4>Inicio</h4>
+  <%= render @posts %>
+
+  <div class="center">
+   <ul class="pagination center">
+    <div class="apple_pagination">
       <%= will_paginate @posts, container: false %>
     </div>
-</ul>
+  </ul>
+</div>
 
+<% else %>
+<h4>Tendencias</h4>
+<div class="center-block">
+  <%= render @posts.sort_by { |post| post.hearts.count }.reverse %>
 
+  <div class="center">
+   <ul class="pagination center">
+    <div class="apple_pagination">
+      <%= will_paginate @posts, container: false %>
     </div>
-    <% if user_signed_in? %>
-      <div class="z-depth-1">
-        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-          <a href="#modal1" class="modal-trigger btn-floating btn-large red">
-            <%= icon('pencil') %>
+  </ul>
+</div>
 
-        </a>
-      </div>
-    <% end %>
+</div>
+<% end %>
+</div>
 
-    <%= render "posts/form" %>
-
-<script type="text/javascript">
-$('.modal-trigger').leanModal({
-    dismissible: true,
-    opacity: 0.5,
-    in_duration: 300,
-    out_duration: 200,
-    ready: function() {
-        if($(".lean-overlay").length > 1) {
-            $(".lean-overlay:not(:first)").each(function() {
-                $(this).remove();
-            });
-        }
-    },
-    complete: function() {
-        $(".lean-overlay").each(function() {
-            $(this).remove();
-        });
-    }
-});
-</script>
+<div class="container" style="max-width:700px;">
+  <h4>Comentarios recientes</h4>
+  <%= render @comments %>
+  <div class="center">
+   <ul class="pagination center">
+    <div class="apple_pagination">
+    <%= will_paginate @comments, container: false %>
+    </div>
+  </ul>
+</div>
+</div>
 
 </div>

@@ -23,7 +23,7 @@ def index
       @review = Review.new
       @offers = Offer.where(profile_id: @profile.id)
       @reviews = Review.where(profile_id: @profile.id).order("created_at DESC")
-      @pinned = Post.where(pin = 1).first
+      @pinned = Post.where(pin: 1, profile_id: @profile.id).last
 
       if @reviews.blank? || @reviews.nil?
         @avg_review = 0
@@ -89,6 +89,6 @@ def index
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:name, :cover, :avatar, :body, :direccion, :horario, :facebook, :twiter, :instagram, :youtube, :other, :category_id, :offer_section_name)
+      params.require(:profile).permit(:name, :cover, :avatar, :body, :direccion, :horario, :facebook, :twiter, :instagram, :youtube, :other, :category_id, :offer_section_name, :keywords)
     end
   end

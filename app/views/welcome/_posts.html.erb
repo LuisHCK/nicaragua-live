@@ -8,7 +8,7 @@
   </div>
 <% else %>
 <% @posts.each do |post| %>
-  <ul class="collection z-depth-2">
+  <div class="panel panel-primary">
     <li class="collection-item row">
       <img style="vertical-align: middle; margin-left:2%;height: 50px; width:50px;" src="<%= post.profile.avatar.url(:thumb) %>" alt="" class="circle">
       <b><%= link_to post.profile.name, post.profile %></b>
@@ -69,6 +69,6 @@
             <%= icon('share-alt',style:'font-size:2.5rem;') %>
           </div>
         </div>
-   </ul>
+   </div>
    <% end %>
    <% end %>
