@@ -1,39 +1,37 @@
-<div>
-  <div class="center">
-    <h3 class="white-text">¡Bienvenido a Nicaragua Live!</h3><br>
-    <h2 class="white-text"><%= "#{current_client.first_name} #{current_client.last_name}" %></h2><br>
+  <div class="center white-text">
+    <h2>Bienvenido</h2>
+    <h1><%= get_user_name(current_user) %></h1>
 
-    <div class="welcome_text">
-      <p class="responsive-text white-text" style="margin: 3%;">
-        Es un honor para nosotros que formes parte de nuestra comunidad.
-        Queremos decirte que eres el usuario Número <b><%= current_client.id %></b>  y eso es
-        algo que nos emociona.
-        ¡Hay muchas cosas por descubrir y compartir!
-      </p>
+    <p>
+      Estamos muy contentos de que formes parte de nuestra comunidad.
+      Eres el usuario número <b><%= current_user.id %></b>. ¡Emocionante!
+    </p>
+    <p>
+      Hay mucho por descubrir y compartir.
+    </p>
+
+    <b><h3>Nicaragua Live te recomienda:</h3></b>
+    <div>
+    <%= render partial:'welcome/promo_profiles', locals:{promoved_profiles: @promoved_profiles} %>
+    </div>
+    <div>
+      <h3><b>Tambien puedes: </b></h3>
+      <%= link_to "Crear un perfil", new_clientprofile_path, class:"btn btn-lg btn-primary" %>
     </div>
   </div>
-  <div class="welcome_text center">
-    <h5 class="white-text">Nicaragua Live te recomienda:</h5>
-    <%= render "menus/profiles"%>
-
-<div class="panel-box">
-    <h3 class="grey-text">
-        <b>Tambien Puedes:</b>
-    </h3>
-    <%= link_to "Editar tu Perfil", edit_clientprofile_path(current_client.clientprofile), class:"btn blue" %>
-    <%= link_to "Publicar un anuncio", new_item_path, class:"btn blue" %>
-</div>
-</div>
-</div>
 
 
-<style media="screen">
-html {
-  background-image: url("https://4.bp.blogspot.com/-RQVBFn6f_OM/V4rVF-PnzrI/AAAAAAAACAk/FI0uCp9yI5A2Ta3nJP8EB4aGOcGtKgtNwCLcB/s1600/concepcion.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  left: 0;
-  right: 0;
-  background-position: center;
-}
-</style>
+  <style media="screen">
+    body {
+      background-image: url("https://1.bp.blogspot.com/-DcHm_NWYQmQ/V83zItywmwI/AAAAAAAACFI/ggNrVTOdUY8e6SVt2XpT-Rh6bEeTdyk3wCPcB/s1600/concepcion.jpg");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      left: 0;
+      right: 0;
+      background-position: center;
+    }
+
+    @media only screen and (max-width: 320px) {
+      body { font-size: 2em; }
+    }
+  </style>

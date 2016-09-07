@@ -1,6 +1,6 @@
 class ClientprofilesController < ApplicationController
   before_action :set_clientprofile, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_client!, except: [:show,:index]
+  before_action :authenticate_user!, except: [:show,:index]
 
   # GET /clientprofiles
   # GET /clientprofiles.json
@@ -15,14 +15,18 @@ class ClientprofilesController < ApplicationController
       @coupon_redemptions = CouponRedemption.where(client_id: current_client.id)
     end
     #find_hearts = current_client.hearts.limit(2).order(created_at: :asc).collect(&:post_id)
-    find_hearts = @clientprofile.client.hearts.limit(2).map(&:post_id)
+    find_hearts = @clientprofile.user.hearts.limit(2).map(&:post_id)
     @posts = Post.where(id: find_hearts).order(created_at: :asc)
-    @profiles = Profile.limit(2).where(:id => @clientprofile.client.follows.collect(&:profile_id) )
+    @profiles = Profile.limit(2).where(:id => @clientprofile.user.follows.collect(&:profile_id) )
   end
 
   # GET /clientprofiles/new
   def new
-    @clientprofile = Clientprofile.new
+    unless current_user.clientprofile.present?
+        @clientprofile = Clientprofile.new
+      else
+        redirect_to edit_clientprofile_path(current_user.clientprofile)
+    end
   end
 
   # GET /clientprofiles/1/edit
@@ -32,7 +36,8 @@ class ClientprofilesController < ApplicationController
   # POST /clientprofiles
   # POST /clientprofiles.json
   def create
-    @clientprofile = current_client.clientprofile.new(clientprofile_params)
+    @clientprofile = Clientprofile.new
+    @clientprofile.user_id =  current_user.id
     respond_to do |format|
       if @clientprofile.save
         format.html { redirect_to edit_clientprofile_path(@clientprofile), notice: 'Tu perfil se creó correctamente.' }

@@ -50,9 +50,11 @@ ActiveRecord::Schema.define(version: 201606222219123) do
     t.integer  "avatar_file_size",    limit: 4
     t.datetime "avatar_updated_at"
     t.integer  "client_id",           limit: 4
+    t.integer  "user_id",             limit: 4
   end
 
   add_index "clientprofiles", ["client_id"], name: "index_clientprofiles_on_client_id", using: :btree
+  add_index "clientprofiles", ["user_id"], name: "index_clientprofiles_on_user_id", using: :btree
 
   create_table "clients", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -153,10 +155,12 @@ ActiveRecord::Schema.define(version: 201606222219123) do
     t.integer  "client_id",  limit: 4
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.integer  "user_id",    limit: 4
   end
 
   add_index "follows", ["client_id"], name: "index_follows_on_client_id", using: :btree
   add_index "follows", ["profile_id"], name: "index_follows_on_profile_id", using: :btree
+  add_index "follows", ["user_id"], name: "index_follows_on_user_id", using: :btree
 
   create_table "galleries", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -283,6 +287,15 @@ ActiveRecord::Schema.define(version: 201606222219123) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "partners", force: :cascade do |t|
+    t.string   "partner_range", limit: 191
+    t.integer  "user_id",       limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "partners", ["user_id"], name: "index_partners_on_user_id", using: :btree
 
   create_table "pictures", force: :cascade do |t|
     t.string   "image_file_name",    limit: 255
@@ -426,21 +439,26 @@ ActiveRecord::Schema.define(version: 201606222219123) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "",     null: false
-    t.string   "encrypted_password",     limit: 255, default: "",     null: false
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,      null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.integer  "category_id",            limit: 4
-    t.string   "user_type",              limit: 191, default: "user"
-    t.datetime "last_seen"
+    t.integer  "user_lvl",               limit: 4,   default: 1
+    t.string   "name",                   limit: 191
+    t.string   "last_name",              limit: 191
+    t.string   "provider",               limit: 191
+    t.string   "uid",                    limit: 191
+    t.string   "token",                  limit: 191
+    t.datetime "oauth_expires_at"
   end
 
   add_index "users", ["category_id"], name: "index_users_on_category_id", using: :btree
@@ -481,8 +499,8 @@ ActiveRecord::Schema.define(version: 201606222219123) do
   add_foreign_key "event_comments", "events"
   add_foreign_key "event_comments", "users"
   add_foreign_key "events", "users"
-  add_foreign_key "follows", "clients", name: "follows_ibfk_2", on_update: :cascade, on_delete: :cascade
   add_foreign_key "follows", "profiles", name: "follows_ibfk_1", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "follows", "users"
   add_foreign_key "hearts", "clients", name: "hearts_ibfk_3", on_delete: :cascade
   add_foreign_key "hearts", "posts", name: "hearts_ibfk_1", on_update: :cascade, on_delete: :cascade
   add_foreign_key "hearts", "users", name: "hearts_ibfk_2", on_delete: :cascade
@@ -490,6 +508,7 @@ ActiveRecord::Schema.define(version: 201606222219123) do
   add_foreign_key "items", "markets"
   add_foreign_key "movies", "users"
   add_foreign_key "offers", "profiles"
+  add_foreign_key "partners", "users"
   add_foreign_key "pictures", "items"
   add_foreign_key "pictures", "posts"
   add_foreign_key "posts", "profiles"

@@ -1,4 +1,4 @@
-<%= form_for(@offer) do |f| %>
+<%= simple_form_for(@offer) do |f| %>
   <% if @offer.errors.any? %>
     <div id="error_explanation" class="red-text">
       <b><%= pluralize(@offer.errors.count, "error") %>- No se puede guardar:</b>
@@ -11,54 +11,24 @@
     </div>
   <% end %>
 
-  <div class="row">
-    <div id="input_title" class="input-field col s12">
-      <%= f.text_field :titulo, id:"title", length:"96", input_html: { hidden: true } %>
-      <label for="textarea1">Título</label>
-    </div>
-  </div>
-
-        <div class="row">
-          <div id="input_body" class="input-field col s12">
-            <%= f.text_area :descripcion, id:"text_area_body", class:"materialize-textarea", length:"180", input_html: { hidden: true } %>
-            <label for="textarea1">Detalles de tu oferta</label>
-          </div>
-        </div>
-
+<%= f.input :titulo, label:"Título" %>
+<%= f.input :descripcion, label:"Descripción" %>
 <div class="row">
-  <div class="col s6">
-    <%= f.label "Precio" %>
-    <%= f.number_field :precio,id:"number_input", step:'any', style:"max-width:120px;" %>
+  <div class="col-md-6 col-sm-12">
+    <%= f.input :precio, label:"Precio" %>
   </div>
-
-  <div class="col s6">
-    <%= f.radio_button :cordoba, true, class:"with-gap", checked: true %>
+  <div class="col-md-6 col-sm-12">
+  <%= f.label "Tipo de Moneda" %> <br>
+    <%= f.radio_button :cordoba, true, checked: true %>
     <%= f.label :cordoba_true, "Cordobas (C$)"%>
 
-    <%= f.radio_button :cordoba, false, class:"with-gap" %>
+    <%= f.radio_button :cordoba, false %>
     <%= f.label :cordoba_false, "Dólares ($)"%>
   </div>
+  <br>
+<%= f.input :image, label:"Imagen", as: :file %>
+
+<%= f.submit "Guardar", class:"btn btn-lg btn-success pull-right" %>
+
 </div>
-
-<b>Imagen</b>
-    <div class="file-field input-field">
-      <div class="btn red">
-      <%= icon("picture-o") %>
-        <input type="file">
-        <%= f.file_field :image, input_html: { hidden: true }%>
-      </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text">
-      </div>
-    </div>
-
-    <div class="row right">
-      <%= button_tag(type: 'submit', id:"btn-post", remote: true, class: "btn blue") do %>
-       <%= icon("check") %>
-      <% end %>
-
-      <a href="#!" class=" modal-action modal-close btn red"><%= icon("ban") %></a>
-
-    </div>
-
 <% end %>

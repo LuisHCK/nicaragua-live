@@ -3,13 +3,13 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!, except: [:show,:index]
   # GET /profiles
   # GET /profiles.json
-def index
-  if params[:query].present?
-    @profiles = Profile.search(params[:query], page: params[:page], per_page: 10)
-  else
-    @profiles = Profile.all.paginate(page: params[:page], per_page: 10)
-  end
-  @posts = Post.all
+  def index
+    if params[:query].present?
+      @profiles = Profile.search(params[:query], page: params[:page], per_page: 10)
+    else
+      @profiles = Profile.all.paginate(page: params[:page], per_page: 10)
+    end
+    @posts = Post.all
 
     #@pictures = @post.pictures
   end
@@ -35,17 +35,29 @@ def index
 
   # GET /profiles/new
   def new
-    @profile = Profile.new
+    if current_user.partner.present?
+      #If current user already has a profile redirect to edit
+      unless current_user.profile.present?
+        @profile = Profile.new
+      else
+        redirect_to edit_profile_path(current_user.profile)
+      end
+
+    else
+      redirect_to root_path, notice:"No puedes hacer esto."
+    end
   end
 
   # GET /profiles/1/edit
   def edit
-    redirect_to(edit_user_registration_path)
+
   end
 
   # POST /profiles
   # POST /profiles.json
   def create
+    @profile = Profile.new
+    @profile.user_id = current_user.id
     respond_to do |format|
       if @profile.save
         format.html { redirect_to edit_profile_path, notice: 'El perfil se creó correctamente' }

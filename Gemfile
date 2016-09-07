@@ -79,3 +79,5 @@ gem 'simple_form'
 gem 'mailboxer'
 gem 'aasm'
 gem "lazyload-rails", github: "techbang/lazyload-rails"
+gem "omniauth"
+gem "omniauth-facebook"

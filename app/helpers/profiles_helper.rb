@@ -18,4 +18,12 @@ module ProfilesHelper
 			return false
 		end
 	end
+
+	def has_partner?(user)
+		if user.partner.present?
+			return true
+		else
+			return false
+		end
+	end
 end

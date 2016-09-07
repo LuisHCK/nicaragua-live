@@ -19,7 +19,7 @@
         <% end %>
     </div>
     <div>
-        <%= render '/welcome/promo_profiles' %>
+        <%= render partial:'/welcome/promo_profiles', locals:{promoved_profiles: @promoved_profiles} %>
     </div>
 </div>
 <script>

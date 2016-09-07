@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :invitations
+  resources :partners
   resources :todos
   resources :releases
   resources :cinemas
@@ -30,11 +32,10 @@ Rails.application.routes.draw do
   end
   #ajax for post
 
-  devise_for :master_admins
-
   resources :categories
 
-  devise_for :users, controllers: {registrations: "user/registrations"}
+  devise_for :users, controllers: {registrations: "user/registrations",
+    omniauth_callbacks: "user/omniauth_callbacks"}
   devise_for :clients, controllers: {registrations: "clients/registrations"}
 
   match 'heart',    to: 'hearts#heart', via: :post
