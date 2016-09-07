@@ -4,6 +4,7 @@
         <div class="page-header"><h4>Anuncios Clasificados</h4></div>
 
         <div class="form-group">
+            <%= link_to("Publicar mi anuncio", new_item_path, class:"btn btn-success pull-right") %>
             <%= form_tag(items_path, method: "get", id: "search-form") do %>
             <b><em>¿Que desea encontrar?</em></b><br>
             <%= text_field_tag :query, params[:query], placeholder: "Buscar...",class:"grey-text darken-4", style:"max-width: 60%;" %>
@@ -13,19 +14,21 @@
         
         <b>Categorías</b>
         <div class="list-group">
-            <% @markets.each do |market| %>
-            <a href="<%= market_path(market) %>" class="list-group-item">
-                <%= icon(market.icon,style:'font-size:2rem;') %>
-                <%= market.title %>
-            </a>
+            <% if @markets.present? %>
+                <% @markets.each do |market| %>
+                <a href="<%= market_path(market) %>" class="list-group-item">
+                    <%= icon(market.icon,style:'font-size:2rem;') %>
+                    <%= market.title %>
+                </a>
+                <% end %>
+                <% else %>
+                <br>
+                <div class="alert alert-info">
+                    <h4><b><em>No hay contenido para mostrar</em></b></h4>
+                </div>
             <% end %>
         </div>
 
     </div>
 </div>
 
-<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <%= link_to new_item_path, class:"btn-floating btn-large red" do%>
-    <%= icon('pencil') %>
-    <% end %>
-</div>

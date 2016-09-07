@@ -1,5 +1,6 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
+require "omniauth-facebook"
 Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
@@ -8,12 +9,21 @@ Devise.setup do |config|
   # by default. You can change it below and use your own secret key.
   # config.secret_key = '87f99421ba6160ecc411a3bf8f559de8d4ce94b1e598309b14bf074f47e2c874dc1f1788405fdd2fba8853536540da3f4af15e85df2ace679d67aa55fe1fc5a6'
 
+  #OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  if Rails.env.production?
+    config.omniauth :facebook, "1589715151323815", "3193935577193c3ba27741be1d37083e",
+    callback_url:"http://nica-live.com/users/auth/facebook/callback"
 
+  else
+    config.omniauth :facebook, "1589727891322541", "46bda45c51aaf2f4efeb2c18cb559214",
+    callback_url:"http://localhost:3000/users/auth/facebook/callback"
+  end
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 

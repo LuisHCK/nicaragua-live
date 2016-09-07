@@ -1,11 +1,10 @@
-<% if current_client.clientprofile.avatar = nil %>
+<% unless current_user.clientprofile.present? %>
 <h4>TE DAMOS LA CORIDAL BIENVENIDA A NUESTRA COMUNIDAD</h4>
 <p>
     Estamos complacidos de tenerte con nosotros. Antes de empezar a explorar, considera llenar los datos que se requieren acontinuacion:
 </p>
 <% end %>
 
-<div class="container" style="max-width:700px;">
     <% if @clientprofile.errors.full_messages.any? %>
     <div class="coupon-box" style="margin:2%;">
         <% @clientprofile.errors.full_messages.each do |error| %>
@@ -13,14 +12,14 @@
         <% end %>
     </div>
     <% end %>
-    <%= simple_form_for(current_client.clientprofile) do |f| %>
+    <%= simple_form_for(@clientprofile) do |f| %>
     <div class="center">
         <%= image_tag(@clientprofile.avatar, class:"img-circle mini-avatar",style:"max-width:120px") %><br>
     </div>
     <div class="col-xs-8 col-xs-offset-4">
         <%= f.input(:avatar, as: :file, class:"center") %>
     </div>
-    <%= f.input :name , label:"Nombre", placeholder:"Tu nombre(*Campo Obligatorio)" %>
+    <%= f.input :name , label:"Nombre", placeholder:"Tu nombre(*Campo Obligatorio)", input_html:{value: f.object.name || get_user_name(current_user)} %>
     <%= f.input :ubication, label:"Ubicación", placeholder:"Ubicación"%>
 
     <div class="field">
@@ -33,6 +32,3 @@
     <% end %>
 
     <% end %>
-    <%= link_to "Eliminar cuenta", admin_destroy_client_path(current_client), method: :delete, data: { confirm: "¿?" } %>
-
-</div>

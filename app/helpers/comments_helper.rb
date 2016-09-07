@@ -18,7 +18,5 @@ module CommentsHelper
 		end
 	end
 
-	def profile_name_post
 
-	end 		
 end

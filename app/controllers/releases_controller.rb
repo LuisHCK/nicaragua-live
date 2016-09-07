@@ -15,7 +15,7 @@ class ReleasesController < ApplicationController
 
   # GET /releases/new
   def new
-    unless current_client.role == 'admin'
+    unless current_client.user_lvl >= 3
       redirect_to root_path
     else
       @release = Release.new
@@ -24,7 +24,7 @@ class ReleasesController < ApplicationController
 
   # GET /releases/1/edit
   def edit
-    unless current_client.role == 'admin'
+    unless current_client.user_lvl >= 3
       redirect_to root_path
     else
       set_release
@@ -34,7 +34,7 @@ class ReleasesController < ApplicationController
   # POST /releases
   # POST /releases.json
   def create
-    @release = current_client.releases.new(release_params)
+    @release = current_user.releases.new(release_params)
 
     respond_to do |format|
       if @release.save
@@ -64,7 +64,7 @@ class ReleasesController < ApplicationController
   # DELETE /releases/1
   # DELETE /releases/1.json
   def destroy
-    unless current_client.role == 'admin'
+    unless current_client.user_lvl >= 3
       redirect_to root_path
     else
       @release.destroy

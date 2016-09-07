@@ -1,7 +1,8 @@
 <div class="container">
     <br>
     <div class="panel panel-default">
-        <div class="panel-body">
+        <div class="panel-header">
+        <br>
             <div class="col-lg-3 col-xs-12 col-md-3 center">
                 <%= image_tag @clientprofile.avatar(), class:"responsive-img img-circle", style:"max-width:150px;"%>
             </div>
@@ -22,7 +23,7 @@
                     <tbody>
                         <tr>
                             <td>
-                                <%= @clientprofile.client.hearts.count %>
+                                <%= @clientprofile.user.hearts.count %>
                             </td>
                             <td>
                                 0
@@ -35,9 +36,10 @@
                 </table>
 
             </div>
-
         </div>
-        <div class="panel panel-info" style="margin:2%;">
+        <div class="panel panel-body" style="margin:2%;">
+        <%= if user_signed_in? then link_to("Editar Mi Perfil", edit_clientprofile_path(current_user.clientprofile), class:"btn btn-primary pull-right") end %>
+
             <div>
                 <b>Ubicación:
                 </b><%= @clientprofile.ubication %>
@@ -85,10 +87,10 @@
     </div>
     <!-- Show my followings -->
     <div class="container" style="max-width:700px;">
-    <b>Se suscribió recientemente</b>
+        <b>Se suscribió recientemente</b>
         <div class="row">
             <% @profiles.each do |profile| %>
-                <%= render partial:'/menus/search/profile', locals:{profile: profile} %>
+            <%= render partial:'/menus/search/profile', locals:{profile: profile} %>
             <% end %>
         </div>
     </div>

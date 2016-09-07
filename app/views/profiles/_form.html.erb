@@ -1,8 +1,8 @@
 <div class="container">
     <div class="page-header"><h3>Ediar la información del perfil público</h3></div>
-<%= simple_form_for(current_user.profile, html: { class: 'form-horizontal' }) do |f| %>
-    <%= f.input :name, label:"Nombre" %>
-    <%= f.input :body, label:"Descipción", as: :text %>
+<%= simple_form_for(@profile, html: { class: 'form-horizontal' }) do |f| %>
+    <%= f.input :name, label:"Nombre", hint:"Nombre de tu negocio o servicio" %>
+    <%= f.input :body, label:"Descipción", as: :text, hint:"Explica a los usuarios de que trata tu negocio o servicio" %>
 
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-6">

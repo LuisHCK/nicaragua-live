@@ -1,6 +1,6 @@
 class MenusController < ApplicationController
 	before_action :authenticate_user!, only:[:tools]
-	before_action :authenticate_client!, only:[:admin_panel,:user_welcome]
+	#before_action :authenticate_client!, only:[:admin_panel,:user_welcome]
 	def user_welcome
 		@profiles = Profile.limit(3).all
 	end
@@ -20,7 +20,7 @@ class MenusController < ApplicationController
 			end
 
 			def admin_panel
-				if current_client.role == 'admin'
+				if current_user.user_lvl >= 3
 					@categories = Category.all
 					@category = Category.new
 
@@ -33,9 +33,8 @@ class MenusController < ApplicationController
 			if params[:query].present?
 				#Profile.search(params[:query], page: params[:page], per_page: 10)
 			end
-
 		else
-			redirect_to root_path
+			redirect_to root_path, notice:"No tienes permisos para realizar esta accion"
 		end
 	end
 
@@ -45,12 +44,10 @@ class MenusController < ApplicationController
 	end
 
 	def myprofile
-		if client_signed_in?
-			redirect_to clientprofile_path(current_client.clientprofile)
-		elsif user_signed_in?
+		if current_user.profile.present?
 			redirect_to profile_path(current_user.profile)
 		else
-			redirect_to new_client_session_path
+			redirect_to clientprofile_path(current_user.clientprofile)
 		end
 	end
 end

@@ -3,10 +3,6 @@
 		<% if comment.client_id <=> nil %>
 		<%= avatar_user(comment.user) %>
 		<b><%= link_to_user(comment.user) %></b>
-		<% elsif comment.user_id <=> nil %>
-		<%= avatar_client(comment.client) %>
-		<b><%= link_to_client(comment.client) %></b> en la <%= link_to 'publicación', post_path(comment.post) %> de:
-		<b><%= link_to comment.post.profile.name, profile_path(comment.post.profile) %></b>
 		<% end %>
 		<%= delete_comment(comment) %>
 	</div>

@@ -1,25 +1,15 @@
-<%= form_for(@market, remote: true )do |f| %>
-  <% if @market.errors.any? %>
-    <div id="error_explanation">
-      <h4><%= pluralize(@market.errors.count, "error") %> prohibited this market from being saved:</h4>
+<%= simple_form_for(@market, remote: true )do |f| %>
 
-      <ul>
-      <% @market.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+<div class="row">
+  <div class="col-xs-4">
+    <%= f.input :title %>
   </div>
-  <div class="field">
-    <%= f.label :icon %><br>
-    <%= f.text_field :icon %>
+  <div class="col-xs-4">
+    <%= f.input :icon %>
   </div>
-  <div class="actions">
+  <div class="col-xs-4">
     <%= f.submit %>
   </div>
+</div>
+
 <% end %>
