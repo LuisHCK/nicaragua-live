@@ -23,7 +23,7 @@ class ClientprofilesController < ApplicationController
   # GET /clientprofiles/new
   def new
     unless current_user.clientprofile.present?
-        @clientprofile = Clientprofile.new
+        @clientprofile = Clientprofile.new(clientprofile_params)
       else
         redirect_to edit_clientprofile_path(current_user.clientprofile)
     end

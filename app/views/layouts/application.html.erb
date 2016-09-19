@@ -14,7 +14,7 @@
 
 <header>
 
-  <nav id="custom-bootstrap-menu" class="navbar navbar-default navbar-fixed-top">
+  <nav id="bootstrap-menu" class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -35,14 +35,16 @@
           <li><%= link_to("Anuncios Clasificados", markets_path) %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opciones <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><%= if user_signed_in? then link_to("Mi Perfil", myprofile_path) 
+            <ul class="dropdown-menu white-text">
+              <li class="white-text"><%= if user_signed_in? then link_to("Mi Perfil", myprofile_path) 
                   else link_to("Iniciar Sesión", new_user_session_path)
                 end %></li>
               <!-- Check for session -->
               <li role="separator" class="divider"></li>
-              <li><%= if user_signed_in? then link_to('Cerrar Sesión', destroy_user_session_path, method: :delete, data:{confirm: "¿Quieres Cerrar tu Sessión Actual?"}) end %>  </li>
-              <li><a href="#">Ayuda</a></li>
+              <li class="white-text"><%= if user_signed_in? then link_to('Cerrar Sesión', destroy_user_session_path, method: :delete, data:{confirm: "¿Quieres Cerrar tu Sessión Actual?"}) end %></li>
+              <li class="white-text"><%= link_to "Empresas", new_profile_path %></li>
+              <li class="white-text"><a href="#">Ayuda</a></li>
+              <%= link_to_panel %>
             </ul>
           </li>
         </ul>

@@ -1,15 +1,17 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_client!, except: [:show,:index]
+  before_action :authenticate_user!, except: [:show,:index]
   before_action :set_profile
 
   def new
-        if client_signed_in?
-          if current_client.reviewed?(@profile)
-            redirect_to @profile, notice:"Ya has dado una valoracion"
-          else
+    unless current_user.id == @profile.id
+      if current_user.reviewed?(@profile)
+        redirect_to @profile, notice:"Ya has dado una valoracion"
+      else
         @review = Review.new
       end
+      else
+      redirect_to @profile, notice:"No puedes calificar tu propio perfil"      
     end
   end
 
@@ -18,26 +20,26 @@ class ReviewsController < ApplicationController
     profile = Profile.find(params[:profile_id])
 
     #2nd you retrieve the comment thanks to params[:id]
-    @review = profile.reviews.where(client_id: current_client.id).find(params[:id])
+    @review = profile.reviews.where(user_id: current_user.id).find(params[:id])
   end
 
   # POST /reviews
   # POST /reviews.json
   def create
-    if client_signed_in?
-      if current_client.reviewed?(@profile)
+    if user_signed_in?
+      if current_user.reviewed?(@profile)
         redirect_to @profile, notice:"Ya has dado una valoración"
       else
-      @review = Review.new(review_params)
-      @review.client_id = current_client.id
-      @review.profile_id = @profile.id
+        @review = Review.new(review_params)
+        @review.user_id = current_user.id
+        @review.profile_id = @profile.id
 
-      if @review.save
-        redirect_to @profile
-      else
-        render 'new'
+        if @review.save
+          redirect_to @profile
+        else
+          render 'new'
+        end
       end
-    end
     end
   end
 
@@ -72,11 +74,11 @@ class ReviewsController < ApplicationController
     end
 
     def set_profile
-        @profile = Profile.find(params[:profile_id])
+      @profile = Profile.find(params[:profile_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
       params.require(:review).permit(:rating, :comment)
     end
-end
+  end

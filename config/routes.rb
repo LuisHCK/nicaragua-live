@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :verification_requests
+  resources :verification_requests
+  resources :verifications
+  resources :verifications
   resources :invitations
   resources :partners
   resources :todos

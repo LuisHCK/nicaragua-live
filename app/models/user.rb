@@ -28,6 +28,7 @@ has_one :clientprofile, dependent: :destroy
 has_many :hearts, dependent: :destroy
 has_many :posts, through: :hearts
 has_one :partner, dependent: :destroy
+has_many :reviews
 
 has_many :comments
 has_many :event_comments

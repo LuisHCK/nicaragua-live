@@ -14,8 +14,11 @@
         <p>
           <% if reviewed?(@profile) %>
               <em><b>Basado en <%= @profile.reviews.count %> calificaciones</b></em>
+              <%= edit_review(@profile) %>
             <% else %>
-              <em><b>Aún sin valorar, <%= link_to "Ser el primero", new_profile_review_path(@profile) %></b></em>
+              <em><b>Aún sin valorar, <%= if can_review?(@profile) then 
+                link_to "Ser el primero", new_profile_review_path(@profile) 
+                end %></b></em>
           <% end %>
         </p>
         <span><%= @profile.body %></span><br>

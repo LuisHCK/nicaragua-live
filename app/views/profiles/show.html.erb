@@ -4,6 +4,7 @@
 
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active container" style="max-width:700px;" id="tab1">
+    <% if @profile.posts.present? %>
     <% if @pinned.present? %>
     <div class="page-header">
       <em><b>Publicación destacada</b></em>
@@ -14,6 +15,9 @@
     <% end %><!---->
     <b>Recientes</b>
     <%= render "post_frame" %>
+    <% else %>
+    <div class="alert alert-warning"><h3>No hay contenido para mostrar</h3></div>
+    <% end %>
   </div>
 
   <div role="tabpanel" class="tab-pane container" id="tab2">
@@ -23,10 +27,16 @@
     <% end %>
     <% end %>
 
-    <%= render @offers%>
-  </div>
+    <%= if @offers.present? then
+     render @offers 
+      else
+        content_tag(:div, "No hay contenido para mostrar", class:"h3")
+     end 
+    %>
+   </div>
 
-  <div role="tabpanel" class="tab-pane container" id="tab3">
+   <div role="tabpanel" class="tab-pane container" id="tab3">
+    <% if @profile.posts.present? %>
     <div class="row">
       <% @profile.posts.order("created_at DESC").each do |post| %>
       <% unless post.pictures.empty? %>
@@ -40,7 +50,9 @@
       <% end %>
       <% end %>
     </div>
-
+    <% else %>
+    <div class="alert alert-warning"><h3>No Hay contenido para Mostrar</h3></div>
+    <% end %>
   </div>
 </div>
 <script>

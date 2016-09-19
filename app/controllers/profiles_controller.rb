@@ -16,37 +16,28 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-    if @profile.banned?
-      redirect_to profiles_path
-    else
-      @post = Post.new
-      @review = Review.new
-      @offers = Offer.where(profile_id: @profile.id)
-      @reviews = Review.where(profile_id: @profile.id).order("created_at DESC")
-      @pinned = Post.where(pin: 1, profile_id: @profile.id).last
+    @post = Post.new
+    @review = Review.new
+    @offers = Offer.where(profile_id: @profile.id)
+    @reviews = Review.where(profile_id: @profile.id).order("created_at DESC")
+    @pinned = Post.where(pin: 1, profile_id: @profile.id).last
 
-      if @reviews.blank? || @reviews.nil?
-        @avg_review = 0
-      else
-        @avg_review = @reviews.average(:rating).round(2)
-      end
+    if @reviews.blank? || @reviews.nil?
+      @avg_review = 0
+    else
+      @avg_review = @reviews.average(:rating).round(2)
     end
   end
 
   # GET /profiles/new
   def new
-    if current_user.partner.present?
       #If current user already has a profile redirect to edit
       unless current_user.profile.present?
         @profile = Profile.new
       else
         redirect_to edit_profile_path(current_user.profile)
       end
-
-    else
-      redirect_to root_path, notice:"No puedes hacer esto."
     end
-  end
 
   # GET /profiles/1/edit
   def edit
@@ -56,11 +47,11 @@ class ProfilesController < ApplicationController
   # POST /profiles
   # POST /profiles.json
   def create
-    @profile = Profile.new
+    @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to edit_profile_path, notice: 'El perfil se creó correctamente' }
+        format.html { redirect_to @profile, notice: 'El perfil se creó correctamente' }
         format.json { render :show, status: :created, location: @profile }
       else
         format.html { render :new }

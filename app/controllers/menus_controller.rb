@@ -29,6 +29,7 @@ class MenusController < ApplicationController
 
 					@profiles = Profile.all
 					@profile = Profile.new
+					@users = User.all
 			#search profiles for edit
 			if params[:query].present?
 				#Profile.search(params[:query], page: params[:page], per_page: 10)
@@ -46,8 +47,10 @@ class MenusController < ApplicationController
 	def myprofile
 		if current_user.profile.present?
 			redirect_to profile_path(current_user.profile)
-		else
+		elsif current_user.clientprofile.present?
 			redirect_to clientprofile_path(current_user.clientprofile)
+		else
+			redirect_to new_clientprofile_path
 		end
 	end
 end

@@ -378,10 +378,12 @@ ActiveRecord::Schema.define(version: 201606222219123) do
     t.datetime "updated_at",               null: false
     t.integer  "client_id",  limit: 4
     t.integer  "profile_id", limit: 4
+    t.integer  "user_id",    limit: 4
   end
 
   add_index "reviews", ["client_id"], name: "index_reviews_on_client_id", using: :btree
   add_index "reviews", ["profile_id"], name: "index_reviews_on_profile_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "survey_answers", force: :cascade do |t|
     t.integer  "attempt_id",  limit: 4
@@ -475,6 +477,22 @@ ActiveRecord::Schema.define(version: 201606222219123) do
 
   add_index "valorations", ["client_id"], name: "index_valorations_on_client_id", using: :btree
 
+  create_table "verification_requests", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "verification_requests", ["user_id"], name: "index_verification_requests_on_user_id", using: :btree
+
+  create_table "verifications", force: :cascade do |t|
+    t.integer  "profile_id", limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "verifications", ["profile_id"], name: "index_verifications_on_profile_id", using: :btree
+
   create_table "wikis", force: :cascade do |t|
     t.string   "title",              limit: 255
     t.text     "body",               limit: 65535
@@ -515,8 +533,10 @@ ActiveRecord::Schema.define(version: 201606222219123) do
   add_foreign_key "profiles", "categories", on_delete: :cascade
   add_foreign_key "profiles", "users", on_delete: :cascade
   add_foreign_key "releases", "clients"
-  add_foreign_key "reviews", "clients"
   add_foreign_key "reviews", "profiles"
+  add_foreign_key "reviews", "users"
   add_foreign_key "survey_surveys", "users"
   add_foreign_key "valorations", "clients"
+  add_foreign_key "verification_requests", "users"
+  add_foreign_key "verifications", "profiles"
 end
