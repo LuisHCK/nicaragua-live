@@ -11,10 +11,10 @@ class ClientprofilesController < ApplicationController
   # GET /clientprofiles/1
   # GET /clientprofiles/1.json
   def show
-    if client_signed_in?
-      @coupon_redemptions = CouponRedemption.where(client_id: current_client.id)
+    if user_signed_in?
+      @coupon_redemptions = CouponRedemption.where(client_id: current_user.id)
     end
-    #find_hearts = current_client.hearts.limit(2).order(created_at: :asc).collect(&:post_id)
+    #find_hearts = current_user.hearts.limit(2).order(created_at: :asc).collect(&:post_id)
     find_hearts = @clientprofile.user.hearts.limit(2).map(&:post_id)
     @posts = Post.where(id: find_hearts).order(created_at: :asc)
     @profiles = Profile.limit(2).where(:id => @clientprofile.user.follows.collect(&:profile_id) )
@@ -23,7 +23,7 @@ class ClientprofilesController < ApplicationController
   # GET /clientprofiles/new
   def new
     unless current_user.clientprofile.present?
-        @clientprofile = Clientprofile.new(clientprofile_params)
+        @clientprofile = Clientprofile.new
       else
         redirect_to edit_clientprofile_path(current_user.clientprofile)
     end

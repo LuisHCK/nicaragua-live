@@ -106,6 +106,6 @@ module MenusHelper
 
 	def change_level(user,text,lvl)
 		#link_to(text, edit_user_registration_path(id: user.id, 'user[user_lvl]'=> lvl), method: :put)
-		link_to text, registration_path(resource_name, :user => {:user_lvl => lvl}), :method => :put, :confirm => "Are you sure?"
+		#link_to text, registration_path(resource_name, :user => {:user_lvl => lvl}), :method => :put, :confirm => "Are you sure?"
 	end
 end

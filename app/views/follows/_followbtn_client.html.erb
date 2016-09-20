@@ -1,5 +1,5 @@
-<% if client_signed_in? %>
-  <% if current_client.follow?(profile) %>
+<% if user_signed_in? %>
+  <% if current_user.follow?(profile) %>
     <%= link_to 'Siguiendo', unfollow_path(profile_id: profile.id), remote: true,id:"follow", class:"follow_btn hidden-xs", method: :delete %>
   <% else %>
     <%= button_to "Seguir", follow_path(profile_id: profile.id), class:"follow_btn hidden-xs",  remote: true, id:"follow" %>

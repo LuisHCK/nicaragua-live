@@ -3,20 +3,21 @@ class WelcomeController < ApplicationController
   def index
    @categories = Category.all
    @profiles = Profile.all
-       @promoved_profiles = Profile.limit(3).all #Pending to collect a list of promoved profiles
+       @promoved_profiles = Profile.limit(10).all #Pending to collect a list of promoved profiles
        @clientprofiles = Clientprofile.all
 
        @post = Post.new
        @follows = Follow.all
 
-       @comments = Comment.order(created_at: :desc).paginate(page: params[:page], per_page: 3).all
+       @comments = Comment.order(created_at: :desc).paginate(page: params[:page], per_page: 10).all
 
 
-       if client_signed_in?
-         @posts = Post.where(:profile_id => current_client.follows.collect(&:profile_id) ).order(created_at: :desc).paginate(:page => params[:page], :per_page => 5)
+      if user_signed_in?
+         @posts = Post.all.paginate(page: params[:page], per_page: 10)
+         #@posts = Post.where(:profile_id => current_user.follows.collect(&:profile_id) ).order(created_at: :desc).paginate(:page => params[:page], :per_page => 5)
        #this line collect the ids from followed users, then compare with the id of the post's owner and show in to welcome page. (an entire night for make this lol)
      else
-       @posts = Post.order(created_at: :desc).paginate(:page => params[:page], per_page: 3).all
+       @posts = Post.order(created_at: :desc).paginate(:page => params[:page], per_page: 10).all
      end
 
    end

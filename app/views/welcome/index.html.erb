@@ -1,13 +1,18 @@
 <div class="container">
   <!--Tarjetas-->
   <div class="alert alert-info"><h4>Recomendados</h4></div>
+  
   <%= render partial:'promo_profiles', locals:{promoved_profiles: @promoved_profiles} %>
+
 </div>
 
-<div class="container" style="max-width:700px;">
-  <% if client_signed_in? or user_signed_in? %>
+<div class="container" >
+  <% if user_signed_in? %>
   <div class="alert alert-info"><h4>Inicio</h4></div>
-  <%= render @posts %>
+  
+  <div id="owl-post" class="owl-carousel">
+    <%= render @posts %>
+  </div>
 
   <div class="center">
    <ul class="pagination center">
@@ -20,7 +25,10 @@
 <% else %>
 <div class="alert alert-info"><h4>Tendencias</h4></div>
 <div class="center-block">
-  <%= render @posts.sort_by { |post| post.hearts.count }.reverse %>
+  
+  <div id="owl-post" class="owl-carousel">
+    <%= render @posts.sort_by { |post| post.hearts.count }.reverse %>
+  </div>
 
   <div class="center">
    <ul class="pagination center">
@@ -34,16 +42,46 @@
 <% end %>
 </div>
 
-<div class="container" style="max-width:700px;">
+<div class="container">
   <div class="alert alert-info"><h4>Comentarios recientes</h4></div>
-  <%= render @comments %>
+  <div class="owl-carousel" id="owl-comments">
+    <% @comments.each do |comment| %>
+      <div class="col-xs-12">
+        <%= render partial:"comments/comment", locals:{comment: comment} %>  
+      </div>
+  <% end %>
+  </div>
+  
   <div class="center">
    <ul class="pagination center">
     <div class="apple_pagination">
-    <%= will_paginate @comments, container: false %>
+      <%= will_paginate @comments, container: false %>
     </div>
   </ul>
 </div>
 </div>
 
-</div>
+<script>
+  $("img.lazy").lazyload({
+    threshold : 200
+  });
+
+  $(document).ready(function() {
+
+    $("#owl-comments").owlCarousel({
+    items : 4,
+    lazyLoad : true,
+    });
+
+    $("#owl-promo").owlCarousel({
+      items : 4,
+      lazyload : true,
+    });
+
+    $("#owl-post").owlCarousel({
+    items : 4,
+    lazyLoad : true,
+    });
+
+  });
+</script>

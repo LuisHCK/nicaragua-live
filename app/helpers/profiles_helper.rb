@@ -41,7 +41,15 @@ module ProfilesHelper
 		if user_signed_in?
 			if current_user.reviewed?(profile)
 				review = current_user.reviews.find_by_profile_id(profile.id)
-				return link_to("Editar Valoración", edit_profile_review_path(review.id) )
+				return link_to("Editar Valoración", edit_profile_review_path(profile.id,review.id) )
+			end
+		end
+	end
+
+	def my_profile?(profile)
+		if user_signed_in?
+			if current_user.profile == profile
+				return true
 			end
 		end
 	end

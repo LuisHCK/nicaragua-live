@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   resources :verification_requests
-  resources :verification_requests
-  resources :verifications
   resources :verifications
   resources :invitations
   resources :partners
@@ -21,7 +19,6 @@ Rails.application.routes.draw do
   resources :wikis
   resources :panels
   resources :galleries
-  resources :pictures
 
   resources :profiles do
     resources :reviews, except: [:show, :index]
@@ -40,14 +37,12 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {registrations: "user/registrations",
     omniauth_callbacks: "user/omniauth_callbacks"}
-  devise_for :clients, controllers: {registrations: "clients/registrations"}
+
 
   match 'heart',    to: 'hearts#heart', via: :post
   match 'unheart',  to: 'hearts#unheart', via: :delete
   match 'follow',   to: 'follows#follow', via: :post
   match 'unfollow', to: 'follows#unfollow', via: :delete
-
-  match 'clients/:id' => 'clients#destroy', :via => :delete, :as => :admin_destroy_client
 
   match 'search', to: 'menus#search', via: :get
   match 'tools', to: 'menus#tools', via: :get
@@ -66,6 +61,8 @@ Rails.application.routes.draw do
 
   match 'bienvenido', to: 'menus#user_welcome', via: :get
   match 'myprofile', to: 'menus#myprofile', via: :get
+
+  match 'partners_info', to: 'profiles#info', via: :get
 
   match '/google13e2745398afabff.html',
       :to => proc { |env| [200, {}, ["google-site-verification: /google13e2745398afabff.html"]] }, via: :get

@@ -103,7 +103,7 @@ def link_to_user(user)
   if user.profile.present?
     link_to(user.profile.name, user.profile)
   else
-    link_to(user.clientprofile, clientprofile.name)
+    link_to(user.clientprofile, user.clientprofile.name)
   end
 end
 

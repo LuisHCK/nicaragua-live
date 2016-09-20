@@ -4,6 +4,9 @@
 
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active container" style="max-width:700px;" id="tab1">
+  <% if my_profile?(@profile) %>
+    <%= render"/posts/form" %>
+  <% end %>
     <% if @profile.posts.present? %>
     <% if @pinned.present? %>
     <div class="page-header">

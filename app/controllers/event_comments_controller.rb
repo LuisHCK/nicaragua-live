@@ -26,8 +26,6 @@ class EventCommentsController < ApplicationController
   def create
     if user_signed_in?
       @event_comment = current_user.event_comments.new(event_comment_params)
-    elsif client_signed_in?
-      @event_comment = current_client.event_comments.new(event_comment_params)
     end
 
     @event_comment.event = @event

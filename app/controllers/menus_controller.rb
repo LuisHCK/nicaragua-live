@@ -1,5 +1,5 @@
 class MenusController < ApplicationController
-	before_action :authenticate_user!, only:[:tools]
+	before_action :authenticate_user!, only:[:tools, :admin_panel]
 	#before_action :authenticate_client!, only:[:admin_panel,:user_welcome]
 	def user_welcome
 		@profiles = Profile.limit(3).all
