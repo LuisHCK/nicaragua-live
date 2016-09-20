@@ -1,11 +1,13 @@
 <%= simple_form_for @category, remote: true do |f| %>
-	<div class="flex-row">
-		<div class="col-xs-6">
-			<%= f.input :name, placeholder:"Nombre" %>
-		</div>
-		<div class="col-xs-6">
-			<%= f.input :icon, placeholder:"Icono" %>		
-		</div>
+<div class="row">
+	<div class="col-xs-4">
+		<%= f.input :name, placeholder:"Nombre" %>
 	</div>
-	<%= f.submit %>
+	<div class="col-xs-4">
+		<%= f.input :icon, placeholder:"Icono" %>		
+	</div>
+	<div class="col-xs-4">
+	<%= f.submit "Crear Categoría", class:"btn btn-success" %>
+	</div>
+</div>
 <% end %>

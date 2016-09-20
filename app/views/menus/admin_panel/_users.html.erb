@@ -1,0 +1,32 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th data-field="id">Nombre</th>
+			<th data-field="name">Fecha Reg</th>
+			<th data-field="price">Permisos</th>
+			<th data-field="actions">Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @users.each do |user| %>
+		<tr>
+			<td><%= "#{user.name} #{user.last_name}" %></td>
+			<td><%= "#{human_date(user.created_at)} a las #{human_time(user.created_at)}" %></td>
+			<td><%= user_level(user) %></td>
+			<td>
+				<!--Actions for user-->
+				<div class="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						Acciones
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						<li><%= change_level(user,"Hacer Básico",'1') %></li>
+					</ul>
+				</div>
+				<!--Actions for user-->
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

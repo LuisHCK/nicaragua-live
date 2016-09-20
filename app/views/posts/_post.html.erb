@@ -1,50 +1,53 @@
-  <ul class="collection z-depth-2">
-    <li class="collection-item row">
-      <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= post.profile.avatar.url(:thumb) %>" alt="" class="circle responsive-img">
-      <b><%= link_to post.profile.name, post.profile %></b>
+  <% color ||= 'primary' %>
+  <div class="panel panel-<%= color %>">
+    <div class="panel-heading">
+      <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= post.profile.avatar.url(:thumb) %>" alt="img" class="img-circle">
+      <b class="panel-title"><%= link_to post.profile.name, post.profile %></b>
 
       <!--Acciones para los posts-->
-      <div class="right actions-post">
+      <div class="pull-right actions-post">
         <%= post_edit(post) %>
         <%= post_delete(post) %>
+        <%= pin_post(post) %>
       </div>
 
-    </li>
+    </div>
 
-    <li class="collection-item">
+    <div class="panel-body">
       <p class="responsive-text">
         <%= truncate(post.body, length: 140) { link_to "Ver más", post_path(post) } %>
       </p>
       <% if post.pictures.count > 1 %>
-        <div class="fotorama" data-nav="thumbs" data-allowfullscreen="true">
-            <% post.pictures.each do |pic| %>
-              <a href="<%= pic.image.url() %>"><img src="<%= pic.image.url(:thumb)%>"></a>
-            <% end %>
-        </div>
-        <% else %>
+      <div class="fotorama" data-nav="thumbs" data-allowfullscreen="true">
         <% post.pictures.each do |pic| %>
-        <div class="center">
-          <%= image_tag(pic.image.url, class:"responsive-img", lazy: true)%>
-        </div>
-          <% end %>
+          <a href="<%= pic.image.url() %>"><img src="<%= pic.image.url(:thumb)%>"></a>
+        <% end %>
+      </div>
+      <% else %>
+        <% post.pictures.each do |pic| %>
+        <%= image_tag(pic.image.url, class:"responsive-img center-block", lazy: true)%>
+        <% end %>
+
       <% end %>
 
       <%= show_video(post) %>
 
-    </li>
+    </div>
 
-      <div class="row" style="margin-bottom: 6px;">
-        <%= div_for(post, class: "col s4 center") do %>
-            <%= render partial: "hearts/button", locals: {post: post} %>
+    <div class="panel-footer">
+      <div class="row center">
+              <%= div_for(post, class: "col-xs-4 center-block") do %>
+      <%= render partial: "hearts/button", locals: {post: post} %>
+      <% end %>
+      <div class="col-xs-4 center-block">
+        <%= link_to post do %>
+        <%= icon('comments',style:'font-size:2rem;') %>
         <% end %>
-          <div class="col s4 center">
-            <%= link_to post do %>
-              <%= icon('comments',style:'font-size:2.5rem;') %>
-            <% end %>
-          </div>
-          <div class="col s4 center">
-            <%= icon('share-alt',style:'font-size:2.5rem;') %>
-          </div>
-        </div>
-   </ul>
-   <link href="//cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+      </div>
+      <div class="col-xs-4 center-block">
+        <%= icon('share-alt',style:'font-size:2rem;') %>
+      </div>
+      </div>
+    </div>
+
+  </div>

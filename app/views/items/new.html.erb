@@ -1,17 +1,13 @@
 <div class="container">
-  <h4>Publicar</h4>
+	<div class="page-header">
+		<h3>Publicar</h3>
+	</div>
 
-  <%= render 'form' %>
+	<%= render 'form' %>
 
-<p>
-  <br>
-    <%= link_to 'Volver', markets_path, class:"btn red" %>
-</p>
+	<p>
+		<br>
+		<%= link_to 'Volver', markets_path, class:"btn red" %>
+	</p>
 
 </div>
-<!-- Initialize category selector -->
-<script type="text/javascript">
-  $(document).ready(function() {
-      $('select').material_select();
-    });
-</script>

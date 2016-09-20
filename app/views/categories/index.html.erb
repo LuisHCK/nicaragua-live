@@ -1,4 +1,6 @@
-<div class="grey-text darken-4 container">
+<div class="container">
+<div class="page-header"><h4>Descubrir</h4></div>
+
     <%= form_tag(profiles_path, method: "get", id: "search-form") do %>
     <h5 class="grey-text darken-4">Buscar</h5>
     <%= text_field_tag :query, params[:query], placeholder: "Buscar...",class:"grey-text darken-4", style:"max-width: 50%;" %>
@@ -8,28 +10,16 @@
 
     <h5>Categorías</h5>
 
-    <ul class="collection z-depth-1">
+    <div class="list-group">
         <% @categories.each do |category| %>
-        <a href="<%= category_path(category) %>" class="collection-item  blue-grey-text darken-4">
+        <a href="<%= category_path(category) %>" class="list-group-item">
             <%= icon(category.icon,style:'font-size:2rem;') %>
             <%= category.name %>
         </a>
         <% end %>
-    </ul>
+    </div>
     <div>
-        <h5>Recomendados</h5>
-        <% @promoved_profiles.each do |promoved_profile| %>
-        <div class="row panel-box">
-            <div class="col s4" style="padding:1px;">
-                <%= link_to image_tag(promoved_profile.cover, class:"responsive-img"),profile_path(promoved_profile) %>
-            </div>
-            <div class="col s8">
-                <b><%= promoved_profile.name %></b>
-                <div class="star-rating" data-score=<%= promoved_profile.reviews.average(:rating) %>></div>
-                <%= promoved_profile.body %>
-            </div>
-        </div>
-        <% end %>
+        <%= render partial:'/welcome/promo_profiles', locals:{promoved_profiles: @promoved_profiles} %>
     </div>
 </div>
 <script>

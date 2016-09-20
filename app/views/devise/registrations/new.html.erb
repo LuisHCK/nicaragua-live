@@ -1,50 +1,29 @@
-<div class="container grey-text darken-4">
-<h5>Registrarse</h5>
-<% if session_path(resource) == "/users/sign_in" %>
-    <p>
-      <%= icon("exclamation-triangle") %> Crea una cuenta para tu negocio o empresa y muestra tus productos o
-      servicios a los usuarios de <b>Estelí Live</b>
-    </p>
-  <% end %>
+<div class="container">
+  <div class="col-xs-8 col-xs-offset-2">
+  <h2>Crear una cuenta</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render partial:"devise/shared/errors", locals:{object: @user} %>
+    <% if session[:omniauth_errors] %>
+      <%= session[:omniauth_errors] %>
+    <% end %>
 
-  <% if session_path(resource) == "/clients/sign_in" %>
-    <div class="row">
-      <div class="col s6">
-        <%= f.label "Nombre" %><br />
-        <%= f.email_field :first_name, autofocus: true %>
-      </div>
-      <div class="col s6">
-        <%= f.label "Apellido" %><br />
-        <%= f.email_field :last_name %>
-      </div>
+    <div class="form-inputs">
+      <%= f.input :name, label:"Nombre" %>
+      <%= f.input :last_name, label:"Apellido" %>
+      <%= f.input :email, required: true, autofocus: true %>
+      <%= f.input :password, label:"Contraseña", required: true, hint: ("#{@minimum_password_length} caracteres como mínimo" if @minimum_password_length) %>
+      <%= f.input :password_confirmation, label:"Confirmar Contraseña", required: true %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label "Email" %><br />
-    <%= f.email_field :email %>
+    <div class="form-actions">
+      <%= f.button :submit, "Crear Cuenta!", class:"btn btn-success" %>
+    </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+    <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+
+
   </div>
-
-  <div class="field">
-    <%= f.label "Contraseña"%>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> caracteres mínimo)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label "Confirmar Contraseña" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Completar Registro", class:"btn-large teal darken-2"%>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
 </div>

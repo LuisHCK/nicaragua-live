@@ -1,82 +1,74 @@
-<div class="container">
+<div class="">
   <%= render "profile_info" %>
 </div>
 
-<div class="col s12">
-  <ul class="tabs blue-text">
-    <li class="tab col s3"><a href="#tab1">Publicaciones</a></li>
-    <li class="tab col s3"><a href="#tab2"><%= @profile.offer_section_name %></a></li>
-    <li class="tab col s3"><a href="#tab3">Galería</a></li>
-  </ul>
-</div>
-
-<div id="tab1" class="col s12 container">
-  <br>
-  Publicación destacada
-  <div class="card-panel grey lighten-5">
-    <%= icon('star', class:"left yellow-text") %>
-    <br>
-      <%= render partial: "posts/post",locals:{post: @pinned} %>
-  </div>
-
-  <%= render "post_frame" %>
-</div>
-
-<div id="tab2" class="col s12 container">
-  <% if user_signed_in? %>
-  <% if current_user.id == @profile.user_id %><br>
-  <%= link_to "Publicar Oferta", new_offer_path, class:"btn teal right" %><br>
-  <% end %>
-  <% end %>
-
-  <%= render "offers/offerts" %>
-</div>
-
-<div id="tab3" class="col s12">
-  <div class="row">
-    <% @profile.posts.order("created_at DESC").each do |post| %>
-    <% unless post.pictures.empty? %>
-    <% post.pictures.each do |pic| %>
-    <div class="col s6">
-      <%= image_tag(pic.image, class:"responsive-img", lazy: true) %>
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active container" style="max-width:700px;" id="tab1">
+    <% if @profile.posts.present? %>
+    <% if @pinned.present? %>
+    <div class="page-header">
+      <em><b>Publicación destacada</b></em>
+      <%= icon('star', class:"left yellow-text") %>
+      <br>
+      <%= render partial: "posts/post",locals:{post: @pinned, color: 'warning'} %>
     </div>
-    <% end %>
-    <% end %>
+    <% end %><!---->
+    <b>Recientes</b>
+    <%= render "post_frame" %>
+    <% else %>
+    <div class="alert alert-warning"><h3>No hay contenido para mostrar</h3></div>
     <% end %>
   </div>
 
+  <div role="tabpanel" class="tab-pane container" id="tab2">
+    <% if user_signed_in? %>
+    <% if current_user.id == @profile.user_id %><br>
+    <%= link_to "Publicar Oferta", new_offer_path, class:"btn teal right" %><br>
+    <% end %>
+    <% end %>
+
+    <%= if @offers.present? then
+     render @offers 
+      else
+        content_tag(:div, "No hay contenido para mostrar", class:"h3")
+     end 
+    %>
+   </div>
+
+   <div role="tabpanel" class="tab-pane container" id="tab3">
+    <% if @profile.posts.present? %>
+    <div class="row">
+      <% @profile.posts.order("created_at DESC").each do |post| %>
+      <% unless post.pictures.empty? %>
+      <% post.pictures.each do |pic| %>
+      <div class="col-xs-6 col-md-4">
+        <a class="thumbnail">
+          <%= image_tag(pic.image, class:"responsive-img", lazy: true) %>
+        </a>
+      </div>
+      <% end %>
+      <% end %>
+      <% end %>
+    </div>
+    <% else %>
+    <div class="alert alert-warning"><h3>No Hay contenido para Mostrar</h3></div>
+    <% end %>
+  </div>
 </div>
-<% if user_signed_in? && current_user.id == @profile.user_id %>
-<div class="z-depth-1">
-  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-    <a href="#modal1" class="modal-trigger btn-floating btn-large red">
-      <%= icon('pencil') %>
-
-    </a>
-  </div>
-  <%= render "posts/form" %>
-  <% end %>
-
-  <!-- Modal Structure -->
-  <%= render "reviews/form" %>
-
-
-  <script>
+<script>
   $("img.lazy").lazyload({
-    effect : "fadeIn"
+    effect : "fadeIn",
+    treshold: 200
   });
 
-    $('.modal-trigger').leanModal({
-    dismissible: true, // Modal can be dismissed by clicking outside of the modal
-    opacity: .5, // Opacity of modal background
-    in_duration: 300, // Transition in duration
-    out_duration: 200, // Transition out duration
-  }
-  );
-    $('.star-rating').raty({
-      readOnly: true,
-      score: function() {
-        return $(this).attr('data-score');
-      }
-    });
-  </script>
+  $('.star-rating').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    }
+  });
+  $('#myTabs a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  })
+</script>

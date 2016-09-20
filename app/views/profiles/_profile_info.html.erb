@@ -1,63 +1,58 @@
-<div style="margin-top:3%;margin-bottom: 0px;" class="row">
-
-  <div class="col s4 l3">
-    <img style="margin-left:1%;"
-    src="<%= @profile.avatar %>" alt="" class="circle responsive-img">
-    <!--Follow Button-->
-  </div>
-  <div style="padding-left:5%;" class="col s8 m6 grey-text darken-4">
-      <h5><b><%= @profile.name %></b></h5>
-    <br>
-    <div href="/root" class="star-rating" data-score= <%= @avg_review %> ></div>
-    <em><%= "#{@reviews.count} valoraciones" %></em>
-
-    <% if client_signed_in? && current_client.reviewed?(@profile) %>
-      <% @reviews.where(client_id: current_client.id).each do |rev|%>
-        <%= link_to "editar", edit_profile_review_path(@profile,rev) %>
-      <% end %>
-      <% elsif  client_signed_in? %>
-      <a class="modal-trigger btn-floating blue right" href="#review-modal"><%= icon('star') %></a>
-
-    <% end %>
-
-    <div id="follow_profile">
-      <%= render partial: "follows/followbtn", locals: { profile: @profile } %>
+<div class="container" style="margin-bottom: 20px;">
+  <div class="row panel">
+    <div class="col-md-4 bg_blur" style="background-image:url('<%= @profile.cover.url() %>');
+      ">
+      <!--a href="#" class="follow_btn hidden-xs">Follow</a-->
+      <%= render partial:'/follows/followbtn_client', locals:{profile: @profile} %>
     </div>
+    <div class="col-md-8 col-xs-12">
+      <%= image_tag(@profile.avatar, class:"img-thumbnail picture hidden-xs") %>
+      <%= image_tag(@profile.avatar, class:"img-thumbnail visible-xs picture_mob") %>
+      <div class="header">
+        <h1><%= @profile.name %></h1>
+        <div class="star-rating" data-score= <%= @profile.reviews.average(:rating) %> ></div>
+        <p>
+          <% if reviewed?(@profile) %>
+              <em><b>Basado en <%= @profile.reviews.count %> calificaciones</b></em>
+              <%= edit_review(@profile) %>
+            <% else %>
+              <em><b>Aún sin valorar, <%= if can_review?(@profile) then 
+                link_to "Ser el primero", new_profile_review_path(@profile) 
+                end %></b></em>
+          <% end %>
+        </p>
+        <span><%= @profile.body %></span><br>
+        <table class="table">
+          <thead class="center">
+            <th class="center">Seguidores</th>
+            <th class="center">Pulicaciones</th>
+          </thead>
 
-  </div>
+          <tr class="center">
+            <td><%= @profile.follows.count %></td>
+            <td><%= @profile.posts.count %></td>
+          </tr>
+        </table>
 
-</div>
-<div>
-      <table class="striped centered black-text">
-      <thead>
-        <tr>
-            <th data-field="id">Publicaciones</th>
-            <th data-field="name">Seguidores</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <%=  @profile.posts.count %>
-          </td>
-          <td>
-            <%= @profile.follows.count %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="row">
-      <%= @profile.body %>
+      </div>
     </div>
-</div>
-<div class="row center">
-  <div class="center">
-    <%= icon('users',style:'font-size:2rem;') %>
-    Redes Sociales
-  </div>
-<% if @profile.facebook != nil%>
-    <div class="fb-like" data-href= "<%= @profile.facebook %>"
-    data-layout="button" data-action="like" data-show-faces="false"</div>
-<% end %>
+  </div>  
+</div> 
 
-</div>
+<!-- Nav tabs -->
+<ul class="nav nav-pills" role="tablist">
+  <li role="presentation" class="active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Publicaciones</a></li>
+  <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab"><%= @profile.offer_section_name %></a>
+  </li>
+
+  <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Galería</a>
+  </li>
+</ul>
+<script>
+  $('.star-rating').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    }
+  });
+</script>

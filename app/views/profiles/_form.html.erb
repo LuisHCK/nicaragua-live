@@ -1,143 +1,26 @@
-<h5 class="grey-text darken-4">Editar Perfil Público</h5>
-<p class="grey-text darken-4">
-    Esta información se mostrará publicamente y será visto por todos los usuarios.
-</p>
-<%= form_for profile do |f|%>
+<%= simple_form_for(@profile, html: { class: 'form-horizontal' }) do |f| %>
+    <%= f.input :name, label:"Nombre", hint:"Nombre de tu negocio o servicio" %>
+    <%= f.input :body, label:"Descipción", as: :text, hint:"Explica a los usuarios de que trata tu negocio o servicio" %>
 
-<ul class="collapsible popout" data-collapsible="accordion">
-
-    <li>
-        <div class="collapsible-header">
-            <%= icon("briefcase") %>
-            Categoría
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <%= f.input :offer_section_name, label:"Titulo de la seccion de ofertas", collection:['Menú','Catálogo','Portafolio','Ofertas'], html: {calss: 'form-control'} %>
         </div>
-        <div class="collapsible-body" style="background:white;">
-            <p class="field">
-                <%= f.label "Categoria" %>
-                <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name) %>
-            </p>
-            <p>
-                Especifíca una categoría en la que quieres que tu marca sea vista. Si no seleccionas alguna no serás visible para los usuarios.
-                <br>
-                Si no estás seguro de cual es la categoría adecuada para tu marca ponte en contacto con el equipo de administracion para ayudarte a elegir la categoría adecuada
-            </p>
-
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <%= f.input :category_id, label:"Cateogría", collection: Category.all.map{|c| [c.name, c.id]} %>
         </div>
-    </li>
-
-    <li>
-        <div class="collapsible-header">
-          <%= icon("pencil") %>
-            Nombre de la Empresa o Negocio.
-        </div>
-        <div class="collapsible-body" style="background:white;">
-            <p class="field">
-                <%= f.label "Nombre del negocio o servicio" %><br>
-                <%= f.text_field :name %>
-            </p>
-        </div>
-    </li>
-
-    <li>
-        <div class="collapsible-header">
-          <%= icon("align-left") %>
-            Descripcion
-        </div>
-        <div class="collapsible-body" style="background:white;">
-            <p class="field">
-                <%= f.label "Parrafo descriptivo sobre el negocio o servicio" %><br>
-                <%= f.text_area :body, style:"max-width: 100%; height: 238px;" %>
-            </p>
-        </div>
-    </li>
-
-    <li>
-        <div class="collapsible-header">
-            <%= icon("bars") %>
-            Sección de Ofertas
-        </div>
-        <div class="collapsible-body" style="background:white;">
-            <p class="field">
-              Indica el título para tu sección donde se muestra la lista de los productos
-              que ofertas. <br>
-              <%= f.label "Seleccionar" %>
-              <%= f.select :offer_section_name, ['Menú','Catálogo','Portafolio','Ofertas'] %>
-            </p>
-        </div>
-    </li>
-
-    <li>
-        <div class="collapsible-header">
-            <%= icon("map-marker") %>
-            Dirección</div>
-        <div class="collapsible-body" style="background:white;">
-            <p class="field">
-                <%= f.label :direccion %><br>
-                <%= f.text_area :direccion, style:"max-width: 100%; height: 170px;"%>
-            </p>
-        </div>
-    </li>
-
-    <li>
-        <div class="collapsible-header">
-            <%= icon("file-image-o") %>
-            Imagen de Perfil
-        </div>
-        <div class="collapsible-body" style="background:white;">
-
-            <p style="margin-bottom: 3%">
-                <b>Imagen de Perfil</b>
-                <div class="file-field input-field">
-                    <div class="btn red">
-                        <span>Abrir</span>
-                        <input type="file">
-                        <%= f.file_field :avatar, input_html: { hidden: true }%>
-                    </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
-                    </div>
-                </div>
-
-            </p>
-        </div>
-    </li>
-
-    <li>
-        <div class="collapsible-header">
-          <%= icon("picture-o") %>
-            Imagen de portada
-        </div>
-        <div class="collapsible-body" style="background:white;">
-
-            <p style="margin-bottom: 3%">
-                <b>Imagen de portada</b>
-                <div class="file-field input-field">
-                    <div class="btn">
-                        <span>Abrir</span>
-                        <input type="file">
-                        <%= f.file_field :cover, input_html: { hidden: true }%>
-                    </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
-                    </div>
-                </div>
-
-            </p>
-        </div>
-    </li>
-
-    <div style="margin-top: 5%;" class="row">
-
-        <%= f.submit "Actualizar Perfil", class:"btn-large teal"%>
-        <p></p>
-        <%= link_to "Cerrar Seción", destroy_user_session_path, data: { confirm: '¿Seguro que quieres salir?' }, method: :delete, class:"btn-large red" %>
     </div>
-</ul>
-<% end %>
+    <%= f.input :direccion, label:"Dirección" %>
+    <%= f.input :keywords, label:"Etiquietas", hint:"Las etiquetas permiten que tu perfil aparezca en las busquedas de los usarios", placeholder:"Ejem: 'Comida ' 'Hospedaje'" %>
+    <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-6">
+            <%= f.input :avatar, label:"Imagen de perfil", as: :file %>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <%= f.input :cover, label:"Imagen de portada", as: :file %>
+        </div>
+    </div>
 
-<!-- Initialize category selector -->
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('select').material_select();
-    });
-</script>
+    <%= f.button :submit, "Guardar", class:"btn btn-success btn-lg"%>
+    <br>
+    <% end %>

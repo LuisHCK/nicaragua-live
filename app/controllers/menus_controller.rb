@@ -1,6 +1,6 @@
 class MenusController < ApplicationController
 	before_action :authenticate_user!, only:[:tools]
-	before_action :authenticate_client!, only:[:admin_panel,:user_welcome]
+	#before_action :authenticate_client!, only:[:admin_panel,:user_welcome]
 	def user_welcome
 		@profiles = Profile.limit(3).all
 	end
@@ -20,7 +20,7 @@ class MenusController < ApplicationController
 			end
 
 			def admin_panel
-				if current_client.role == 'admin'
+				if current_user.user_lvl >= 3
 					@categories = Category.all
 					@category = Category.new
 
@@ -29,13 +29,28 @@ class MenusController < ApplicationController
 
 					@profiles = Profile.all
 					@profile = Profile.new
+					@users = User.all
 			#search profiles for edit
 			if params[:query].present?
-				@search_profiles = Profile.search(params[:query], page: params[:page], per_page: 10)
+				#Profile.search(params[:query], page: params[:page], per_page: 10)
 			end
-
 		else
-			redirect_to root_path
+			redirect_to root_path, notice:"No tienes permisos para realizar esta accion"
+		end
+	end
+
+	def search
+		@search = Searchkick.search(params[:query], page: params[:page], per_page: 10, index_name: [Offer,Profile])
+		@search2 = Offer.search(params[:query], page: params[:page], per_page: 10)
+	end
+
+	def myprofile
+		if current_user.profile.present?
+			redirect_to profile_path(current_user.profile)
+		elsif current_user.clientprofile.present?
+			redirect_to clientprofile_path(current_user.clientprofile)
+		else
+			redirect_to new_clientprofile_path
 		end
 	end
 end

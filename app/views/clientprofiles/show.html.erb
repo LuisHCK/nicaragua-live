@@ -1,27 +1,29 @@
 <div class="container">
-    <div class="card-panel">
-        <div class="row card-content">
-            <div class="col l3 s12 m3 center">
-                <%= image_tag @clientprofile.avatar(), class:"responsive-img circle", style:"max-width:150px;"%>
+    <br>
+    <div class="panel panel-default">
+        <div class="panel-header">
+        <br>
+            <div class="col-lg-3 col-xs-12 col-md-3 center">
+                <%= image_tag @clientprofile.avatar(), class:"responsive-img img-circle", style:"max-width:150px;"%>
             </div>
 
-            <div class="col l9 s12 m9">
-                <h5>
+            <div class="col-lg-9 col-xs-12 col-md-9">
+                <h2>
                     <b><%= "#{first_name(@clientprofile)} #{last_name(@clientprofile)}" %></b>
-                </h5>
-                <table class="centered">
+                </h2>
+                <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Likes</th>
-                            <th>Seguidos</th>
-                            <th>Puntuación</th>
+                            <th class="info">Likes</th>
+                            <th class="info">Seguidos</th>
+                            <th class="info">Puntuación</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         <tr>
                             <td>
-                                <%= @clientprofile.client.hearts.count %>
+                                <%= @clientprofile.user.hearts.count %>
                             </td>
                             <td>
                                 0
@@ -34,31 +36,34 @@
                 </table>
 
             </div>
+        </div>
+        <div class="panel panel-body" style="margin:2%;">
+        <%= if user_signed_in? then link_to("Editar Mi Perfil", edit_clientprofile_path(current_user.clientprofile), class:"btn btn-primary pull-right") end %>
+
+            <div>
+                <b>Ubicación:
+                </b><%= @clientprofile.ubication %>
+            </div>
+            <div>
+                <p>
+                    <b>Biografía:
+                    </b><%= @clientprofile.biography %>
+                </p>
+            </div>
+            <% if client_signed_in? %>
+            <%= link_to "Editar tu Perfil", edit_clientprofile_path, class:"btn btn-warning"%>
+            <% end %>
 
         </div>
-
-        <div>
-            <b>Ubicación:
-            </b><%= @clientprofile.ubication %>
-        </div>
-        <div>
-            <p>
-                <b>Biografía:
-                </b><%= @clientprofile.biography %>
-            </p>
-        </div>
-        <% if client_signed_in? %>
-        <%= link_to "Editar tu Perfil", edit_clientprofile_path, class:"btn green"%>
-        <% end %>
     </div>
 
     <!--Show my coupons-->
     <% if my_coupons(@clientprofile) %>
-    <h5>Mis Cupones</h3>
-    <div class="card-panel">
+    <h5>Mis Cupones</h5>
+    <div class="panel panel-default">
         <div class="row">
             <% @coupon_redemptions.each do |coupon| %>
-            <div class="col s12 l4">
+            <div class="col-xs-12 col-lg-4">
                 <div class="info-box grey lighten-4">
                     <span class="info-box-icon cyan material-icons white-text">
                         <%= icon("star") %>
@@ -76,54 +81,22 @@
     </div>
 
     <!-- Show my likes -->
-    <div class="row">
-        <b class="grey-text darken-4">Le gustó recientemente</b>
-        <%= render 'welcome/posts'%>
+    <div class="container" style="max-width:700px;">
+        <b>Le gustó recientemente</b>
+        <%= render @posts %>
     </div>
     <!-- Show my followings -->
-    <div class="row">
-        <b class="grey-text darken-4">Se suscribió recientemente</b>
-        <% @profiles.order(created_at: :asc).each do |profile| %>
-        <ul class="collection">
-            <li class="collection-item">
-                <div class="row" style="margin-top:2%;">
-                    <div class="col l3 m4 s4">
-                        <%= image_tag profile.avatar, class:"responsive-img circle" %>
-                    </div>
-                    <div class="col l9 m8 s8">
-                        <%= link_to profile.name, profile %>
-                        <br>
-                        <%= profile.body %>
-                    </div>
-                    <%= div_for profile, class:"right" do %>
-                    <%= render partial: "follows/followbtn_client", locals: { profile: profile } %>
-                    <% end %>
-                </div>
-
-                <div></div>
-            </li>
-        </ul>
-        <% end %>
+    <div class="container" style="max-width:700px;">
+        <b>Se suscribió recientemente</b>
+        <div class="row">
+            <% @profiles.each do |profile| %>
+            <%= render partial:'/menus/search/profile', locals:{profile: profile} %>
+            <% end %>
+        </div>
     </div>
+</div>
 </div>
 
 <script type="text/javascript">
-    $('.modal-trigger').leanModal({
-        dismissible: true,
-        opacity: 0.5,
-        in_duration: 300,
-        out_duration: 200,
-        ready: function () {
-            if ($(".lean-overlay").length > 1) {
-                $(".lean-overlay:not(:first)").each(function () {
-                    $(this).remove();
-                });
-            }
-        },
-        complete: function () {
-            $(".lean-overlay").each(function () {
-                $(this).remove();
-            });
-        }
-    });
+
 </script>

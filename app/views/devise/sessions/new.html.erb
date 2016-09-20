@@ -1,42 +1,31 @@
-  <div class="container grey-text darken-4">
-    <h5 class="center">Iniciar Sesión</h5>
-<% if session_path(resource) == "/users/sign_in" %>
-    <div class="center">
-      <b>Inicia seción como una empresa o negocio.</b>
-    </div>
-  <% end %>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<div class="col-xs-6 col-xs-offset-3">
+	<div class="page-header center"><h3>Iniciar Sesión</h3></div>
 
-      <%= devise_error_messages! %>
+	<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+	<% if session[:omniauth_errors] %>
+	<%= session[:omniauth_errors] %>
+	<% end %>
 
-      <div class="field">
-        <%= f.label 'Correo' %><br />
-        <%= f.email_field :email, autofocus: true %>
-      </div>
+	<% resource.errors.each do |msg| %>
+		<%= msg %>
+	<% end %>
+	
+	<div class="form-inputs">
+		<%= f.input :email, required: false, autofocus: true %>
+		<%= f.input :password,label:"Contraseña", required: false %>
+		<%= f.input :remember_me, label:"Recordar contraseña", as: :boolean if devise_mapping.rememberable? %>
+	</div>
 
-      <div class="field">
-        <%= f.label "Contraseña" %><br />
-        <%= f.password_field :password, autocomplete: "off" %>
-      </div>
+	<div class="form-actions">
+		<%= f.button :submit, "Iniciar" %>
+	</div>
+	<% end %>
+	<br>
+	<div class="center" style="max-width: 220px">
+		<%= link_to user_facebook_omniauth_authorize_path, class:"btn btn-block btn-social btn-facebook" do %>
+			<span class="fa fa-facebook"></span> Iniciar con Facebook
+		<% end %>
+	</div>
+	<%= render "devise/shared/links" %>
 
-      <% if devise_mapping.rememberable? %>
-        <p>
-          <%= f.check_box :remember_me, id:"check_box1"%>
-          <%= f.label "Recordar Contraseña", for:"check_box1" %>
-        </p>
-      <% end %>
-
-
-      <div style="margin-top:5%" class="actions center">
-        <button class="btn-large teal darken-2">
-            Iniciar Sesión
-          <%f.submit "Log in" %>
-          <%= icon("paper-plane") %>
-        </button>
-      </div>
-    <% end %>
-
-    <div class="panel-box" style="margin-top:10%;">
-      <%= render "devise/shared/links" %>
-    </div>
-  </div>
+</div>

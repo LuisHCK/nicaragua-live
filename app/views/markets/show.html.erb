@@ -1,35 +1,41 @@
 <div class="container">
-<h5><%= @market.title %></h5>
+  <div class="page-header"><b><h3><%= @market.title %></h3></b></div>
   <% unless @market.items.any? %>
-    <div class="center">
-      <h4>¡Vaya!</h4>
-      <em>Parece que aun no hay artículos en esta categoría.</em><br>
-      <%= image_tag('sales.gif', class:"responsive-img") %><br>
-      <div style="margin-top:5%">
-        <%= link_to "Publicar el primero", new_item_path, class:"btn green" %>
-      </div>
+  <div class="center">
+    <h4>¡Vaya!</h4>
+    <em>Parece que aun no hay artículos en esta categoría.</em><br>
+    <%= image_tag('sales.gif', class:"responsive-img") %><br>
+    <div style="margin-top:5%">
+      <%= link_to "Publicar el primero", new_item_path, class:"btn green" %>
     </div>
+  </div>
   <% end %>
-  <% @market.items.each do  |item | %>
-      <div  class="card row z-depth-1">
-        <div class="col s5">
+  
+  <div class="row">
+    <% @market.items.each do  |item | %>
+    <div class="col-xs-6 col-md-4">
+      <div  class="panel panel-default">
+        <div class="panel-heading small-img">
           <% item.pictures.limit(1).each do |pic| %>
-            <%=link_to image_tag(pic.image, class:"responsive-img"), item%>
-            <% end %>
+          <%=link_to image_tag(pic.image, class:"responsive-img"), item%>
+          <% end %>
         </div>
-        <div class="col s7">
+        <div class="panel-body">
           <b><%= item.titulo %></b> <br>
           <b>Precio: </b>
           <% if item.precio == 'cordoba' %>
-            C$
+          C$
           <% else %>
-            $
-            <% end %>
-                <%= item.precio %>
-                <br>
+          $
+          <% end %>
+          <%= item.precio %>
+          <br>
           <b>Ubicación: </b><%= item.ubicacion %>
         </div>
       </div>
-  <% end %>
 
+    </div>
+    <% end %>
+
+  </div>
 </div>

@@ -2,23 +2,23 @@ class FollowsController < ApplicationController
   respond_to :js
 
   def follow
-    if client_signed_in?
-    @client = current_client
+    if user_signed_in?
+    @user = current_user
     @profile = Profile.find(params[:profile_id])
-    @client.follow!(@profile)
+    @user.follow!(@profile)
   else
-    redirect_to new_client_session_path, notice: 'Debes iniciar sesión primero'
+    redirect_to new_user_session_path, notice: 'Debes iniciar sesión primero'
   end
   end
 
   def unfollow
-    if client_signed_in?
-    @client = current_client
-    @follow = @client.follows.find_by_profile_id(params[:profile_id])
+    if user_signed_in?
+    @user = current_user
+    @follow = @user.follows.find_by_profile_id(params[:profile_id])
     @profile = Profile.find(params[:profile_id])
     @follow.destroy!
   else
-    redirect_to new_client_session_path, notice: 'Debes iniciar sesión primero'
+    redirect_to new_user_session_path, notice: 'Debes iniciar sesión primero'
 end
 
   end

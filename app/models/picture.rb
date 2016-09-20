@@ -3,7 +3,7 @@ class Picture < ActiveRecord::Base
 	belongs_to :item
 
 	has_attached_file :image, styles: { thumb: ["64x64#", :jpg],
-						original: ['600', :jpg] },
+						original: ['400', :jpg] },
 	convert_options: { thumb: "-quality 85 -strip",
 										 original: "-quality 90 -strip" }, dependent: :destroy
 

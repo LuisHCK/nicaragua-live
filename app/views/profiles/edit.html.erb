@@ -1,6 +1,10 @@
-<h1>Editing Profile</h1>
+<div class="col-xs-8 col-xs-offset-2">
+	<div class="page-header">
+		<h3>Editar el perfil público</h3>
+	</div>
+	<%= render 'form' %>
 
-<%= render 'form' %>
+	<%= link_to 'Show', @profile %> |
+	<%= link_to 'Back', profiles_path %>
 
-<%= link_to 'Show', @profile %> |
-<%= link_to 'Back', profiles_path %>
+</div>

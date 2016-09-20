@@ -1,6 +1,6 @@
 module MenusHelper
 	extend CouponsHelper
-	def profile
+	def profile_user
 		current_user.profile
 	end
 
@@ -16,7 +16,7 @@ module MenusHelper
 		coupon_redemption.client.clientprofile.name
 	end
 
-		def is_on_date?(coupon_check)
+	def is_on_date?(coupon_check)
 		if coupon_check.valid_until>coupon_check.valid_from
 			return true
 		else
@@ -65,11 +65,11 @@ module MenusHelper
 
 	def category(profile)
 		if profile.present?
-		category = Category.find(profile.category_id)
-		return category.name
-	else
-		return 'Vacio'
-	end
+			category = Category.find(profile.category_id)
+			return category.name
+		else
+			return 'Vacio'
+		end
 	end
 
 	def picture(follower)
@@ -79,4 +79,33 @@ module MenusHelper
 		end
 	end
 
+	#search filter
+	def is_profile?(result)
+		if result.class == Profile
+			return true
+		else
+			return false
+		end
+	end
+
+	def is_offer?(result)
+		if result.class == Offer
+			return true
+		else
+			return false
+		end
+	end
+
+	def profile_find(profile)
+		Profile.find_by_id(profile)
+	end
+
+	def offer_find(offer)
+		Offer.find_by_id(offer)		
+	end
+
+	def change_level(user,text,lvl)
+		#link_to(text, edit_user_registration_path(id: user.id, 'user[user_lvl]'=> lvl), method: :put)
+		link_to text, registration_path(resource_name, :user => {:user_lvl => lvl}), :method => :put, :confirm => "Are you sure?"
+	end
 end

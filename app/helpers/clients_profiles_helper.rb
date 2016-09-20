@@ -1,10 +1,10 @@
 module ClientsProfilesHelper
 	def first_name(clientprofile)
-		clientprofile.client.first_name
+		clientprofile.user.name
 	end
 
 	def last_name(clientprofile)
-		clientprofile.client.last_name
+		clientprofile.user.last_name
 	end
 
 	def my_coupons(clientprofile)

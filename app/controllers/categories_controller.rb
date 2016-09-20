@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_client!, except:[:show,:index]
+  before_action :authenticate_user!, except:[:show,:index]
   #before_action :authenticate_master_admin!, except: [:show,:index]
   # GET /categories
   # GET /categories.json
@@ -17,11 +17,18 @@ class CategoriesController < ApplicationController
 
   # GET /categories/new
   def new
-    @category = Category.new
+    if current_user.user_lvl >= 3
+      @category = Category.new
+    else
+      redirect_to root_path, notice:"No tienes permisos para esta accion"
+    end
   end
 
   # GET /categories/1/edit
   def edit
+    unless current_user.user_lvl >= 3
+      redirect_to root_path, notice:"No tienes permisos para esta accion"
+    end
   end
 
   # POST /categories

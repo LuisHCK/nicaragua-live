@@ -1,39 +1,15 @@
-<div id="review-modal" class="modal">
-  <div class="modal-content">
-    <%= form_for([@profile, @review]) do |f| %>
-    <% if @review.errors.any? %>
-      <div id="error_explanation" class="red-text">
-        <h6><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h6>
-
-        <ul>
-        <% @review.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-    <br>
-    <div class="input-field">
-      <div id="star-rating"></div>
-    </div>
-    <br>
-    <div class="field">
-      <div id="input_body" class="input-field col s12">
-        <%= f.text_field :comment, id:"text_area_name", class:"materialize-textarea", length:"250" %>
-        <label for="text_area_name">Tu comentario</label>
-      </div>
-    </div>
-  </div>
-
-<div class="modal-footer">
-  <%= f.submit "Enviar", class:"btn-large green"%>
+<%= simple_form_for([@profile, @review]) do |f| %>
+<div class="center">
+  <p>
+    <div id="star-rating"></div>
+  </p>
+  <%= f.input :comment, label:"Tu Comentario"  %>
+  <%= f.submit "Guardar", class:"btn btn-lg btn-success" %>
 </div>
+
 <% end %>
 <script>
-  $('#star-rating').raty({
-    
+  $('#star-rating').raty({    
     scoreName: 'review[rating]'
   });
 </script>
-
-</div>

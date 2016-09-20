@@ -81,34 +81,44 @@ def human_date(in_human_date)
   end
 
 #common helper methods for clients
-  def avatar_client(client)
-    if client.clientprofile.present?
-      image_tag(client.clientprofile.avatar(:thumb),class:'circle resposive-img avatar_profile')
-    else
-      image_tag('icon-user-default.png',class:'circle resposive-img avatar_profile')
+def link_to_panel
+  if user_signed_in?
+    if current_user.user_lvl >=  3
+      content_tag(:li) do
+        link_to("Panel",admin_panel_path)
+      end
     end
-  end
-  def link_to_client(client)
-    if client.clientprofile.present?
-      link_to(client.clientprofile.name, client.clientprofile)
-    else
-      client.email
-    end
-  end
+  end  
+end
 #common helper methods for users
-  def avatar_user(user)
-    if user.profile.present?
-      image_tag(user.profile.avatar(),class:'circle resposive-img avatar_profile')
-    else
-      image_tag('icon-user-default.png',class:'circle resposive-img avatar_profile')
-    end
+def avatar_user(user)
+  if user.profile.present?
+    image_tag(user.profile.avatar(:thumb),class:'img-circle resposive-img avatar_profile')
+  else
+    image_tag(user.clientprofile.avatar(:thumb),class:'img-circle resposive-img avatar_profile')
   end
-  def link_to_user(user)
-    if user.profile.present?
-      link_to(user.profile.name, user.profile)
-    else
-      user.email
-    end
+end
+
+def link_to_user(user)
+  if user.profile.present?
+    link_to(user.profile.name, user.profile)
+  else
+    link_to(user.clientprofile, clientprofile.name)
+  end
+end
+
+def user_level(user)
+  if user.user_lvl == 1 
+    return content_tag(:span, "Básico", class:"label label-primary") 
+    elsif user.user_lvl == 2
+      return content_tag(:span, "Empresa", class:"label label-primary")
+    elsif user.user_lvl == 3
+      return content_tag(:span, "Moderador", class:"label label-primary")
+    elsif user.user_lvl == 4
+      return content_tag(:span, "Admin", class:"label label-primary")
+    elsif user.user_lvl == 5
+      return content_tag(:span, "Máster", class:"label label-primary")
+  end
 end
 #Icon helper
 def icon(icon, text = nil, html_options = {})
@@ -123,25 +133,9 @@ def icon(icon, text = nil, html_options = {})
   html
 end
 
-  def post_delete(post)
-    if user_signed_in?
-      if current_user.id == post.profile.user_id
-        link_to post_path(post), method: :delete, data: { confirm: '¿Estás seguro de borrar esta publicación?' } do
-        icon('trash-o red-text')
-    end
-      end
-    end
-  end
-
-  #buttons fror post
-  def post_edit(post)
-    if user_signed_in?
-      if current_user.id == post.profile.user_id
-        return link_to edit_post_path(post) do
-           icon('pencil-square-o') 
-         end
-     end
-  end
+def get_user_name(user)
+  return name = "#{user.name} #{user.last_name}"
 end
+
 
 end

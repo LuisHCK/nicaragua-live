@@ -1,0 +1,12 @@
+<div class="panel panel-success">
+	<div class="panel-heading">
+		<% if comment.client_id <=> nil %>
+		<%= avatar_user(comment.user) %>
+		<b><%= link_to_user(comment.user) %></b>
+		<% end %>
+		<%= delete_comment(comment) %>
+	</div>
+	<div class="panel-body">
+		<%= comment.body %>
+	</div>
+</div>
