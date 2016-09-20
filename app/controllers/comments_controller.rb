@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user! except: [:show,:index]
+  before_action :authenticate_user!, except: [:show,:index]
   #before_action :validate_comment_owner, only: [:edit, :destroy]
 
   # GET /comments
@@ -16,6 +16,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
+    @post = Post.find(params[:post_id])
     @comment = Comment.new
   end
 
@@ -27,9 +28,13 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = current_user.comments.new(comment_params)
+    @post = Post.find(params[:post_id])
+    
+    @comment = @post.comments.create(comment_params)
+    
 
-    @comment.post = @post
+    @comment.user_id = current_user.id
+
     respond_to do |format|
       if @comment.save
         format.html { redirect_to post_path(@comment.post_id), notice: 'El comentario fue enviado.' }
@@ -84,6 +89,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:body,:post_id, :user_id)
+      params.require(:comment).permit(:body,:post_id, :user_id, :post_id)
     end
   end
