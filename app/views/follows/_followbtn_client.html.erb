@@ -1,16 +1,8 @@
 <% if user_signed_in? %>
   <% if current_user.follow?(profile) %>
-    <%= link_to 'Siguiendo', unfollow_path(profile_id: profile.id), remote: true,id:"follow", class:"follow_btn hidden-xs", method: :delete %>
+    <%= link_to 'Siguiendo', unfollow_path(profile_id: profile.id), remote: true,id:"follow", class:"btn btn-success", method: :delete %>
   <% else %>
-    <%= button_to "Seguir", follow_path(profile_id: profile.id), class:"follow_btn hidden-xs",  remote: true, id:"follow" %>
+    <%= button_to "Seguir", follow_path(profile_id: profile.id), class:"btn btn-primary",  remote: true, id:"follow" %>
   <% end %>
-
-<% else %>
-		
-		<% if user_signed_in? %>
-			<% if current_user.id == @profile.user_id %>
-				<%= link_to "Editar", edit_profile_path(@profile), notice:'Debes iniciar seción', class:"follow_btn hidden-xs" %>				
-			<% end %>
-		<% end %>
 
 <% end %>

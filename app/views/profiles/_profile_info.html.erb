@@ -3,56 +3,63 @@
     <div class="col-md-4 bg_blur" style="background-image:url('<%= @profile.cover.url() %>');
       ">
       <!--a href="#" class="follow_btn hidden-xs">Follow</a-->
-      <%= render partial:'/follows/followbtn_client', locals:{profile: @profile} %>
     </div>
     <div class="col-md-8 col-xs-12">
       <%= image_tag(@profile.avatar, class:"img-thumbnail picture hidden-xs") %>
       <%= image_tag(@profile.avatar, class:"img-thumbnail visible-xs picture_mob") %>
       <div class="header">
         <h1><%= @profile.name %></h1>
+        
+        <p>
+          <div id="follow_profile">
+            <%= render partial:'/follows/followbtn', locals:{profile: @profile} %>
+          </div>
+        </p>
+
         <div class="star-rating" data-score= <%= @profile.reviews.average(:rating) %> ></div>
         <p>
           <% if reviewed?(@profile) %>
-              <em><b>Basado en <%= @profile.reviews.count %> calificaciones</b></em>
-              <%= edit_review(@profile) %>
-            <% else %>
-              <em><b>Aún sin valorar, <%= if can_review?(@profile) then 
-                link_to "Ser el primero", new_profile_review_path(@profile) 
-                end %></b></em>
-          <% end %>
-        </p>
-        <span><%= @profile.body %></span><br>
-        <table class="table">
-          <thead class="center">
-            <th class="center">Seguidores</th>
-            <th class="center">Pulicaciones</th>
-          </thead>
+          <em><b>Basado en <%= @profile.reviews.count %> calificaciones</b></em>
+          <%= edit_review(@profile) %>
+          <% else %>
+          <em><b>Aún sin valorar, <%= if can_review?(@profile) then 
+            link_to "Ser el primero", new_profile_review_path(@profile) 
+            end %></b></em>
+            <% end %>
+          </p>
 
-          <tr class="center">
-            <td><%= @profile.follows.count %></td>
-            <td><%= @profile.posts.count %></td>
-          </tr>
-        </table>
+          <span><%= @profile.body %></span><br>
+          <table class="table">
+            <thead class="center">
+              <th class="center">Seguidores</th>
+              <th class="center">Pulicaciones</th>
+            </thead>
 
+            <tr class="center">
+              <td><%= @profile.follows.count %></td>
+              <td><%= @profile.posts.count %></td>
+            </tr>
+          </table>
+
+        </div>
       </div>
-    </div>
-  </div>  
-</div> 
+    </div>  
+  </div> 
 
-<!-- Nav tabs -->
-<ul class="nav nav-pills" role="tablist">
-  <li role="presentation" class="active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Publicaciones</a></li>
-  <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab"><%= @profile.offer_section_name %></a>
-  </li>
+  <!-- Nav tabs -->
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Publicaciones</a></li>
+    <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab"><%= @profile.offer_section_name %></a>
+    </li>
 
-  <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Galería</a>
-  </li>
-</ul>
-<script>
-  $('.star-rating').raty({
-    readOnly: true,
-    score: function() {
-      return $(this).attr('data-score');
-    }
-  });
-</script>
+    <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Galería</a>
+    </li>
+  </ul>
+  <script>
+    $('.star-rating').raty({
+      readOnly: true,
+      score: function() {
+        return $(this).attr('data-score');
+      }
+    });
+  </script>
