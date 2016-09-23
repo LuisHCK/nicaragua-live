@@ -1,7 +1,7 @@
 module WikisHelper
-  def editor(client)
-    if client.present?
-      if client.role == 'admin'
+  def editor(user)
+    if user.present?
+      if user.user_lvl >= 3
         return true
       else
         return false

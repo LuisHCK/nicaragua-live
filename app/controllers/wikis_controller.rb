@@ -1,5 +1,5 @@
 class WikisController < ApplicationController
-  before_action :authenticate_master_admin!, except: [:show,:index]
+  before_action :authenticate_user!, except: [:show,:index]
   before_action :set_wiki, only: [:show, :edit, :update, :destroy]
 
   # GET /wikis

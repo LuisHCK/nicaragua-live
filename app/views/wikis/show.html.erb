@@ -7,7 +7,7 @@
     <%= markdown(@wiki.body) %>
   </div>
 
-  <% if master_admin_signed_in? %>
+  <% if user_signed_in? %>
         <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
             <a href="<%= edit_wiki_path %>" class="btn-floating btn-large red">
               <%= icon('pencil') %>
