@@ -1,0 +1,32 @@
+<div class="container">
+	<div class="page-header"><h3>Favoritos</h3></div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">Ofertas que has guardado</div>
+		<div class="panel-body">
+			
+		</div>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">Publicaciones de Sitios que sigues</div>
+		<div class="panel-body">
+			<div class="owl-carousel" id="owl-posts">
+				<%=if @posts.present? then
+				 	render @posts 
+				 else
+				 	content_tag(:div, "No hay contenido para mostrar", class:"alert alert-info")
+				 end
+				 %>
+			</div>
+
+		</div>
+	</div>
+
+</div>
+
+<script>
+	$(document).ready(function() {
+		$("#owl-posts").owlCarousel();
+	});
+</script>

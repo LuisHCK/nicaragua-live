@@ -53,4 +53,6 @@ class MenusController < ApplicationController
 			redirect_to new_clientprofile_path
 		end
 	end
+
+
 end

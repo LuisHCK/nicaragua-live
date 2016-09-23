@@ -38,6 +38,7 @@ has_many :surveys
 has_many :coupons
 has_many :follows
 has_many :profiles, through: :follows, dependent: :destroy
+has_many :offer_saves, dependent: :destroy
 
   # creates a new heart row with post_id and user_id
   def heart!(post)

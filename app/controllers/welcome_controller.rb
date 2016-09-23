@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  before_action :authenticate_master_admin!, except: [:show,:index]
+  before_action :authenticate_user!, except: [:show,:index]
   def index
    @categories = Category.all
    @profiles = Profile.all
@@ -12,10 +12,8 @@ class WelcomeController < ApplicationController
        @comments = Comment.order(created_at: :desc).paginate(page: params[:page], per_page: 10).all
 
 
-      if user_signed_in?
+       if user_signed_in?
          @posts = Post.all.paginate(page: params[:page], per_page: 10)
-         #@posts = Post.where(:profile_id => current_user.follows.collect(&:profile_id) ).order(created_at: :desc).paginate(:page => params[:page], :per_page => 5)
-       #this line collect the ids from followed users, then compare with the id of the post's owner and show in to welcome page. (an entire night for make this lol)
      else
        @posts = Post.order(created_at: :desc).paginate(:page => params[:page], per_page: 10).all
      end
@@ -23,8 +21,13 @@ class WelcomeController < ApplicationController
    end
 
 
-   def show
+  def show
     @category = Category.find(params[:id])
+  end
+
+  def favorites
+    @posts = Post.where(:profile_id => current_user.follows.collect(&:profile_id) ).order(created_at: :desc).paginate(:page => params[:page], :per_page => 5)
+    #this line collect the ids from followed users, then compare with the id of the post's owner and show in to welcome page. (an entire night for make this lol)
   end
 
 

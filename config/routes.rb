@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :offer_saveds
   resources :verification_requests
   resources :verifications
   resources :invitations
@@ -49,7 +50,7 @@ Rails.application.routes.draw do
 
   match 'admin_panel', to: 'menus#admin_panel', via: :get
   match 'post_category', to: 'menus#post_category', via: :post
-
+  match 'favorites', to: 'welcome#favorites', via: :get
   match 'install', to:'menus#install', via: :get
 
   match 'redeem', to: 'coupon_redemptions#create',  via: :post
