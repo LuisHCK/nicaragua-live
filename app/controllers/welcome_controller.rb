@@ -30,6 +30,10 @@ class WelcomeController < ApplicationController
     #this line collect the ids from followed users, then compare with the id of the post's owner and show in to welcome page. (an entire night for make this lol)
   end
 
+  def privacity
+    
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -40,5 +44,9 @@ class WelcomeController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
       params.require(:category).permit(:name)
+    end
+
+    def terms
+      
     end
   end
