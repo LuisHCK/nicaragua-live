@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  before_action :authenticate_user!, except: [:show,:index]
+  before_action :authenticate_user!, except: [:show,:index,:privacity,:terms]
   def index
    @categories = Category.all
    @profiles = Profile.all
@@ -14,24 +14,28 @@ class WelcomeController < ApplicationController
 
        if user_signed_in?
          @posts = Post.all.paginate(page: params[:page], per_page: 10)
-     else
-       @posts = Post.order(created_at: :desc).paginate(:page => params[:page], per_page: 10).all
+       else
+         @posts = Post.order(created_at: :desc).paginate(:page => params[:page], per_page: 10).all
+       end
+
      end
 
-   end
 
+     def show
+      @category = Category.find(params[:id])
+    end
 
-  def show
-    @category = Category.find(params[:id])
-  end
-
-  def favorites
-    @posts = Post.where(:profile_id => current_user.follows.collect(&:profile_id) ).order(created_at: :desc).paginate(:page => params[:page], :per_page => 5)
+    def favorites
+      @posts = Post.where(:profile_id => current_user.follows.collect(&:profile_id) ).order(created_at: :desc).paginate(:page => params[:page], :per_page => 5)
     #this line collect the ids from followed users, then compare with the id of the post's owner and show in to welcome page. (an entire night for make this lol)
   end
 
   def privacity
-    
+
+  end
+
+  def terms
+
   end
 
 
@@ -46,7 +50,4 @@ class WelcomeController < ApplicationController
       params.require(:category).permit(:name)
     end
 
-    def terms
-      
-    end
   end
