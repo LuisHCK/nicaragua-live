@@ -1,26 +1,30 @@
 <%= simple_form_for(@profile, html: { class: 'form-horizontal' }) do |f| %>
-    <%= f.input :name, label:"Nombre", hint:"Nombre de tu negocio o servicio" %>
-    <%= f.input :body, label:"Descipción", as: :text, hint:"Explica a los usuarios de que trata tu negocio o servicio" %>
+<%= f.input :name, label:"Nombre", hint:"Nombre de tu negocio o servicio" %>
+<%= f.input :body, label:"Descipción", as: :text, hint:"Explica a los usuarios de que trata tu negocio o servicio" %>
 
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-6">
-            <%= f.input :offer_section_name, label:"Titulo de la seccion de ofertas", collection:['Menú','Catálogo','Portafolio','Ofertas'], html: {calss: 'form-control'} %>
-        </div>
-        <div class="col-sm-12 col-md-12 col-lg-6">
-            <%= f.input :category_id, label:"Cateogría", collection: Category.all.map{|c| [c.name, c.id]} %>
-        </div>
-    </div>
-    <%= f.input :direccion, label:"Dirección" %>
-    <%= f.input :keywords, label:"Etiquietas", hint:"Las etiquetas permiten que tu perfil aparezca en las busquedas de los usarios", placeholder:"Ejem: 'Comida ' 'Hospedaje'" %>
-    <div class="row">
+<div class="row">
     <div class="col-sm-12 col-md-12 col-lg-6">
-            <%= f.input :avatar, label:"Imagen de perfil", as: :file %>
-        </div>
-        <div class="col-sm-12 col-md-12 col-lg-6">
-            <%= f.input :cover, label:"Imagen de portada", as: :file %>
-        </div>
+        <%= f.input :offer_section_name, label:"Titulo de la seccion de ofertas", collection:['Menú','Catálogo','Portafolio','Ofertas'], html: {calss: 'form-control'} %>
     </div>
+    <div class="col-sm-12 col-md-12 col-lg-6">
+        <%= f.input :category_id, label:"Cateogría", collection: Category.all.map{|c| [c.name, c.id]} %>
+    </div>
+</div>
+<%= f.input :direccion, label:"Dirección" %>
+<%= f.input :keywords, label:"Etiquietas", hint:"Las etiquetas permiten que tu perfil aparezca en las busquedas de los usarios", placeholder:"Ejem: 'Comida ' 'Hospedaje'" %>
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-6">
+        <%= f.input :avatar, label:"Imagen de perfil", as: :file %>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-6">
+        <%= f.input :cover, label:"Imagen de portada", as: :file %>
+    </div>
+</div>
 
-    <%= f.button :submit, "Guardar", class:"btn btn-success btn-lg"%>
-    <br>
-    <% end %>
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#terms">
+  Crear Perfil
+</button>
+
+<%= render partial:'profiles/terms', locals:{f: f} %>
+<br>
+<% end %>
