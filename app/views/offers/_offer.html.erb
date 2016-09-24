@@ -2,6 +2,12 @@
   <div class="thumbnail">
     <%= image_tag(offer.image, lazy:true) %>
     <div class="caption">
+      <%= if current_user.fav?(offer) then 
+        "NADA" 
+        else 
+          link_to icon('star'), offer_saveds_path(user_id: current_user.id, offer_id: offer.id, profile_id: offer.profile), method: :post, remote:true, class:"pull-right" 
+      end%>
+
       <h3> <%= offer.titulo %> </h3>
       <p><%= offer.descripcion %></p>
       <b>Precio: </b>

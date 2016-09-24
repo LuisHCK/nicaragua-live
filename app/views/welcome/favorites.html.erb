@@ -4,7 +4,10 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">Ofertas que has guardado</div>
 		<div class="panel-body">
-			
+			<% @offers.each do |offer| %>
+				<%= render partial:"offers/offer", locals:{offer: offer} %>
+			<% end %>
+
 		</div>
 	</div>
 

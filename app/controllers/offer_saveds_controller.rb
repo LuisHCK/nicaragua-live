@@ -1,6 +1,6 @@
 class OfferSavedsController < ApplicationController
   before_action :set_offer_saved, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, except: [:show,:index]
   # GET /offer_saveds
   # GET /offer_saveds.json
   def index
@@ -24,14 +24,16 @@ class OfferSavedsController < ApplicationController
   # POST /offer_saveds
   # POST /offer_saveds.json
   def create
-    @offer_saved = OfferSaved.new(offer_saved_params)
+    @offer_saved = OfferSaved.new(offer_id: params[:offer_id])
+    @offer_saved.user_id = current_user.id
+    @profile = Profile.find(params[:profile_id])
 
     respond_to do |format|
       if @offer_saved.save
         format.html { redirect_to @offer_saved, notice: 'Offer saved was successfully created.' }
         format.json { render :show, status: :created, location: @offer_saved }
       else
-        format.html { render :new }
+        format.html { redirect_to @profile, notice: "Hubo un error en la solicitud"}
         format.json { render json: @offer_saved.errors, status: :unprocessable_entity }
       end
     end

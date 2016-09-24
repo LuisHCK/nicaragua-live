@@ -38,7 +38,7 @@ has_many :surveys
 has_many :coupons
 has_many :follows
 has_many :profiles, through: :follows, dependent: :destroy
-has_many :offer_saves, dependent: :destroy
+has_many :offer_saveds, dependent: :destroy
 
 ########################## USER HELPERS ############################
   # creates a new heart row with post_id and user_id
@@ -73,12 +73,6 @@ has_many :offer_saves, dependent: :destroy
   end
 
   ##Adding Followin methods
-  def follow_user
-    if current_client.follow!(@profile)
-      format.html { redirect_to @profile, notice: 'Has seguido a' }
-    end
-  end
-
   def follow!(profile)
     self.follows.create(profile_id: profile.id)
   end
@@ -97,5 +91,9 @@ has_many :offer_saves, dependent: :destroy
     self.coupon_redemptions.find_by coupon_id:(coupon.id)
   end
 
+  #add_to favorites
+  def fav?(offer)
+    self.offer_saveds.find_by offer_id:(offer.id)
+  end
 
 end

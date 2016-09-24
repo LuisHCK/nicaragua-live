@@ -27,7 +27,8 @@ class WelcomeController < ApplicationController
 
     def favorites
       @posts = Post.where(:profile_id => current_user.follows.collect(&:profile_id) ).order(created_at: :desc).paginate(:page => params[:page], :per_page => 5)
-    #this line collect the ids from followed users, then compare with the id of the post's owner and show in to welcome page. (an entire night for make this lol)
+      #this line collect the ids from followed users, then compare with the id of the post's owner and show in to welcome page. (an entire night for make this lol)
+      @offers = Offer.where(id: current_user.offer_saveds.collect(&:offer_id) ).order(created_at: :desc).paginate(:page => params[:page], :per_page => 5)
   end
 
   def privacity
