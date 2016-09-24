@@ -1,5 +1,6 @@
 class Clientprofile < ActiveRecord::Base
   belongs_to :user
+  validates :name, presence: true
 
   has_attached_file :cover, styles: { thumb: ["64x64#", :jpg],
             original: ['600x600#', :jpg] },
