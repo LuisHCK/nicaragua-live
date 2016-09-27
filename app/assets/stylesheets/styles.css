@@ -232,5 +232,17 @@ video.responsive-video {
               font-size: 24px;
             }
             .avatar_profile{
-              max-width: 60px;
-            }
+              max-width: 40px;
+}
+
+.alert-flat {
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.alert-info-flat {
+    background-color: #CFD8DC;
+    border-color: #B0BEC5;
+    color: #424242;
+}

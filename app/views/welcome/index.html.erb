@@ -1,14 +1,21 @@
 <div class="container">
   <!--Tarjetas-->
-  <div class="alert alert-info"><h4>Recomendados</h4></div>
+  <div class="alert-flat alert-info-flat center"><h5>Recomendados</h5></div>
   
   <%= render partial:'promo_profiles', locals:{promoved_profiles: @promoved_profiles} %>
 
 </div>
 
+<div class="container">
+<div class="alert-flat alert-info-flat center"><h5>Ofertas recientes</h5></div>
+  <div class="owl-caroucel" id="owl-offers">
+    <%= render @offers %>
+  </div>
+</div>
+
 <div class="container" >
   <% if user_signed_in? %>
-  <div class="alert alert-info"><h4>Inicio</h4></div>
+  <div class="alert-flat alert-info-flat center"><h5>Inicio</h5></div>
   
   <div id="owl-post" class="owl-carousel">
     <%= render @posts %>
@@ -23,9 +30,9 @@
 </div>
 
 <% else %>
-<div class="alert alert-info"><h4>Tendencias</h4></div>
+<div class="alert-flat alert-info-flat center"><h5>Tendencias</h5></div>
 <div class="center-block">
-  
+
   <div id="owl-post" class="owl-carousel">
     <%= render @posts.sort_by { |post| post.hearts.count }.reverse %>
   </div>
@@ -43,13 +50,13 @@
 </div>
 
 <div class="container">
-  <div class="alert alert-info"><h4>Comentarios recientes</h4></div>
+<div class="alert-flat alert-info-flat center"><h5>Comentarios recientes</h5></div>
   <div class="owl-carousel" id="owl-comments">
     <% @comments.each do |comment| %>
-      <div class="col-xs-12">
-        <%= render partial:"comments/comment", locals:{comment: comment} %>  
-      </div>
-  <% end %>
+    <div class="col-xs-12">
+      <%= render partial:"comments/comment", locals:{comment: comment} %>  
+    </div>
+    <% end %>
   </div>
   
   <div class="center">
@@ -69,8 +76,8 @@
   $(document).ready(function() {
 
     $("#owl-comments").owlCarousel({
-    items : 4,
-    lazyLoad : true,
+      items : 4,
+      lazyLoad : true,
     });
 
     $("#owl-promo").owlCarousel({
@@ -79,9 +86,11 @@
     });
 
     $("#owl-post").owlCarousel({
-    items : 4,
-    lazyLoad : true,
+      items : 4,
+      lazyLoad : true,
     });
+
+    $('#owl-offers').owlCarousel();
 
   });
 </script>
