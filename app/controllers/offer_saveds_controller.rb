@@ -27,12 +27,15 @@ class OfferSavedsController < ApplicationController
     @offer_saved = OfferSaved.new(offer_id: params[:offer_id])
     @offer_saved.user_id = current_user.id
     @profile = Profile.find(params[:profile_id])
+    @offer = Offer.find(params[:offer_id])
 
     respond_to do |format|
       if @offer_saved.save
+        format.js
         format.html { redirect_to @offer_saved, notice: 'Offer saved was successfully created.' }
         format.json { render :show, status: :created, location: @offer_saved }
       else
+        format.js
         format.html { redirect_to @profile, notice: "Hubo un error en la solicitud"}
         format.json { render json: @offer_saved.errors, status: :unprocessable_entity }
       end
@@ -43,10 +46,12 @@ class OfferSavedsController < ApplicationController
   # PATCH/PUT /offer_saveds/1.json
   def update
     respond_to do |format|
+      format.js
       if @offer_saved.update(offer_saved_params)
         format.html { redirect_to @offer_saved, notice: 'Offer saved was successfully updated.' }
         format.json { render :show, status: :ok, location: @offer_saved }
       else
+        format.js
         format.html { render :edit }
         format.json { render json: @offer_saved.errors, status: :unprocessable_entity }
       end
@@ -57,7 +62,9 @@ class OfferSavedsController < ApplicationController
   # DELETE /offer_saveds/1.json
   def destroy
     @offer_saved.destroy
+    @offer = Offer.find(params[:offer_id])
     respond_to do |format|
+      format.js
       format.html { redirect_to offer_saveds_url, notice: 'Offer saved was successfully destroyed.' }
       format.json { head :no_content }
     end
@@ -73,4 +80,4 @@ class OfferSavedsController < ApplicationController
     def offer_saved_params
       params.require(:offer_saved).permit(:user_id, :offer_id)
     end
-end
+  end

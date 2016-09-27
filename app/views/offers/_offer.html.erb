@@ -1,24 +1,22 @@
-<div class="col-sm-6 col-md-3">
+<div class="col-lg-12 col-md-3">
   <div class="thumbnail">
     <%= image_tag(offer.image, lazy:true) %>
     <div class="caption">
-      <%= if current_user.fav?(offer) then 
-        "NADA" 
-        else 
-          link_to icon('star'), offer_saveds_path(user_id: current_user.id, offer_id: offer.id, profile_id: offer.profile), method: :post, remote:true, class:"pull-right" 
-      end%>
 
       <h3> <%= offer.titulo %> </h3>
+
       <p><%= offer.descripcion %></p>
+      
       <b>Precio: </b>
-      <% if offer.precio == 'cordoba' %>
-      C$
-      <% else %>
-      $
-      <% end %>
-      <%= offer.precio %>
+      
+      <%= precio(offer) %>
       <br>
-      <p><%= link_to("Ver Más", offer_path(offer) , class:"btn btn-primary") %></p>
+      <p>
+        <%= div_for(offer, class:"center") do %>
+          <%= render(partial: '/offer_saveds/save_offer', 
+          locals: { offer: offer }) %>
+        <% end %>
+      </p>
     </div>
   </div>
 </div>
