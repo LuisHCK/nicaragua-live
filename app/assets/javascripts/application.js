@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require jquery.turbolinks
 //= require layzr
+//= require social-share-button
 //= require_tree .
