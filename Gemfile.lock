@@ -193,6 +193,7 @@ GEM
       mime-types
       mimemagic (= 0.3.0)
     pg (0.18.4)
+    pg (0.18.4-x86-mingw32)
     pkg-config (1.1.7)
     puma (3.4.0)
     rack (1.6.4)
@@ -250,6 +251,9 @@ GEM
     simple_form (3.2.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
+    social-share-button (0.5.0)
+      coffee-rails
+      sass-rails
     spring (1.7.1)
     sprockets (3.6.2)
       concurrent-ruby (~> 1.0)
@@ -319,6 +323,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   searchkick
   simple_form
+  social-share-button
   spring
   sprockets
   survey (~> 0.1)
