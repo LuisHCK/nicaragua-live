@@ -13,13 +13,18 @@
                     <%= truncate(profile.body ) %><br>
                     <b>Dirección:
                     </b><%= profile.direccion %>
-                    <div class="center"><%= link_to 'Ver Más', profile_path(profile), class:"btn btn-primary" %></div>
+                    <div class="row center">
+                        <%= div_for(profile, class:"col-xs-6") do %><%= render partial:'follows/followbtn_small',locals:{profile: profile} %>
+                        <% end %>
+                        <div class="col-xs-6"><%= link_to 'Ver Más', profile_path(profile), class:"btn btn-primary" %>
+                        </div>
+                    </div>
                 </p>
             </div>
         </div>
     </div>
     <% end %>
-<% end %>
+    <% end %>
 </div>
 
 

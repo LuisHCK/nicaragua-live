@@ -2,7 +2,7 @@
   <% color ||= 'primary' %>
   <div class="panel panel-<%= color %>">
     <div class="panel-heading">
-      <img style="vertical-align: middle; margin-left:2%; max-width:50px;" src="<%= post.profile.avatar.url(:thumb) %>" alt="img" class="img-circle">
+      <img style="vertical-align: middle; margin-left:2%;" src="<%= post.profile.avatar.url(:thumb) %>" alt="img" class="img-circle avatar_profile">
       <b class="panel-title"><%= link_to post.profile.name, post.profile %></b>
 
       <!--Acciones para los posts-->
@@ -38,11 +38,19 @@
         <% end %>
         <div class="col-xs-4 center-block">
           <%= link_to post do %>
-          <%= icon('comments',style:'font-size:2rem;') %>
+          <%= icon('comments',style:'font-size:2rem;',class:"btn" ) %>
           <% end %>
         </div>
         <div class="col-xs-4 center-block">
-          <%= icon('share-alt',style:'font-size:2rem;') %>
+
+          <div class="dropup">
+          <button class="btn" type="button" id="dropdownMenu<%= post.id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= icon('share-alt',style:'font-size:2rem;') %>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu<%= post.id %>">
+              <%= social_share_button_tag(post.title, image: post.pictures.first, desc: truncate(post.body,length:125), via: "NicaLiveApp", url: post_url(post))%>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

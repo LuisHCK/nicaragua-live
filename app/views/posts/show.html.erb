@@ -31,6 +31,7 @@
         </div>
 
         <div class="panel-footer" id="coments_field">
+            <%= social_share_button_tag(@post.title, image: @post.pictures.first, desc: truncate(@post.body,length:125), via: "NicaLiveApp", url: post_url(@post))%>
             <%= render partial:"posts/comments" %>
         </div>
 

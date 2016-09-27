@@ -4,10 +4,13 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">Ofertas que has guardado</div>
 		<div class="panel-body">
-			<% @offers.each do |offer| %>
-				<%= render partial:"offers/offer", locals:{offer: offer} %>
+			<% if @offers.present? %>
+				<% @offers.each do |offer| %>
+					<%= render partial:"offers/offer", locals:{offer: offer} %>
+				<% end %>
+			<% else %>
+				<div class="alert alert-warning">No hay contenido para mostrar</div>
 			<% end %>
-
 		</div>
 	</div>
 
@@ -16,11 +19,11 @@
 		<div class="panel-body">
 			<div class="owl-carousel" id="owl-posts">
 				<%=if @posts.present? then
-				 	render @posts 
-				 else
-				 	content_tag(:div, "No hay contenido para mostrar", class:"alert alert-info")
-				 end
-				 %>
+					render @posts 
+				else
+					content_tag(:div, "No hay contenido para mostrar", class:"alert alert-warning")
+				end
+				%>
 			</div>
 
 		</div>

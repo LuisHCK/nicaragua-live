@@ -10,7 +10,7 @@
 <% @posts.each do |post| %>
   <div class="panel panel-primary">
     <li class="collection-item row">
-      <img style="vertical-align: middle; margin-left:2%;height: 50px; width:50px;" src="<%= post.profile.avatar.url(:thumb) %>" alt="" class="circle">
+      <img style="vertical-align: middle; margin-left:2%;height: 40px; width:40px;" src="<%= post.profile.avatar.url(:thumb) %>" alt="" class="circle">
       <b><%= link_to post.profile.name, post.profile %></b>
 
       <% if user_signed_in? %>
