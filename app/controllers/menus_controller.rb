@@ -1,12 +1,12 @@
 class MenusController < ApplicationController
-	before_action :authenticate_user!, only:[:tools, :admin_panel]
+	before_action :authenticate_user!, only:[:tools, :admin_panel, :myprofile]
 	#before_action :authenticate_client!, only:[:admin_panel,:user_welcome]
 	def user_welcome
 		@profiles = Profile.limit(3).all
 	end
 
 	def tools
-		if user_signed_in?
+		if user_signed_in?             
 			@posts = Post.where(profile_id: current_user.profile.id)
 			@hearts = Heart.where(post_id: current_user.profile.posts.collect(&:id))
 			@coupon = Coupon.new
