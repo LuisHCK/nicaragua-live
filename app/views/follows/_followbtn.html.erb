@@ -1,8 +1,1 @@
-<% if user_signed_in? %>
-  <% if current_user.follow?(profile) %>
-    <%= link_to 'Siguiendo', unfollow_path(profile_id: profile.id), remote: true,id:"follow", class:"btn btn-lg btn-success", method: :delete %>
-  <% else %>
-    <%= button_to "Seguir", follow_path(profile_id: profile.id), class:"btn btn-lg btn-primary",  remote: true, id:"follow" %>
-  <% end %>
-
-<% end %>
+<%= follow_bt_lg(profile) %>

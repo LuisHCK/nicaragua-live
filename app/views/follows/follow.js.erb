@@ -1,2 +1,2 @@
 $("#follow_profile").html("<%= j render(partial: '/follows/followbtn', locals: { profile: @profile }) %>")
-$("#<%= dom_id(@profile) %>").html("<%= j render(partial: '/follows/followbtn', locals: { profile: @profile }) %>")
+$("#<%= dom_id(@profile) %>").html("<%= j render(partial: '/follows/followbtn_small', locals: { profile: @profile }) %>")
