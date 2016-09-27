@@ -3,44 +3,47 @@ class WelcomeController < ApplicationController
   def index
    @categories = Category.all
    @profiles = Profile.all
-       @promoved_profiles = Profile.limit(10).all #Pending to collect a list of promoved profiles
-       @clientprofiles = Clientprofile.all
+    @promoved_profiles = Profile.limit(10).all #Pending to collect a list of promoved profiles
+    @clientprofiles = Clientprofile.all
 
-       @post = Post.new
-       @follows = Follow.all
-
-       @comments = Comment.order(created_at: :desc).paginate(page: params[:page], per_page: 10).all
-
-
-       if user_signed_in?
-         @posts = Post.all.paginate(page: params[:page], per_page: 10)
-       else
-         @posts = Post.order(created_at: :desc).paginate(:page => params[:page], per_page: 10).all
-       end
-
-     end
+    @post = Post.new
+    @follows = Follow.order(created_at: :desc).all
+    @offers = Offer.order(created_at: :desc).all
 
 
-     def show
-      @category = Category.find(params[:id])
-    end
+    @comments = Comment.order(created_at: :desc).paginate(page: params[:page], per_page: 10).all
 
-    def favorites
-      @posts = Post.where(:profile_id => current_user.follows.collect(&:profile_id) ).order(created_at: :desc).paginate(:page => params[:page], :per_page => 5)
+
+    if user_signed_in?
+     @posts = Post.all.paginate(page: params[:page], per_page: 10)
+   else
+     @posts = Post.order(created_at: :desc).paginate(:page => params[:page], per_page: 10).all
+   end
+
+end
+
+
+def show
+  @category = Category.find(params[:id])
+end
+
+def favorites
+  @posts = Post.where(:profile_id => current_user.follows.collect(&:profile_id) ).order(created_at: :desc).paginate(:page => params[:page], :per_page => 5)
       #this line collect the ids from followed users, then compare with the id of the post's owner and show in to welcome page. (an entire night for make this lol)
       @offers = Offer.where(id: current_user.offer_saveds.collect(&:offer_id) ).order(created_at: :desc).paginate(:page => params[:page], :per_page => 5)
-  end
+      @offer_saveds = current_user.offer_saveds.all
+    end
 
-  def privacity
+    def privacity
 
-  end
+    end
 
-  def terms
+    def terms
 
-  end
+    end
 
 
-  private
+    private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
       @category = Category.find(params[:id])
