@@ -107,142 +107,156 @@ video.responsive-video {
   border: 1px solid #e5e5e5;
   text-align: center;
   padding: 1em;
-  cursor: default; }
-  .apple_pagination a, .apple_pagination span {
-    padding: 0.2em 0.3em; }
-    .apple_pagination .disabled {
-      color: #aaaaaa; }
-      .apple_pagination .current {
-        font-style: normal;
-        font-weight: bold;
-        background-color: #bebebe;
-        display: inline-block;
-        width: 1.4em;
-        height: 1.4em;
-        line-height: 1.5;
-        -moz-border-radius: 1em;
-        -webkit-border-radius: 1em;
-        border-radius: 1em;
-        text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px; }
-        .apple_pagination a {
-          text-decoration: none;
-          color: black; }
-          .apple_pagination a:hover, .apple_pagination a:focus {
-            text-decoration: underline; }
+  cursor: default; 
+}
+.apple_pagination a, .apple_pagination span {
+  padding: 0.2em 0.3em; 
+}
+.apple_pagination .disabled {
+  color: #aaaaaa; 
+}
+.apple_pagination .current {
+  font-style: normal;
+  font-weight: bold;
+  background-color: #bebebe;
+  display: inline-block;
+  width: 1.4em;
+  height: 1.4em;
+  line-height: 1.5;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em;
+  text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px; 
+}
+.apple_pagination a {
+  text-decoration: none;
+  color: black; 
+}
+.apple_pagination a:hover, .apple_pagination a:focus {
+  text-decoration: underline; 
+}
 
 
-            /*SPAN COVER*/
-            .cover{
-              position: relative;
-            }
-            .span-cover{
-              width:100%;
-              height: 100%;
-              color: white;
-              background: rgba(25, 25, 25, .3);
-              float:left;
-              position:absolute;
-              top:60%;
-              left:5px;
-            }
-            .span-text{
-              margin-left: 5%;
-              margin-right: 5%;
-            }
+/*SPAN COVER*/
+.cover{
+  position: relative;
+}
+.span-cover{
+  width:100%;
+  height: 100%;
+  color: white;
+  background: rgba(25, 25, 25, .3);
+  float:left;
+  position:absolute;
+  top:60%;
+  left:5px;
+}
+.span-text{
+  margin-left: 5%;
+  margin-right: 5%;
+}
 
-            /*admin panel*/
-            .categories-container {
-              height: 200px;
-              overflow-y: scroll;
-              overflow-x:hidden;
-            }
+/*admin panel*/
+.categories-container {
+  height: 200px;
+  overflow-y: scroll;
+  overflow-x:hidden;
+}
 
-            .welcome_text{
-              background: rgba(25, 25, 25, .4);
-            }
-            .icon-navbar{
-              font-size: 2rem;
-            }
-            /*app download*/
-            .app-banner{
-              max-height: 200px;
-            }
-            .phone-banner{
-              max-height: 450px;
-            }
-            .logo-banner{
-              max-height: 85px;
-              padding-right: 2%;
-            }
+.welcome_text{
+  background: rgba(25, 25, 25, .4);
+}
+.icon-navbar{
+  font-size: 2rem;
+}
+/*app download*/
+.app-banner{
+  max-height: 200px;
+}
+.phone-banner{
+  max-height: 450px;
+}
+.logo-banner{
+  max-height: 85px;
+  padding-right: 2%;
+}
 
-            /*Crop banner coupons*/
-            .crop {
-              width: 100%;
-              height: 20%;
-              overflow: hidden;
-            }
+/*Crop banner coupons*/
+.crop {
+  width: 100%;
+  height: 20%;
+  overflow: hidden;
+}
 
-            .crop img {
-              width: 100%;
-              height: 300px;
-            }
-            .tab-offer{
-              height: 100px;
-              color: white;
-              margin: 0 auto;
-              text-align: center;
-            }
-            .tab-offer text{
-              height: 100px;
-              line-height: 100px;
-              white-space: nowrap;
-              font-size: 24px;
-            }
+.crop img {
+  width: 100%;
+  height: 300px;
+}
+.tab-offer{
+  height: 100px;
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+}
+.tab-offer text{
+  height: 100px;
+  line-height: 100px;
+  white-space: nowrap;
+  font-size: 24px;
+}
 
-            /*Action POSTS*/
-            .actions-post{
-              font-size: 20px;
+/*Action POSTS*/
+.actions-post{
+  font-size: 20px;
 
-            }
-            .white-text{
-              color: white;
-            }
+}
+.white-text{
+  color: white;
+}
 
-            .promo-img{
-              max-height: 150px;
-            }
+.promo-img{
+  max-height: 150px;
+}
 
-            a.back-to-top {
-              display: none;
-              width: 60px;
-              height: 60px;
-              position: fixed;
-              z-index: 999;
-              right: 20px;
-              bottom: 20px;
-              background: #27AE61;
-              -webkit-border-radius: 30px;
-              -moz-border-radius: 30px;
-              border-radius: 30px;
-            }
-            a.back-to-top i{
-              vertical-align: middle;
-              color: white;
-              margin:15px;
-              font-size: 24px;
-            }
-            .avatar_profile{
-              max-width: 40px;
+a.back-to-top {
+  display: none;
+  width: 60px;
+  height: 60px;
+  position: fixed;
+  z-index: 999;
+  right: 20px;
+  bottom: 20px;
+  background: #27AE61;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+}
+a.back-to-top i{
+  vertical-align: middle;
+  color: white;
+  margin:15px;
+  font-size: 24px;
+}
+.avatar_profile{
+  max-width: 40px;
 }
 
 .alert-flat {
-    padding: 5px;
-    margin-bottom: 10px;
-    border: 1px solid transparent;
-    border-radius: 4px;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
 }
 .alert-info-flat {
-    background-color: #CFD8DC;
-    border-color: #B0BEC5;
-    color: #424242;
+  background-color: #CFD8DC;
+  border-color: #B0BEC5;
+  color: #424242;
+}
+.truncated span {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;     /** IE6+, Firefox 7+, Opera 11+, Chrome, Safari **/
+  -o-text-overflow: ellipsis;  /** Opera 9 & 10 **/
+  height: 70px; /* note that this width will have to be smaller to see the effect */
 }

@@ -4,13 +4,21 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">Ofertas que has guardado</div>
 		<div class="panel-body">
-			<% if @offers.present? %>
-				<% @offers.each do |offer| %>
-					<%= render partial:"offers/offer", locals:{offer: offer} %>
+			<div id="owl-offers" class="owl-carousel">
+				<% if @offers.present? %>
+					<% @offers.each do |offer| %>
+						<%= render partial:"offers/offer", locals:{offer: offer} %>
+					<% end %>
+				<% else %>
+					<div class="alert alert-warning">No hay contenido para mostrar</div>
 				<% end %>
-			<% else %>
-				<div class="alert alert-warning">No hay contenido para mostrar</div>
-			<% end %>
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">Tus sitios favoritos</div>
+		<div class="panel-body">
+			<%= render partial:'welcome/promo_profiles', locals:{promoved_profiles: @profiles} %>
 		</div>
 	</div>
 
@@ -34,5 +42,7 @@
 <script>
 	$(document).ready(function() {
 		$("#owl-posts").owlCarousel();
+		$("#owl-offers").owlCarousel();
+		$("#owl-promo").owl-carousel();
 	});
 </script>

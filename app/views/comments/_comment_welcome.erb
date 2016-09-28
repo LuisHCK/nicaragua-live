@@ -1,0 +1,13 @@
+<div class="panel panel-success">
+	<div class="panel-heading">
+		<%= avatar_user(comment.user) %>
+		<b><%= link_to_user(comment.user) %></b>
+		<%= delete_comment(comment) %>
+	</div>
+	<div class="panel-body">
+		<blockquote>
+			<%= comment.body %>
+		</blockquote>
+		<small>En la<%= link_to ' publicación ', comment.post %> de <%=link_to comment.post.profile.name, comment.post.profile %></small>
+	</div>
+</div>

@@ -1,27 +1,21 @@
-<div  class="crop">
-	<%= image_tag(@offer.image, class:"responsive-img", lazy: true ) %>
-</div>
+<div class="container">
 	<div class="center">
-		<h4><%= @offer.titulo %></h4>
+		<%= image_tag(@offer.image, class:"responsive-img") %>
+		<div class="page-header"><h3><b><%= @offer.titulo %></b></h3></div>
 	</div>
-	<div class="row">
-		<div class="col s6 tab-offer  green accent-4">
-			<text>
-				<%= icon("heart") %> 1
-			</text>
-		</div>
-		<div class="col s6 tab-offer blue darken-3">
-			<text>
-				<%= icon("bookmark") %>
-			</text>
-		</div>
+	<div>
+		<p><%= markdown(@offer.descripcion) %></p>
+		<p><b>Precio:</b> <%= precio(@offer) %> </p>
+		<p><b>Anunciante: </b><%= link_to @offer.profile.name, @offer.profile %></p>
 	</div>
-	<div class="container">
-		<div class="center">
-			<%= @offer.descripcion %>
+	<hr>
+	<div class="center">
+		<div id="offer">
+			<%= render partial:'offer_saveds/save_btn', locals:{offer: @offer} %>
 		</div>
-
-		<div>
-			
+		<div class="aler aler info">
+			<h4><%= fav_counter(@offer) %></h4>
 		</div>
 	</div>
+	<hr>
+</div>

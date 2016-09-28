@@ -1,27 +1,46 @@
 <div class="container">
-<div class="center">
-    <h2><em>Resultados de la busqueda: <b><%= params[:query] %></b></em></h2>
-</div>
-  <h3>Ofertas</h3>
-  <div class="row">
-    <% @search.each do |offer| %>
-    <% if is_offer?(offer) %>
+  <div class="center">
 
-
-    <%= render partial:'offers/offer', locals:{offer: offer} %>
-
-    <% end %>
-    <% end %>
-
+    <div class="page-header">
+      <h4><em>Resultados de la busqueda: <b><%= params[:query] %></b></em></h4>
+    </div>
+  </div>
+  
+  <div class="panel panel-success">
+    <div class="panel-heading"><b>Productos y Servicios</b></div>
+    <div class="panel-body">
+      <div id="owl-offers" class="owl-carousel">
+        <% @search.each do |offer| %>
+        <% if is_offer?(offer) %>
+        <%= render partial:'offers/offer', locals:{offer: offer} %>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
 
-  <h3>Perfiles</h3>
-  <div class="row">
-    <% @search.each do |profile| %>
-    <% if is_profile?(profile) %>
-    <%= render partial:'menus/search/profile', locals:{profile: profile} %>
-    <% end %>
-    <% end %>
+  <div class="panel panel-primary">
+    <div class="panel-heading"><b>Lugares, Tiendas, Negocios</b></div>
+    <div class="panel-body">
+      <div id="owl-profiles" class="owl-carousel">
+        <% @search.each do |profile| %>
+        <% if is_profile?(profile) %>
+          <%= render partial:'menus/search/profile', locals:{profile: profile} %>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
 
 </div>
+<script>
+  $("#owl-offers").owlCarousel({
+    items : 4,
+    lazyLoad : true,
+  });
+
+  $("#owl-profiles").owlCarousel({
+    items : 4,
+    lazyLoad : true,
+  });
+</script>

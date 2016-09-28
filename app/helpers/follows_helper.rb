@@ -19,7 +19,7 @@ module FollowsHelper
 				button_to "Seguir", follow_path(profile_id: profile.id), class:"btn btn-success",  remote: true, id:"follow"
 			end
 		else
-			link_to 'Seguir', new_user_session_path, class:"btn btn-lg btn-success"
+			link_to 'Seguir', new_user_session_path, class:"btn btn-success"
 		end
 	end
 end

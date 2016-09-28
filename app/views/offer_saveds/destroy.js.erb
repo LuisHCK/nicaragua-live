@@ -1,1 +1,2 @@
 $('#<%= dom_id(@offer) %>').html("<%= j render(partial: '/offer_saveds/save_offer', locals: { offer: @offer }) %>")
+$('#offer').html("<%= j render(partial: '/offer_saveds/save_btn', locals: { offer: @offer }) %>")
