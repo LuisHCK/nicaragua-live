@@ -1,1 +1,1 @@
-json.extract! @partner, :id, :partner_range, :user_id, :created_at, :updated_at
+json.extract! @partner, :id, :profile_id, :created_at, :updated_at

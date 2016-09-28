@@ -30,6 +30,9 @@ class MenusController < ApplicationController
 					@profiles = Profile.all
 					@profile = Profile.new
 					@users = User.all
+
+					@partners = Partner.all
+					@partner = Partner.new
 			#search profiles for edit
 			if params[:query].present?
 				#Profile.search(params[:query], page: params[:page], per_page: 10)

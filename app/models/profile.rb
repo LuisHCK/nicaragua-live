@@ -15,6 +15,7 @@ class Profile < ActiveRecord::Base
 	has_many :offers, dependent: :destroy
 	has_many :hearts
 	has_many :follows, dependent: :destroy
+	has_one  :partner
 
 
 	has_attached_file :cover,

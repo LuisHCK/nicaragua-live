@@ -5,6 +5,7 @@
 			<th data-field="name">Categoría</th>
 			<th data-field="price">Fecha Reg.</th>
 			<th>Estado</th>
+			<th>Acciones</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -14,6 +15,21 @@
 			<td> <%= if profile.category_id.present? then category(profile) end %> </td>
 			<td> <%= if profile.created_at.present? then humanize_date(profile.created_at ) end %></td>
 			<td> estado-ico </td>
+			<th>
+				<div class="dropdown">
+					<button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					Acción
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						<li><%= partner!(profile) %></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">Separated link</a></li>
+					</ul>
+				</div>
+			</th>
 		</tr>
 		<% end %>
 	</tbody>

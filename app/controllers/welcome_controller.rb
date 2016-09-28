@@ -3,8 +3,9 @@ class WelcomeController < ApplicationController
   def index
    @categories = Category.all
    @profiles = Profile.all
-    @promoved_profiles = Profile.limit(10).all #Pending to collect a list of promoved profiles
-    @clientprofiles = Clientprofile.all
+
+    @partners = Partner.all
+    @promoved_profiles = Profile.where(id: @partners.collect(&:profile_id)).all
 
     @post = Post.new
     @follows = Follow.order(created_at: :desc).all

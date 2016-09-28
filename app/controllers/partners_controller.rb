@@ -1,5 +1,6 @@
 class PartnersController < ApplicationController
   before_action :set_partner, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /partners
   # GET /partners.json
@@ -14,7 +15,11 @@ class PartnersController < ApplicationController
 
   # GET /partners/new
   def new
-    @partner = Partner.new
+    if current_user.user_lvl >= 3
+      @partner = Partner.new      
+    else
+      redirect_to root_path
+    end
   end
 
   # GET /partners/1/edit
@@ -24,16 +29,20 @@ class PartnersController < ApplicationController
   # POST /partners
   # POST /partners.json
   def create
-    @partner = Partner.new(partner_params)
+    if current_user.user_lvl >= 3
+    @partner = Partner.new(profile_id: params[:profile_id])
 
-    respond_to do |format|
-      if @partner.save
-        format.html { redirect_to @partner, notice: 'Partner was successfully created.' }
-        format.json { render :show, status: :created, location: @partner }
-      else
-        format.html { render :new }
-        format.json { render json: @partner.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @partner.save
+          format.html { redirect_to '/admin_panel#tab2', notice: "#{@partner.profile.name}#{' ahora es socio'}" }
+          format.json { render :show, status: :created, location: @partner }
+        else
+          format.html { render :new }
+          format.json { render json: @partner.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to root_path      
     end
   end
 
@@ -69,6 +78,6 @@ class PartnersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def partner_params
-      params.require(:partner).permit(:partner_range, :user_id)
+      params.require(:partner).permit(:profile_id)
     end
-end
+  end

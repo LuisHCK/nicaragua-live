@@ -299,13 +299,12 @@ ActiveRecord::Schema.define(version: 201606222219123) do
   end
 
   create_table "partners", force: :cascade do |t|
-    t.string   "partner_range", limit: 191
-    t.integer  "user_id",       limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "profile_id", limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
-  add_index "partners", ["user_id"], name: "index_partners_on_user_id", using: :btree
+  add_index "partners", ["profile_id"], name: "index_partners_on_profile_id", using: :btree
 
   create_table "pictures", force: :cascade do |t|
     t.string   "image_file_name",    limit: 255
@@ -538,7 +537,7 @@ ActiveRecord::Schema.define(version: 201606222219123) do
   add_foreign_key "offer_saveds", "offers"
   add_foreign_key "offer_saveds", "users"
   add_foreign_key "offers", "profiles"
-  add_foreign_key "partners", "users"
+  add_foreign_key "partners", "profiles"
   add_foreign_key "pictures", "items"
   add_foreign_key "pictures", "posts"
   add_foreign_key "posts", "profiles"

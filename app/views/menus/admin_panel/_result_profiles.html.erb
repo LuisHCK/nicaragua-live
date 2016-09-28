@@ -8,25 +8,17 @@
 	</thead>
 
 	<tbody>
-	<% if @search_profiles.present? %>
-	<% @search_profiles.each do |profile| %>
-	<tr>
-		<td><%= profile.name %></td>
-		<td>Estado</td>
-		<td>
-			<!-- Dropdown Trigger -->
-			<a class='dropdown-button btn' href='#' data-activates='dropdown1'>Acciones</a>
-
-			<!-- Dropdown Structure -->
-			<ul id='dropdown1' class='dropdown-content'>
-				<li><a href="#!">one</a></li>
-				<li><a href="#!">two</a></li>
-				<li><a href="#!">three</a></li>
-				</ul>			
-		</td>
-	</tr>
-	<% end %>
-	<% end %>
+		<% if @search_profiles.present? %>
+		<% @search_profiles.each do |profile| %>
+		<tr>
+			<td><%= profile.name %></td>
+			<td>Estado</td>
+			<td>
+			
+			</td>
+		</tr>
+		<% end %>
+		<% end %>
 
 	</tbody>
 </table>

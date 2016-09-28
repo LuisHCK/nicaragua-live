@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :partners
+  resources :partners
   resources :offer_saveds
   resources :verification_requests
   resources :verifications

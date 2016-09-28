@@ -34,7 +34,8 @@ module MenusHelper
 
 
 	def has_space?(coupon_check)
-		if coupon_check.coupon_redemptions_count >= coupon_check.redemption_limit && coupon_check.redemption_limit > 0
+		if coupon_check.coupon_redemptions_count >= coupon_check.redemption_limit &&
+		coupon_check.redemption_limit > 0
 			return false
 		else
 			return true
@@ -106,6 +107,18 @@ module MenusHelper
 
 	def change_level(user,text,lvl)
 		#link_to(text, edit_user_registration_path(id: user.id, 'user[user_lvl]'=> lvl), method: :put)
-		#link_to text, registration_path(resource_name, :user => {:user_lvl => lvl}), :method => :put, :confirm => "Are you sure?"
+		#link_to text, registration_path(resource_name, :user => {:user_lvl => lvl}),
+		#:method => :put, :confirm => "Are you sure?"
+	end
+
+	def partner!(profile)
+		if current_user.user_lvl >= 3
+			if profile.partner.present?
+				return link_to('Quitar Socio',
+					partner_path(id: profile.partner.id,profile_id: profile.id),method: :delete)
+			else
+				return link_to('Hacer Socio',partners_path(profile_id: profile.id),method: :post)
+			end
+		end		
 	end
 end
