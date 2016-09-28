@@ -60,7 +60,7 @@
 
         <br>
         <b>Contactar al anunciante</b><br>
-        <b>Publicado por: </b><%= link_to @item.client.clientprofile.name, @item.client.clientprofile %><br>
+        <b>Publicado por: </b><%= link_to @item.client.clientprofile.name, @item.client.clientprofile %> <%= veryfied?(@item.profile) %><br>
         <b>Teléfono: </b><%= @item.telefono %><br>
         <b>Email: </b><%= @item.email %>
       </p>

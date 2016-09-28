@@ -6,7 +6,7 @@
 	<div>
 		<p><%= markdown(@offer.descripcion) %></p>
 		<p><b>Precio:</b> <%= precio(@offer) %> </p>
-		<p><b>Anunciante: </b><%= link_to @offer.profile.name, @offer.profile %></p>
+		<p><b>Anunciante: </b><%= link_to @offer.profile.name, @offer.profile %> <%= veryfied?(@offer.profile) %></p>
 	</div>
 	<hr>
 	<div class="center">

@@ -6,6 +6,9 @@
 .red-text{
   color: red;
 }
+.blue-text{
+  color: #4CAF50;
+}
 /*Fix Bootstrap navbar margin*/
 body { 
   padding-top: 55px; 

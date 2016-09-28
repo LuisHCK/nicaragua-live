@@ -53,5 +53,20 @@ module ProfilesHelper
 			end
 		end
 	end
+
+	def veryfied?(profile)
+		if profile.verification.present?
+			return icon('check-circle', class:'blue-text')
+		end
+	end
+
+	def verify!(profile)
+		if user_signed_in?
+			if current_user.user_lvl >= 3 && profile.verification == nil
+				link_to 'Verificar', verifications_path(profile_id: profile.id), 
+				method: :post, class:"btn btn-warning"
+			end
+		end
+	end
 end
 

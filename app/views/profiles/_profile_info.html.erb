@@ -8,14 +8,13 @@
       <%= image_tag(@profile.avatar, class:"img-thumbnail picture hidden-xs") %>
       <%= image_tag(@profile.avatar, class:"img-thumbnail visible-xs picture_mob") %>
       <div class="header">
-        <h1><%= @profile.name %></h1>
+        <h1><%= @profile.name %> <%= veryfied?(@profile) %> </h1>
         
         <p>
           <div id="follow_profile">
             <%= render partial:'/follows/followbtn', locals:{profile: @profile} %>
           </div>
         </p>
-
         <div class="star-rating" data-score= <%= @profile.reviews.average(:rating) %> ></div>
         <p>
           <% if reviewed?(@profile) %>
@@ -40,6 +39,7 @@
               <td><%= @profile.posts.count %></td>
             </tr>
           </table>
+          <%= verify!(@profile) %>
 
         </div>
       </div>

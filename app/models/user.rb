@@ -39,6 +39,7 @@ has_many :coupons
 has_many :follows
 has_many :profiles, through: :follows, dependent: :destroy
 has_many :offer_saveds, dependent: :destroy
+has_many :verifications
 
 ########################## USER HELPERS ############################
   # creates a new heart row with post_id and user_id

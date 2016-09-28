@@ -1,5 +1,6 @@
 class VerificationsController < ApplicationController
   before_action :set_verification, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /verifications
   # GET /verifications.json
@@ -24,16 +25,21 @@ class VerificationsController < ApplicationController
   # POST /verifications
   # POST /verifications.json
   def create
-    @verification = Verification.new(verification_params)
+    if current_user.user_lvl >= 3
+      @profile = Profile.find(params[:profile_id])
+      @verification = Verification.new(profile_id: @profile.id)
 
-    respond_to do |format|
-      if @verification.save
-        format.html { redirect_to @verification, notice: 'Verification was successfully created.' }
-        format.json { render :show, status: :created, location: @verification }
-      else
-        format.html { render :new }
-        format.json { render json: @verification.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @verification.save
+          format.html { redirect_to @profile, notice: 'Perfil Verificado' }
+          format.json { render :show, status: :created, location: @verification }
+        else
+          format.html { render :new }
+          format.json { render json: @verification.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to root_path, notice:'No tienes permiso para esta acción'
     end
   end
 
@@ -71,4 +77,4 @@ class VerificationsController < ApplicationController
     def verification_params
       params.require(:verification).permit(:profile_id)
     end
-end
+  end
