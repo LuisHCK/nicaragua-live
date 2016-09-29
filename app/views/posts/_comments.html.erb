@@ -3,6 +3,6 @@
 <p>
 	<b><em><%= @post.comments.count %> Comentarios</em></b>
 </p>
-<% @post.comments.each do |comment| %>
+<% @post.comments.order(created_at: :desc).each do |comment| %>
 <%= render partial:'/comments/comment', locals:{comment: comment} %>
 <% end %>
