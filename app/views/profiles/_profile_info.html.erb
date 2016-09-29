@@ -40,7 +40,7 @@
             </tr>
           </table>
           <%= verify!(@profile) %>
-
+            <b>Compartir en: </b> <%= social_share_button_tag(@profile.name, image: @profile.avatar, desc: truncate(@profile.body,length:125), via: "NicaLiveApp", url: profile_url(@profile))%>
         </div>
       </div>
     </div>  
@@ -63,3 +63,11 @@
       }
     });
   </script>
+<style>
+  .ssb-icon {
+    background-size: 24px 24px !important;
+    height: 24px !important;
+    width: 24px !important;
+  }
+
+</style>

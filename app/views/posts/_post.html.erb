@@ -37,7 +37,7 @@
         <%= render partial: "hearts/button", locals: {post: post} %>
         <% end %>
         <div class="col-xs-4 center-block">
-            <%= button_to post_path(post), class:"btn" do %>
+            <%= button_to post_path(post), method: :get, class:"btn" do %>
               <%= icon('comment',style:'font-size:2rem') %>
               <span class="badge"><%= post.comments.count %></span>
             <% end %>

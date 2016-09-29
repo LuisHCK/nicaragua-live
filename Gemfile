@@ -81,4 +81,4 @@ gem 'aasm'
 gem "lazyload-rails", github: "techbang/lazyload-rails"
 gem "omniauth"
 gem "omniauth-facebook"
-gem 'social-share-button'#, git: 'https://github.com/jmjurado23/social-share-button.git'
+gem 'social-share-button', git: 'https://github.com/jmjurado23/social-share-button.git'

@@ -1,6 +1,8 @@
   <div class="center white-text">
-    <h2>Bienvenido</h2>
-    <h1><%= get_user_name(current_user) %></h1>
+    <div class="page-header">
+    <h2>¡Te damos la bienvenida!</h2>
+      <h1><%= get_user_name(current_user) %></h1>
+    </div>
 
     <p>
       Estamos muy contentos de que formes parte de nuestra comunidad.
@@ -12,11 +14,12 @@
 
     <b><h3>Nicaragua Live te recomienda:</h3></b>
     <div>
-    <%= render partial:'welcome/promo_profiles', locals:{promoved_profiles: @promoved_profiles} %>
+      <%= render partial:'welcome/promo_profiles', locals:{promoved_profiles: @promoved_profiles} %>
     </div>
     <div>
       <h3><b>Tambien puedes: </b></h3>
       <%= link_to "Crear un perfil", new_clientprofile_path, class:"btn btn-lg btn-primary" %>
+      <%= link_to 'Promocionar tu Negocio', new_profile_path, class:"btn btn-lg btn-success"  %>
     </div>
   </div>
 
@@ -32,6 +35,13 @@
     }
 
     @media only screen and (max-width: 320px) {
-      body { font-size: 2em; }
+      body { font-size: 1.5em; }
     }
   </style>
+
+  <script>
+    $("#owl-promo").owlCarousel({
+      items : 4,
+      lazyload : true,
+    });
+  </script>

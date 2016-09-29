@@ -1,8 +1,13 @@
 class MenusController < ApplicationController
-	before_action :authenticate_user!, only:[:tools, :admin_panel, :myprofile]
+	before_action :authenticate_user!, only:[:tools, :admin_panel, :myprofile, :user_welcome]
 	#before_action :authenticate_client!, only:[:admin_panel,:user_welcome]
 	def user_welcome
-		@profiles = Profile.limit(3).all
+		unless current_user.profile.present? || current_user.clientprofile.present?
+			@partners = Partner.all
+			@promoved_profiles = Profile.where(id: @partners.collect(&:profile_id)).limit(3)
+		else
+			redirect_to root_path, notice:"#{'Hola '}#{current_user.name}#{', Bienvenido/a'}"
+		end
 	end
 
 	def tools

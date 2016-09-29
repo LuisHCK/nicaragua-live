@@ -94,8 +94,10 @@ end
 def avatar_user(user)
   if user.profile.present?
     image_tag(user.profile.avatar(:thumb),class:'img-circle resposive-img avatar_profile')
-  else
+  elsif user.clientprofile.present?
     image_tag(user.clientprofile.avatar(:thumb),class:'img-circle resposive-img avatar_profile')
+  else
+    image_tag('icon-user-default.png', class:"img-circle resposive-img avatar_profile")
   end
 end
 
