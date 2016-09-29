@@ -99,10 +99,12 @@ ActiveRecord::Schema.define(version: 201606222219123) do
     t.string   "state",       limit: 191, default: "active", null: false
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
+    t.integer  "user_id",     limit: 4
   end
 
   add_index "coupon_redemptions", ["client_id"], name: "index_coupon_redemptions_on_client_id", using: :btree
   add_index "coupon_redemptions", ["unique_code"], name: "unique_code", unique: true, using: :btree
+  add_index "coupon_redemptions", ["user_id"], name: "index_coupon_redemptions_on_user_id", using: :btree
 
   create_table "coupons", force: :cascade do |t|
     t.string   "code",                     limit: 191,                    null: false
@@ -117,8 +119,12 @@ ActiveRecord::Schema.define(version: 201606222219123) do
     t.datetime "updated_at",                                              null: false
     t.string   "state",                    limit: 120, default: "active"
     t.integer  "user_id",                  limit: 4
+    t.integer  "profiles_id",              limit: 4
+    t.integer  "profile_id",               limit: 4
   end
 
+  add_index "coupons", ["profile_id"], name: "index_coupons_on_profile_id", using: :btree
+  add_index "coupons", ["profiles_id"], name: "index_coupons_on_profiles_id", using: :btree
   add_index "coupons", ["user_id"], name: "index_coupons_on_user_id", using: :btree
 
   create_table "event_comments", force: :cascade do |t|
@@ -520,8 +526,8 @@ ActiveRecord::Schema.define(version: 201606222219123) do
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
-  add_foreign_key "coupon_redemptions", "clients", on_delete: :cascade
-  add_foreign_key "coupons", "users"
+  add_foreign_key "coupon_redemptions", "users"
+  add_foreign_key "coupons", "profiles"
   add_foreign_key "event_comments", "clients"
   add_foreign_key "event_comments", "events"
   add_foreign_key "event_comments", "users"

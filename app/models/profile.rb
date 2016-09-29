@@ -16,7 +16,7 @@ class Profile < ActiveRecord::Base
 	has_many :hearts
 	has_many :follows, dependent: :destroy
 	has_one  :partner
-
+	has_many :coupons
 
 	has_attached_file :cover,
 	styles: { thumb: ["64x64#", :jpg],

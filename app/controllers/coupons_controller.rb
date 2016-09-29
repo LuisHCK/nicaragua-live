@@ -5,9 +5,9 @@ class CouponsController < ApplicationController
   # GET /coupons.json
   def index
     @coupons = Coupon.all
-    if client_signed_in? 
-      @client_coupons = Coupon.where(id: current_client.coupon_redemptions.collect(&:coupon_id)) 
-      @client_redemptions = CouponRedemption.where(client_id: current_client.id)
+    if user_signed_in? 
+      @user_coupons = Coupon.where(id: current_user.coupon_redemptions.collect(&:coupon_id)) 
+      @user_redemptions = CouponRedemption.where(client_id: current_user.id)
     end
   end
 
@@ -18,7 +18,14 @@ class CouponsController < ApplicationController
 
   # GET /coupons/new
   def new
-    @coupon = Coupon.new
+    if current_user.profile.present?
+      if current_user.profile.partner.present?
+        @coupon = Coupon.new
+      end
+    else 
+      redirect_to root_path, notice:'No tienes permiso para esta acción'
+    end
+
   end
 
   # GET /coupons/1/edit
@@ -28,7 +35,7 @@ class CouponsController < ApplicationController
   # POST /coupons
   # POST /coupons.json
   def create
-    @coupon = current_user. coupons.new(coupon_params)
+    @coupon = current_user.profile.coupons.new(coupon_params)
 
     respond_to do |format|
       if @coupon.save
@@ -72,9 +79,9 @@ class CouponsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-  def coupon_params
-    params
+    def coupon_params
+      params
       .require(:coupon)
       .permit(:code, :redemption_limit, :description, :valid_from, :valid_until, :amount, :type)
+    end
   end
-end

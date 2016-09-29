@@ -25,13 +25,13 @@ class CouponRedemptionsController < ApplicationController
   # POST /coupon_redemptions
   # POST /coupon_redemptions.json
   def create
-    if current_client.redeemed?(@coupon)
+    if current_user.redeemed?(@coupon)
         redirect_to coupons_path, notice: 'No puedes reclamar otra vez el mismo cupón'
       else
       @coupon_redemption = CouponRedemption.new(coupon_redemption_params)
       @coupon_redemption.unique_code = SecureRandom.hex(3)
       @coupon_redemption.coupon_id = @coupon.id
-      @coupon_redemption.client_id = current_client.id
+      @coupon_redemption.client_id = current_user.id
       #redemtion count
         count = @coupon.coupon_redemptions_count+1
         @coupon.update_attributes(coupon_redemptions_count: count)

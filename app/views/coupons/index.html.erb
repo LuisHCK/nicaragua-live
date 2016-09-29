@@ -1,8 +1,15 @@
 <h5>Cupones</h5>
-<% if client_signed_in? %>
-<%= render @client_coupons %>
+<% if user_signed_in? %>
+<% if @user_coupons.present? %>
+<%= render @user_coupons %>
 <% end %>
-<%  @coupons.each do |coupon| %>
+
+	
+<% @coupons.each do |coupon| %>
 	<%= coupon.code %>
-	<%= link_to("Reclamar", redeem_path(coupon_id: coupon.id) , method: :post) %>
+		<%= link_to("Reclamar", redeem_path(coupon_id: coupon.id) , method: :post) %>
+	<% end %>
+
+	<% else %>
+	<div class="alert alert-warning">No hay cupones disponibles</div>
 <% end %>

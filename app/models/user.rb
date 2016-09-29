@@ -35,7 +35,7 @@ has_many :event_comments
 
 has_many :events
 has_many :surveys
-has_many :coupons
+has_many :coupon_redemptions
 has_many :follows
 has_many :profiles, through: :follows, dependent: :destroy
 has_many :offer_saveds, dependent: :destroy

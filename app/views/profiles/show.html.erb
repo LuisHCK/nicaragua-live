@@ -7,11 +7,13 @@
 
     <% if my_profile?(@profile) %>
     <br>
-    <div class="jumbotron">
-    <b>Publicacion ŕapida</b>
-    <%= render"/posts/form" %>
-    </div>
-  <% end %>
+    <b>Publicacion ŕapida</b><br>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_post">
+      Publicar
+    </button>
+    <%= render"/posts/form" %>   
+   <hr>
+    <% end %>
 
     <% if @profile.posts.present? %>
     <% if @pinned.present? %>
@@ -30,22 +32,21 @@
   </div>
 
   <div role="tabpanel" class="tab-pane active container" id="tab2">
-    <% if user_signed_in? %>
-    <% if current_user.id == @profile.user_id %><br>
-    <%= link_to "Publicar Oferta", new_offer_path, class:"btn btn-default" %><br>
-    <% end %>
+    <% if my_profile?(@profile) %><br>
+    <%= link_to "Publicar Oferta", new_offer_path, class:"btn btn-default" %>
+    <hr>
     <% end %>
 
     <% if @offers.present? %>
-      <% @offers.each do |offer| %>
-          <%= render partial:'offers/offer_small', locals:{offer: offer} %>
-        <% end %>
-      <% else %>
-        <%= content_tag(:div, "No hay contenido para mostrar", class:"h3") %>
-   <% end %> 
-   </div>
+    <% @offers.each do |offer| %>
+    <%= render partial:'offers/offer_small', locals:{offer: offer} %>
+    <% end %>
+    <% else %>
+    <%= content_tag(:div, "No hay contenido para mostrar", class:"h3") %>
+    <% end %> 
+  </div>
 
-   <div role="tabpanel" class="tab-pane container" id="tab3">
+  <div role="tabpanel" class="tab-pane container" id="tab3">
     <% if @profile.posts.present? %>
     <div class="row">
       <% @profile.posts.order("created_at DESC").each do |post| %>
