@@ -30,9 +30,9 @@ module ProfilesHelper
 	def can_review?(profile)
 		if user_signed_in?
 			unless current_user.id == profile.user_id
-				return true
-			else
 				return false
+			else
+				return true
 			end
 		end
 	end
