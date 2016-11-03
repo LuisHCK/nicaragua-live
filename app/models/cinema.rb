@@ -1,2 +1,2 @@
-class Cinema < ActiveRecord::Base
+class Cinema < ApplicationRecord
 end

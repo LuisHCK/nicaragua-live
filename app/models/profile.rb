@@ -1,4 +1,4 @@
-class Profile < ActiveRecord::Base
+class Profile < ApplicationRecord
 	#Make fields obligatory
 	validates :name, presence: true
 	validates :offer_section_name, presence: true

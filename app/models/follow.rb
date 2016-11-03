@@ -1,4 +1,4 @@
-class Follow < ActiveRecord::Base
+class Follow < ApplicationRecord
   belongs_to :user
   belongs_to :profile
   #validates :profile_id, uniqueness: {scope: :profile_id}

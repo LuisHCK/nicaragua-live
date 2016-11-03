@@ -1,4 +1,4 @@
-class Coupons < ActiveRecord::Base
+class Coupons < ApplicationRecord
   include AASM
 
   aasm do

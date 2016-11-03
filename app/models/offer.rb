@@ -1,4 +1,4 @@
-class Offer < ActiveRecord::Base
+class Offer < ApplicationRecord
   searchkick searchable: [:titulo,:descripcion,:precio]
   belongs_to :profile
   has_many :offer_saveds

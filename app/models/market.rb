@@ -1,3 +1,3 @@
-class Market < ActiveRecord::Base
+class Market < ApplicationRecord
   has_many :items
 end
