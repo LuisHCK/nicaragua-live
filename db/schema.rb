@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 201606222219123) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.string   "icon",       limit: 255
+    t.string   "ionic_icon"
   end
 
   create_table "cinemas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
