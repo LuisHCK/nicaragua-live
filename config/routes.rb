@@ -70,6 +70,9 @@ Rails.application.routes.draw do
     match 'terms', to: 'welcome#terms', via: :get
     match 'privacitypolicy', to: 'welcome#privacity', via: :get
 
+    match 'index', to: 'welcome#index', via: :get
+
+
 
     match '/google13e2745398afabff.html',
     :to => proc { |env| [200, {}, ["google-site-verification: /google13e2745398afabff.html"]] }, via: :get
