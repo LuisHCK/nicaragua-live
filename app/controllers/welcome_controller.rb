@@ -4,8 +4,8 @@ class WelcomeController < ApplicationController
    @categories = Category.all
    @profiles = Profile.all
 
-    @partners = Partner.all
-    @promoved_profiles = Profile.where(id: @partners.collect(&:profile_id)).all
+    partners = Partner.all
+    @promoved_profiles = Profile.where(id: partners.collect(&:profile_id)).all
 
     @post = Post.new
     @follows = Follow.order(created_at: :desc).all
