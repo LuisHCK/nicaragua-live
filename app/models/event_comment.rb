@@ -1,4 +1,4 @@
-class EventComment < ActiveRecord::Base
+class EventComment < ApplicationRecord
   belongs_to :user
   belongs_to :client
   belongs_to :event

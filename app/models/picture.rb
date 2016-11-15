@@ -1,4 +1,4 @@
-class Picture < ActiveRecord::Base
+class Picture < ApplicationRecord
 	belongs_to :post
 	belongs_to :item
 

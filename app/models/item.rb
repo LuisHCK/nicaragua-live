@@ -1,4 +1,4 @@
-class Item < ActiveRecord::Base
+class Item < ApplicationRecord
   #before_destroy :no_referenced_pictures
   belongs_to :client
   belongs_to :market

@@ -1,4 +1,4 @@
-class Heart < ActiveRecord::Base
+class Heart < ApplicationRecord
   validates :user_id, uniqueness: { scope: :post_id }
   #validates :client_id, uniqueness: { scope: :post_id }
   belongs_to :post

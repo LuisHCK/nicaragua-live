@@ -1,6 +1,6 @@
 module CouponsHelper
 	def redeem_code(coupon)
-		@client_redemptions.find_by(coupon_id: coupon.id).unique_code
+		@user_redemptions.find_by(coupon_id: coupon.id).unique_code
 	end
 
 	def is_on_date?(coupon_check)

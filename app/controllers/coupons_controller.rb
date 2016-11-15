@@ -18,14 +18,7 @@ class CouponsController < ApplicationController
 
   # GET /coupons/new
   def new
-    if current_user.profile.present?
-      if current_user.profile.partner.present?
-        @coupon = Coupon.new
-      end
-    else 
-      redirect_to root_path, notice:'No tienes permiso para esta acción'
-    end
-
+    @coupon = Coupon.new
   end
 
   # GET /coupons/1/edit

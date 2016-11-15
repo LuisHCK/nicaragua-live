@@ -31,7 +31,7 @@ class CouponRedemptionsController < ApplicationController
       @coupon_redemption = CouponRedemption.new(coupon_redemption_params)
       @coupon_redemption.unique_code = SecureRandom.hex(3)
       @coupon_redemption.coupon_id = @coupon.id
-      @coupon_redemption.client_id = current_user.id
+      @coupon_redemption.user_id = current_user.id
       #redemtion count
         count = @coupon.coupon_redemptions_count+1
         @coupon.update_attributes(coupon_redemptions_count: count)

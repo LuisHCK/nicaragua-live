@@ -1,3 +1,3 @@
-class Release < ActiveRecord::Base
+class Release < ApplicationRecord
   belongs_to :client
 end
