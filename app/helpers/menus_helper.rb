@@ -50,8 +50,8 @@ module MenusHelper
 		end
 	end
 
-	def is_valid?(coupon,redeem)
-		if is_on_date?(coupon) && has_space?(coupon) && redeem.state == "active"
+	def is_valid?(coupon)
+		if is_on_date?(coupon) && has_space?(coupon)
 			return valid = "Válido"
 		else
 			return valid = "No es válido"

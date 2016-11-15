@@ -1,15 +1,25 @@
-<h5>Cupones</h5>
+<div class="page-header">
+	<h4>Cupones de descuento</h4>
+</div>
 <% if user_signed_in? %>
 <% if @user_coupons.present? %>
 <%= render @user_coupons %>
 <% end %>
 
-	
-<% @coupons.each do |coupon| %>
+<div>
+	<% @coupons.each do |coupon| %>
 	<%= coupon.code %>
-		<%= link_to("Reclamar", redeem_path(coupon_id: coupon.id) , method: :post) %>
-	<% end %>
+		
+		<div class="row">
+			<div class="col-xs-3">
+				<%= coupon.amount %>
+			</div>
+			<div class="col-xs-9">
+				<%= coupon.description %>
+				<%= link_to("Reclamar", redeem_path(coupon_id: coupon.id) , method: :post) %>
+			</div>
+		</div>
 
-	<% else %>
-	<div class="alert alert-warning">No hay cupones disponibles</div>
+	<% end %>
 <% end %>
+</div>
