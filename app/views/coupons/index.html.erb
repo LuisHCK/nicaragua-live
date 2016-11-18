@@ -1,25 +1,53 @@
-<div class="page-header">
-	<h4>Cupones de descuento</h4>
-</div>
-<% if user_signed_in? %>
-<% if @user_coupons.present? %>
-<%= render @user_coupons %>
-<% end %>
-
-<div>
-	<% @coupons.each do |coupon| %>
-	<%= coupon.code %>
-		
-		<div class="row">
-			<div class="col-xs-3">
-				<%= coupon.amount %>
-			</div>
-			<div class="col-xs-9">
-				<%= coupon.description %>
-				<%= link_to("Reclamar", redeem_path(coupon_id: coupon.id) , method: :post) %>
-			</div>
-		</div>
-
+<div class="container">
+	<div class="page-header">
+		<h4>Cupones de descuento</h4>
+	</div>
+	<% if user_signed_in? %>
+	<% if @user_coupons.present? %>
+	<%= render @user_coupons %>
 	<% end %>
-<% end %>
+
+	<div class="row">
+		<% @coupons.each do |coupon| %>
+		<div class="col-sm-12 col-md-6 col-lg-4">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-xs-8">
+							<b><%= coupon.description %></b>						
+							<p><%= coupon.code %></p>
+						</div>
+						<div class="col-xs-3 center">
+							<div class="circle">
+								<b><%= coupon.amount %>%</b>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<% end %>
+	</div>
 </div>
+
+<% end %>
+
+<style>
+	.amount-text{
+		font-weight: 900;
+		font-size: 25px;
+	}
+	.circle{
+		width:100%;
+		border-radius:50%;
+		text-align:center;
+		font-size: 28px;
+		padding:50% 0;
+		line-height:0;
+		position:relative;
+		background: #38a9e4;
+		color: white;
+	}
+}
+</style>

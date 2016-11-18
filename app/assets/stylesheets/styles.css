@@ -263,3 +263,21 @@ a.back-to-top i{
   -o-text-overflow: ellipsis;  /** Opera 9 & 10 **/
   height: 70px; /* note that this width will have to be smaller to see the effect */
 }
+
+/*Navbar logo*/
+.navbar-brand-logo {
+  transform: translateX(-50%);
+  left: 50%;
+  position: absolute;
+}
+
+
+/* DEMO example styles for logo image */
+.navbar-brand-logo {
+  padding: 0px;
+}
+.navbar-brand-logo>img {
+  height: 100%;
+  width: 155px;
+  padding: 17px 14px;
+}
