@@ -1,13 +1,13 @@
 <div class="container">
   <!--Tarjetas-->
-  <div class="alert-flat alert-info-flat center"><h5><b>Recomendados</b></h5></div>
+  <div class="page-header center"><h4><b>Recomendados</b></h4></div>
   
   <%= render partial:'promo_profiles', locals:{promoved_profiles: @promoved_profiles} %>
 
 </div>
 
 <div class="container">
-<div class="alert-flat alert-info-flat center"><h5><b>Ofertas recientes</b></h5></div>
+<div class="page-header center"><h4><b>Ofertas recientes</b></h4></div>
   <div class="owl-caroucel" id="owl-offers">
     <%= render @offers %>
   </div>
@@ -15,7 +15,7 @@
 
 <div class="container" >
   <% if user_signed_in? %>
-  <div class="alert-flat alert-info-flat center"><h5><b>Publicaciones</b></h5></div>
+  <div class="page-header center"><h4><b>Publicaciones</b></h4></div>
   
   <div id="owl-post" class="owl-carousel">
     <%= render @posts %>
@@ -30,7 +30,7 @@
 </div>
 
 <% else %>
-<div class="alert-flat alert-info-flat center"><h5><b>Tendencias</b></h5></div>
+<div class="page-header center"><h4><b>Tendencias</b></h4></div>
 <div class="center-block">
 
   <div id="owl-post" class="owl-carousel">
@@ -50,7 +50,7 @@
 </div>
 
 <div class="container">
-<div class="alert-flat alert-info-flat center"><h5><b>Comentarios recientes</b></h5></div>
+<div class="page-header center"><h4><b>Comentarios recientes</b></h4></div>
   <div class="owl-carousel" id="owl-comments">
     <% @comments.each do |comment| %>
     <div class="col-xs-12">
