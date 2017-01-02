@@ -1,12 +1,30 @@
-<ul class="tabs">
-	<% if user_signed_in? %>
-	<li class="tab col s7"> <a href="#tab1">Mis Publicaciones</a> </li>
-	<li class="tab col s7"> <a href="#tab2">Favoritos</a> </li>
-	<li class="tab col s7"> <a href="#tab3">Reciente</a> </li>
+<% if user_signed_in? %>
+<div class="sidenav-brand" style="background-image: <%= image_tag('cover-default.png') %>">
+	BRAND
+</div>
 
-	<% else %>
-		<li class="tab col s7"> <a href="#tab1">Inicio</a> </li>
-		<li class="tab col s7"> <a href="#tab2">Favoritos</a> </li>
-		<li class="tab col s7"> <a href="#tab3">Recomendados</a> </li>
-	<% end %>
-</ul>
+<div class="sidenav-header">
+	Section Header
+	<small>secondary text</small>
+</div>
+
+<% else %>
+<div class="sidenav-brand row">
+	<a href="#" class="link_box"></a>
+	<div class="col-xs-4">
+		<%= image_tag('icon-user-default.png', class:"img-circle sidenav-img") %>
+	</div>
+	<div class="col-xs-8">
+		<p>
+			<b>Invitado</b>
+		</p>
+	</div>
+</div>
+
+<% end %>
+<style>
+	.link_box{
+		width: 100%;
+		height: 100%;
+	}
+</style>
