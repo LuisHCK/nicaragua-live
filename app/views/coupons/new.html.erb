@@ -1,9 +1,11 @@
 <div class="container">
-	<h4>Crear un Cupón de descuento</h4>
-		<div class="row">
-			<div class="col-xs-8 col-xs-offset-2">
-						<%= render 'form' %>
-			</div>
-		</div>
-	<%= link_to 'Volver', coupons_path %>
+    <h4>Crear Cupón</h4>
+<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <%= render 'form', coupon: @coupon %>    
+</div>
+
+<div class="center col-xs-12">
+    <%= link_to 'Volver', coupons_path %>
+</div>
+
 </div>

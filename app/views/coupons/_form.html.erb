@@ -1,29 +1,50 @@
-<%= simple_form_for @coupon do |f| %>
-<div class="row">
-	<div class="col-xs-6">
-		<%= f.input :code, label:"Código" %>
-	</div>
-	<div class="col-xs-6">
-		<%= f.input :description, label:"Descripción" %>
-	</div>
+<div class="panel panel-default" style="background-color: #F5F5F5">
+<div class="panel-body">
+  <%= simple_form_for(@coupon) do |f| %>
+    <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <div class="row">
+          <div class="col-xs-12">
+            <%= f.input :title %>
+          </div>
+          <div class="col-xs-12">
+            <%= f.input :description %>
+          </div>
+          <div class="col-xs-4">
+            <%= f.input :ammount %>
+          </div>
+          <div class="col-xs-4">
+            <%= f.input :max_redemptions %>
+          </div>
+          <div class="col-xs-4">
+            <%= f.input :code %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.input :start_date, as: :date_time_picker %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.input :end_date, as: :date_time_picker %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Crear Cupón", class:"btn btn-primary btn-lg", style:"display: block; width: 100%" %>
+      </div>
+      <% end %>
+</div>
 </div>
 
-<div class="row">
-	<div class="col-xs-6">
-		<%= f.input :amount, label: "Cantidad de descuento(porciento)", input_html: { min: '1', max:'100', step: 'any' }  %>
-	</div>
-	<div class="col-xs-6">
-		<%= f.input :redemption_limit, label: "Máximo de reclamos(0 = Infinitos)", input_html: { min: '0', step: 'any' }  %>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-xs-6">
-		<%= f.input :valid_from, label: "Válido desde", as: :date,html5: true, input_html: {class:"datepicker"}%>
-	</div>
-	<div class="col-xs-6">
-    <%= f.input :valid_until, label: "Válido hasta", as: :date,html5: true, input_html: {class:"datepicker"}%>
-	</div>
-</div>
-    <%= f.button :submit %>
-<% end %>
+<script>
+  $(document).ready(function () {
+    return $('.form_datetime').datetimepicker({
+      autoclose: true,
+      todayBtn: true,
+      minView: 2,
+      language: 'es',
+      pickerPosition: "bottom-left",
+      format: 'mm-dd-yyyy'
+    });
+  });
+</script>

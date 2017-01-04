@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :coupon_redemptions
   resources :partners
   resources :partners
   resources :offer_saveds

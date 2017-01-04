@@ -1,14 +1,11 @@
 class CouponsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_coupon, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:show,:index]
+
   # GET /coupons
   # GET /coupons.json
   def index
     @coupons = Coupon.all
-    if user_signed_in? 
-      @user_coupons = Coupon.where(id: current_user.coupon_redemptions.collect(&:coupon_id)) 
-      @user_redemptions = CouponRedemption.where(client_id: current_user.id)
-    end
   end
 
   # GET /coupons/1
@@ -28,11 +25,11 @@ class CouponsController < ApplicationController
   # POST /coupons
   # POST /coupons.json
   def create
-    @coupon = current_user.profile.coupons.new(coupon_params)
-
+    @coupon = Coupon.new(coupon_params)
+    @coupon.profile_id = current_user.profile.id
     respond_to do |format|
       if @coupon.save
-        format.html { redirect_to tools_path, notice: 'Coupon was successfully created.' }
+        format.html { redirect_to @coupon, notice: 'Coupon was successfully created.' }
         format.json { render :show, status: :created, location: @coupon }
       else
         format.html { render :new }
@@ -46,7 +43,7 @@ class CouponsController < ApplicationController
   def update
     respond_to do |format|
       if @coupon.update(coupon_params)
-        format.html { redirect_to tools_path, notice: 'Coupon was successfully updated.' }
+        format.html { redirect_to @coupon, notice: 'Coupon was successfully updated.' }
         format.json { render :show, status: :ok, location: @coupon }
       else
         format.html { render :edit }
@@ -73,8 +70,6 @@ class CouponsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coupon_params
-      params
-      .require(:coupon)
-      .permit(:code, :redemption_limit, :description, :valid_from, :valid_until, :amount, :type)
+      params.require(:coupon).permit(:title, :description, :ammount, :max_redemptions, :code, :start_date, :end_date, :profile_id)
     end
-  end
+end

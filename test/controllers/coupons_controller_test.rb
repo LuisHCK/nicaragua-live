@@ -1,49 +1,48 @@
 require 'test_helper'
 
-class CouponsControllerTest < ActionController::TestCase
+class CouponsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @coupon = coupons(:one)
   end
 
   test "should get index" do
-    get :index
+    get coupons_url
     assert_response :success
-    assert_not_nil assigns(:coupons)
   end
 
   test "should get new" do
-    get :new
+    get new_coupon_url
     assert_response :success
   end
 
   test "should create coupon" do
     assert_difference('Coupon.count') do
-      post :create, coupon: {  }
+      post coupons_url, params: { coupon: { ammount: @coupon.ammount, code: @coupon.code, description: @coupon.description, end_date: @coupon.end_date, max_redemptions: @coupon.max_redemptions, profile_id: @coupon.profile_id, start_date: @coupon.start_date, title: @coupon.title } }
     end
 
-    assert_redirected_to coupon_path(assigns(:coupon))
+    assert_redirected_to coupon_url(Coupon.last)
   end
 
   test "should show coupon" do
-    get :show, id: @coupon
+    get coupon_url(@coupon)
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @coupon
+    get edit_coupon_url(@coupon)
     assert_response :success
   end
 
   test "should update coupon" do
-    patch :update, id: @coupon, coupon: {  }
-    assert_redirected_to coupon_path(assigns(:coupon))
+    patch coupon_url(@coupon), params: { coupon: { ammount: @coupon.ammount, code: @coupon.code, description: @coupon.description, end_date: @coupon.end_date, max_redemptions: @coupon.max_redemptions, profile_id: @coupon.profile_id, start_date: @coupon.start_date, title: @coupon.title } }
+    assert_redirected_to coupon_url(@coupon)
   end
 
   test "should destroy coupon" do
     assert_difference('Coupon.count', -1) do
-      delete :destroy, id: @coupon
+      delete coupon_url(@coupon)
     end
 
-    assert_redirected_to coupons_path
+    assert_redirected_to coupons_url
   end
 end

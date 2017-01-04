@@ -90,36 +90,27 @@ ActiveRecord::Schema.define(version: 201606222219123) do
   end
 
   create_table "coupon_redemptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
-    t.integer  "coupon_id",                      null: false
-    t.integer  "client_id"
-    t.string   "unique_code"
-    t.string   "state",       default: "active", null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
     t.integer  "user_id"
-    t.index ["client_id"], name: "index_coupon_redemptions_on_client_id", using: :btree
-    t.index ["unique_code"], name: "unique_code", unique: true, using: :btree
+    t.integer  "profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_coupon_redemptions_on_profile_id", using: :btree
     t.index ["user_id"], name: "index_coupon_redemptions_on_user_id", using: :btree
   end
 
   create_table "coupons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
-    t.string   "code",                                                    null: false
-    t.string   "description"
-    t.date     "valid_from",                                              null: false
-    t.date     "valid_until"
-    t.integer  "redemption_limit",                     default: 1,        null: false
-    t.integer  "coupon_redemptions_count",             default: 0,        null: false
-    t.integer  "amount",                               default: 0,        null: false
-    t.string   "type"
-    t.datetime "created_at",                                              null: false
-    t.datetime "updated_at",                                              null: false
-    t.string   "state",                    limit: 120, default: "active"
-    t.integer  "user_id"
-    t.integer  "profiles_id"
+    t.string   "title"
+    t.text     "description",     limit: 65535
+    t.decimal  "ammount",                       precision: 10
+    t.integer  "max_redemptions",                              default: 0
+    t.string   "code"
+    t.string   "state",                                        default: "available"
+    t.date     "start_date"
+    t.date     "end_date"
     t.integer  "profile_id"
+    t.datetime "created_at",                                                         null: false
+    t.datetime "updated_at",                                                         null: false
     t.index ["profile_id"], name: "index_coupons_on_profile_id", using: :btree
-    t.index ["profiles_id"], name: "index_coupons_on_profiles_id", using: :btree
-    t.index ["user_id"], name: "index_coupons_on_user_id", using: :btree
   end
 
   create_table "event_comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
@@ -500,6 +491,7 @@ ActiveRecord::Schema.define(version: 201606222219123) do
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "coupon_redemptions", "profiles"
   add_foreign_key "coupon_redemptions", "users"
   add_foreign_key "coupons", "profiles"
   add_foreign_key "event_comments", "clients"

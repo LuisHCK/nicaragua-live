@@ -1,1 +1,1 @@
-json.extract! @coupon, :id, :created_at, :updated_at
+json.partial! "coupons/coupon", coupon: @coupon

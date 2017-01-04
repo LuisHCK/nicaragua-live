@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @coupon_redemption.user %>
+</p>
+
+<p>
+  <strong>Profile:</strong>
+  <%= @coupon_redemption.profile %>
+</p>
+
+<%= link_to 'Edit', edit_coupon_redemption_path(@coupon_redemption) %> |
+<%= link_to 'Back', coupon_redemptions_path %>
