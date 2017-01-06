@@ -2,12 +2,12 @@
 
 <p>
   <strong>User:</strong>
-  <%= @coupon_redemption.user %>
+  <%= @coupon_redemption.user.name %>
 </p>
 
 <p>
-  <strong>Profile:</strong>
-  <%= @coupon_redemption.profile %>
+  <strong>Cupon</strong>
+  <%= @coupon_redemption.coupon_id %>
 </p>
 
 <%= link_to 'Edit', edit_coupon_redemption_path(@coupon_redemption) %> |

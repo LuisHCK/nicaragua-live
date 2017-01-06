@@ -91,25 +91,29 @@ ActiveRecord::Schema.define(version: 201606222219123) do
 
   create_table "coupon_redemptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.integer  "user_id"
-    t.integer  "profile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["profile_id"], name: "index_coupon_redemptions_on_profile_id", using: :btree
+    t.integer  "coupon_id"
+    t.index ["coupon_id"], name: "index_coupon_redemptions_on_coupon_id", using: :btree
     t.index ["user_id"], name: "index_coupon_redemptions_on_user_id", using: :btree
   end
 
   create_table "coupons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.string   "title"
-    t.text     "description",     limit: 65535
-    t.decimal  "ammount",                       precision: 10
-    t.integer  "max_redemptions",                              default: 0
+    t.text     "description",          limit: 65535
+    t.decimal  "ammount",                            precision: 10
+    t.integer  "max_redemptions",                                   default: 0
     t.string   "code"
-    t.string   "state",                                        default: "available"
+    t.string   "state",                                             default: "available"
     t.date     "start_date"
     t.date     "end_date"
     t.integer  "profile_id"
-    t.datetime "created_at",                                                         null: false
-    t.datetime "updated_at",                                                         null: false
+    t.datetime "created_at",                                                              null: false
+    t.datetime "updated_at",                                                              null: false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
     t.index ["profile_id"], name: "index_coupons_on_profile_id", using: :btree
   end
 
@@ -166,7 +170,6 @@ ActiveRecord::Schema.define(version: 201606222219123) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_hearts_on_client_id", using: :btree
-    t.index ["post_id"], name: "index_hearts_on_post_id", using: :btree
     t.index ["post_id"], name: "post_id", using: :btree
     t.index ["user_id"], name: "index_hearts_on_user_id", using: :btree
   end
@@ -341,7 +344,6 @@ ActiveRecord::Schema.define(version: 201606222219123) do
     t.string   "keywords"
     t.index ["category_id"], name: "index_profiles_on_category_id", using: :btree
     t.index ["user_id", "category_id"], name: "user_id_2", using: :btree
-    t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
     t.index ["user_id"], name: "user_id", using: :btree
   end
 
@@ -491,7 +493,7 @@ ActiveRecord::Schema.define(version: 201606222219123) do
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
-  add_foreign_key "coupon_redemptions", "profiles"
+  add_foreign_key "coupon_redemptions", "coupons"
   add_foreign_key "coupon_redemptions", "users"
   add_foreign_key "coupons", "profiles"
   add_foreign_key "event_comments", "clients"

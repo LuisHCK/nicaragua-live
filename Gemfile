@@ -50,6 +50,9 @@ group :development do
 
   # Use mysql as the database for Active Record
   gem 'mysql2', '>= 0.3.13', '< 0.5'
+
+  #Auto reload
+  gem 'guard-livereload', require: false
 end
 
 #Migrate to bootstrap 3

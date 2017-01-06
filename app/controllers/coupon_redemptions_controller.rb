@@ -14,7 +14,6 @@ class CouponRedemptionsController < ApplicationController
 
   # GET /coupon_redemptions/new
   def new
-    @coupon_redemption = CouponRedemption.new
   end
 
   # GET /coupon_redemptions/1/edit
@@ -69,6 +68,6 @@ class CouponRedemptionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coupon_redemption_params
-      params.require(:coupon_redemption).permit(:user_id, :profile_id)
+      params.permit(:user_id, :coupon_id)
     end
 end

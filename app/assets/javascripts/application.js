@@ -17,4 +17,5 @@
 //= require layzr
 //= require sidenav.min
 //= require social-share-button
+//= require scripts
 //= require_tree .

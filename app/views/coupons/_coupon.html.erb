@@ -1,0 +1,28 @@
+<div class="panel panel-primary">
+  <div class="panel-heading"> <%= coupon.title %> </div>
+  <div class="panel-body wrapper" style="background-image:url('<%= coupon.picture.url %>'); min-height: 200px;"x>
+      <div class="ribbon-wrapper-green">
+        <div class="ribbon-green">
+            <%=coupon.ammount%>%
+        </div>
+    </div>
+    <div class="dark-boxed">
+        <div class="text-boxed">
+            <%= coupon.description %>            
+        </div>
+    </div>
+
+  </div>
+  <div class="panel-footer">
+  <div class="row">
+    <div class="col-xs-8">
+    <strong>Cupones disponibles: </strong><em><%= coupon.max_redemptions %></em>
+    <br>
+    <strong>Valido hasta: </strong><em><%= humanize_date(coupon.end_date) %></em>
+  </div>
+  <div class="col-xs-4 center">
+        <%= link_to "Reclamar", coupon_redemptions_path(user_id: current_user.id, coupon_id: coupon.id), class:"btn btn-success", method: :post %>
+  </div>
+  </div>
+</div>
+</div>
