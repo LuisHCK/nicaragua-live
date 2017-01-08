@@ -285,7 +285,7 @@ a.back-to-top i{
 /* Corner ribbons */
 
 .wrapper {
-  width: 0 auto;
+  width: 100%;
   height: 0 auto;
   position: relative;
   z-index: 90;
@@ -350,4 +350,37 @@ a.back-to-top i{
   opacity: 1;
   color: white;
   margin: 5px;
+}
+
+/*Landing Page*/
+.intro-header {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #f8f8f8;
+    background: url('https://1.bp.blogspot.com/-DcHm_NWYQmQ/V83zItywmwI/AAAAAAAACFI/ggNrVTOdUY8e6SVt2XpT-Rh6bEeTdyk3wCPcB/s1600/concepcion.jpg') no-repeat center center;
+    background-size: cover;
+}
+.intro-message {
+    position: relative;
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
+.intro-message > h2 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 3.5em;
+}
+.intro-message > h3 {
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+}
+.intro-divider {
+    width: 80%;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+.list-inline {
+    padding-left: 0;
+    margin-left: -5px;
+    list-style: none;
 }

@@ -1,3 +1,13 @@
+<div class="intro-header">
+  <div class="intro-message">
+    <h2>Nicaragua Live</h2>
+    <h3>Encuentra las mejores ofertas en el país</h3>
+    <hr class="intro-divider">
+    <ul class="list-inline">
+    <li><%= link_to 'Ver ofertas', '#', class:"btn btn-default" %></li>
+    <%= welcome_buttons %>
+  </div>
+</div>
 <div class="container">
   <!--Tarjetas-->
   <div class="page-header center"><h4><b>Recomendados</b></h4></div>
@@ -8,8 +18,8 @@
 
 <div class="container">
 <div class="page-header center"><h4><b>Ofertas recientes</b></h4></div>
-  <div class="owl-caroucel" id="owl-offers">
-    <%= render @offers %>
+  <div class="owl-carousel owl-theme">
+    <%= render @coupons %>
   </div>
 </div>
 
@@ -73,24 +83,21 @@
     threshold : 200
   });
 
-  $(document).ready(function() {
+$('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:3
+        }
+    }
+})
 
-    $("#owl-comments").owlCarousel({
-      items : 4,
-      lazyLoad : true,
-    });
-
-    $("#owl-promo").owlCarousel({
-      items : 4,
-      lazyload : true,
-    });
-
-    $("#owl-post").owlCarousel({
-      items : 4,
-      lazyLoad : true,
-    });
-
-    $('#owl-offers').owlCarousel();
-
-  });
 </script>

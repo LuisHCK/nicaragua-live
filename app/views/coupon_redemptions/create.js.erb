@@ -1,0 +1,3 @@
+$( "#coupon_<%= @coupon.id %>" ).fadeOut( "slow", function() {
+	$('#coupon_<%= @coupon.id %>').html("<%= j render 'coupons/coupon', coupon: @coupon %>").fadeIn();
+});

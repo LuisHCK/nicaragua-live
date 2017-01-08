@@ -26,4 +26,18 @@ module WelcomeHelper
 			return "error"
 		end		
 	end
+
+	def welcome_buttons
+		if user_signed_in?
+			content_tag(:li) do
+				link_to('Mis cupones', '#', class:"btn btn-primary")
+			end
+			
+		else
+			content_tag(:li) do
+				link_to('Entrar con Facebook', '#', class:"btn btn-primary")
+			end
+		end
+
+	end
 end

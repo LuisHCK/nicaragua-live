@@ -1,6 +1,5 @@
 class CouponRedemptionsController < ApplicationController
   before_action :set_coupon_redemption, only: [:show, :edit, :update, :destroy]
-
   # GET /coupon_redemptions
   # GET /coupon_redemptions.json
   def index
@@ -23,15 +22,21 @@ class CouponRedemptionsController < ApplicationController
   # POST /coupon_redemptions
   # POST /coupon_redemptions.json
   def create
-    @coupon_redemption = CouponRedemption.new(coupon_redemption_params)
+    @coupon = Coupon.find(coupon_redemption_params[:coupon_id])
 
+        if current_user.redeemed?(@coupon) == false
+          @coupon_redemption = CouponRedemption.new(coupon_redemption_params)
+        end
+        
     respond_to do |format|
       if @coupon_redemption.save
         format.html { redirect_to @coupon_redemption, notice: 'Coupon redemption was successfully created.' }
         format.json { render :show, status: :created, location: @coupon_redemption }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @coupon_redemption.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -43,9 +48,11 @@ class CouponRedemptionsController < ApplicationController
       if @coupon_redemption.update(coupon_redemption_params)
         format.html { redirect_to @coupon_redemption, notice: 'Coupon redemption was successfully updated.' }
         format.json { render :show, status: :ok, location: @coupon_redemption }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @coupon_redemption.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -55,6 +62,7 @@ class CouponRedemptionsController < ApplicationController
   def destroy
     @coupon_redemption.destroy
     respond_to do |format|
+      format.js
       format.html { redirect_to coupon_redemptions_url, notice: 'Coupon redemption was successfully destroyed.' }
       format.json { head :no_content }
     end
