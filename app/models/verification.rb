@@ -1,3 +1,3 @@
-class Verification < ActiveRecord::Base
+class Verification < ApplicationRecord
   belongs_to :profile
 end

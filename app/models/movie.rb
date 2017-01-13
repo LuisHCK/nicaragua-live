@@ -1,4 +1,4 @@
-class Movie < ActiveRecord::Base
+class Movie < ApplicationRecord
 	has_attached_file :cover, styles: { thumb: ["64#", :jpg],
 						original: ['600', :jpg] },
 	convert_options: { thumb: "-quality 85 -strip",

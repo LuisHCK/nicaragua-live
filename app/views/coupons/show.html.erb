@@ -1,4 +1,46 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <strong>Title:</strong>
+  <%= @coupon.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @coupon.description %>
+</p>
+
+<p>
+  <strong>Ammount:</strong>
+  <%= @coupon.ammount %>
+</p>
+
+<p>
+  <strong>Max redemptions:</strong>
+  <%= @coupon.max_redemptions %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @coupon.code %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @coupon.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @coupon.end_date %>
+</p>
+
+<p>
+  <strong>Profile:</strong>
+  <%= @coupon.profile %>
+</p>
+<%= link_to "Reclamar Cupon", coupon_redemptions_path(user_id: current_user.id, coupon_id: @coupon.id), method: 'post', remote: true %>
+<br>  
+
 <%= link_to 'Edit', edit_coupon_path(@coupon) %> |
 <%= link_to 'Back', coupons_path %>

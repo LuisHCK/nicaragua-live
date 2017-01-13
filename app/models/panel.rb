@@ -1,2 +1,2 @@
-class Panel < ActiveRecord::Base
+class Panel < ApplicationRecord
 end

@@ -1,29 +1,76 @@
-<%= simple_form_for @coupon do |f| %>
-<div class="flex-row">
-	<div class="col-xs-4">
-		<%= f.input :code, label:"Código" %>
-	</div>
-	<div class="col-xs-8">
-		<%= f.input :description, label:"Descripción" %>
-	</div>
+<div class="panel panel-default" style="background-color: #F5F5F5">
+<div class="panel-body">
+  <%= simple_form_for(@coupon) do |f| %>
+    <%= f.error_notification %>
+      <div class="form-inputs">
+        <div class="row">
+          <div class="col-lg-12">
+            <%= f.input :title, label:"Título"%>
+          </div>
+          <div class="col-lg-12">
+            <%= f.input :description, label:"Detalles" %>
+          </div>
+          <div class="col-lg-3 col-sm-6 col-sm-3">
+            <%= f.input :ammount, label:"Descuento %", input_html: { min: '1', step: 'any' } %>
+          </div>
+          <div class="col-lg-3 col-sm-6 col-sm-3">
+            <%= f.input :max_redemptions, label:"N° Máximo", input_html: { min: '0', step: 'any' } %>
+          </div>
+          <div class="col-lg-6">
+            <%= f.input :code, label:"Código" %>
+          </div>
+          <div class="col-lg-6">
+            <%= f.input :start_date, as: :date_time_picker, label:"Fecha Inicio" %>
+          </div>
+          <div class="col-lg-6">
+            <%= f.input :end_date, as: :date_time_picker, label:"Fecha Final" %>
+          </div>
+          <div class="col-xs-12">
+            <%= f.input :picture, label:"Imagen", as: :file %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Crear Cupón", class:"btn btn-primary btn-lg", style:"display: block; width: 100%" %>
+      </div>
+      <% end %>
+</div>
 </div>
 
-<div class="flex-row">
-	<div class="col-xs-6">
-		<%= f.input :amount, label: "Cantidad de descuento(porciento)", input_html: { min: '1', max:'100', step: 'any' }  %>
-	</div>
-	<div class="col-xs-6">
-		<%= f.input :redemption_limit, label: "Máximo de reclamos(0 = Infinitos)", input_html: { min: '0', step: 'any' }  %>
-	</div>
-</div>
+<script>
+  $(document).ready(function () {
+    return $('.form_datetime').datetimepicker({
+      autoclose: true,
+      todayBtn: true,
+      minView: 2,
+      language: 'es',
+      pickerPosition: "bottom-left",
+      format: 'mm-dd-yyyy'
+    });
+  });
 
-<div class="flex-row">
-	<div class="col-xs-6">
-		<%= f.input :valid_from, label: "Válido desde", as: :date,html5: true, input_html: {class:"datepicker"}%>
-	</div>
-	<div class="col-xs-6">
-    <%= f.input :valid_until, label: "Válido hasta", as: :date,html5: true, input_html: {class:"datepicker"}%>
-	</div>
-</div>
-    <%= f.button :submit %>
-<% end %>
+/*
+	GENERATE RANDOM CODES FOR COUPONS
+*/
+function randomString(length) {
+    var result = '';
+	var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
+    return result;
+}
+
+//But first let me take the key word
+function getFirstWord(str) {
+        if (str.indexOf(' ') === -1)
+            return str;
+        else
+            return str.substr(0, str.indexOf(' '));
+    };
+
+//Finaly assign the value
+$('#coupon_title').keyup(function(){
+    var a = $(this).val();
+	$('#coupon_code').val(getFirstWord(a).toUpperCase()+'-'+randomString(4));
+});
+</script>

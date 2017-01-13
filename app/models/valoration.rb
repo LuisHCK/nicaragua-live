@@ -1,3 +1,3 @@
-class Valoration < ActiveRecord::Base
+class Valoration < ApplicationRecord
   belongs_to :client
 end

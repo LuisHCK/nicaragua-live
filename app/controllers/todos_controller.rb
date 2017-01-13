@@ -70,12 +70,12 @@ class TodosController < ApplicationController
     end
 
     def check_admin
-      if client_signed_in?
-        unless current_client.role == 'admin'
+      if user_signed_in?
+        unless current_user.user_lvl >= 1
           redirect_to root_path, notice: 'Acceso no autorizado'
         end
       else
-        redirect_to new_client_session_path
+        redirect_to new_user_session_path
       end
     end
 

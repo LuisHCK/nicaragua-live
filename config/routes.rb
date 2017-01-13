@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :coupon_redemptions
   resources :partners
   resources :partners
   resources :offer_saveds
@@ -69,6 +70,9 @@ Rails.application.routes.draw do
     match 'favorites', to: 'welcome#favorites', via: :get
     match 'terms', to: 'welcome#terms', via: :get
     match 'privacitypolicy', to: 'welcome#privacity', via: :get
+
+    match 'index', to: 'welcome#index', via: :get
+
 
 
     match '/google13e2745398afabff.html',

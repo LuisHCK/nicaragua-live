@@ -15,5 +15,8 @@
 //= require turbolinks
 //= require jquery.turbolinks
 //= require layzr
+//= require sidenav.min
 //= require social-share-button
+//= require scripts
+//= require owl.carousel.min
 //= require_tree .

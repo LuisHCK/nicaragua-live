@@ -1,4 +1,4 @@
-class CouponRedemption < ActiveRecord::Base
-	belongs_to :user
-	belongs_to :coupon
+class CouponRedemption < ApplicationRecord
+  belongs_to :user
+  belongs_to :profile
 end

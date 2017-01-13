@@ -1,0 +1,1 @@
+json.partial! "coupon_redemptions/coupon_redemption", coupon_redemption: @coupon_redemption

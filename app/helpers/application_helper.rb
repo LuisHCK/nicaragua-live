@@ -77,7 +77,11 @@ def human_date(in_human_date)
   end
 
   def humanize_date(date)
+    if date!= nil
     I18n.l(date, format: "%A %d %B, %Y")
+    else
+      return "null date"
+    end
   end
 
 #common helper methods for clients

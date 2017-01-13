@@ -1,5 +1,4 @@
-require File.expand_path('../boot', __FILE__)
-
+require_relative 'boot'
 
 require 'rails/all'
 
@@ -8,25 +7,14 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 module Liveapp
-  class Application < Rails::Application
+	class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
-    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    # config.time_zone = 'Central Time (US & Canada)'
-
-    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
-
-    # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
-    config.i18n.default_locale = :es
-    config.serve_static_files = true
-    config.secret_key_base = '4080d2442fd6e660c47b6a393f9bf52b556e3a27d3008e6a7be1dfff8c7da5136dd85c2adde36c69adc259c943ea6324b4ade3749ec368e1d744eb7c504739d8'
-  end
-
-
+    config.action_dispatch.default_headers.merge!({
+    	'Access-Control-Allow-Origin' => '*',
+    	'Access-Control-Request-Method' => '*'
+    	})
+end
 end

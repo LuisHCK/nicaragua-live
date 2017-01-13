@@ -1,3 +1,3 @@
-class Partner < ActiveRecord::Base
+class Partner < ApplicationRecord
   belongs_to :profile
 end

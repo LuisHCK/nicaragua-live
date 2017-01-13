@@ -1,16 +1,44 @@
 
-<div class="container coupon-box">
-<div class="info-box coupon-box">
-    <span class="info-box-icon indigo lighthen-4">
-        <b class="coupon-amount"><%= coupon.amount %>%</b>
-    </span>
-    <div class="info-box-content with-top">
-        <%= coupon.description %>
+<div class="item" style="width:0 auto" id="coupon_<%= coupon.id %>">
+<div class="panel panel-primary">
+  <div class="panel-heading"> <%= coupon.title %> </div>
+  <div class="panel-body wrapper" style="min-height: 200px;">
+  
+  <div class="background-img">
+    <%= image_tag coupon.picture, lazy:true, style:"z-index:900", class:"responsive-img" %>  
+  </div>
+  
+  <div style="z-index:950">
+        <div class="ribbon-wrapper-green">
+        <div class="ribbon-green">
+            <%=coupon.ammount%>%
+        </div>
     </div>
-</div>
-    <div class="flex-row center-xs collection">
-    	<div class="col-xs-4"><b>Código</b><br><%= redeem_code(coupon) %></div>
-    	<div class="col-xs-4"><b>Válido hasta</b><br><%= coupon.valid_until %></div>
-    	 <div class="col-xs-4"><b>Estado</b><br><%= is_valid?(coupon) %></div>
+    <div class="dark-boxed">
+        <div class="text-boxed">
+            <%= coupon.description %>            
+        </div>
     </div>
+  </div>
+
+  </div>
+  <div class="panel-footer">
+  <div class="row panel-success">
+    <div class="col-xs-6">
+    <strong>Cupones disponibles: </strong><em><%= coupon.max_redemptions %></em>
+    <br>
+    <strong>Valido hasta: </strong><em><%= humanize_date(coupon.end_date) %></em>
+  </div>
+  <div class="col-xs-6 center">
+    <%= coupon_buttons(coupon) %>
+  </div>
 </div>
+  </div>
+</div>
+</div>
+
+<style>
+.background-img {
+max-width:100%;
+}
+</style>
