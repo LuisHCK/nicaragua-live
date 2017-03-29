@@ -4,29 +4,29 @@
     <h3>Encuentra las mejores ofertas en el país</h3>
     <hr class="intro-divider">
     <ul class="list-inline">
-    <li><%= link_to 'Ver ofertas', '#', class:"btn btn-default" %></li>
+    <li><%= link_to 'Ver ofertas', offers_path, class:"btn btn-default" %></li>
     <%= welcome_buttons %>
   </div>
 </div>
-<div class="container">
+<div class="container-fluid">
   <!--Tarjetas-->
   <div class="page-header center"><h4><b>Recomendados</b></h4></div>
-  
+
   <%= render partial:'promo_profiles', locals:{promoved_profiles: @promoved_profiles} %>
 
 </div>
 
-<div class="container">
+<div class="container-fluid">
 <div class="page-header center"><h4><b>Ofertas recientes</b></h4></div>
   <div class="owl-carousel owl-theme">
     <%= render @coupons %>
   </div>
 </div>
 
-<div class="container" >
+<div class="container-fluid" >
   <% if user_signed_in? %>
   <div class="page-header center"><h4><b>Publicaciones</b></h4></div>
-  
+
   <div id="owl-post" class="owl-carousel">
     <%= render @posts %>
   </div>
@@ -64,11 +64,11 @@
   <div class="owl-carousel" id="owl-comments">
     <% @comments.each do |comment| %>
     <div class="col-xs-12">
-      <%= render partial:"comments/comment_welcome", locals:{comment: comment} %>  
+      <%= render partial:"comments/comment_welcome", locals:{comment: comment} %>
     </div>
     <% end %>
   </div>
-  
+
   <div class="center">
    <ul class="pagination center">
     <div class="apple_pagination">

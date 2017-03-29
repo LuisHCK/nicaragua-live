@@ -8,6 +8,7 @@
 			</div>
 			<div class="modal-body">
 				<%= f.input :body, label:"Descripción", as: :text %>
+				<%= file_field_tag "images[]", type: :image, multiple: true%>
 				<p>
 					Agrega un video(Opcional)
 				</p>

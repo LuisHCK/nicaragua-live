@@ -24,18 +24,18 @@ module WelcomeHelper
 			return "#{user.clientprofile.first_name} #{user.clientprofile.last_name}"
 		else
 			return "error"
-		end		
+		end
 	end
 
 	def welcome_buttons
 		if user_signed_in?
 			content_tag(:li) do
-				link_to('Mis cupones', '#', class:"btn btn-primary")
+				link_to('Mis cupones', coupons_path, class:"btn btn-primary")
 			end
-			
+
 		else
 			content_tag(:li) do
-				link_to('Entrar con Facebook', '#', class:"btn btn-primary")
+				link_to('Entrar con Facebook', new_user_session_path, class:"btn btn-primary")
 			end
 		end
 

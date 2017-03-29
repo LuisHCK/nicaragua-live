@@ -24,10 +24,10 @@ class CouponRedemptionsController < ApplicationController
   def create
     @coupon = Coupon.find(coupon_redemption_params[:coupon_id])
 
-        if current_user.redeemed?(@coupon) == false
+        if current_user.redeemed?(@coupon) == nil
           @coupon_redemption = CouponRedemption.new(coupon_redemption_params)
         end
-        
+
     respond_to do |format|
       if @coupon_redemption.save
         format.html { redirect_to @coupon_redemption, notice: 'Coupon redemption was successfully created.' }

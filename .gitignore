@@ -11,9 +11,10 @@
 /log/*
 !/log/.keep
 /tmp
-/public/system
+/public/system/*
 public/assets
 /app/assets/stylesheets/material-icons.css
 liveapp/app/assets/stylesheets/materialize.css
 #/app/assets/javascripts/materialize.js
 /shared
+/.idea/*

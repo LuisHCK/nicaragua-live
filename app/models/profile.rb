@@ -6,7 +6,7 @@ class Profile < ApplicationRecord
 	validates :category_id, presence: true
 
 	#index fields to search
-	searchkick searchable: [:name,:body,:keywords]
+	#searchkick searchable: [:name,:body,:keywords]
 	
 	#Asociations
 	has_many :reviews

@@ -1,5 +1,5 @@
 class Offer < ApplicationRecord
-  searchkick searchable: [:titulo,:descripcion,:precio]
+  #searchkick searchable: [:titulo,:descripcion,:precio]
   belongs_to :profile
   has_many :offer_saveds
   validates :titulo, presence: true

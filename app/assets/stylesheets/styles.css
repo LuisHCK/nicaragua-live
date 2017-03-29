@@ -10,8 +10,8 @@
   color: #4CAF50;
 }
 /*Fix Bootstrap navbar margin*/
-body { 
-  padding-top: 55px; 
+body {
+  /*padding-top: 55px; */
 }
 
 .center{
@@ -110,13 +110,13 @@ video.responsive-video {
   border: 1px solid #e5e5e5;
   text-align: center;
   padding: 1em;
-  cursor: default; 
+  cursor: default;
 }
 .apple_pagination a, .apple_pagination span {
-  padding: 0.2em 0.3em; 
+  padding: 0.2em 0.3em;
 }
 .apple_pagination .disabled {
-  color: #aaaaaa; 
+  color: #aaaaaa;
 }
 .apple_pagination .current {
   font-style: normal;
@@ -129,14 +129,14 @@ video.responsive-video {
   -moz-border-radius: 1em;
   -webkit-border-radius: 1em;
   border-radius: 1em;
-  text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px; 
+  text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px;
 }
 .apple_pagination a {
   text-decoration: none;
-  color: black; 
+  color: black;
 }
 .apple_pagination a:hover, .apple_pagination a:focus {
-  text-decoration: underline; 
+  text-decoration: underline;
 }
 
 
@@ -218,7 +218,8 @@ video.responsive-video {
 }
 
 .promo-img{
-  max-height: 150px;
+  max-height: 150px !important;
+  width: inherit !important;
 }
 
 a.back-to-top {
@@ -268,7 +269,7 @@ a.back-to-top i{
 .navbar-brand-logo {
   transform: translateX(-50%);
   left: 50%;
-  position: absolute; 
+  position: absolute;
 }
 
 
@@ -323,7 +324,7 @@ a.back-to-top i{
 
 .ribbon-green:before, .ribbon-green:after {
   content: "";
-  border-top:   3px solid #6e8900;   
+  border-top:   3px solid #6e8900;
   border-left:  3px solid transparent;
   border-right: 3px solid transparent;
   position:absolute;
@@ -383,4 +384,9 @@ a.back-to-top i{
     padding-left: 0;
     margin-left: -5px;
     list-style: none;
+}
+
+.star-carousel img{
+  display: inline !important;
+  width: inherit !important;
 }

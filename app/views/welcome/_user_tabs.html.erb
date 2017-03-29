@@ -1,11 +1,6 @@
 <% if user_signed_in? %>
-<div class="sidenav-brand" style="background-image: <%= image_tag('cover-default.png') %>">
-	BRAND
-</div>
-
-<div class="sidenav-header">
-	Section Header
-	<small>secondary text</small>
+<div class="sidenav-brand">
+	<%= current_user.profile.name %>
 </div>
 
 <% else %>

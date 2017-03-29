@@ -16,9 +16,9 @@ class PartnersController < ApplicationController
   # GET /partners/new
   def new
     if current_user.user_lvl >= 3
-      @partner = Partner.new      
+      @partner = Partner.new
     else
-      redirect_to root_path
+      redirect_to root_path, notice: "No tienes permiso para esta acción"
     end
   end
 
@@ -30,7 +30,7 @@ class PartnersController < ApplicationController
   # POST /partners.json
   def create
     if current_user.user_lvl >= 3
-    @partner = Partner.new(profile_id: params[:profile_id])
+    @partner = Partner.new(partner_params)
 
       respond_to do |format|
         if @partner.save
@@ -42,7 +42,7 @@ class PartnersController < ApplicationController
         end
       end
     else
-      redirect_to root_path      
+      redirect_to root_path
     end
   end
 
