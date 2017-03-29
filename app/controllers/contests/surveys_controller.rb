@@ -1,6 +1,6 @@
 class Contests::SurveysController < ApplicationController
 
-  before_filter :load_survey, :only => [:show, :edit, :update]
+  before_action :load_survey, :only => [:show, :edit, :update]
 
   def index
     type = view_context.get_survey_type(params[:type])

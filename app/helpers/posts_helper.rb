@@ -1,6 +1,6 @@
 module PostsHelper
 	def show_video(post)
-		if post.video.present? || post.video =! ""
+		if post.video.present? || post.video =! nil
 			if post.pictures.count < 1
 				return youtube_video post.video
 			else
@@ -23,7 +23,7 @@ module PostsHelper
 			def post_delete(post)
 				if user_signed_in?
 					if current_user.id == post.profile.user_id
-						link_to("Eliminar",post_path(post), method: :delete, data: { confirm: '¿Estás seguro de borrar esta publicación?' }) 
+						link_to("Eliminar",post_path(post), method: :delete, data: { confirm: '¿Estás seguro de borrar esta publicación?' })
 					end
 				end
 			end

@@ -1,6 +1,6 @@
 class SurveysController < ApplicationController
   before_action :authenticate_user!, except: [:show,:index]
-  before_filter :load_survey, only: [:show, :edit, :update, :destroy]
+  before_action :load_survey, only: [:show, :edit, :update, :destroy]
 
   def index
     type = view_context.get_survey_type(params[:type])
