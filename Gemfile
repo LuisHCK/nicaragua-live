@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '>= 5.0.0.rc2', '< 5.1'
+gem 'rails', '>= 5.0.2', '< 5.1'
 # Use SCSS for stylesheets
 gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
@@ -76,7 +76,7 @@ gem 'jquery-turbolinks'
 gem 'redcarpet'
 gem 'will_paginate'
 gem 'searchkick'
-gem "survey", "~> 0.1"
+gem "survey", "~> 0.1", github: "LuisHCK/survey"
 gem 'tzinfo-data'
 gem 'tzinfo'
 gem 'simple_form'
