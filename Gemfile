@@ -49,7 +49,7 @@ group :development do
   gem "binding_of_caller"
 
   # Use mysql as the database for Active Record
-  gem 'mysql2', '>= 0.3.13', '< 0.5'
+  gem 'mysql2', '>= 0.3.13', '< 0.5', require: false
 
   #Auto reload
   gem 'guard-livereload', require: false
