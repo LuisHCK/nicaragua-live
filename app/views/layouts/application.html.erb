@@ -84,7 +84,7 @@
     <div class="side-menu-container">
         <ul class="nav navbar-nav">
           <% if user_signed_in? %>
-            <li><a href="<%= profile_path(current_user.profile) %>"><span class="glyphicon glyphicon-signal"></span> Mi Pefil</a></li>
+            <li><a href="/"><span class="glyphicon glyphicon-signal"></span> Mi Pefil</a></li>
           <% end %>
             <li><a href="<%= coupons_path %>"><span class="glyphicon glyphicon-send"></span> Cupones</a></li>
             <li class="active"><a href="<%= offers_path %>"><span class="glyphicon glyphicon-plane"></span> Ofertas</a></li>
